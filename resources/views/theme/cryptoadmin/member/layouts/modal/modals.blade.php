@@ -1,0 +1,7 @@
+@include('theme.cryptoadmin.member.layouts.modal.modal-fill')
+@include('theme.cryptoadmin.member.layouts.modal.modal-fill-2')
+@include('theme.cryptoadmin.member.layouts.modal.modal-left')
+@include('theme.cryptoadmin.member.layouts.modal.modal-right')
+@include('theme.cryptoadmin.member.layouts.modal.modal-lg')
+@include('theme.cryptoadmin.member.layouts.modal.modal-md')
+@include('theme.cryptoadmin.admin.layouts.modal.modal-center')

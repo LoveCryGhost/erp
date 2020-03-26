@@ -1,0 +1,74 @@
+/*member-product-index-page*/
+.member-product-index-page{
+    .product-thumbnail{
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+      border: grey solid 1px;
+      cursor: pointer;
+    }
+}
+
+.member-product-edit-page{
+  .product-sku-thumbnail{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: grey solid 1px;
+    cursor: pointer;
+  }
+}
+
+.member-supplierGroup-index-page{
+  .name_card{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: grey solid 1px;
+    cursor: pointer;
+  }
+}
+
+.member-supplier-index-page{
+  .name_card{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: grey solid 1px;
+    cursor: pointer;
+  }
+}
+
+.member-crawleritem-index-page{
+  .item-div{
+        border-radius: 3px;
+        border: lightgrey 1px solid;
+        box-shadow: 2px 2px lightcyan;
+        margin: 3px;
+        padding: 3px;
+    }
+
+  .item-div:hover{
+        background: lightcyan;
+    }
+
+  .item-image{
+        border-radius: 3px;
+        border: lightgrey 1px solid;
+        padding: 3px;
+        box-shadow: 2px 2px lightcyan;
+        margin: 3px;
+    }
+
+
+
+}
+#tooltip{
+    position:absolute;
+    border:1px solid #ccc;
+    background:#333;
+    padding:2px;
+    display:none;
+    color:#fff;
+    z-index: 1000000000000000;
+}
