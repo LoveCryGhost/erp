@@ -49,7 +49,7 @@ class CrawlerItemJob implements ShouldQueue
                     'images' => $json['item']['images'][0],
                     'sold' => $json['item']['sold'],
                     'historical_sold' => $json['item']['historical_sold'],
-                    'domain_name' => '2222',
+                    'domain_name' => $crawler_item->domain_name,
                     'local' => $crawler_item->local,
                     'member_id' => $member_id,
                     'updated_at'=> now()
