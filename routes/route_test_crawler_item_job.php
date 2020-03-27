@@ -19,6 +19,7 @@ Route::get('/shopee-crawleritem', function () {
     if(count($crawler_items)>0){
         foreach ($crawler_items as $crawler_item){
             $url = 'https://'.$crawler_item->domain_name.'/api/v2/item/get?itemid='.$crawler_item->itemid.'&shopid='.$crawler_item->shopid;
+            dd($url,$crawler_item);
             $ClientResponse = $this->shopeeHandler->ClientHeader_Shopee($url);
             $json = json_decode($ClientResponse->getBody(), true);
 
