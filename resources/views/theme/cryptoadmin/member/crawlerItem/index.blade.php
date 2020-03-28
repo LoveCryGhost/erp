@@ -103,9 +103,11 @@
                                         <div class="col-md-4">
                                             <a>{{ $crawlerItem->name }}</a><br>
                                             <a class="btn btn-sm btn-info" target="_blank"
-                                               href="https://{{$crawlerTask->domain_name}}/{{$crawlerItem->name==null? "waiting-upload-data":$crawlerItem->name}}-i.{{$crawlerItem->shopid}}.{{$crawlerItem->itemid}}" ><i class="fa fa-external-link"></i></a>
+                                               href="https://{{$crawlerTask->domain_name}}/{{$crawlerItem->name==null? "waiting-upload-data":$crawlerItem->name}}-i.{{$crawlerItem->shopid}}.{{$crawlerItem->itemid}}" >
+                                                <i class="fa fa-external-link"></i> {{$crawlerItem->itemid}}</a>
                                             <a class="btn btn-sm btn-info" target="_blank"
-                                               href="https://{{$crawlerTask->domain_name}}/shop/{{$crawlerItem->shopid}}" ><i class="fa fa-shopping-bag"></i></a>
+                                               href="https://{{$crawlerTask->domain_name}}/shop/{{$crawlerItem->shopid}}" >
+                                                <i class="fa fa-shopping-bag"></i> {{$crawlerItem->crawlerShop->username}}</a>
                                         </div>
                                         <div class="col-md-1">
                                             {{number_format($crawlerItem->crawlerItemSKUs->min('price')/10, 0,".",",")}}

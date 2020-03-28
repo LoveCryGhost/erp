@@ -69,12 +69,14 @@ class ShopeeHandler
         return $params;
     }
 
+    //組合Url連結
     public function crawlerTaskGenerateAPIUrl($crawlerTask)
     {
         //爬蟲
         $item_qty = $crawlerTask->pages*50;
         $insert_item_qty = config('crawler.insert_item_qty');
         $index = ceil($item_qty/$insert_item_qty);
+
         for ($i=0; $i<=$index-1; $i++){
             $url =   'https://'.$crawlerTask->domain_name.'/api/v2/search_items/?';
 

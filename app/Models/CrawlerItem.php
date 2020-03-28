@@ -38,8 +38,16 @@ class CrawlerItem extends CoreModel
         return $this->hasMany(CrawlerItemSKU::class, 'ci_id');
     }
 
+
     public function crawlerTask()
     {
         return $this->belongsToMany(CrawlerItem::class, 'ctasks_items','ci_id','ct_id');
+    }
+
+    public function crawlerShop()
+    {
+        return $this->hasOne(CrawlerShop::class, 'shopid', 'shopid');
+            //->where('local', $this->local)
+            //->where('domain_name', $this->domain_name);
     }
 }
