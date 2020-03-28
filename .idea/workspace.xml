@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ffa976d-b272-4e85-9a8a-50ed48af53b5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdminMonitorsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/admin/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/admin/layouts/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/member/layouts/member-app-login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/member/layouts/member-app-login.blade.php" afterDir="false" />
@@ -210,7 +209,7 @@
       <workItem from="1585142144915" duration="566000" />
       <workItem from="1585143218252" duration="3882000" />
       <workItem from="1585192066201" duration="1604000" />
-      <workItem from="1585355080254" duration="8471000" />
+      <workItem from="1585355080254" duration="8867000" />
     </task>
     <servers />
   </component>
