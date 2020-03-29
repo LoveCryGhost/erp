@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ffa976d-b272-4e85-9a8a-50ed48af53b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/admin/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/admin/layouts/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/member/layouts/member-app-login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/member/layouts/member-app-login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +149,7 @@
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ZZz5SEgWLqConW7nLI1HX87xra" />
@@ -163,7 +167,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Admin" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -171,14 +175,15 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http/Controllers/Admin" />
       <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/layouts" />
       <recent name="$PROJECT_DIR$/resources/views/auth" />
-      <recent name="$PROJECT_DIR$/resources/sass" />
     </key>
   </component>
   <component name="RunManager">
@@ -204,6 +209,7 @@
       <workItem from="1585142144915" duration="566000" />
       <workItem from="1585143218252" duration="3882000" />
       <workItem from="1585192066201" duration="1604000" />
+      <workItem from="1585355080254" duration="8867000" />
     </task>
     <servers />
   </component>
@@ -214,6 +220,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="320" y="115" key="#Notifications" timestamp="1585355209419">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="115" key="#Notifications/0.0.1440.900@0.0.1440.900" timestamp="1585355209419" />
     <state x="320" y="115" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585118894739">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -234,15 +244,19 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1585061850436" />
+    <state x="221" y="89" key="SettingsEditor" timestamp="1585355038620">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1585355038620" />
     <state width="254" height="200" key="ShowFilterAction_Filter_Popup" timestamp="1585195040637">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state width="254" height="200" key="ShowFilterAction_Filter_Popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1585195040637" />
-    <state x="397" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1585192082238">
-      <screen x="0" y="23" width="1440" height="797" />
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1585355084413">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1969" y="338" key="com.intellij.ide.util.TipDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1585142159795" />
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1585062606508" />
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1585355084413" />
     <state x="1969" y="354" key="com.intellij.ide.util.TipDialog/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1585143219552" />
     <state x="397" y="273" key="com.intellij.ide.util.TipDialog/0.23.1440.797@0.23.1440.797" timestamp="1585192082238" />
     <state x="1705" y="122" width="782" height="745" key="find.popup" timestamp="1585195089163">
@@ -250,9 +264,10 @@
     </state>
     <state x="1705" y="122" width="782" height="745" key="find.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1585195089163" />
     <state x="1600" y="187" width="782" height="729" key="find.popup/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1585141346987" />
-    <state x="1564" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1585195145547">
-      <screen x="1440" y="0" width="1920" height="1080" />
+    <state x="93" y="201" width="670" height="564" key="search.everywhere.popup" timestamp="1585377607082">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1564" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1585195145547" />
+    <state x="93" y="201" width="670" height="564" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1585377607082" />
   </component>
 </project>

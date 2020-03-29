@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Handlers\ShopeeHandler;
 use App\Models\CrawlerItem;
@@ -7,30 +6,24 @@ use App\Models\CrawlerTask;
 use App\Repositories\Member\MemberCoreRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
-
-//MultiAuth 用户身份验证相关的路由
+//======================================================================================================================
+//MultiAuth 用戶分份驗證相關路由
 Auth::routes(['verify' => true]);
 Route::get('/admin/horizon', function () {
     return redirect()->route('horizon.index');
 });
+
+
+//======================================================================================================================
+//MultiAuth 用戶分份驗證相關路由
 Route::prefix('')->group(function() {
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
@@ -92,12 +85,14 @@ Route::prefix('')->group(function() {
 });
 
 
-
+//======================================================================================================================
 //User
 Route::middleware('auth')->prefix('')->namespace('User')->name('')->group(function(){
     Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 });
 
+
+//====================================================================
 //Admin
 Route::prefix('')->namespace('Admin')->group(function(){
     Route::prefix('admin')->name('admin.')->group(function(){
@@ -117,10 +112,14 @@ Route::prefix('')->namespace('Admin')->group(function(){
         Route::put('staff_update_password/{staff}', 'AdminStaffsController@update_password')->name('staff.update_password');
         Route::resource('staff', 'AdminStaffsController');
 
+        Route::get('crawler_monitor', 'AdminMonitorsController@crawler_monitor')->name('crawler.monitor');
+
     });
     Route::resource('admin', 'AdminsController');
+
 });
 
+//======================================================================================================================
 //Member
 Route::prefix('member')->namespace('Member')->group(function(){
     Route::put('member_update_password/{member}', 'MembersController@update_password')->name('member.update_password');
@@ -131,7 +130,6 @@ Route::prefix('member')->namespace('Member')->group(function(){
         Route::resource('supplier', 'SuppliersController');
         Route::resource('supplierGroup', 'SupplierGroupsController');
         Route::resource('supplier-contact', 'Supplier_ContactsController');
-
 
         //Type
         Route::resource('type', 'TypesController');
@@ -157,6 +155,8 @@ Route::prefix('member')->namespace('Member')->group(function(){
 
 });
 
+
+//======================================================================================================================
 //Staff
 Route::prefix('')->namespace('Staff')->group(function(){
     Route::put('staff_update_password/{staff}', 'StaffsController@update_password')->name('staff.update_password');
@@ -170,9 +170,12 @@ Route::prefix('')->namespace('Staff')->group(function(){
 });
 
 
+
 Route::get('/', function () {
     return view('theme.cryptoadmin.user.welcome');
 });
+
+
 include('test.php');
 include('route_test_crawler_item_job.php');
 

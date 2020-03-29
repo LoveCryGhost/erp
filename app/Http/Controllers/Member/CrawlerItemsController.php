@@ -29,7 +29,7 @@ class CrawlerItemsController extends MemberCoreController
 
         $crawlerItems = $crawlerTask->crawlerItems()
             ->where('is_active', request()->is_active)
-            ->with('crawlerItemSKUs')
+            ->with(['crawlerItemSKUs','crawlerShop'])
             ->orderBy('ctasks_items.sort_order')
             ->paginate(50);
         return view(config('theme.member.view').'crawlerItem.index',

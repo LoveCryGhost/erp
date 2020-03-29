@@ -3,11 +3,11 @@
 
 
 {{--標題--}}
-<title>Staff - @yield('title')</title>
+<title>Member - @yield('title')</title>
 
 
 {{--CSS--}}
-@include(config('theme.staff.css.default'))
+@include(config('theme.member.css.default'))
 @section('css')
     @parent
     @yield('css')
