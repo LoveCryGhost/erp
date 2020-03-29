@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ffa976d-b272-4e85-9a8a-50ed48af53b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/admin/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/admin/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/member/layouts/member-app-login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/theme/cryptoadmin/member/layouts/member-app-login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="8ffa976d-b272-4e85-9a8a-50ed48af53b5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,6 +145,12 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
       <path value="" />
+      <path value="$PROJECT_DIR$/vendor/spatie/db-dumper" />
+      <path value="$PROJECT_DIR$/vendor/spatie/temporary-directory" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-backup" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ZZz5SEgWLqConW7nLI1HX87xra" />
@@ -210,6 +211,7 @@
       <workItem from="1585143218252" duration="3882000" />
       <workItem from="1585192066201" duration="1604000" />
       <workItem from="1585355080254" duration="8867000" />
+      <workItem from="1585469164318" duration="135000" />
     </task>
     <servers />
   </component>
