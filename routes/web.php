@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 
 
 //======================================================================================================================
@@ -96,6 +96,8 @@ Route::middleware('auth')->prefix('')->namespace('User')->name('')->group(functi
 //Admin
 Route::prefix('')->namespace('Admin')->group(function(){
     Route::prefix('admin')->name('admin.')->group(function(){
+
+        Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
         //Guard-Switcher-User
         Route::post('tool/guard_switcher_user', 'AdminToolsController@guard_switcher_user')->name('tool.guard_switcher_user');
