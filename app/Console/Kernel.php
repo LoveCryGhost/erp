@@ -17,10 +17,17 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
+        //上線時執行任務
+        if (app()->environment('production')) {
+            $schedule->command('backup:run')->cron('0 */4 * * *');
+            $schedule->command('backup:monitor')->dailyAt('03:00');
+            $schedule->command('backup:clean')->dailyAt('03:10');
+        }
+
         //$schedule->command('command:add_users')->everyMinute();
         $schedule->command('command:crawler_first_time_update_item_and_shop')->everyMinute();
         $schedule->command('command:crawler_task')->everyMinute();
-        $schedule->command('command:crawler_clean')->everyThirtyMinutes();
+        $schedule->command('command:crawler_clean')->everyMinute();
     }
 
     protected function commands()
