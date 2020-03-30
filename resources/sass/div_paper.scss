@@ -1,0 +1,61 @@
+.div_paper{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 5px;
+  padding: 5px;
+  border: 2px solid whitesmoke;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.7);
+}
+.cancel_line{
+  position:relative;
+  margin:50px auto;
+  width:100px;
+  height:50px;
+  box-sizing:border-box;
+  border:0px solid #333;
+  line-height:12px;
+  text-indent:5px;
+  background:
+  linear-gradient(315deg, transparent 49.5%, deeppink 49.5%, deeppink 50.5%, transparent 50.5%);
+}
+
+.div_overflow-x{
+  display: inline-block;
+  overflow-x: scroll;
+}
+
+.div_overflow-y{
+  display: inline-block;
+  overflow-y: scroll;
+}
+
+
+.input-file{
+  z-index: -11111;  width: 0px;  height: 1px;
+}
+.img-preview-frame{
+  height: 100px; /*can be anything*/
+  width: 100px; /*can be anything*/
+  position: relative;
+  cursor: pointer;
+  background-color: grey;
+  display: inline-block;
+  border: 2px solid darkgray;
+  padding: 5px;
+  border-radius: 5px;
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    cursor: pointer;
+  }
+}

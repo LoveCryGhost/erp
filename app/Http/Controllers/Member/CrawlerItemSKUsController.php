@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Requests\Request;
 use App\Services\Member\CrawlerItemSKUService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use function request;
 
 class CrawlerItemSKUsController extends MemberCoreController
 {
@@ -19,6 +22,10 @@ class CrawlerItemSKUsController extends MemberCoreController
         $data = request()->all();
         $crawlerItem = $this->crawlerItemSKUService->crawlerItemRepo->getById($data['ci_id']);
 
+        //Member本身的商品
+        $products = $this->crawlerItemSKUService->productRepo->builder()
+                            ->where('member_id', Auth::guard('member')->user()->id)->get();
+
         foreach($crawlerItem->crawlerItemSKUs as $crawlerItemSKU){
             $amCharProvider[] = [
                 "year" => $crawlerItemSKU->name,
@@ -26,7 +33,7 @@ class CrawlerItemSKUsController extends MemberCoreController
             ];
         }
 
-        $view = view(config('theme.member.view').'crawlerItemSKU.index',compact('data', 'crawlerItem', 'amCharProvider'))->render();
+        $view = view(config('theme.member.view').'crawlerItemSKU.index',compact('data', 'crawlerItem', 'amCharProvider', 'products'))->render();
         return [
             'errors' => '',
             'models'=> [
@@ -36,5 +43,13 @@ class CrawlerItemSKUsController extends MemberCoreController
             'view' => $view,
             'options'=>[]
         ];
+    }
+
+    /*
+     * CrawlerItemSKU中選定Product -> Product-id
+     * */
+    public function put_product_id()
+    {
+        Session::put('member_crawleritem_product_id', request()->product_id );
     }
 }

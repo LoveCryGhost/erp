@@ -6,8 +6,16 @@
     <div class="box-body">
 
         <div class="row">
+            <div class="col-md-12">
+                請選擇商品:
+                <select name="p_id" onchange="product_select_change(this, php_inject={{json_encode(['models'])}})">
+                    @foreach($products as $product)
+                        <option value="{{$product->p_id}}" {{Session::get('member_crawleritem_product_id')==$product->p_id? "selected":""}}>{{$product->p_name}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="col-md-6">
-                <table class="table-hover table-bordered table-primary font-size-10">
+                <table class="table table-hover table-bordered table-primary font-size-10">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -31,7 +39,9 @@
                         @foreach($crawlerItem->crawlerItemSKUs as $crawlerItemSKU)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$crawlerItemSKU->name}}</td>
+                            <td>
+                                <a class="pointer" data-toggle="modal" data-target="#modal-right">{{$crawlerItemSKU->name}}</a>
+                            </td>
                             <td class="text-right">{{number_format($crawlerItemSKU->price/10,0,".",",")}}</td>
                             <td class="text-right">{{number_format($crawlerItemSKU->stock, 0, ".", ",")}}</td>
                                 @php
@@ -156,4 +166,20 @@
 
     });
 
+    function product_select_change(_this, php_inject) {
+        $.ajaxSetup(active_ajax_header());
+        $.ajax({
+            type: 'post',
+            url: '{{route('member.crawleritemsku.put_product_id')}}?product_id='+$(_this).val(),
+            data: '',
+            async: true,
+            crossDomain: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+            },
+            error: function(data) {
+            }
+        });
+    }
 </script>

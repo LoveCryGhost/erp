@@ -5,6 +5,7 @@ namespace App\Services\Member;
 use App\Handlers\ImageUploadHandler;
 use App\Repositories\Member\CrawlerItemRepository;
 use App\Repositories\Member\CrawlerItemSKURepository;
+use App\Repositories\Member\ProductRepository;
 use App\Repositories\Member\SupplierContactRepository;
 use App\Repositories\Member\SupplierRepository;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +16,13 @@ class CrawlerItemSKUService extends MemberCoreService implements MemberServiceIn
     public $crawlerItemSKURepo;
     public $crawlerItemRepo;
 
-    public function __construct(CrawlerItemSKURepository $crawlerItemSKURepository, CrawlerItemRepository $crawlerItemRepository)
+    public function __construct(CrawlerItemSKURepository $crawlerItemSKURepository,
+                                CrawlerItemRepository $crawlerItemRepository,
+                                ProductRepository $productRepository)
     {
         $this->crawlerItemSKURepo = $crawlerItemSKURepository;
         $this->crawlerItemRepo = $crawlerItemRepository;
+        $this->productRepo = $productRepository;
     }
 
     public function index()

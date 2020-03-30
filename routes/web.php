@@ -153,6 +153,7 @@ Route::prefix('member')->namespace('Member')->group(function(){
         Route::post('crawleritem_save_cralwertask_info', 'CrawlerItemsController@save_cralwertask_info')->name('crawleritem.save_cralwertask_info');
 
         Route::resource('crawleritemsku', 'CrawlerItemSKUsController');
+        Route::post('crawleritemsku-put_product_id', 'CrawlerItemSKUsController@put_product_id')->name('crawleritemsku.put_product_id');
     });
 
 });
