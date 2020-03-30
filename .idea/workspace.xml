@@ -145,6 +145,12 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
       <path value="" />
+      <path value="$PROJECT_DIR$/vendor/spatie/db-dumper" />
+      <path value="$PROJECT_DIR$/vendor/spatie/temporary-directory" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-backup" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ZZz5SEgWLqConW7nLI1HX87xra" />
@@ -204,7 +210,9 @@
       <workItem from="1585142144915" duration="566000" />
       <workItem from="1585143218252" duration="3882000" />
       <workItem from="1585192066201" duration="1604000" />
-      <workItem from="1585355080254" duration="8471000" />
+      <workItem from="1585355080254" duration="8867000" />
+      <workItem from="1585473454156" duration="320000" />
+      <workItem from="1585526635960" duration="1102000" />
     </task>
     <servers />
   </component>
@@ -247,11 +255,11 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state width="254" height="200" key="ShowFilterAction_Filter_Popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1585195040637" />
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1585355084413">
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1585469167588">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="1969" y="338" key="com.intellij.ide.util.TipDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1585142159795" />
-    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1585355084413" />
+    <state x="397" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1585469167588" />
     <state x="1969" y="354" key="com.intellij.ide.util.TipDialog/0.23.1440.797/1440.23.1920.1057@1440.23.1920.1057" timestamp="1585143219552" />
     <state x="397" y="273" key="com.intellij.ide.util.TipDialog/0.23.1440.797@0.23.1440.797" timestamp="1585192082238" />
     <state x="1705" y="122" width="782" height="745" key="find.popup" timestamp="1585195089163">
