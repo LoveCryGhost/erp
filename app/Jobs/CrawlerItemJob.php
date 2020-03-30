@@ -41,30 +41,40 @@ class CrawlerItemJob implements ShouldQueue
                 $ClientResponse = $this->shopeeHandler->ClientHeader_Shopee($url);
                 $json = json_decode($ClientResponse->getBody(), true);
 
-                //CrawlerItem
-                $row_item[]=[
-                    'itemid' => $crawler_item->itemid,
-                    'shopid' => $crawler_item->shopid,
-                    'name' => $json['item']['name'],
-                    'images' => $json['item']['images'][0],
-                    'sold' => $json['item']['sold']==null? 0: $json['item']['sold'],
-                    'historical_sold' => $json['item']['historical_sold']==null? 0: $json['item']['historical_sold'],
-                    'domain_name' => $crawler_item->domain_name,
-                    'local' => $crawler_item->local,
-                    'member_id' => $member_id,
-                    'updated_at'=> now()
-                ];
+                //若商品為空或是已經被Shopee刪除了
+                if($json['item']){
+                    //CrawlerItem
+                    $row_item[]=[
+                        'itemid' => $crawler_item->itemid,
+                        'shopid' => $crawler_item->shopid,
+                        'name' => $json['item']['name'],
+                        'images' => $json['item']['images'][0],
+                        'sold' => $json['item']['sold']==null? 0: $json['item']['sold'],
+                        'historical_sold' => $json['item']['historical_sold']==null? 0: $json['item']['historical_sold'],
+                        'domain_name' => $crawler_item->domain_name,
+                        'local' => $crawler_item->local,
+                        'member_id' => $member_id,
+                        'updated_at'=> now()
+                    ];
 
-                //Update CrawlerItem
-                $crawlerItem = new CrawlerItem();
-                $TF = (new MemberCoreRepository())->massUpdate($crawlerItem, $row_item);
+                    //Update CrawlerItem
+                    $crawlerItem = new CrawlerItem();
+                    $TF = (new MemberCoreRepository())->massUpdate($crawlerItem, $row_item);
 
-                //CrawlerItemSKU
-                if(count($json['item']['models'])>0){
-                    $this->row_model_details($json, $crawler_item);
+                    //CrawlerItemSKU
+                    if(count($json['item']['models'])>0){
+                        $this->row_model_details($json, $crawler_item);
+                    }else{
+                        $this->row_item_detail($json, $crawler_item);
+                    }
+
+                //若商品為空或是已經被Shopee刪除了
                 }else{
-                    $this->row_item_detail($json, $crawler_item);
+                    $crawler_item->updated_at = now();
+                    $crawler_item->is_active = 0;
+                    $crawler_item->save();
                 }
+
             }
 
             //重新指派任務

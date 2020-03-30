@@ -80,12 +80,13 @@ class CrawlerTaskJob implements ShouldQueue
                 //批量儲存Item
                 $crawlerItem = new CrawlerItem();
                 $TF = (new MemberCoreRepository())->massUpdate($crawlerItem, $row_items);
+
                 //這次抓到的商品id 還有順序
                 $crawlerItem_ids = CrawlerItem::whereInMultiple(['itemid', 'shopid', 'local'], $value_arr)
                     ->pluck('ci_id', 'itemid');
 
 
-                $index=0;
+                $index=1;
                 foreach ($items_order as $itemid){
                     $sync_ids[$crawlerItem_ids[$itemid]]= ['sort_order'=>$index++];
                 }
