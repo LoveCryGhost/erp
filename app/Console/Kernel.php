@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
         //$schedule->command('command:add_users')->everyMinute();
         $schedule->command('command:crawler_first_time_update_item_and_shop')->everyMinute();
         $schedule->command('command:crawler_task')->everyMinute();
-        $schedule->command('command:crawler_clean')->everyMinute();
+        $schedule->command('command:crawler_clean')->dailyAt(06);
     }
 
     protected function commands()

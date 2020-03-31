@@ -54,7 +54,7 @@ class CrawlerItemJob implements ShouldQueue
                         'domain_name' => $crawler_item->domain_name,
                         'local' => $crawler_item->local,
                         'member_id' => $member_id,
-                        'updated_at'=> now()
+                        'updated_at'=> Carbon::now()
                     ];
 
                     //Update CrawlerItem
@@ -70,7 +70,7 @@ class CrawlerItemJob implements ShouldQueue
 
                 //若商品為空或是已經被Shopee刪除了
                 }else{
-                    $crawler_item->updated_at = now();
+                    $crawler_item->updated_at = Carbon::now();
                     $crawler_item->is_active = 0;
                     $crawler_item->save();
                 }

@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Handlers\ShopeeHandler;
 use App\Models\CrawlerShop;
 use App\Repositories\Member\MemberCoreRepository;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -43,7 +44,7 @@ class CrawlerShopJob implements ShouldQueue
                     'domain_name' => $crawler_shop->domain_name,
                     'local' => $crawler_shop->local,
                     'member_id' => $member_id,
-                    'updated_at'=>now()
+                    'updated_at'=>Carbon::now()
                 ];
             }
 

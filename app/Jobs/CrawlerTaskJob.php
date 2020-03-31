@@ -104,7 +104,7 @@ class CrawlerTaskJob implements ShouldQueue
                 dispatch((new CrawlerItemJob())->onQueue('low'));
                 dispatch((new CrawlerShopJob())->onQueue('low'));
             }
-            $crawlerTask->updated_at = now();
+            $crawlerTask->updated_at = Carbon::now();
             $crawlerTask->save();
         }
     }
