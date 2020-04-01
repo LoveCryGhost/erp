@@ -154,6 +154,8 @@ Route::prefix('member')->namespace('Member')->group(function(){
 
         Route::resource('crawleritemsku', 'CrawlerItemSKUsController');
         Route::post('crawleritemsku-put_product_id', 'CrawlerItemSKUsController@put_product_id')->name('crawleritemsku.put_product_id');
+        Route::post('crawleritemsku-show_product_skus', 'CrawlerItemSKUsController@show_product_skus')->name('crawleritemsku.show_product_skus');
+
     });
 
 });

@@ -13,7 +13,7 @@ class CrawlerItemSKU extends Model
 {
 
     protected $table = "citem_skus";
-    protected $primaryKey='ci_id';
+    protected $primaryKey='ci_sku_id';
 //    protected $primaryKey=['shopid', 'itemid', 'modelid'];
 
     protected $fillable = [

@@ -182,10 +182,11 @@ $(function() {
 });
 
 function show_crawler_item_skus(_this, php_inject) {
+    alert(php_inject.models.crawlerItem.pivot.ct_i_id);
     $.ajaxSetup(active_ajax_header());
     $.ajax({
         type: 'get',
-        url: '{{route('member.crawleritemsku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id,
+        url: '{{route('member.crawleritemsku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id+'&ct_i_id='+php_inject.models.crawlerItem.pivot.ct_i_id,
         data: '',
         async: true,
         crossDomain: true,

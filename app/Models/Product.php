@@ -45,5 +45,10 @@ class Product extends CoreModel
           return $this->hasMany(SKU::class, 'p_id','p_id')->paginate($paginate);
     }
 
+    public function all_skus(){
+        return $this->hasMany(SKU::class, 'p_id','p_id');
+    }
+
+
 
 }

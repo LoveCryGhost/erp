@@ -31,16 +31,22 @@
                     </thead>
                     <tbody>
                         @php
-                            $daySales7 =0;
-                            $daySales7_total=0;
-                            $daySales30 =0;
-                            $daySales30_total=0
+                            $daySales7 = 0;
+                            $daySales7_total = 0;
+                            $daySales30 = 0;
+                            $daySales30_total = 0;
                         @endphp
                         @foreach($crawlerItem->crawlerItemSKUs as $crawlerItemSKU)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
-                                <a class="pointer" data-toggle="modal" data-target="#modal-right">{{$crawlerItemSKU->name}}</a>
+                                <a class="pointer" data-toggle="modal" data-target="#modal-right"
+                                   onclick="crawler_item_sku_click(this, php_inject={{json_encode([
+                                                'ct_i_id' =>$data['ct_i_id'],
+                                                'itemid' => $crawlerItemSKU->itemid,
+                                                'shopid' =>$crawlerItemSKU->shopid,
+                                                'modelid' =>$crawlerItemSKU->modelid])}})">
+                                    {{$crawlerItemSKU->name}}</a>
                             </td>
                             <td class="text-right">{{number_format($crawlerItemSKU->price/10,0,".",",")}}</td>
                             <td class="text-right">{{number_format($crawlerItemSKU->stock, 0, ".", ",")}}</td>
@@ -54,7 +60,6 @@
                             <td class="text-right">{{$daySales30}}</td>
                             <td class="text-right">{{number_format($crawlerItemSKU->sold, 0, "", ",")}}</td>
                             <td class="text-right">{{number_format(($crawlerItemSKU->sold/$crawlerItem->crawlerItemSKUs->sum('sold'))*100, 0, ".", ",")}}%</td>
-
                         </tr>
                         @endforeach
                     </tbody>
@@ -68,7 +73,6 @@
                             <th class="text-right">{{$daySales30_total}}</th>
                             <th class="text-right">{{number_format($crawlerItem->crawlerItemSKUs->sum('sold'), 0, "", ",")}}</th>
                             <th class="text-right">100%</th>
-
                         </tr>
                     </tfoot>
                 </table>
@@ -177,6 +181,28 @@
             contentType: false,
             processData: false,
             success: function(data) {
+            },
+            error: function(data) {
+            }
+        });
+    }
+
+    function crawler_item_sku_click(_this, php_inject ) {
+        var formData = new FormData();
+        formData.append('ct_i_id', php_inject.ct_i_id);
+        formData.append('itemid', php_inject.itemid);
+        formData.append('shopid', php_inject.shopid);
+        formData.append('modelid', php_inject.modelid);
+        $.ajax({
+            type: 'post',
+            url: '{{route('member.crawleritemsku.show_product_skus')}}',
+            data: formData,
+            async: true,
+            crossDomain: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#modal-right .modal-body').html(data.view);
             },
             error: function(data) {
             }

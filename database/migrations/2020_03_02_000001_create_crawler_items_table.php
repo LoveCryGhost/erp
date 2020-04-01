@@ -45,7 +45,7 @@ class CreateCrawlerItemsTable extends Migration
         });
 
         Schema::create('ctasks_items', function (Blueprint $table) {
-            $table->bigIncrements('ct_i_d');
+            $table->bigIncrements('ct_i_id');
             $table->integer('sort_order')->default(9999);
             $table->bigInteger('ct_id')->unsigned();
             $table->foreign('ct_id')->references('ct_id')->on('crawler_tasks')->onDelete('cascade');
