@@ -190,32 +190,27 @@
     }
 
     function crawler_item_sku_click(_this, php_inject ) {
-        console.log("{{Session::has('member_crawleritem_product_id')}}");
-        if("{{Session::has('member_crawleritem_product_id')}}" == ""){
-            alert("請選擇產品");
-        }else{
-            $('#modal-right .modal-body').html("");
-            $.ajaxSetup(active_ajax_header());
-            var formData = new FormData();
-            formData.append('ct_i_id', php_inject.ct_i_id);
-            formData.append('itemid', php_inject.itemid);
-            formData.append('shopid', php_inject.shopid);
-            formData.append('modelid', php_inject.modelid);
-            $.ajax({
-                type: 'post',
-                url: '{{route('member.crawleritemsku.show_product_skus')}}',
-                data: formData,
-                async: true,
-                crossDomain: true,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    $('#modal-right .modal-body').html(data.view);
+        $('#modal-right .modal-body').html("");
+        $.ajaxSetup(active_ajax_header());
+        var formData = new FormData();
+        formData.append('ct_i_id', php_inject.ct_i_id);
+        formData.append('itemid', php_inject.itemid);
+        formData.append('shopid', php_inject.shopid);
+        formData.append('modelid', php_inject.modelid);
+        $.ajax({
+            type: 'post',
+            url: '{{route('member.crawleritemsku.show_product_skus')}}',
+            data: formData,
+            async: true,
+            crossDomain: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#modal-right .modal-body').html(data.view);
 
-                },
-                error: function(data) {
-                }
-            });
-        }
+            },
+            error: function(data) {
+            }
+        });
     }
 </script>
