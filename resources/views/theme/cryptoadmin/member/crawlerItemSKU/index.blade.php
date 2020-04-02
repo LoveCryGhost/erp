@@ -43,11 +43,14 @@
                             <td>
                                 <a class="pointer" data-toggle="modal" data-target="#modal-right"
                                    onclick="crawler_item_sku_click(this, php_inject={{json_encode([
-                                                'ct_i_id' =>$data['ct_i_id'],
+                                                'ct_i_id' => $data['ct_i_id'],
                                                 'itemid' => $crawlerItemSKU->itemid,
-                                                'shopid' =>$crawlerItemSKU->shopid,
-                                                'modelid' =>$crawlerItemSKU->modelid])}})">
-                                    {{$crawlerItemSKU->name}}</a>
+                                                'shopid' => $crawlerItemSKU->shopid,
+                                                'modelid' => $crawlerItemSKU->modelid])}})">
+                                    @php
+                                        $qty = $crawlerItemSKU->sku_count();
+                                    @endphp
+                                    {!! $qty>0? "<span class='btn btn-success btn-circle btn-xs'>".$qty."</span>":"" !!}{{$crawlerItemSKU->name}} </a>
                             </td>
                             <td class="text-right">{{number_format($crawlerItemSKU->price/10,0,".",",")}}</td>
                             <td class="text-right">{{number_format($crawlerItemSKU->stock, 0, ".", ",")}}</td>

@@ -39,8 +39,8 @@ class SKU extends Model
             ->withTimestamps();
     }
 
-    public function crawlerTaskItemSKU()
-    {
-        return $this->hasMany(CrawlerTaskItemSKU::class, 'sku_id' );
-    }
+//    public function crawlerTaskItemSKU()
+//    {
+//        return $this->hasMany(CrawlerTaskItemSKU::class, 'sku_id' );
+//    }
 }
