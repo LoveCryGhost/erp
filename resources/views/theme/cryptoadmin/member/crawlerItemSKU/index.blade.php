@@ -7,13 +7,15 @@
 
         <div class="row">
             <div class="col-md-12">
-                請選擇商品:
-                <select name="p_id" onchange="product_select_change(this, php_inject={{json_encode(['models'])}})">
-                    <option>Select...</option>
-                    @foreach($products as $product)
-                        <option value="{{$product->p_id}}" {{Session::get('member_crawleritem_product_id')==$product->p_id? "selected":""}}>{{$product->p_name}}</option>
-                    @endforeach
-                </select>
+                @if(Auth::guard('admin')->check())
+                    請選擇商品:
+                    <select name="p_id" onchange="product_select_change(this, php_inject={{json_encode(['models'])}})">
+                        <option>Select...</option>
+                        @foreach($products as $product)
+                            <option value="{{$product->p_id}}" {{Session::get('member_crawleritem_product_id')==$product->p_id? "selected":""}}>{{$product->p_name}}</option>
+                        @endforeach
+                    </select>
+                @endif
             </div>
             <div class="col-md-6">
                 <table class="table table-hover table-bordered table-primary font-size-10">
@@ -41,16 +43,25 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
-                                <a class="pointer" data-toggle="modal" data-target="#modal-right"
-                                   onclick="crawler_item_sku_click(this, php_inject={{json_encode([
+
+                                @if(Auth::guard('admin')->check())
+                                    @php
+                                        $qty = $crawlerItemSKU->sku_count();
+                                    @endphp
+                                    <a class="pointer"
+                                       data-toggle="modal" data-target="#modal-right"
+                                       onclick="crawler_item_sku_click(this, php_inject={{json_encode([
                                                 'ct_i_id' => $data['ct_i_id'],
                                                 'itemid' => $crawlerItemSKU->itemid,
                                                 'shopid' => $crawlerItemSKU->shopid,
                                                 'modelid' => $crawlerItemSKU->modelid])}})">
-                                    @php
-                                        $qty = $crawlerItemSKU->sku_count();
-                                    @endphp
-                                    {!! $qty>0? "<span class='btn btn-success btn-circle btn-xs'>".$qty."</span>":"" !!}{{$crawlerItemSKU->name}} </a>
+                                        {!! $qty>0? "<span class='btn btn-success btn-circle btn-xs'>".$qty."</span>":"" !!}{{$crawlerItemSKU->name}}
+                                    </a>
+                                @else
+                                    <a class="pointer">
+                                        {{$crawlerItemSKU->name}}
+                                    </a>
+                                @endif
                             </td>
                             <td class="text-right">{{number_format($crawlerItemSKU->price/10,0,".",",")}}</td>
                             <td class="text-right">{{number_format($crawlerItemSKU->stock, 0, ".", ",")}}</td>
