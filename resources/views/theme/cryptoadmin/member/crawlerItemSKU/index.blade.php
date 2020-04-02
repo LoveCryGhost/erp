@@ -47,7 +47,7 @@
                                                 'itemid' => $crawlerItemSKU->itemid,
                                                 'shopid' =>$crawlerItemSKU->shopid,
                                                 'modelid' =>$crawlerItemSKU->modelid])}})">
-                                    {{$crawlerItemSKU->name}} - {{dd($crawlerItemSKU->sku)}}</a>
+                                    {{$crawlerItemSKU->name}}</a>
                             </td>
                             <td class="text-right">{{number_format($crawlerItemSKU->price/10,0,".",",")}}</td>
                             <td class="text-right">{{number_format($crawlerItemSKU->stock, 0, ".", ",")}}</td>
