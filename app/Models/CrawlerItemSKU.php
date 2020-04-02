@@ -14,7 +14,6 @@ class CrawlerItemSKU extends Model
 
     protected $table = "citem_skus";
     protected $primaryKey='ci_sku_id';
-//    protected $primaryKey=['shopid', 'itemid', 'modelid'];
 
     protected $fillable = [
         'ci_id', 'itemid', 'shopid', 'modelid',
@@ -48,7 +47,10 @@ class CrawlerItemSKU extends Model
         return $query;
     }
 
-
+    public function sku()
+    {
+        return $this->belongsTo(SKU::class, 'sku_id');
+    }
 
     public function NDaysSales($ndays = 30)
     {

@@ -38,4 +38,9 @@ class SKU extends Model
             ->withPivot(['ss_id', 'is_active', 'sort_order', 'price', 'url', 's_id'])
             ->withTimestamps();
     }
+
+    public function crawlerTaskItemSKU()
+    {
+        return $this->hasMany(CrawlerTaskItemSKU::class, 'sku_id' );
+    }
 }

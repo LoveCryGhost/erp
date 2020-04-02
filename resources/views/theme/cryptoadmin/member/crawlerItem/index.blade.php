@@ -182,7 +182,6 @@ $(function() {
 });
 
 function show_crawler_item_skus(_this, php_inject) {
-    alert(php_inject.models.crawlerItem.pivot.ct_i_id);
     $.ajaxSetup(active_ajax_header());
     $.ajax({
         type: 'get',

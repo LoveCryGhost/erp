@@ -155,6 +155,7 @@ Route::prefix('member')->namespace('Member')->group(function(){
         Route::resource('crawleritemsku', 'CrawlerItemSKUsController');
         Route::post('crawleritemsku-put_product_id', 'CrawlerItemSKUsController@put_product_id')->name('crawleritemsku.put_product_id');
         Route::post('crawleritemsku-show_product_skus', 'CrawlerItemSKUsController@show_product_skus')->name('crawleritemsku.show_product_skus');
+        Route::post('crawleritemsku-bind_product_sku_to_crawler_sku', 'CrawlerItemSKUsController@bind_product_sku_to_crawler_sku')->name('crawleritemsku.bind_product_sku_to_crawler_sku');
 
     });
 

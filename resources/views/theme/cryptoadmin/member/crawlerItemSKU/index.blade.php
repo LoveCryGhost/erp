@@ -9,6 +9,7 @@
             <div class="col-md-12">
                 請選擇商品:
                 <select name="p_id" onchange="product_select_change(this, php_inject={{json_encode(['models'])}})">
+                    <option>Select...</option>
                     @foreach($products as $product)
                         <option value="{{$product->p_id}}" {{Session::get('member_crawleritem_product_id')==$product->p_id? "selected":""}}>{{$product->p_name}}</option>
                     @endforeach
@@ -46,7 +47,7 @@
                                                 'itemid' => $crawlerItemSKU->itemid,
                                                 'shopid' =>$crawlerItemSKU->shopid,
                                                 'modelid' =>$crawlerItemSKU->modelid])}})">
-                                    {{$crawlerItemSKU->name}}</a>
+                                    {{$crawlerItemSKU->name}} - {{dd($crawlerItemSKU->sku)}}</a>
                             </td>
                             <td class="text-right">{{number_format($crawlerItemSKU->price/10,0,".",",")}}</td>
                             <td class="text-right">{{number_format($crawlerItemSKU->stock, 0, ".", ",")}}</td>
@@ -171,6 +172,7 @@
     });
 
     function product_select_change(_this, php_inject) {
+        $('#modal-right .modal-body').html("");
         $.ajaxSetup(active_ajax_header());
         $.ajax({
             type: 'post',
@@ -188,24 +190,32 @@
     }
 
     function crawler_item_sku_click(_this, php_inject ) {
-        var formData = new FormData();
-        formData.append('ct_i_id', php_inject.ct_i_id);
-        formData.append('itemid', php_inject.itemid);
-        formData.append('shopid', php_inject.shopid);
-        formData.append('modelid', php_inject.modelid);
-        $.ajax({
-            type: 'post',
-            url: '{{route('member.crawleritemsku.show_product_skus')}}',
-            data: formData,
-            async: true,
-            crossDomain: true,
-            contentType: false,
-            processData: false,
-            success: function(data) {
-                $('#modal-right .modal-body').html(data.view);
-            },
-            error: function(data) {
-            }
-        });
+        console.log("{{Session::has('member_crawleritem_product_id')}}");
+        if("{{Session::has('member_crawleritem_product_id')}}" == ""){
+            alert("請選擇產品");
+        }else{
+            $('#modal-right .modal-body').html("");
+            $.ajaxSetup(active_ajax_header());
+            var formData = new FormData();
+            formData.append('ct_i_id', php_inject.ct_i_id);
+            formData.append('itemid', php_inject.itemid);
+            formData.append('shopid', php_inject.shopid);
+            formData.append('modelid', php_inject.modelid);
+            $.ajax({
+                type: 'post',
+                url: '{{route('member.crawleritemsku.show_product_skus')}}',
+                data: formData,
+                async: true,
+                crossDomain: true,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $('#modal-right .modal-body').html(data.view);
+
+                },
+                error: function(data) {
+                }
+            });
+        }
     }
 </script>

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Requests\Request;
+use App\Models\CrawlerTaskItemSKU;
+use App\Models\SKU;
+use App\Repositories\Member\ProductRepository;
 use App\Services\Member\CrawlerItemSKUService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use function compact;
-use function config;
-use function request;
-use function view;
+
 
 class CrawlerItemSKUsController extends MemberCoreController
 {
@@ -66,15 +66,58 @@ class CrawlerItemSKUsController extends MemberCoreController
         $product_id = Session::get('member_crawleritem_product_id');
         $product = $this->crawlerItemSKUService->productRepo->getById($product_id);
         $skus = $product->all_skus;
-        $view = view(config('theme.member.view').'crawlerItemSKU.productSKU.md-index',compact('skus'))->render();
+        $view = view(config('theme.member.view').'crawlerItemSKU.productSKU.md-index',compact('data','skus'))->render();
         return [
             'errors' => '',
             'models'=> [
-                'skus' => $skus,
-            ],
+                    'skus' => $skus,
+                ],
             'request' => request()->all(),
             'view' => $view,
-            'options'=>[]
+            'options' => [ ]
         ];
     }
+
+    /*
+     *
+     * */
+    public function bind_product_sku_to_crawler_sku(){
+
+        if(!Session::has('member_crawleritem_product_id')){
+            return false;
+        }
+        $data = request()->all();
+        //取消
+        if($data['sku_id']=="undefined"){
+            CrawlerTaskItemSKU::where(
+                [
+                    'ct_i_id' => $data['ct_i_id'],
+                    'itemid' => $data['itemid'],
+                    'shopid' => $data['shopid'],
+                    'modelid' => $data['modelid'],
+                ]
+            )->delete();
+        //update or create
+        }else{
+            CrawlerTaskItemSKU::updateOrCreate([
+                'ct_i_id' => $data['ct_i_id'],
+                'itemid' => $data['itemid'],
+                'shopid' => $data['shopid'],
+                'modelid' => $data['modelid'],
+            ],[
+                'sku_id' =>  $data['sku_id']
+            ]);
+        }
+
+
+
+        return [
+            'errors' => '',
+            'models'=> [],
+            'request' => request()->all(),
+            'view' => "",
+            'options' => [ ]
+        ];
+    }
+
 }
