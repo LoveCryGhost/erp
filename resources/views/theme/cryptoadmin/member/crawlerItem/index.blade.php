@@ -83,13 +83,13 @@
                                         <div class="col-md-1">
                                             @if(request()->is_active==0)
                                                 <div class="checkbox">
-                                                    <input type="checkbox" class="item-is-active" id="item-is-active-{{$crawlerItem->ci_id}}" onchange="toggle_crawler_item({{$crawlerItem->ci_id}});" data-ctrlitem-id="{{$crawlerItem->ci_id}}">
-                                                    <label for="item-is-active-{{$crawlerItem->ci_id}}" class="text-dark">顯示</label>
+                                                    <input type="checkbox" class="item-is-active" id="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" onchange="toggle_crawler_item(php_inject={{json_encode([ 'ci_id' =>$crawlerItem->ci_id, 'ct_i_id' => $crawlerItem->pivot->ct_i_id])}});" data-ct_i_id="{{$crawlerItem->pivot->ct_i_id}}">
+                                                    <label for="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" class="text-dark">顯示</label>
                                                 </div>
                                             @else
                                                 <div class="checkbox">
-                                                    <input type="checkbox" class="item-is-active" id="item-is-active-{{$crawlerItem->ci_id}}" onchange="toggle_crawler_item({{$crawlerItem->ci_id}});" data-ctrlitem-id="{{$crawlerItem->ci_id}}">
-                                                    <label for="item-is-active-{{$crawlerItem->ci_id}}" class="text-dark">隱藏</label>
+                                                    <input type="checkbox" class="item-is-active" id="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" onchange="toggle_crawler_item({{$crawlerItem->pivot->ct_i_id}});" data-ctrlitem-id="{{$crawlerItem->pivot->ct_i_id}}">
+                                                    <label for="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" class="text-dark">隱藏</label>
                                                 </div>
                                             @endif
                                         </div>
@@ -209,11 +209,14 @@ function toggle_crawler_items_reload(_this, _TF) {
 }
 
 
-function toggle_crawler_item(ci_id) {
+function toggle_crawler_item(ct_i_id) {
     $.ajaxSetup(active_ajax_header());
+    var formData = new FormData();
+    formData.append('ct_i_id', php_inject.ct_i_id);
+
     $.ajax({
         type: 'post',
-        url: '{{route('member.crawleritem.toggle')}}?ci_id='+ci_id,
+        url: '{{route('member.crawleritem.toggle')}}?ct_i_id='+ct_i_id,
         data: '',
         async: true,
         crossDomain: true,

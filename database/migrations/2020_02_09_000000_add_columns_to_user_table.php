@@ -12,7 +12,6 @@ class AddColumnsToUserTable extends Migration
             $table->dropColumn(['created_at', 'updated_at']);
         });
         Schema::table('users', function (Blueprint $table) {
-
             $table->boolean('is_active')->default(1);
             $table->string('avatar')->nullable();
             $table->date('birthday')->nullable();

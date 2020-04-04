@@ -28,7 +28,7 @@ class CrawlerItemsController extends MemberCoreController
         $this->authorize('index', new CrawlerItem());
 
         $crawlerItems = $crawlerTask->crawlerItems()
-            ->where('is_active', request()->is_active)
+            ->wherePivot('is_active', request()->is_active)
             ->with(['crawlerItemSKUs','crawlerShop'])
             ->orderBy('ctasks_items.sort_order')
             ->paginate(50);
@@ -44,6 +44,25 @@ class CrawlerItemsController extends MemberCoreController
     }
 
     public function toggle(Request $request){
+
+        $messages  = Message::where('message_id', $id)->get();
+        foreach($messages as $message)
+            $message->users()->updateExistingPivot($user, array('status' => 1), false);
+
+        //$crawlerItem = $this->crawlerService->crawlerItemRepo->getById($request->ct_i_id);
+        $ctasks_items = DB::table('ctasks_items')->where('ct_i_id', $request->ct_i_id)->first();
+
+        $crawlerItem = CrawlerItem::wherePivot('ct_i_id', $request->ct_i_id)->first();
+        dd($crawlerItem);
+        if($crawlerItem->is_active==1){
+            $crawlerItem->is_active=0;
+        }else{
+            $crawlerItem->is_active=1;
+        }
+        $crawlerItem->save();
+    }
+
+    public function toggle_(Request $request){
         $crawlerItem = $this->crawlerService->crawlerItemRepo->getById($request->ci_id);
         if($crawlerItem->is_active==1){
             $crawlerItem->is_active=0;
