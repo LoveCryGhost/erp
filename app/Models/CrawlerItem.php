@@ -41,7 +41,8 @@ class CrawlerItem extends CoreModel
 
     public function crawlerTask()
     {
-        return $this->belongsToMany(CrawlerItem::class, 'ctasks_items','ci_id','ct_id');
+        return $this->belongsToMany(CrawlerTask::class, 'ctasks_items','ci_id','ct_id')
+            ->withPivot(['ct_i_id','sort_order', 'is_active']);
     }
 
     public function crawlerShop()

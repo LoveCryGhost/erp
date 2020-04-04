@@ -7,6 +7,7 @@ use App\Models\CrawlerTask;
 use App\Services\Member\CrawlerItemService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CrawlerItemsController extends MemberCoreController
 {
@@ -45,31 +46,18 @@ class CrawlerItemsController extends MemberCoreController
 
     public function toggle(Request $request){
 
-        $messages  = Message::where('message_id', $id)->get();
-        foreach($messages as $message)
-            $message->users()->updateExistingPivot($user, array('status' => 1), false);
+        $data = $request->all();
 
-        //$crawlerItem = $this->crawlerService->crawlerItemRepo->getById($request->ct_i_id);
-        $ctasks_items = DB::table('ctasks_items')->where('ct_i_id', $request->ct_i_id)->first();
+        $ci_id = $data['ci_id'];
+        $crawlerItem = CrawlerItem::find($ci_id);
+        $pivot = $crawlerItem->crawlerTask()->wherePivot('ct_i_id', $data['ct_i_id'])->first()->pivot;
 
-        $crawlerItem = CrawlerItem::wherePivot('ct_i_id', $request->ct_i_id)->first();
-        dd($crawlerItem);
-        if($crawlerItem->is_active==1){
-            $crawlerItem->is_active=0;
+
+        if($pivot->is_active==1){
+            DB::table('ctasks_items')->where('ct_i_id', $data['ct_i_id'])->update(['is_active'=>0]);
         }else{
-            $crawlerItem->is_active=1;
+            DB::table('ctasks_items')->where('ct_i_id', $data['ct_i_id'])->update(['is_active'=>1]);
         }
-        $crawlerItem->save();
-    }
-
-    public function toggle_(Request $request){
-        $crawlerItem = $this->crawlerService->crawlerItemRepo->getById($request->ci_id);
-        if($crawlerItem->is_active==1){
-            $crawlerItem->is_active=0;
-        }else{
-            $crawlerItem->is_active=1;
-        }
-        $crawlerItem->save();
     }
 
     public function save_cralwertask_info()
