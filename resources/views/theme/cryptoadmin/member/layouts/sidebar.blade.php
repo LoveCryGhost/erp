@@ -24,6 +24,7 @@
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
 
+            @if(Auth::guard('admin')->check())
             <li class="treeview">
                 <a href="#">
                     <i class="ti-cup"></i>
@@ -53,6 +54,7 @@
                     <li><a href="{{route('member.product.index')}}"><i class="ti-more"></i>產品</a></li>
                 </ul>
             </li>
+            @endif
 
             <li class="treeview">
                 <a href="#">
@@ -66,6 +68,22 @@
                     <li><a href="{{route('member.crawlertask.index')}}"><i class="ti-more"></i>Shoppee任務</a></li>
                 </ul>
             </li>
+
+            @if(Auth::guard('admin')->check())
+                <li class="treeview">
+                    <a href="#">
+                        <i class="ti-cup"></i>
+                        <span>Report報表</span>
+                        <span class="pull-right-container">
+                  <i class="fa fa-angle-right pull-right"></i>
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('member.reports.sku.crawleritem_analysis')}}"><i class="ti-more"></i>利潤分析</a></li>
+                    </ul>
+                </li>
+            @endif
+
         </ul>
     </section>
 </aside>

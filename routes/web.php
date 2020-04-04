@@ -159,6 +159,11 @@ Route::prefix('member')->namespace('Member')->group(function(){
 
     });
 
+
+    //Member - Report
+    Route::prefix('')->namespace('Report')->name('member.reports.sku.')->group(function(){
+        Route::get('crawleritem_analysis', 'ReportSKUController@crawleritem_analysis')->name('crawleritem_analysis');
+    });
 });
 
 
