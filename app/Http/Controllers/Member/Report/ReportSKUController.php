@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Member\Report;
 
 use App\Http\Controllers\Member\MemberCoreController;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use function compact;
 use function config;
 use function view;
@@ -18,6 +20,8 @@ class ReportSKUController extends MemberCoreController
     public function crawleritem_analysis()
     {
 
-        return $view = view(config('theme.member.view').'reports.sku.crawleritem',compact([]));
+        $products = Product::with(['all_skus'])
+            ->where('member_id', Auth::guard('member')->user()->id)->get();
+        return $view = view(config('theme.member.view').'reports.sku.crawleritem',compact(['products']));
     }
 }

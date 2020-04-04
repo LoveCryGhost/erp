@@ -26,10 +26,34 @@
                             <h4 class="box-title">Title</h4>
                         </div>
                         <div class="box-body">
-                            This is some text within a card block.
-                        </div>
-                        <div class="box-footer">
-                            Footer
+                            @php $index=1;@endphp
+                            @foreach($products as $product)
+                                @foreach($product->all_skus as $sku)
+                                <div class="row pull-up border mb-5 p-5">
+                                    <div class="col-1">{{$index++}}</div>
+                                    <div class="col-1">
+                                        <img class="product-sku-thumbnail" src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" />
+                                    </div>
+                                    <div class="col-2">
+                                        {{$product->p_name}}<br>
+                                        <span class="font-size-12">{{$product->id_code}}</span>
+                                    </div>
+                                    <div class="col-1">
+                                        <img class="product-sku-thumbnail" src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" />
+                                    </div>
+                                    <div class="col-4">
+                                        {{$sku->sku_name}}<br>
+                                        <span class="font-size-12">{{$sku->id_code}}</span>
+                                    </div>
+                                    <div class="col-1">
+                                        {{$sku->price}}
+                                    </div>
+                                    <div class="col-3">
+                                        {{dd($sku->crawlerTaskItemSKU)}}
+                                    </div>
+                                </div>
+                                @endforeach
+                            @endforeach
                         </div>
                     </div>
                 </div>
