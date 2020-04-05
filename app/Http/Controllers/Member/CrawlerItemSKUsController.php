@@ -104,6 +104,7 @@ class CrawlerItemSKUsController extends MemberCoreController
                 'itemid' => $data['itemid'],
                 'shopid' => $data['shopid'],
                 'modelid' => $data['modelid'],
+                'member_id' => Auth::guard('member')->user()->id,
             ],[
                 'sku_id' =>  $data['sku_id']
             ]);

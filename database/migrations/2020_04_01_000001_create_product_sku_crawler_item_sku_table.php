@@ -16,9 +16,10 @@ class CreateProductSkuCrawlerItemSkuTable extends Migration
             $table->bigInteger('itemid')->unsigned();
             $table->bigInteger('shopid')->unsigned();
             $table->bigInteger('modelid')->unsigned();
+            $table->bigInteger('member_id')->unsigned();
 
             $table->foreign('sku_id')->references('sku_id')->on('skus')->onDelete('cascade');
-            //$table->foreign('ct_i_id')->references('ct_i_id')->on('skus')->onDelete('cascade');
+            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamps();
         });
     }

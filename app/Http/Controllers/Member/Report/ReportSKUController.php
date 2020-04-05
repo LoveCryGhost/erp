@@ -20,7 +20,7 @@ class ReportSKUController extends MemberCoreController
     public function crawleritem_analysis()
     {
 
-        $products = Product::with(['all_skus'])
+        $products = Product::with(['all_skus','all_skus.crawlerTaskItemSKU'])
             ->where('member_id', Auth::guard('member')->user()->id)->get();
         return $view = view(config('theme.member.view').'reports.sku.crawleritem',compact(['products']));
     }

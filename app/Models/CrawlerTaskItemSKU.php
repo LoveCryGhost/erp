@@ -17,6 +17,7 @@ class CrawlerTaskItemSKU extends Model
         'itemid',
         'shopid',
         'modelid',
+        'member_id'
     ];
 
     protected $hidden = [
