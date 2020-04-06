@@ -48,7 +48,5 @@ class CrawlerItem extends CoreModel
     public function crawlerShop()
     {
         return $this->hasOne(CrawlerShop::class, 'shopid', 'shopid');
-            //->where('local', $this->local)
-            //->where('domain_name', $this->domain_name);
     }
 }

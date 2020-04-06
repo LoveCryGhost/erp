@@ -31,25 +31,49 @@
                                 @foreach($product->all_skus as $sku)
                                 <div class="row pull-up border mb-5 p-5">
                                     <div class="col-1">{{$index++}}</div>
+{{--                                    <div class="col-1">--}}
+{{--                                        <img class="product-sku-thumbnail" src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" />--}}
+{{--                                    </div>--}}
                                     <div class="col-1">
                                         <img class="product-sku-thumbnail" src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" />
                                     </div>
                                     <div class="col-2">
-                                        {{$product->p_name}}<br>
-                                        <span class="font-size-12">{{$product->id_code}}</span>
-                                    </div>
-                                    <div class="col-1">
-                                        <img class="product-sku-thumbnail" src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" />
-                                    </div>
-                                    <div class="col-4">
-                                        {{$sku->sku_name}}<br>
-                                        <span class="font-size-12">{{$sku->id_code}}</span>
+
+                                        <span>
+                                            {{$product->p_name}}<br>
+                                            <span class="font-size-12">{{$product->id_code}}</span><br>
+                                        </span>
+                                        <span class="text-blue">
+                                            {{$sku->sku_name}}<br>
+                                            <span class="font-size-12">{{$sku->id_code}}</span>
+                                        </span>
                                     </div>
                                     <div class="col-1">
                                         {{$sku->price}}
                                     </div>
-                                    <div class="col-3">
-                                        {{dd($sku->crawlerTaskItemSKU)}}
+
+                                    <div class="col-1">
+                                        @php
+                                            $daySales7_total = 0;
+                                            $daySales30_total = 0;
+                                            $nDays_total = 0;
+                                            foreach($sku->crawlerTaskItemSKU as $crawlerTaskItemSKU){
+                                                $daySales7 = $crawlerTaskItemSKU->nDaysSales(7);
+                                                $daySales30 = $crawlerTaskItemSKU->nDaysSales(30);
+                                                $nDays_total+=$crawlerTaskItemSKU->crawlerItemSKUDetails->last()->sold;
+                                                $daySales7_total+= $daySales7;
+                                                $daySales30_total+= $daySales30;
+                                            }
+                                        @endphp
+                                        週銷量:
+                                        {{$daySales7_total}}<br>
+                                        月銷量:
+                                        {{$daySales30_total}}<br>
+                                        總銷量:
+                                        {{$nDays_total}}<br>
+                                        賣家數量:
+                                        {{$sku->crawlerTaskItemSKU->count()}}
+
                                     </div>
                                 </div>
                                 @endforeach

@@ -123,7 +123,7 @@ class CrawlerItemJob implements ShouldQueue
             'ci_id' => $crawler_item->ci_id,
             'shopid' => $json['item']['shopid'],
             'itemid' => $json['item']['itemid'],
-            'modelid' => $json['item']['modelid'],
+            'modelid' => $json['item']['itemid'],
             'name' => $json['item']['name'],
             'price' => $json['item']['price'],
 
@@ -134,7 +134,7 @@ class CrawlerItemJob implements ShouldQueue
         $row_item_mode_details[] = [
             'shopid' => $json['item']['shopid'],
             'itemid' => $json['item']['itemid'],
-            'modelid' => $json['item']['modelid'],
+            'modelid' => $json['item']['itemid'],
             'price' => $json['item']['price'],
             'price_before_discount' => $json['item']['price_before_discount'],
             'sold' => $json['item']['sold'],
