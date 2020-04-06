@@ -58,11 +58,13 @@
                                             $daySales30_total = 0;
                                             $nDays_total = 0;
                                             foreach($sku->crawlerTaskItemSKU as $crawlerTaskItemSKU){
-                                                $daySales7 = $crawlerTaskItemSKU->nDaysSales(7);
-                                                $daySales30 = $crawlerTaskItemSKU->nDaysSales(30);
-                                                $nDays_total+=$crawlerTaskItemSKU->crawlerItemSKUDetails->last()->sold;
-                                                $daySales7_total+= $daySales7;
-                                                $daySales30_total+= $daySales30;
+                                                if($crawlerTaskItemSKU->crawlerItemSKUDetails->count()>0){
+                                                    $daySales7 = $crawlerTaskItemSKU->nDaysSales(7);
+                                                    //$daySales30 = $crawlerTaskItemSKU->nDaysSales(30);
+                                                    $nDays_total+=$crawlerTaskItemSKU->crawlerItemSKUDetails->last()->sold;
+                                                    $daySales7_total+= $daySales7;
+                                                    $daySales30_total+= $daySales30;
+                                                }
                                             }
                                         @endphp
                                         週銷量:
@@ -74,6 +76,10 @@
                                         賣家數量:
                                         {{$sku->crawlerTaskItemSKU->count()}}
 
+                                    </div>
+                                    <div>
+                                        <input type="text" name="amount" id="amount">
+                                        <span class="btn btn-primary btn-lg" onclick="purchase_order_cart_item_add(this, php_inject={{json_encode(['sku_id' => $sku->sku_id])}});"><i class="fa fa-plus"></i></span>
                                     </div>
                                 </div>
                                 @endforeach
@@ -87,3 +93,47 @@
 
     </div>
 @stop
+
+@section('js')
+<script>
+    function purchase_order_cart_item_add(_this, php_inject){
+        $.ajaxSetup(active_ajax_header());
+        var formData = new FormData();
+        formData.append('sku_id', php_inject.sku_id);
+        formData.append('amount', $(_this).siblings('#amount').val());
+        $.ajax({
+            type: 'post',
+            url: '{{route('member.purchaseOrderCartItem.add')}}',
+            data: formData,
+            crossDomain: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                alert('加入成功');
+            },
+            error: function(error) {
+                // if (error.response.status === 401) {
+                //
+                //     // http 状态码为 401 代表用户未登陆
+                //     swal('请先登录', '', 'error');
+                //
+                // } else if (error.response.status === 422) {
+                //
+                //     // http 状态码为 422 代表用户输入校验失败
+                //     var html = '<div>';
+                //     _.each(error.response.data.errors, function (errors) {
+                //         _.each(errors, function (error) {
+                //             html += error+'<br>';
+                //         })
+                //     });
+                //     html += '</div>';
+                //     swal({content: $(html)[0], icon: 'error'})
+                // } else {
+                //     // 其他情况应该是系统挂了
+                //     swal('系统错误', '', 'error');
+                // }
+            }
+        });
+    }
+</script>
+@endsection

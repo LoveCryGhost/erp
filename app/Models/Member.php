@@ -65,4 +65,9 @@ class Member extends Authenticatable implements MustVerifyEmailContract
     {
         return $model->member_id === $this->id;
     }
+
+    public function purchaseOrderCartItems()
+    {
+        return $this->hasMany(PurchaseOrderCartItem::class, 'member_id');
+    }
 }
