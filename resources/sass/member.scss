@@ -59,10 +59,8 @@
         box-shadow: 2px 2px lightcyan;
         margin: 3px;
     }
-
-
-
 }
+
 #tooltip{
     position:absolute;
     border:1px solid #ccc;
@@ -72,3 +70,14 @@
     color:#fff;
     z-index: 1000000000000000;
 }
+
+.member-purchaseOrderCartItem-index-page {
+    .sku-thumbnail{
+        border: red 10px;
+        width: 50px;
+        border-radius: 5px;
+    }
+
+}
+
+

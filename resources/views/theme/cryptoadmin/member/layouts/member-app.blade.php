@@ -20,7 +20,7 @@
 @endsection
 
 <body class="hold-transition fixed light-skin dark-sidebar sidebar-mini theme-blue sidebar-collapse">
-<div id="app"  class="{{ route_class() }}-page">
+<div id="app"  class="{{ route_class() }}-page xbody">
     @section('app-content')
         @guest('member')
             @include(config('theme.member.header'))

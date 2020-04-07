@@ -158,7 +158,9 @@ Route::prefix('member')->namespace('Member')->group(function(){
         Route::post('crawleritemsku-bind_product_sku_to_crawler_sku', 'CrawlerItemSKUsController@bind_product_sku_to_crawler_sku')->name('crawleritemsku.bind_product_sku_to_crawler_sku');
 
         //PurchaseOrderCartItem
-        Route::post('purchaseOrderCartItem_add', 'PurchaseOrderCartItemsController@purchaseOrderCartItem_add')->name('purchaseOrderCartItem.add');
+        Route::post('purchaseOrderCartItem_add', 'PurchaseOrderCartItemsController@add')->name('purchaseOrderCartItem.add');
+        Route::get('purchaseOrderCartItem_index', 'PurchaseOrderCartItemsController@index')->name('purchaseOrderCartItem.index');
+
 
     });
 

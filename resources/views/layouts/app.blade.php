@@ -12,6 +12,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @yield('css')
 </head>
+
     @yield('app-content-header')
     @yield('app-content')
     @yield('app-content-footer')

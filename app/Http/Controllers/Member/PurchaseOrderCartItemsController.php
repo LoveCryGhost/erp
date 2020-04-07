@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Member;
 use App\Models\PurchaseOrderCartItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function compact;
+use function config;
+use function view;
 
 
 class PurchaseOrderCartItemsController extends MemberCoreController
@@ -15,16 +18,15 @@ class PurchaseOrderCartItemsController extends MemberCoreController
         $this->middleware('auth:member');
     }
 
-    public function purchaseOrderCartItem_add(Request $request)
+    public function add(Request $request)
     {
         $data = $request->all();
-        $member   = Auth::guard('member')->user();;
+        $member   = Auth::guard('member')->user();
         $skuId  = $request->input('sku_id');
         $amount = $request->input('amount')>0? $request->input('amount'): 1;
 
         // 从数据库中查询该商品是否已经在购物车中
         if ($cart = $member->purchaseOrderCartItems()->where('sku_id', $skuId)->first()) {
-
             // 如果存在则直接叠加商品数量
             $cart->update([
                 'amount' => $cart->amount + $amount,
@@ -45,5 +47,12 @@ class PurchaseOrderCartItemsController extends MemberCoreController
             'view' => "",
             'options'=>[]
         ];
+    }
+
+    public function index(Request $request)
+    {
+        $member   = Auth::guard('member')->user();
+        $purchaseOrderCartItems = $member->purchaseOrderCartItems()->with(['sku.product'])->get();
+        return view(config('theme.member.view').'form.purchaseOrder.purchaseOrderForm', compact('purchaseOrderCartItems'))->render();
     }
 }
