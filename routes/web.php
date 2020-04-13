@@ -97,7 +97,7 @@ Route::middleware('auth')->prefix('')->namespace('User')->name('')->group(functi
 Route::prefix('')->namespace('Admin')->group(function(){
     Route::prefix('admin')->name('admin.')->group(function(){
 
-        Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+        Route::middleware('auth:admin')->get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
         //Guard-Switcher-User
         Route::post('tool/guard_switcher_user', 'AdminToolsController@guard_switcher_user')->name('tool.guard_switcher_user');

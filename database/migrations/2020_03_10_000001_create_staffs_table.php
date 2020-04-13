@@ -12,6 +12,7 @@ class CreateStaffsTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('staff_departments', function (Blueprint $table) {
