@@ -12,7 +12,8 @@ class Kernel extends ConsoleKernel
         //\App\Console\Commands\AddUsersCron::class,
         \App\Console\Commands\CrawlerCleanCron::class,
         \App\Console\Commands\CrawlerFirstTimeUpdateItemAndShopCron::class,
-        \App\Console\Commands\CrawlerTaskCron::class
+        \App\Console\Commands\CrawlerTaskCron::class,
+        \App\Console\Commands\MHShoesMaterialControlCron::class
     ];
 
     protected function schedule(Schedule $schedule)
@@ -28,6 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:crawler_first_time_update_item_and_shop')->everyMinute()->withoutOverlapping();
         $schedule->command('command:crawler_task')->everyMinute()->withoutOverlapping();
         $schedule->command('command:crawler_clean')->dailyAt(06);
+        $schedule->command('command:mh_shoes_material_control')->everyMinute()->withoutOverlapping();
     }
 
     protected function commands()
