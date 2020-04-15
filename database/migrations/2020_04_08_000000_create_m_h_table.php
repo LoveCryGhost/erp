@@ -107,7 +107,7 @@ class CreateMHTable extends Migration
             $table->decimal('material_fass_outbound_qty',6,0); //快速领料 - mh_shoes_purchases
             $table->decimal('material_reprocess_outbound_qty',6,0); //加工领料  - mh_shoes_purchases
             $table->decimal('material_price',6,0); //单价- mh_shoes_materials
-            $table->bigInteger('s_id');
+            $table->bigInteger('s_id')->nullable();
             $table->string('supplier_name');
             $table->timestamps();
         });

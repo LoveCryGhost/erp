@@ -8,6 +8,7 @@ use App\Models\Shoes\ShoesEE;
 use App\Models\Shoes\ShoesMaterial;
 use App\Models\Shoes\ShoesModel;
 use App\Models\Shoes\ShoesOrder;
+use App\Models\Shoes\ShoesPurchase;
 use App\Models\Shoes\ShoesSupplier;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -30,10 +31,11 @@ class MHShoesMaterialControlJob implements ShouldQueue
     public function handle()
     {
 
-        $ee = $this->getShoesEEQuery();
-        if (count($ee['shoes_ee']) > 0) {
-            $shoes_ees_query = $ee['shoes_ees_query'];
-            $shoes_ee = $shoes_ees_query->get()->last();
+        //$ee = $this->getShoesEEQuery();
+        $shoes_ee = ShoesEE::whereNotNull('mh_order_code')->first();
+        if ($shoes_ee!=null) {
+            //$shoes_ees_query = $ee['shoes_ees_query'];
+            //$shoes_ee = $shoes_ees_query->get()->last();
 
             //mh指令號
             if (empty($shoes_ee->mh_order_code)) {
@@ -88,7 +90,7 @@ class MHShoesMaterialControlJob implements ShouldQueue
             }
 
             //新增訂單
-            ShoesOrder::updateOrCreate([
+            $shoes_order = ShoesOrder::updateOrCreate([
                 'mh_order_code' => $shoes_ee->mh_order_code,
             ], [
                 'department' => $department,
@@ -104,11 +106,35 @@ class MHShoesMaterialControlJob implements ShouldQueue
                 'order_type' => $shoes_ee->order_type,
             ]);
 
-
             //新增採購單
+            ShoesPurchase::updateOrCreate([
+                'order_id' => $shoes_order->order_id,
+                'mt_id' => isset($shoes_material)? $shoes_material->mt_id:null,
+                'puchase_plan' => $shoes_ee->puchase_plan ,
+                'purchase_content'  => $shoes_ee->purchase_content,
+                'purchase_a_qty'  => $shoes_ee->purchase_a_qty,
+                'purchase_loss_qty'  => $shoes_ee->purchase_loss_qty,
+                'purchase_plan_qty'  => $shoes_ee->purchase_plan_qty,
+                'purchase_at'  => $shoes_ee->purchase_at,
+                'purchase_qty'  => $shoes_ee->purchase_qty,
+                'material_received_at'  => $shoes_ee->material_received_at,
+                'inbound_qty'  => $shoes_ee->inbound_qty,
+                'particle_qty'  => $shoes_ee->particle_qty,
+                'outbount_at'  => $shoes_ee->outbount_at,
+                'material_a_outbound_qty'  => $shoes_ee->material_a_outbound_qty,
+                'material_o_outbound_qty'  => $shoes_ee->material_o_outbound_qty,
+                'material_fass_outbound_qty'  => $shoes_ee->material_fass_outbound_qty,
+                'material_reprocess_outbound_qty'  => $shoes_ee->material_reprocess_outbound_qty,
+                'material_price'  => $shoes_ee->material_price,
+                's_id'  => isset($shoes_supplier)? $shoes_supplier->s_id:null,
+                'supplier_name'  => $shoes_ee->supplier_name,
+            ],[
+
+            ]);
+
             //新增訂單明細
 
-            $shoes_ees_query->delete();
+            $shoes_ee->delete();
 
             //重新指派任務
             dispatch((new MHShoesMaterialControlJob())->onQueue('high'));
