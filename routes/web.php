@@ -164,7 +164,6 @@ Route::prefix('member')->namespace('Member')->group(function(){
 
     });
 
-
     //Member - Report
     Route::prefix('')->namespace('Report')->name('member.reports.sku.')->group(function(){
         Route::get('crawleritem_analysis', 'ReportSKUController@crawleritem_analysis')->name('crawleritem_analysis');
@@ -182,6 +181,11 @@ Route::prefix('')->namespace('Staff')->group(function(){
         Route::get('staff_list', 'StaffsController@list')->name('staff.staff_list');;
         Route::resource('staff', 'StaffsController');
         Route::resource('staff-department', 'Staff_DepartmentsController');
+    });
+
+    //Report
+    Route::prefix('')->namespace('MH\Report')->group(function() {
+        Route::get('order-analysis', 'ReportMHOrderController@analysis')->name('staff.mh.report.order_analysis');
     });
 });
 

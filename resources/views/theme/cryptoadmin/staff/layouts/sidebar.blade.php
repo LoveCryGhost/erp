@@ -24,8 +24,6 @@
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
 
-
-
             <li class="treeview">
                 <a href="#">
                     <i class="ti-cup"></i>
@@ -35,9 +33,12 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('staff.staff.edit',['staff' => Auth::guard('staff')->user()->id])}}"><i class="ti-more"></i>個人訊息</a></li>
+{{--                    <li><a href="{{route('staff.staff.edit',['staff' => Auth::guard('staff')->user()->id])}}"><i class="ti-more"></i>個人訊息</a></li>--}}
+                    <li><a href="{{route('staff.mh.report.order_analysis')}}"><i class="ti-more"></i>訂單</a></li>
                 </ul>
             </li>
+
+
         </ul>
     </section>
 </aside>
