@@ -16,6 +16,6 @@ class StaffDashboardsController extends StaffCoreController
 
     //Dashboard
     public function dashboard(){
-       dd('dashboard');
+        return view(config('theme.staff.view').'dashboard');
     }
 }

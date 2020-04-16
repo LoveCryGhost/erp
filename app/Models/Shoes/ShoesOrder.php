@@ -7,7 +7,7 @@ class ShoesOrder extends Model
 {
     protected $table = "mh_shoes_orders";
     protected $primaryKey='order_id';
-
+    public $timestamps = false;
     protected $fillable = [
         'mh_order_code',
         'department',

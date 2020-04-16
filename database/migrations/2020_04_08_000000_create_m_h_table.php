@@ -67,7 +67,18 @@ class CreateMHTable extends Migration
             $table->string('model_name')->nullable(); //型体编号
 
             $table->string('order_type')->nullable(); //订单类型 - mh_shoes_orders
-            $table->timestamps();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+        });
+
+        Schema::create('mh_shoes_order_details', function (Blueprint $table) {
+            //$table->bigIncrements('od_id');
+            $table->string('mh_order_code')->index(); //指令编号 - mh_shoes_orders
+            $table->string('size'); //指令编号 - mh_shoes_orders
+            $table->string('p_l_r'); //指令编号 - mh_shoes_orders
+            $table->decimal('qty',7,1); //接单日期 - mh_shoes_orders
+            $table->primary(['mh_order_code', 'size', 'p_l_r']);
+            //$table->timestamps();
         });
 
         Schema::create('mh_shoes_customers', function (Blueprint $table) {
@@ -114,6 +125,7 @@ class CreateMHTable extends Migration
 
         Schema::create('mh_shoes_sizes', function (Blueprint $table) {
             $table->bigIncrements('size_id');
+            $table->bigInteger('model_id');
             $table->string('size');
             $table->timestamps();
         });
@@ -131,7 +143,6 @@ class CreateMHTable extends Migration
             $table->string('supplier_name');
             $table->timestamps();
         });
-
     }
 
     public function down()
@@ -141,6 +152,7 @@ class CreateMHTable extends Migration
         Schema::dropIfExists('mh_shoes_customers');
         Schema::dropIfExists('mh_shoes_materials');
         Schema::dropIfExists('mh_shoes_orders');
+        Schema::dropIfExists('mh_shoes_order_details');
         Schema::dropIfExists('mh_shoes_suppliers');
         Schema::dropIfExists('mh_shoes_purchases');
         Schema::dropIfExists('mh_shoes_sizes');

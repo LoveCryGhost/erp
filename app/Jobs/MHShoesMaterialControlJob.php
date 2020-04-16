@@ -104,6 +104,7 @@ class MHShoesMaterialControlJob implements ShouldQueue
                 'm_id' => $shoes_model->m_id,
                 'model_name' => $shoes_model->model_name,
                 'order_type' => $shoes_ee->order_type,
+                'updated_at' => null
             ]);
 
             //新增採購單
