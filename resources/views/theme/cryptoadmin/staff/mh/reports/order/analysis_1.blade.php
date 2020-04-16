@@ -35,7 +35,6 @@
                                             <th>接單日期</th>
                                             <th>客戶採購單號</th>
                                             <th>訂單類型</th>
-                                            <th>品名</th>
                                             <th>總數</th>
                                             @foreach($size_oders as $size)
                                                 <th class="w-50">{{$size}}</th>
@@ -50,19 +49,12 @@
                                                 </td>
                                                 <td>
                                                     {{$shoes_order->received_at}}<br>
-
+                                                    {{$shoes_order->model_name}}<br>
                                                     {{$shoes_order->mh_order_code}}<br>
                                                     {{$shoes_order->department}}<br>
                                                 </td>
-                                                <td>{{$shoes_order->model_name}}<br>
-                                                    {{$shoes_order->c_purhcase_code}}
-                                                </td>
-
+                                                <td>{{$shoes_order->c_purhcase_code}}</td>
                                                 <td>{{$shoes_order->order_type}}</td>
-                                                <td>
-                                                    {{$shoes_order->ShoesMaterials->count()>0?
-                                                        $shoes_order->ShoesMaterials->first()->material_name:""}}
-                                                </td>
                                                 <td>{{   $shoes_order->ShoesOrderDetails->count()>0?
                                                             $shoes_order->ShoesOrderDetails->sum('qty'): ""}}</td>
                                                 @foreach($size_oders as $size)

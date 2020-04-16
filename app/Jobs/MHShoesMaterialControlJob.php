@@ -103,6 +103,8 @@ class MHShoesMaterialControlJob implements ShouldQueue
                 'c_name' => $shoes_ee->c_name,
                 'm_id' => $shoes_model->m_id,
                 'model_name' => $shoes_model->model_name,
+                'mt_id' =>,
+                'material_name' => "",
                 'order_type' => $shoes_ee->order_type,
                 'updated_at' => null
             ]);

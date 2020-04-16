@@ -36,5 +36,16 @@ class ShoesOrder extends Model
 
     ];
 
+    public function ShoesOrderDetails()
+    {
+        return $this->hasMany(ShoesOrderDetail::class, 'mh_order_code', 'mh_order_code');
+    }
+
+    public function ShoesMaterials()
+    {
+        return $this->hasMany(ShoesMaterial::class, 'mt_id', 'm_id');
+    }
+
+
 
 }

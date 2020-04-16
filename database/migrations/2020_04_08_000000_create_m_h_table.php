@@ -60,13 +60,16 @@ class CreateMHTable extends Migration
             $table->string('order_condition')->nullable(); //订单状态 - mh_shoes_orders
             $table->string('c_order_code')->nullable(); //客户订单号 - mh_shoes_orders
 
-            $table->string('c_id')->nullable(); //客户简称
+            $table->bigInteger('c_id')->nullable(); //客户简称
             $table->string('c_name')->nullable(); //客户简称
 
             $table->string('m_id')->nullable(); //型体编号
             $table->string('model_name')->nullable(); //型体编号
 
-            $table->string('order_type')->nullable(); //订单类型 - mh_shoes_orders
+            $table->bigInteger('mt_id')->nullable(); //材料id
+            $table->string('material_name')->nullable(); //材料名稱
+
+            $table->bigInteger('order_type')->nullable(); //订单类型 - mh_shoes_orders
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

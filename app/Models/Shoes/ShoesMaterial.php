@@ -15,6 +15,9 @@ class ShoesMaterial extends Model
         'material_price',
         's_id',
         'supplier_name',
+
+        'mt_id',
+        'material_name'
     ];
 
 
