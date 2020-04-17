@@ -13,7 +13,7 @@ class CreateMHTable extends Migration
             $table->string('mh_order_code'); //指令编号 - mh_shoes_orders
             $table->string('received_at'); //接单日期 - mh_shoes_orders
             $table->string('outbound_condition'); //出货状态 - mh_shoes_orders
-            $table->string('c_purchase_code'); //采购单号 - mh_shoes_orders
+            $table->string('m_purchase_code'); //茂弘采购单号 - mh_shoes_orders
             $table->string('order_condition'); //订单状态 - mh_shoes_orders
             $table->string('c_name'); //客户简称 - mh_shoes_customers
             $table->string('c_order_code'); //客户订单号 - mh_shoes_orders
@@ -66,8 +66,17 @@ class CreateMHTable extends Migration
 
             $table->string('m_id')->nullable(); //型体编号
             $table->string('model_name')->nullable(); //型体编号
+            $table->string('color')->nullable(); //---------------------------------
+            $table->string('currency')->nullable(); //---------------------------------
+            $table->string('price')->nullable(); //---------------------------------
+            $table->string('qty')->nullable()->default(0); //---------------------------------
+            $table->string('inbound_qyt')->nullable(); //---------------------------------
+            $table->string('inbound_at')->nullable(); //---------------------------------
+            $table->string('outbound_at')->nullable(); //---------------------------------
+
 
             $table->string('order_type')->nullable(); //订单类型 - mh_shoes_orders
+            $table->string('pic')->nullable(); //---------------------------------
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

@@ -12,7 +12,7 @@ class ShoesEE extends Model
         'mh_order_code',
         'received_at',
         'outbound_condition',
-        'c_purhcase_code',
+        'm_purchase_code',
         'order_condition',
         'c_name',
         'c_order_code',

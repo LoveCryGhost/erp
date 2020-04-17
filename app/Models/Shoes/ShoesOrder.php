@@ -27,6 +27,15 @@ class ShoesOrder extends Model
         'material_name',
         'material_unit',
         'order_type',
+
+        'color',
+        'currency',
+        'price',
+        'qty',
+        'inbound_qyt',
+        'inbound_at',
+        'outbound_at',
+        'pic',
     ];
 
 

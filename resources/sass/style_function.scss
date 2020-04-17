@@ -37,7 +37,6 @@ $_colors: (
   .w-#{$spaceamount} {
     width: #{$spaceamount}px;
   }
-
 }
 
 //font-size
@@ -57,35 +56,17 @@ $_colors: (
 //background-color
 @each $_color in $_colors {
   .bg-color-#{$_color} {
-    background-color: #{$_color};
+      background-color: #{$_color};
   }
 }
 
-@each $space in $spaceamounts {
-  .tbl-head-tr-td-m-#{$space} {
-    table thead tr td{
-      margin: #{$space}px;
-    }
-  }
 
-  .tbl-head-tr-td-p-#{$space} {
-    table thead tr td{
-      padding: #{$space}px;
-    }
-  }
 
-  .tbl-body-tr-td-m-#{$space} {
-    table tbody tr td{
-      margin: #{$space}px;
-    }
-  }
 
-  .tbl-body-tr-td-p-#{$space} {
-    table tbody tr td{
-      padding: #{$space}px;
-    }
-  }
-}
+
+
+
+
 
 colgroup col.success {
   background-color: #dff0d8;
