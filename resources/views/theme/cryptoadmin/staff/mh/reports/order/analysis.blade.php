@@ -10,69 +10,112 @@
                     <div class="box">
                         <div class="box-header with-border p-1">
                             <form class="mb-0">
-                            <div class=" row">
-                                <label class="col-sm-1 col-form-label">MH指令號</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="mh_order_codes" placeholder="MH指令號" value="{{request()->mh_order_codes}}">
+                                <div class="row">
+                                    <label class="col-sm-1 col-form-label">MH指令號</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="mh_order_codes" placeholder="MH指令號" value="{{request()->mh_order_codes}}">
+                                    </div>
+                                    <label class="col-sm-1 col-form-label">客戶訂單號</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="c_order_codes" placeholder="客戶訂單號" value="{{request()->c_order_codes}}">
+                                    </div>
+                                    <label class="col-sm-1 col-form-label">採購單號</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="c_purchase_codes" placeholder="客戶採購單號" value="{{request()->c_purchase_codes}}">
+                                    </div>
+                                    <label class="col-sm-1 col-form-label">型體名稱</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="model_names" placeholder="請輸入型體名稱" value="{{request()->model_names}}">
+                                    </div>
                                 </div>
-                                <label class="col-sm-1 col-form-label">客戶訂單號</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="c_order_codes" placeholder="客戶訂單號" value="{{request()->c_order_codes}}">
-                                </div>
-                                <label class="col-sm-1 col-form-label">採購單號</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="c_purchase_codes" placeholder="客戶採購單號" value="{{request()->c_purchase_codes}}">
-                                </div>
-                                <label class="col-sm-1 col-form-label">型體名稱</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="model_names" placeholder="請輸入型體名稱" value="{{request()->model_names}}">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-1 col-form-label">部門</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="departments" placeholder="請輸 IP,SP,RB" value="{{request()->departments}}">
-                                </div>
-                                <label class="col-sm-1 col-form-label">訂單狀況</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="order_conditions" placeholder="請輸訂單狀況" value="{{request()->order_conditions}}">
-                                </div>
-                                <label class="col-sm-1 col-form-label">訂單類型</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="order_types" placeholder="請輸訂單類型" value="{{request()->order_types}}">
+                                <div class="row">
+                                    <label class="col-sm-1 col-form-label">部門</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="departments" placeholder="請輸 IP,SP,RB" value="{{request()->departments}}">
+                                    </div>
+                                    <label class="col-sm-1 col-form-label">訂單狀況</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="order_conditions" placeholder="請輸訂單狀況" value="{{request()->order_conditions}}">
+                                    </div>
+                                    <label class="col-sm-1 col-form-label">訂單類型</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="order_types" placeholder="請輸訂單類型" value="{{request()->order_types}}">
+                                    </div>
+
+                                    <label class="col-sm-1 col-form-label">顏色</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="colors" placeholder="請輸入顏色" value="{{request()->colors}}">
+                                    </div>
                                 </div>
 
-                                <label class="col-sm-1 col-form-label">顏色</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="colors" placeholder="請輸入顏色" value="{{request()->colors}}">
+                                <div class="row">
+                                    <label class="col-sm-1 col-form-label">客戶名稱</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="c_names" placeholder="請輸入客戶名稱" value="{{request()->c_names}}">
+                                    </div>
+                                    <label class="col-sm-1 col-form-label">接單日期(起)</label>
+                                    <div class="col-sm-2">
+                                        <input class="form-control" type="text" name="received_start_at" placeholder="接單起始日" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask value="{{request()->received_start_at}}">
+                                    </div>
+                                    <label class="col-sm-1 col-form-label">接單日期(終)</label>
+                                    <div class="col-sm-2">
+                                       <input class="form-control" type="text" name="received_end_at" placeholder="接單終止日" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask value="{{request()->received_end_at}}">
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="">
+                                            <button type="button" class="form-control btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">下載</button>
+                                            <div class="dropdown-menu" style="will-change: transform;">
+                                                <a class="dropdown-item" href="#">訂單(含Size)</a>
+                                                <a class="dropdown-item" href="#">訂單(不含Size)</a>
+                                                <a class="dropdown-item" href="#">未採購訂單</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">異常-倉庫</a>
+                                                <a class="dropdown-item" href="#">異常-訂單</a>
+                                                <a class="dropdown-item" href="#">異常-倉庫</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="">
+                                            <button type="button" class="form-control btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">異常</button>
+                                            <div class="dropdown-menu" style="will-change: transform;">
+                                                <a class="dropdown-item" href="#">訂單(含Size)</a>
+                                                <a class="dropdown-item" href="#">訂單(不含Size)</a>
+                                                <a class="dropdown-item" href="#">未採購訂單</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">異常-倉庫</a>
+                                                <a class="dropdown-item" href="#">異常-訂單</a>
+                                                <a class="dropdown-item" href="#">異常-倉庫</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="">
+                                            <button type="button" class="form-control btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">報表</button>
+                                            <div class="dropdown-menu" style="will-change: transform;">
+                                                <a class="dropdown-item" href="#">訂單(含Size)</a>
+                                                <a class="dropdown-item" href="#">訂單(不含Size)</a>
+                                                <a class="dropdown-item" href="#">未採購訂單</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">異常-倉庫</a>
+                                                <a class="dropdown-item" href="#">異常-訂單</a>
+                                                <a class="dropdown-item" href="#">異常-倉庫</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <label class="col-sm-1 col-form-label">客戶名稱</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="c_names" placeholder="請輸入客戶名稱" value="{{request()->c_names}}">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="{{route('staff.mh.report.order_analysis')}}" class="form-control btn btn-primary mt-5">重新搜尋</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="form-control btn btn-primary mt-5">搜尋</button>
+                                    </div>
                                 </div>
-                                <label class="col-sm-1 col-form-label">接單日期(起)</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="received_start_at" placeholder="接單起始日" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask value="{{request()->received_start_at}}">
-                                </div>
-                                <label class="col-sm-1 col-form-label">接單日期(終)</label>
-                                <div class="col-sm-2">
-                                   <input class="form-control" type="text" name="received_end_at" placeholder="接單終止日" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask value="{{request()->received_end_at}}">
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-6">
-                                    <a href="{{route('staff.mh.report.order_analysis')}}" class="form-control btn btn-primary mt-5">重新搜尋</a>
-                                </div>
-                                <div class="col-6">
-                                    <button type="submit" class="form-control btn btn-primary mt-5">搜尋</button>
-                                </div>
-                            </div>
                             </form>
                         </div>
+
                         <div class="box-body div_overflow-x m-0 p-1">
                             {{--CrawlerItem 爬蟲項目--}}
                             <div class="infinite-scroll">

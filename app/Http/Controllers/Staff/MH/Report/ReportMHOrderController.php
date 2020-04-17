@@ -17,7 +17,6 @@ class ReportMHOrderController extends Controller
 {
 
     public function analysis(){
-
         $size_oders = config('shoes.size');
         $query = ShoesOrder::with(['shoesOrderDetails', 'shoesPurchases', 'shoesCustomer']);
 
@@ -179,11 +178,12 @@ class ReportMHOrderController extends Controller
             }
             return $query;
         });
-
-
-
-
         return $query;
+    }
+
+    public function analysis_download_with_size()
+    {
+        
     }
 
 }
