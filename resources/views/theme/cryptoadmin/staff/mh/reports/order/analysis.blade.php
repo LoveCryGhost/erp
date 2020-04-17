@@ -28,15 +28,19 @@
                         <div class="box-body div_overflow-x">
                             {{--CrawlerItem 爬蟲項目--}}
                             <div class="infinite-scroll">
-                                <table class="table table-bordered table-stripped fontsize-1">
+                                <table class="table table-bordered table-striped fontsize-1 table-hover">
                                     <thead class="text-center">
-                                        <tr class="">
+                                        <tr class="bg-primary">
                                             <th>編號</th>
                                             <th>接單日期</th>
                                             <th>客戶採購單號</th>
                                             <th>訂單類型</th>
                                             <th>品名</th>
+                                            <th>進料</th>
                                             <th>總數</th>
+                                            <th>需求</th>
+                                            <th>入庫</th>
+                                            <th>出貨</th>
                                             @foreach($size_oders as $size)
                                                 <th class="w-50">{{$size}}</th>
                                             @endforeach
@@ -44,13 +48,14 @@
                                     </thead>
                                     <tbody>
                                         @foreach($shoes_orders as $shoes_order)
-                                            <tr class="pull-up">
+                                            <tr>
                                                 <td>
                                                     {{($shoes_orders->currentPage()-1)*($shoes_orders->perPage()) + $loop->iteration}}
                                                 </td>
                                                 <td>
-                                                    {{$shoes_order->received_at}}<br>
 
+                                                    預:{{$shoes_order->predict_at=="0000-00-00"? "":date('m/d', strtotime($shoes_order->predict_at))}}<br>
+                                                    <i class="fa fa-arrow-right"></i>接{{$shoes_order->received_at=="0000-00-00"? "":date('m/d', strtotime($shoes_order->received_at))}}<br>
                                                     {{$shoes_order->mh_order_code}}<br>
                                                     {{$shoes_order->department}}<br>
                                                 </td>
@@ -59,15 +64,21 @@
                                                 </td>
 
                                                 <td>{{$shoes_order->order_type}}</td>
-                                                <td>
-                                                    {{$shoes_order->ShoesMaterials->count()>0?
-                                                        $shoes_order->ShoesMaterials->first()->material_name:""}}
-                                                </td>
+                                                @if($shoes_order->ShoesPurchases->count()>0)
+                                                    <td>{{$shoes_order->ShoesPurchases->first()->material_name}}</td>
+                                                    <td class="text-center">
+                                                        買:{{$shoes_order->ShoesPurchases->first()->purchase_at=="0000-00-00"? "": date('m/d', strtotime($shoes_order->ShoesPurchases->first()->purchase_at))}}<br>
+                                                            <i class="fa fa-arrow-down"></i><br>
+                                                        進:{{$shoes_order->ShoesPurchases->first()->outbound_at=="0000-00-00"? "": date('m/d', strtotime($shoes_order->ShoesPurchases->first()->outbound_at))}}</td>
+                                                @else
+                                                    <td></td>
+                                                    <td></td>
+                                                @endif
                                                 <td>{{   $shoes_order->ShoesOrderDetails->count()>0?
-                                                            $shoes_order->ShoesOrderDetails->sum('qty'): ""}}</td>
+                                                            number_format($shoes_order->ShoesOrderDetails->sum('qty'),0,"",",") : ""}}</td>
                                                 @foreach($size_oders as $size)
                                                         <td>{{$item = $shoes_order->ShoesOrderDetails->where('size',$size)->first()?
-                                                                        $shoes_order->ShoesOrderDetails->where('size',$size)->first()->qty : ""}}</td>
+                                                                        number_format($shoes_order->ShoesOrderDetails->where('size',$size)->first()->qty,0,"",",") : ""}}</td>
                                                 @endforeach
                                             </tr>
                                         @endforeach

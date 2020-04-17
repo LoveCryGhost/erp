@@ -103,8 +103,6 @@ class MHShoesMaterialControlJob implements ShouldQueue
                 'c_name' => $shoes_ee->c_name,
                 'm_id' => $shoes_model->m_id,
                 'model_name' => $shoes_model->model_name,
-                'mt_id' =>,
-                'material_name' => "",
                 'order_type' => $shoes_ee->order_type,
                 'updated_at' => null
             ]);
@@ -113,6 +111,7 @@ class MHShoesMaterialControlJob implements ShouldQueue
             ShoesPurchase::updateOrCreate([
                 'order_id' => $shoes_order->order_id,
                 'mt_id' => isset($shoes_material)? $shoes_material->mt_id:null,
+                'material_name' => isset($shoes_material)? $shoes_material->material_name:null,
                 'puchase_plan' => $shoes_ee->puchase_plan ,
                 'purchase_content'  => $shoes_ee->purchase_content,
                 'purchase_a_qty'  => $shoes_ee->purchase_a_qty,
@@ -123,7 +122,7 @@ class MHShoesMaterialControlJob implements ShouldQueue
                 'material_received_at'  => $shoes_ee->material_received_at,
                 'inbound_qty'  => $shoes_ee->inbound_qty,
                 'particle_qty'  => $shoes_ee->particle_qty,
-                'outbount_at'  => $shoes_ee->outbount_at,
+                'outbound_at'  => $shoes_ee->outbound_at,
                 'material_a_outbound_qty'  => $shoes_ee->material_a_outbound_qty,
                 'material_o_outbound_qty'  => $shoes_ee->material_o_outbound_qty,
                 'material_fass_outbound_qty'  => $shoes_ee->material_fass_outbound_qty,

@@ -11,6 +11,7 @@ class ShoesPurchase extends Model
     protected $fillable = [
         'order_id',
         'mt_id',
+        'material_name',
         'puchase_plan',
         'purchase_content',
         'purchase_a_qty',
@@ -21,7 +22,7 @@ class ShoesPurchase extends Model
         'material_received_at',
         'inbound_qty',
         'particle_qty',
-        'outbount_at',
+        'outbound_at',
         'material_a_outbound_qty',
         'material_o_outbound_qty',
         'material_fass_outbound_qty',

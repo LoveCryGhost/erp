@@ -33,7 +33,7 @@ class CreateMHTable extends Migration
             $table->string('material_received_at'); //验收日期 - mh_shoes_purchases
             $table->string('inbound_qty'); //入库量 - mh_shoes_purchases
             $table->string('particle_qty'); //粒料指令 - mh_shoes_purchases
-            $table->string('outbount_at'); //出库日期 - mh_shoes_purchases
+            $table->string('outbound_at'); //出库日期 - mh_shoes_purchases
             $table->string('material_a_outbound_qty'); //正批领料 - mh_shoes_purchases
             $table->string('material_o_outbound_qty'); //补料领料 - mh_shoes_purchases
             $table->string('material_fass_outbound_qty'); //快速领料 - mh_shoes_purchases
@@ -53,6 +53,7 @@ class CreateMHTable extends Migration
         Schema::create('mh_shoes_orders', function (Blueprint $table) {
             $table->bigIncrements('order_id');
             $table->string('mh_order_code'); //指令编号 - mh_shoes_orders
+            $table->date('predict_at'); //預告日期
             $table->string('department');
             $table->date('received_at'); //接单日期 - mh_shoes_orders
             $table->string('outbound_condition')->nullable(); //出货状态 - mh_shoes_orders
@@ -65,9 +66,6 @@ class CreateMHTable extends Migration
 
             $table->string('m_id')->nullable(); //型体编号
             $table->string('model_name')->nullable(); //型体编号
-
-            $table->bigInteger('mt_id')->nullable(); //材料id
-            $table->string('material_name')->nullable(); //材料名稱
 
             $table->bigInteger('order_type')->nullable(); //订单类型 - mh_shoes_orders
             $table->timestamp('updated_at')->nullable();
@@ -105,6 +103,7 @@ class CreateMHTable extends Migration
             $table->bigIncrements('p_id');
             $table->bigInteger('order_id');
             $table->bigInteger('mt_id');
+            $table->string('material_name')->nullable();
             $table->string('puchase_plan'); //计划编号 - mh_shoes_purchases
             $table->string('purchase_content'); //计划内容 - mh_shoes_purchases
             $table->decimal('purchase_a_qty',6,0); //指令量正批 - mh_shoes_purchases
@@ -115,7 +114,7 @@ class CreateMHTable extends Migration
             $table->date('material_received_at'); //验收日期 - mh_shoes_purchases
             $table->decimal('inbound_qty',6,0); //入库量 - mh_shoes_purchases
             $table->decimal('particle_qty',6,0); //粒料指令 - mh_shoes_purchases
-            $table->date('outbount_at'); //出库日期 - mh_shoes_purchases
+            $table->date('outbound_at'); //出库日期 - mh_shoes_purchases
             $table->decimal('material_a_outbound_qty',6,0); //正批领料 - mh_shoes_purchases
             $table->decimal('material_o_outbound_qty',6,0); //补料领料 - mh_shoes_purchases
             $table->decimal('material_fass_outbound_qty',6,0); //快速领料 - mh_shoes_purchases

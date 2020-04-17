@@ -18,15 +18,30 @@ class ReportMHOrderController extends Controller
     public function analysis(){
         $filters = [
             'model_names' => request()->model_names,
-            'order_types' => request()->order_types
+            'order_types' => request()->order_types,
+            'departments' => request()->departments,
+
         ];
 
         //$size_oders = implode( ',', config('shoes.size') );
         $size_oders = config('shoes.size');
-        $query = ShoesOrder::with(['ShoesOrderDetails', 'ShoesMaterials']);
-        $query = $query->orderBy('received_at', 'DESC');
+        $query = ShoesOrder::with(['ShoesOrderDetails', 'ShoesPurchases']);
+
 
         //搜尋
+        //部門 department
+        $departments = explode(',',$filters['departments']);
+        $query = $query->where(function($query) use($departments){
+            foreach($departments as $department){
+                if( $department!= "") {
+                    $query = $query->Where('department', 'LIKE', '%' . $department . '%')
+                                    ->orWhere('department', 'LIKE', '%' . $department . '%')
+                    ;
+                }
+            }
+            return $query;
+        });
+
         //型體 model_name
         $model_names = explode(',',$filters['model_names']);
         $query = $query->where(function($query) use($model_names){
@@ -49,16 +64,16 @@ class ReportMHOrderController extends Controller
         });
 
         //材料名稱
-        
+
         //頁數
-        $shoes_orders = $query->paginate(200);
+        $query = $query->orderBy('received_at', 'DESC');
+        $shoes_orders = $query->paginate(10);
 
         return view(config('theme.staff.view').'mh.reports.order.analysis',
             [
                 'shoes_orders' => $shoes_orders,
                 'size_oders' => $size_oders,
-                'filters' => [
-                ]
+                'filters' => $filters
             ]);
     }
 

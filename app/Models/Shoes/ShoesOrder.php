@@ -10,6 +10,7 @@ class ShoesOrder extends Model
     public $timestamps = false;
     protected $fillable = [
         'mh_order_code',
+        'predict_at',
         'department',
         'received_at',
         'outbound_condition',
@@ -41,9 +42,9 @@ class ShoesOrder extends Model
         return $this->hasMany(ShoesOrderDetail::class, 'mh_order_code', 'mh_order_code');
     }
 
-    public function ShoesMaterials()
+    public function ShoesPurchases()
     {
-        return $this->hasMany(ShoesMaterial::class, 'mt_id', 'm_id');
+        return $this->hasMany(ShoesPurchase::class, 'order_id', 'order_id');
     }
 
 
