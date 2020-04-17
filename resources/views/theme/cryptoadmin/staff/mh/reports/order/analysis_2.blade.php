@@ -32,24 +32,15 @@
                                     <thead class="text-center">
                                         <tr class="bg-primary">
                                             <th>編號</th>
-                                            <th>部門</th>
-                                            <th>型體</th>
-                                            <th>客戶名稱</th>
-                                            <th>訂單狀況</th>
-                                            <th>MH指令號</th>
-                                            <th>客戶訂單號</th>
+                                            <th>接單日期</th>
                                             <th>客戶採購單號</th>
                                             <th>訂單類型</th>
-                                            <th>預告日期</th>
-                                            <th>接單日期</th>
                                             <th>品名</th>
-                                            <th>採購日期</th>
-                                            <th>進料日期</th>
+                                            <th>進料</th>
                                             <th>總數</th>
-                                            <th>需求日期</th>
-                                            <th>入庫日期</th>
-                                            <th>完成日期</th>
-                                            <th>出貨日期</th>
+                                            <th>需求</th>
+                                            <th>入庫</th>
+                                            <th>出貨</th>
                                             @foreach($size_oders as $size)
                                                 <th class="w-50">{{$size}}</th>
                                             @endforeach
@@ -61,35 +52,33 @@
                                                 <td>
                                                     {{($shoes_orders->currentPage()-1)*($shoes_orders->perPage()) + $loop->iteration}}
                                                 </td>
-                                                <td>{{$shoes_order->department}}</td>
-                                                <td>{{$shoes_order->model_name}}</td>
-                                                <td>{{$shoes_order->shoesCustomer->c_name}}</td>
-                                                <th>{{$shoes_order->order_condition}}</th>
-                                                <td>{{$shoes_order->mh_order_code}}</td>
-                                                <td>{{$shoes_order->c_order_code}}</td>
-                                                <td>{{$shoes_order->c_purchase_code}}</td>
-                                                <td>{{$shoes_order->order_type}}</td>
-                                                <td>{{$shoes_order->predict_at=="0000-00-00"? "":date('m/d', strtotime($shoes_order->predict_at))}}</td>
-                                                <td>{{$shoes_order->received_at=="0000-00-00"? "":date('m/d', strtotime($shoes_order->received_at))}}</td>
+                                                <td>
 
-                                                @if($shoes_order->shoesPurchases->count()>0)
-                                                    <td>{{$shoes_order->shoesPurchases->first()->material_name}}</td>
-                                                    <td class="text-center">{{$shoes_order->shoesPurchases->first()->purchase_at=="0000-00-00"? "": date('m/d', strtotime($shoes_order->shoesPurchases->first()->purchase_at))}}</td>
-                                                    <td>{{$shoes_order->shoesPurchases->first()->outbound_at=="0000-00-00"? "": date('m/d', strtotime($shoes_order->shoesPurchases->first()->outbound_at))}}</td>
+                                                    預:{{$shoes_order->predict_at=="0000-00-00"? "":date('m/d', strtotime($shoes_order->predict_at))}}<br>
+                                                    <i class="fa fa-arrow-right"></i>接{{$shoes_order->received_at=="0000-00-00"? "":date('m/d', strtotime($shoes_order->received_at))}}<br>
+                                                    {{$shoes_order->mh_order_code}}<br>
+                                                    {{$shoes_order->department}}<br>
+                                                </td>
+                                                <td>{{$shoes_order->model_name}}<br>
+                                                    {{$shoes_order->c_purhcase_code}}
+                                                </td>
+
+                                                <td>{{$shoes_order->order_type}}</td>
+                                                @if($shoes_order->ShoesPurchases->count()>0)
+                                                    <td>{{$shoes_order->ShoesPurchases->first()->material_name}}</td>
+                                                    <td class="text-center">
+                                                        買:{{$shoes_order->ShoesPurchases->first()->purchase_at=="0000-00-00"? "": date('m/d', strtotime($shoes_order->ShoesPurchases->first()->purchase_at))}}<br>
+                                                            <i class="fa fa-arrow-down"></i><br>
+                                                        進:{{$shoes_order->ShoesPurchases->first()->outbound_at=="0000-00-00"? "": date('m/d', strtotime($shoes_order->ShoesPurchases->first()->outbound_at))}}</td>
                                                 @else
                                                     <td></td>
                                                     <td></td>
-                                                    <td></td>
                                                 @endif
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>{{   $shoes_order->shoesOrderDetails->count()>0?
-                                                            number_format($shoes_order->shoesOrderDetails->sum('qty'),0,"",",") : "x"}}</td>
+                                                <td>{{   $shoes_order->ShoesOrderDetails->count()>0?
+                                                            number_format($shoes_order->ShoesOrderDetails->sum('qty'),0,"",",") : ""}}</td>
                                                 @foreach($size_oders as $size)
-                                                        <td>{{$item = $shoes_order->shoesOrderDetails->where('size',$size)->first()?
-                                                                        number_format($shoes_order->shoesOrderDetails->where('size',$size)->first()->qty,0,"",",") : ""}}</td>
+                                                        <td>{{$item = $shoes_order->ShoesOrderDetails->where('size',$size)->first()?
+                                                                        number_format($shoes_order->ShoesOrderDetails->where('size',$size)->first()->qty,0,"",",") : ""}}</td>
                                                 @endforeach
                                             </tr>
                                         @endforeach
@@ -127,7 +116,7 @@
                 // 当滚动到底部时,自动加载下一页
                 autoTrigger: true,
                 // 限制自动加载, 仅限前两页, 后面就要用户点击才加载
-                autoTriggerUntil: 9,
+                autoTriggerUntil: 0,
                 // 设置加载下一页缓冲时的图片
                 loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
                 padding: 0,

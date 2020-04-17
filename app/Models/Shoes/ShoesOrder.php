@@ -14,7 +14,7 @@ class ShoesOrder extends Model
         'department',
         'received_at',
         'outbound_condition',
-        'c_purhcase_code',
+        'c_purchase_code',
         'order_condition',
         'c_order_code',
         'c_id',
@@ -37,15 +37,21 @@ class ShoesOrder extends Model
 
     ];
 
-    public function ShoesOrderDetails()
+    public function shoesOrderDetails()
     {
         return $this->hasMany(ShoesOrderDetail::class, 'mh_order_code', 'mh_order_code');
     }
 
-    public function ShoesPurchases()
+    public function shoesPurchases()
     {
         return $this->hasMany(ShoesPurchase::class, 'order_id', 'order_id');
     }
+
+    public function shoesCustomer()
+    {
+        return $this->belongsTo(ShoesCustomer::class, 'c_id', 'c_id');
+    }
+
 
 
 

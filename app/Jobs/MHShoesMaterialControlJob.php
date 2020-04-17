@@ -32,7 +32,7 @@ class MHShoesMaterialControlJob implements ShouldQueue
     {
 
         //$ee = $this->getShoesEEQuery();
-        $shoes_ee = ShoesEE::whereNotNull('mh_order_code')->first();
+        $shoes_ee = ShoesEE::whereNotNull('mh_order_code')->orderBy('received_at','DESC')->first();
         if ($shoes_ee!=null) {
             //$shoes_ees_query = $ee['shoes_ees_query'];
             //$shoes_ee = $shoes_ees_query->get()->last();
@@ -96,7 +96,7 @@ class MHShoesMaterialControlJob implements ShouldQueue
                 'department' => $department,
                 'received_at' => $shoes_ee->received_at,
                 'outbound_condition' => $shoes_ee->outbound_condition,
-                'c_purhcase_code' => $shoes_ee->c_purhcase_code,
+                'c_purchase_code' => $shoes_ee->c_purchase_code,
                 'order_condition' => $shoes_ee->order_condition,
                 'c_order_code' => $shoes_ee->c_order_code,
                 'c_id' => $shoes_customer->c_id,
@@ -155,7 +155,7 @@ class MHShoesMaterialControlJob implements ShouldQueue
             $shoes_ee = [];
             $shoes_ees_query = [];
         }else{
-            $shoes_ees_query = ShoesEE::where('c_purhcase_code', $shoes_ee->c_purhcase_code) //採購單號
+            $shoes_ees_query = ShoesEE::where('c_purchase_code', $shoes_ee->c_purchase_code) //採購單號
             ->where('c_name', $shoes_ee->c_name) //客戶名稱
             ->where('c_order_code', $shoes_ee->c_order_code) //客戶訂單號
             ->where('order_type', $shoes_ee->order_type);
