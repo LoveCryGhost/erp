@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Staff\MH\Report;
 
 
+use App\Exports\ShoesOrderWithSizeExport;
 use App\Http\Controllers\Controller;
 use App\Models\Shoes\ShoesOrder;
+use Maatwebsite\Excel\Facades\Excel;
 use function array_values;
 use function compact;
 use function config;
+use function dd;
 use function explode;
 use function implode;
 use function request;
@@ -17,8 +20,17 @@ class ReportMHOrderController extends Controller
 {
 
     public function analysis(){
-        $size_oders = config('shoes.size');
-        $query = ShoesOrder::with(['shoesOrderDetails', 'shoesPurchases', 'shoesCustomer']);
+
+        //盤別方法
+        if(isset(request()->submit)){
+            $case = array_values(request()->submit)[0];
+        }else{
+            $case = "submit_clear";
+        }
+
+
+
+
 
         $filters = [
             'model_names' => request()->model_names,
@@ -32,19 +44,32 @@ class ReportMHOrderController extends Controller
             'c_names' => request()->c_names,
         ];
 
-        $this->analysis_filter($filters, $query);
 
-        //頁數
-        $query = $query->orderBy('received_at', 'DESC');
-        $shoes_orders = $query->paginate(10);
 
-        return view(config('theme.staff.view').'mh.reports.order.analysis',
-            [
-                'shoes_orders' => $shoes_orders,
-                'size_oders' => $size_oders,
-                'filters' => $filters
-            ]);
+        $size_oders = config('shoes.size');
+        $query = ShoesOrder::with(['shoesOrderDetails', 'shoesPurchases', 'shoesCustomer']);
+        $query = $this->analysis_filter($filters, $query);
+        $query= $this->analysis_get_query($query);
+
+        switch ($case) {
+            case "download_shoes_order_with_sizes":
+                return $this->download_shoes_order_with_sizes($query, $size_oders);
+                break;
+
+            default: //submit_get & submit_clear
+                $shoes_orders = $query->paginate(30);
+                return view(config('theme.staff.view').'mh.reports.order.analysis',
+                    [
+                        'shoes_orders' => $shoes_orders,
+                        'size_oders' => $size_oders,
+                        'filters' => $filters
+                    ]);
+                break;
+        }
+
     }
+
+
 
     public function analysis_filter($filters, $query)
     {
@@ -181,9 +206,13 @@ class ReportMHOrderController extends Controller
         return $query;
     }
 
-    public function analysis_download_with_size()
+    public function analysis_get_query($query){
+        return $query = $query->orderBy('received_at', 'DESC');
+    }
+
+    public function download_shoes_order_with_sizes($records, $size_oders)
     {
-        
+        return Excel::download(new ShoesOrderWithSizeExport($records, $size_oders), 'users.xls');
     }
 
 }
