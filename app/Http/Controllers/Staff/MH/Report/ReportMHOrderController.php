@@ -68,7 +68,6 @@ class ReportMHOrderController extends Controller
                     ]);
                 break;
         }
-
     }
 
 
@@ -255,6 +254,11 @@ class ReportMHOrderController extends Controller
                     $query = $query->orderBy($value_arr[0], $value_arr[1]);
                 }
             }
+
+            //避免錯誤
+            if(!isset( $this->filters['orderbys'][1])){ $this->filters['orderbys'][1]="";};
+            if(!isset( $this->filters['orderbys'][2])){ $this->filters['orderbys'][2]="";};
+
         }
 
         return $query;
