@@ -14,11 +14,12 @@ use function dd;
 use function explode;
 use function implode;
 use function request;
+use function trim;
 use function view;
 
 class ReportMHOrderController extends Controller
 {
-
+    public $filters;
     public function analysis(){
 
         //盤別方法
@@ -27,12 +28,7 @@ class ReportMHOrderController extends Controller
         }else{
             $case = "submit_clear";
         }
-
-
-
-
-
-        $filters = [
+        $this->filters = [
             'model_names' => request()->model_names,
             'order_types' => request()->order_types,
             'departments' => request()->departments,
@@ -42,14 +38,20 @@ class ReportMHOrderController extends Controller
             'c_order_codes' => request()->c_order_codes,
             'c_purchase_codes' => request()->c_purchase_codes,
             'c_names' => request()->c_names,
+            'orderbys' => request()->orderbys
         ];
 
 
 
         $size_oders = config('shoes.size');
         $query = ShoesOrder::with(['shoesOrderDetails', 'shoesPurchases', 'shoesCustomer']);
-        $query = $this->analysis_filter($filters, $query);
-        $query= $this->analysis_get_query($query);
+//        $query->join('mh_shoes_purchases', 'mh_shoes_purchases.order_id', '=', 'mh_shoes_orders.order_id')
+//                ->where('mh_shoes_purchases.supplier_name', 'LIKE', '%潮%')
+//                ->orwhere('mh_shoes_purchases.supplier_name', 'LIKE', '%立%')
+//                ->orwhere('mh_shoes_purchases.supplier_name', 'LIKE', '%超%');
+        $query = $this->analysis_filter($query, $this->filters);
+        $query = $this->analysis_orderby($query, $this->filters);
+
 
         switch ($case) {
             case "download_shoes_order_with_sizes":
@@ -62,7 +64,7 @@ class ReportMHOrderController extends Controller
                     [
                         'shoes_orders' => $shoes_orders,
                         'size_oders' => $size_oders,
-                        'filters' => $filters
+                        'filters' => $this->filters
                     ]);
                 break;
         }
@@ -71,19 +73,24 @@ class ReportMHOrderController extends Controller
 
 
 
-    public function analysis_filter($filters, $query)
+    public function analysis_filter($query, $filters)
     {
 
         //搜尋
         //部門 department
         $departments = explode(',',$filters['departments']);
         $query = $query->where(function($query) use($departments){
+            $index=1;
             foreach($departments as $department){
-                if( $department!= "") {
-                    $query = $query->Where('department', 'LIKE', '%' . $department . '%')
-                        ->orWhere('department', 'LIKE', '%' . $department . '%')
-                    ;
+                $department= trim($department);
+                if( $department!= "" and $index==1) {
+                    $query = $query->where('department', 'LIKE', '%' . $department . '%');
+                }elseif($department!= "" ){
+                    $query->orwhere(function($q) use($department) {
+                        $q->where('department', 'LIKE', '%' . $department .'%');
+                    });
                 }
+                $index++;
             }
             return $query;
         });
@@ -91,20 +98,35 @@ class ReportMHOrderController extends Controller
         //型體 model_name
         $model_names = explode(',',$filters['model_names']);
         $query = $query->where(function($query) use($model_names){
+            $index=1;
             foreach($model_names as $model_name){
-                if( $model_name!= "") {
-                    $query = $query->orWhere('model_name', 'LIKE', '%' . $model_name . '%');
+                $model_name = trim($model_name);
+                if( $model_name!= "" and $index==1) {
+                    $query = $query->where('model_name', 'LIKE', '%' . $model_name . '%');
+                }elseif($model_name!= "" ){
+                    $query->orwhere(function($q) use($model_name) {
+                        $q->where('model_name', 'LIKE', '%' . $model_name .'%');
+                    });
                 }
+                $index++;
             }
             return $query;
         });
+
         //訂單類型 order_types
         $order_types = explode(',',$filters['order_types']);
         $query = $query->where(function($query) use($order_types){
+            $index=1;
             foreach($order_types as $order_type){
-                if( $order_type!= "") {
+                $order_type = trim($order_type);
+                if( $order_type!= "" and $index==1) {
                     $query = $query->where('order_type', 'LIKE', '%' . $order_type . '%');
+                }elseif($order_type!= "" ){
+                    $query->orwhere(function($q) use($order_type) {
+                        $q->where('order_type', 'LIKE', '%' . $order_type .'%');
+                    });
                 }
+                $index++;
             }
             return $query;
         });
@@ -112,10 +134,17 @@ class ReportMHOrderController extends Controller
         //訂單狀態 order_conditions
         $order_conditions = explode(',',$filters['order_conditions']);
         $query = $query->where(function($query) use($order_conditions){
+            $index=1;
             foreach($order_conditions as $order_condition){
-                if( $order_condition!= "") {
+                $order_condition = trim($order_condition);
+                if( $order_condition!= "" and $index==1) {
                     $query = $query->where('order_condition', 'LIKE', '%' . $order_condition . '%');
+                }elseif($order_condition!= "" ){
+                    $query->orwhere(function($q) use($order_condition) {
+                        $q->where('order_condition', 'LIKE', '%' . $order_condition .'%');
+                    });
                 }
+                $index++;
             }
             return $query;
         });
@@ -125,9 +154,10 @@ class ReportMHOrderController extends Controller
         $query = $query->where(function($query) use($mh_order_codes){
             $index=1;
             foreach($mh_order_codes as $mh_order_code){
+                $mh_order_code = trim($mh_order_code);
                 if( $mh_order_code!= "" and $index==1) {
                     $query->where('mh_order_code', 'LIKE', '%' . $mh_order_code . '%');
-                }else{
+                }elseif($mh_order_code!= ""){
                     $query->orwhere(function($q) use($mh_order_code) {
                         $q->where('mh_order_code', 'LIKE', '%' . $mh_order_code .'%');
                     });
@@ -142,9 +172,10 @@ class ReportMHOrderController extends Controller
         $query = $query->where(function($query) use($c_order_codes){
             $index=1;
             foreach($c_order_codes as $c_order_code){
+                $c_order_code = trim($c_order_code);
                 if( $c_order_code!= "" and $index==1) {
                     $query = $query->where('c_order_code', 'LIKE', '%' . $c_order_code . '%');
-                }else{
+                }elseif($c_order_code!= ""){
                     $query->orwhere(function($q) use($c_order_code) {
                         $q->where('c_order_code', 'LIKE', '%' . $c_order_code .'%');
                     });
@@ -158,9 +189,10 @@ class ReportMHOrderController extends Controller
         $query = $query->where(function($query) use($c_purchase_codes){
             $index=1;
             foreach($c_purchase_codes as $c_purchase_code){
+                $c_purchase_code = trim($c_purchase_code);
                 if( $c_purchase_code!= ""  and $index==1) {
                     $query = $query->where('c_purchase_code', 'LIKE', '%' . $c_purchase_code . '%');
-                }else{
+                }elseif($c_purchase_code!= ""){
                     $query->orwhere(function($q) use($c_purchase_code) {
                         $q->where('c_purchase_code', 'LIKE', '%' . $c_purchase_code .'%');
                     });
@@ -175,9 +207,10 @@ class ReportMHOrderController extends Controller
         $query = $query->where(function($query) use($colors){
             $index=1;
             foreach($colors as $color){
+                $color = trim($color);
                 if( $color!= ""  and $index==1) {
                     $query = $query->where('color', 'LIKE', '%' . $color . '%');
-                }else{
+                }elseif($color!= ""){
                     $query->orwhere(function($q) use($color) {
                         $q->where('color', 'LIKE', '%' . $color .'%');
                     });
@@ -192,9 +225,10 @@ class ReportMHOrderController extends Controller
         $query = $query->where(function($query) use($c_names){
             $index=1;
             foreach($c_names as $c_name){
+                $c_name = trim($c_name);
                 if( $c_name!= ""  and $index==1) {
                     $query = $query->where('c_name', 'LIKE', '%' . $c_name . '%');
-                }else{
+                }elseif($c_name!= ""){
                     $query->orwhere(function($q) use($c_name) {
                         $q->where('c_name', 'LIKE', '%' . $c_name .'%');
                     });
@@ -206,12 +240,32 @@ class ReportMHOrderController extends Controller
         return $query;
     }
 
-    public function analysis_get_query($query){
-        return $query = $query->orderBy('received_at', 'DESC');
+    public function analysis_orderby($query)
+    {
+
+        //預設排序
+        if(!isset($this->filters['orderbys']) or count($this->filters['orderbys'])==0 or $this->filters['orderbys']===null){
+            $this->filters['orderbys'][1]="";
+            $this->filters['orderbys'][2]="";
+            return $query = $query->orderBy('received_at', 'DESC');
+        }else{
+            foreach ($this->filters['orderbys'] as $key => $value){
+                $value_arr = explode("@", $value); //Select欄位, ASC or DESC
+                if($value!=""){
+                    $query = $query->orderBy($value_arr[0], $value_arr[1]);
+                }
+            }
+        }
+
+        return $query;
     }
+
 
     public function download_shoes_order_with_sizes($records, $size_oders)
     {
+        ini_set("memory_limit", "256M");
+        ini_set("max_execution_time",300000);
+        ini_set("max_input_time",600000);
         return Excel::download(new ShoesOrderWithSizeExport($records, $size_oders), 'users.xls');
     }
 

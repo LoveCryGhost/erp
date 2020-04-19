@@ -16,7 +16,7 @@
         margin: 0px;
     }
     table tr:hover{
-        background-color: aquamarine;
+        background-color: yellow;
     }
     -->
 </style>
@@ -81,6 +81,44 @@
                                         <input class="form-control" type="text" name="received_end_at" placeholder="接單終止日" data-inputmask="'alias': 'yyyy-mm-dd'" data-mask value="{{request()->received_end_at}}">
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <label class="col-sm-1 col-form-label">排序 1 :</label>
+                                    <div class="col-2">
+                                        <select class="form-control" name="orderbys[1]">
+                                            <option value="">請選擇....</option>
+                                            <option value="color@ASC" {{$filters['orderbys'][1]=="color@ASC" ? "selected":""}}>顏色 -- 降-->升</option>
+                                            <option value="color@DESC" {{$filters['orderbys'][1]=="color@DESC" ? "selected":""}}>顏色 -- 升->降</option>
+                                            <option value="predict_at@ASC" {{$filters['orderbys'][1]=="predict_at@ASC" ? "selected":""}}>預告日 -- 降-->升</option>
+                                            <option value="predict_at@DESC" {{$filters['orderbys'][1]=="predict_at@DESC" ? "selected":""}}>預告日 -- 升->降</option>
+                                            <option value="received_at@ASC" {{$filters['orderbys'][1]=="received_at@ASC" ? "selected":""}}>接單日 -- 升->降</option>
+                                            <option value="received_at@DESC" {{$filters['orderbys'][1]=="received_at@DESC" ? "selected":""}}>接單日 -- 降-->升</option>
+{{--                                            <option value="mh_shoes_purchases.material_received_at@ASC" {{$filters['orderbys'][1]=="mh_shoes_purchases.material_received_at@ASC" ? "selected":""}}>進料日 -- 升->降</option>--}}
+{{--                                            <option value="mh_shoes_purchases.material_received_at@DESC" {{$filters['orderbys'][1]=="mh_shoes_purchases.material_received_at@DESC" ? "selected":""}}>進料日 -- 降-->升</option>--}}
+                                            <option value="request_at@ASC" {{$filters['orderbys'][1]=="request_at@ASC" ? "selected":""}}>需求日 -- 升->降</option>
+                                            <option value="request_at@DESC" {{$filters['orderbys'][1]=="request_at@DESC" ? "selected":""}}>需求日 -- 降-->升</option>
+                                            <option value="outbound_at@ASC" {{$filters['orderbys'][1]=="outbound_at@ASC" ? "selected":""}}>出貨日 -- 升->降</option>
+                                            <option value="outbound_at@DESC" {{$filters['orderbys'][1]=="outbound_at@DESC" ? "selected":""}}>出貨日 -- 降-->升</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-1 col-form-label">排序 1 :</label>
+                                    <div class="col-2">
+                                        <select class="form-control" name="orderbys[2]">
+                                            <option value="">請選擇....</option>
+                                            <option value="color@ASC" {{$filters['orderbys'][2]=="color@ASC" ? "selected":""}}>顏色 -- 降-->升</option>
+                                            <option value="color@DESC" {{$filters['orderbys'][2]=="color@DESC" ? "selected":""}}>顏色 -- 升->降</option>
+                                            <option value="predict_at@ASC" {{$filters['orderbys'][2]=="predict_at@ASC" ? "selected":""}}>預告日 -- 降-->升</option>
+                                            <option value="predict_at@DESC" {{$filters['orderbys'][2]=="predict_at@DESC" ? "selected":""}}>預告日 -- 升->降</option>
+                                            <option value="received_at@ASC" {{$filters['orderbys'][2]=="received_at@ASC" ? "selected":""}}>接單日 -- 升->降</option>
+                                            <option value="received_at@DESC" {{$filters['orderbys'][2]=="received_at@DESC" ? "selected":""}}>接單日 -- 降-->升</option>
+{{--                                            <option value="mh_shoes_purchases.material_received_at@ASC" {{$filters['orderbys'][2]=="mh_shoes_purchases.material_received_at@ASC" ? "selected":""}}>進料日 -- 升->降</option>--}}
+{{--                                            <option value="mh_shoes_purchases.material_received_at@DESC" {{$filters['orderbys'][2]=="mh_shoes_purchases.material_received_at@DESC" ? "selected":""}}>進料日 -- 降-->升</option>--}}
+                                            <option value="request_at@ASC" {{$filters['orderbys'][2]=="request_at@ASC" ? "selected":""}}>需求日 -- 升->降</option>
+                                            <option value="request_at@DESC" {{$filters['orderbys'][2]=="request_at@DESC" ? "selected":""}}>需求日 -- 降-->升</option>
+                                            <option value="outbound_at@ASC" {{$filters['orderbys'][2]=="outbound_at@ASC" ? "selected":""}}>出貨日 -- 升->降</option>
+                                            <option value="outbound_at@DESC" {{$filters['orderbys'][2]=="outbound_at@DESC" ? "selected":""}}>出貨日 -- 降-->升</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-6">
@@ -106,20 +144,7 @@
                                             </div>
                                         </div>
                                     </div>
-{{--                                    <div class="col-1">--}}
-{{--                                        <div class="">--}}
-{{--                                            <button type="button" class="form-control btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">異常</button>--}}
-{{--                                            <div class="dropdown-menu" style="will-change: transform;">--}}
-{{--                                                <a class="dropdown-item" href="#">訂單(含Size)</a>--}}
-{{--                                                <a class="dropdown-item" href="#">訂單(不含Size)</a>--}}
-{{--                                                <a class="dropdown-item" href="#">未採購訂單</a>--}}
-{{--                                                <div class="dropdown-divider"></div>--}}
-{{--                                                <a class="dropdown-item" href="#">異常-倉庫</a>--}}
-{{--                                                <a class="dropdown-item" href="#">異常-訂單</a>--}}
-{{--                                                <a class="dropdown-item" href="#">異常-倉庫</a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+
 {{--                                    <div class="col-1">--}}
 {{--                                        <div class="">--}}
 {{--                                            <button type="button" class="form-control btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">報表</button>--}}
@@ -139,16 +164,18 @@
 
                             </form>
                         </div>
+
+                        {{--顯示內容--}}
                         <div class="box-body div_overflow-x m-10 p-0">
                             {{--CrawlerItem 爬蟲項目--}}
                             <div class="infinite-scroll">
-                                <table class="table-hover fontsize-1 text-nowrap text-center mb-5" style="table-layout: fixed;">
+                                <table class="fontsize-1 text-nowrap text-center mb-5" style="table-layout: fixed;">
                                     <thead class="text-center">
                                         <tr class="bg-primary">
                                             <th class="m-5 p-5">編號</th>
                                             <th class="m-5 p-5">部門</th>
-                                            <th class="m-5 p-5" style="min-width:100px;">型體</th>
-                                            <th class="m-5 p-5" style="min-width:200px;">客戶名稱</th>
+                                            <th class="m-5 p-5" style="min-width:130px;">型體</th>
+                                            <th class="m-5 p-5" style="min-width:180px;">客戶名稱</th>
                                             <th class="m-5 p-5">訂單狀況</th>
                                             <th class="m-5 p-5">出貨狀況</th>
                                             <th class="m-5 p-5">MH指令號</th>
@@ -163,7 +190,7 @@
                                             <th class="m-5 p-5">採購日期</th>
                                             <th class="m-5 p-5">進料日期</th>
 
-                                            <th class="m-5 p-5">總數</th>
+                                            <th class="m-5 p-5" style="min-width:60px;">總數</th>
                                             <th class="m-5 p-5">需求日期</th>
                                             <th class="m-5 p-5">入庫日期</th>
                                             <th class="m-5 p-5">完成日期</th>
@@ -212,7 +239,7 @@
                                                 @if($shoes_order->shoesPurchases->count()>0)
                                                     <td>{{$shoes_order->shoesPurchases->first()->material_name}}</td>
                                                     <td>{{$shoes_order->shoesPurchases->first()->purchase_at=="0000-00-00"? "": date('m/d', strtotime($shoes_order->shoesPurchases->first()->purchase_at))}}</td>
-                                                    <td>{{$shoes_order->shoesPurchases->first()->outbound_at=="0000-00-00"? "": date('m/d', strtotime($shoes_order->shoesPurchases->first()->outbound_at))}}</td>
+                                                    <td>{{$shoes_order->shoesPurchases->first()->material_received_at=="0000-00-00"? "": date('m/d', strtotime($shoes_order->shoesPurchases->first()->material_received_at))}}</td>
                                                 @else
                                                     <td></td>
                                                     <td></td>
