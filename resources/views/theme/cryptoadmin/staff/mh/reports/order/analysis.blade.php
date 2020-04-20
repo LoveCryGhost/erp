@@ -30,7 +30,7 @@
                         <div class="box-header with-border m-10 p-0">
                             <form class="mb-0">
                                 <div class="row">
-                                    <label class="col-sm-1 col-form-label">MH指令</label>
+                                    <label class="col-sm-1 col-form-label">MH指令號</label>
                                     <div class="col-sm-2">
                                         <input class="form-control" type="text" name="mh_order_codes" placeholder="MH指令號" value="{{request()->mh_order_codes}}">
                                     </div>
@@ -100,7 +100,7 @@
                                             <option value="outbound_at@DESC" {{$filters['orderbys'][1]=="outbound_at@DESC" ? "selected":""}}>出貨日 -- 降-->升</option>
                                         </select>
                                     </div>
-                                    <label class="col-sm-1 col-form-label">排序 1 :</label>
+                                    <label class="col-sm-1 col-form-label">排序 2 :</label>
                                     <div class="col-2">
                                         <select class="form-control" name="orderbys[2]">
                                             <option value="">請選擇....</option>

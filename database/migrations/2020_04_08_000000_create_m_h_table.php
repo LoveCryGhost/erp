@@ -42,6 +42,21 @@ class CreateMHTable extends Migration
             $table->string('material_price'); //单价- mh_shoes_materials
         });
 
+        Schema::create('mh_shoes_db', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('mh_order_code')->nullable();
+            $table->string('customer_name')->nullable();
+            $table->string('c_purchase_code')->nullable();
+            $table->string('c_order_code')->nullable();
+            $table->string('c_model_type')->nullable();
+            $table->string('model_name')->nullable();
+            $table->string('qty')->nullable();
+            $table->string('color')->nullable();
+            $table->string('received_at')->nullable();
+            $table->string('sizes')->nullable();
+            $table->string('note')->nullable();
+        });
+
         Schema::create('mh_shoes_models', function (Blueprint $table) {
             $table->bigIncrements('m_id');
             $table->string('model_name');
@@ -77,6 +92,7 @@ class CreateMHTable extends Migration
 
             $table->string('order_type')->nullable(); //订单类型 - mh_shoes_orders
             $table->string('pic')->nullable(); //---------------------------------
+            $table->string('note')->nullable(); //---------------------------------
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

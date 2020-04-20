@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Staff\MH\Report;
 use App\Exports\ShoesOrderWithSizeExport;
 use App\Http\Controllers\Controller;
 use App\Models\Shoes\ShoesOrder;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use function array_values;
 use function compact;
@@ -20,6 +21,8 @@ use function view;
 class ReportMHOrderController extends Controller
 {
     public $filters;
+
+
     public function analysis(){
 
         //盤別方法
@@ -38,7 +41,9 @@ class ReportMHOrderController extends Controller
             'c_order_codes' => request()->c_order_codes,
             'c_purchase_codes' => request()->c_purchase_codes,
             'c_names' => request()->c_names,
-            'orderbys' => request()->orderbys
+            'orderbys' => request()->orderbys,
+            'received_start_at' => request()->received_start_at,
+            'received_end_at' => request()->received_end_at
         ];
 
 
@@ -236,6 +241,20 @@ class ReportMHOrderController extends Controller
             }
             return $query;
         });
+
+        //訂單接收日期
+        if(isset($filters['received_start_at']) and isset($filters['received_end_at']) ){
+            //dd(1,2,$filters['received_start_at'],$filters['received_end_at']);
+            $query->whereBetween('received_at', array($filters['received_start_at'], $filters['received_end_at']))->get();
+        }elseif($filters['received_start_at']){
+            //dd(1);
+            $query->where('received_at', '>=', $filters['received_start_at'])->get();
+        }elseif(isset($filters['received_end_at'])){
+            //dd(2);
+            $query->where('received_at', '<=', $filters['received_end_at'])->get();
+        }
+
+
         return $query;
     }
 

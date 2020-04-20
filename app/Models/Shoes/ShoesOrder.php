@@ -36,6 +36,7 @@ class ShoesOrder extends Model
         'inbound_at',
         'outbound_at',
         'pic',
+        'note'
     ];
 
 
