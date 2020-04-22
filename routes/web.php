@@ -113,6 +113,7 @@ Route::prefix('')->namespace('Admin')->group(function(){
 
         Route::get('crawler_monitor', 'AdminMonitorsController@crawler_monitor')->name('crawler.monitor');
         Route::resource('permission', 'AdminPermissionsController');
+        Route::resource('role', 'AdminRolesController');
 
     });
     Route::resource('admin', 'AdminsController');

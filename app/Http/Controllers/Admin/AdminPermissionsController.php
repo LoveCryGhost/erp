@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Services\Admin\AdminPermissionService;
+use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use function config;
+use function redirect;
 use function view;
 
 class AdminPermissionsController extends AdminCoreController
@@ -34,5 +37,12 @@ class AdminPermissionsController extends AdminCoreController
            [
                'permission' => $permission
            ]);
+    }
+
+    public function update(Request $request, Permission $permission)
+    {
+        $data = $request->all();
+        $this->adminPermissionService->update($permission, $data);
+        return redirect()->route('admin.permission.index');
     }
 }

@@ -3,17 +3,19 @@
 namespace App\Services\Admin;
 
 
-use App\Repositories\Admin\AdminPermissionRepository;
+use App\Repositories\Admin\AdminRoleRepository;
 use App\Services\Admin\AdminServiceInterface;
 use App\Services\Service;
 
-class AdminPermissionService extends Service  implements AdminServiceInterface
+class AdminRoleService extends Service implements AdminServiceInterface
 {
-    public $adminPermissionRepo;
-    public function __construct(AdminPermissionRepository $adminPermissionRepository)
+    public $adminRoleRepo;
+    public function __construct(AdminRoleRepository $adminRoleRepository)
     {
-        $this->adminPermissionRepo = $adminPermissionRepository;
+        $this->adminRoleRepo = $adminRoleRepository;
     }
+
+
 
     public function index()
     {
@@ -22,6 +24,8 @@ class AdminPermissionService extends Service  implements AdminServiceInterface
     public function create()
     {
     }
+
+
 
     public function edit()
     {
@@ -35,8 +39,8 @@ class AdminPermissionService extends Service  implements AdminServiceInterface
 
     public function update($model,$data)
     {
-        $permission = $model;
-        return $permission->update($data);
+        $role = $model;
+        return $role->update($data);
     }
 
 
@@ -44,4 +48,5 @@ class AdminPermissionService extends Service  implements AdminServiceInterface
     {
 
     }
+
 }
