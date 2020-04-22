@@ -188,7 +188,7 @@ Route::prefix('')->namespace('Staff')->group(function(){
 //Staff
 Route::prefix('staff')->name('staff.')->namespace('Staff')->group(function(){
     //ExcelLike
-    Route::resource('excel_like', 'StaffExcelLikeController');
+    Route::resource('staffExcelLike', 'StaffExcelLikeController');
 });
 
 

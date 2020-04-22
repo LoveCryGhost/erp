@@ -18,6 +18,7 @@ return [
         //爬蟲
         'crawlertask' => 'CT',
 
-        'staff' => 'ST'
+        'staff' => 'ST',
+        'staff_excel' => 'STExcel'
 
 ];

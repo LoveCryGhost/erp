@@ -32,7 +32,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('staff.excel_like.index')}}"><i class="ti-more"></i>報表維護</a></li>
+                    <li><a href="{{route('staff.staffExcelLike.index')}}"><i class="ti-more"></i>報表維護</a></li>
                 </ul>
             </li>
 

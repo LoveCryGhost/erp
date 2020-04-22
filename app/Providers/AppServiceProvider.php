@@ -36,5 +36,7 @@ class AppServiceProvider extends ServiceProvider
 
         \App\Models\CrawlerTask::observe(\App\Observers\CrawlerTaskObserver::class);
         \App\Models\Staff::observe(\App\Observers\StaffObserver::class);
+
+        \App\Models\StaffExcelLike::observe(\App\Observers\StaffExcelLikeObserver::class);
     }
 }
