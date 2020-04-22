@@ -28,4 +28,9 @@ class StaffExcelLike extends CoreModel
     protected $casts = [
         'excel_content' => 'array'
     ];
+
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class, 'pic', 'id');
+    }
 }

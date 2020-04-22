@@ -23,22 +23,45 @@
                 <div class="col-12">
                     <div class="box">
                         <div class="box-body">
-                            <div>
+                            <div class="pull-right">
                                 <a class="btn btn-warning" href="{{route('staff.excel_like.create')}}"><i class="fa fa-plus"></i></a>
                             </div>
-                            @foreach($staffExcelLikes as $staffExcelLike)
-                            <div class="pull-up">
-                                <div class="col-4">
-                                可操作:{{$staffExcelLike->is_active}}
-                                可顯示:{{$staffExcelLike->showable}}
-                                可編輯:{{$staffExcelLike->editable}}
-                                描述:{{$staffExcelLike->description}}
-                                </div>
-                                <div class="col">
-                                    編輯:<a href="{{route('staff.excel_like.edit',['excel_like'=>$staffExcelLike->id])}}"><i class="fa fa-edit"></i></a>
-                                </div>
-                            </div>
-                            @endforeach
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>標題</th>
+                                        <th>啟用</th>
+                                        <th>可顯示</th>
+                                        <th>可編輯</th>
+                                        <th>使用者</th>
+                                        <th>描述</th>
+                                        <th>JQ</th>
+                                        <th>JS</th>
+                                        <th>Excel</th>
+                                        <td>建立者</td>
+                                        <td>修改時間</td>
+                                        <td>建立時間</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($staffExcelLikes as $staffExcelLike)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$staffExcelLike->title}}</td>
+                                        <td>{{$staffExcelLike->is_active}}</td>
+                                        <td>{{$staffExcelLike->showable}}</td>
+                                        <td>{{$staffExcelLike->editable}}</td>
+                                        <td>{{$staffExcelLike->description}}</td>
+                                        <td>JQ</td>
+                                        <td>Excel</td>
+                                        <td>{{$staffExcelLike->staff->name}}</td>
+                                        <td>{{$staffExcelLike->updated_at->format("Y-m-d")}}</td>
+                                        <td>{{$staffExcelLike->ceated_at->format("Y-m-d")}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -12,14 +12,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 //======================================================================================================================
 //MultiAuth 用戶分份驗證相關路由
 Auth::routes(['verify' => true]);
 Route::get('/admin/horizon', function () {
     return redirect()->route('horizon.index');
 });
+
 
 
 //======================================================================================================================
@@ -62,7 +61,6 @@ Route::prefix('')->group(function() {
         Route::get('/login', 'Auth\MemberLoginController@showLoginForm')->name('member.login');
         Route::post('/login', 'Auth\MemberLoginController@login')->name('member.login.submit');
         Route::post('/logout', 'Auth\MemberLoginController@logout')->name('member.logout');
-
         //Password Reset Route
         Route::post('/password/email', 'Auth\MemberForgotPasswordController@sendResetLinkEmail')->name('member.password.email');
         Route::get('/password/reset', 'Auth\MemberForgotPasswordController@showRequestForm')->name('member.password.request');
@@ -75,7 +73,6 @@ Route::prefix('')->group(function() {
         Route::get('/login', 'Auth\StaffLoginController@showLoginForm')->name('staff.login');
         Route::post('/login', 'Auth\StaffLoginController@login')->name('staff.login.submit');
         Route::post('/logout', 'Auth\StaffLoginController@logout')->name('staff.logout');
-
         //Password Reset Route
         Route::post('/password/email', 'Auth\StaffForgotPasswordController@sendResetLinkEmail')->name('staff.password.email');
         Route::get('/password/reset', 'Auth\StaffForgotPasswordController@showRequestForm')->name('staff.password.request');
@@ -177,7 +174,6 @@ Route::prefix('')->namespace('Staff')->group(function(){
     Route::put('staff_update_password/{staff}', 'StaffsController@update_password')->name('staff.update_password');
     Route::prefix('staff')->name('staff.')->group(function(){
         Route::get('dashboard', 'StaffDashboardsController@dashboard')->name('staff.dashboard');
-
         Route::get('staff_list', 'StaffsController@list')->name('staff.staff_list');;
         Route::resource('staff', 'StaffsController');
         Route::resource('staff-department', 'Staff_DepartmentsController');
@@ -189,12 +185,10 @@ Route::prefix('')->namespace('Staff')->group(function(){
         Route::get('download_shoes_analysis_with_size', 'ReportMHOrderController@download_shoes_analysis_with_size')->name('staff.mh.report.download_shoes_analysis_with_size');
     });
 });
-
-
+//Staff
 Route::prefix('staff')->name('staff.')->namespace('Staff')->group(function(){
-        //Staff
-        Route::resource('excel_like', 'StaffExcelLikeController');
-
+    //ExcelLike
+    Route::resource('excel_like', 'StaffExcelLikeController');
 });
 
 

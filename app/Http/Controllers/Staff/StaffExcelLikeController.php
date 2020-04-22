@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Staff\StaffCoreController;
 use App\Models\StaffExcelLike;
+use App\Services\Staff\StaffExcelLikeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -14,13 +15,17 @@ use function view;
 
 class StaffExcelLikeController extends StaffCoreController
 {
-    public function __construct()
+    public $staffExcelLikeService;
+    public function __construct(StaffExcelLikeService $staffExcelLikeService)
     {
         $this->middleware(['auth:staff']);
+        $this->staffExcelLikeService = $staffExcelLikeService;
     }
 
     public function index(){
-        $staffExcelLikes = StaffExcelLike::where('pic', Auth::guard('staff')->user()->id)->get();
+        $staffExcelLikes = $this->staffExcelLikeService
+                                ->staffExcelLikeRepo->builder()
+                                ->where('pic', Auth::guard('staff')->user()->id);
         return view(config('theme.staff.view').'excellike.index', ['staffExcelLikes' => $staffExcelLikes]);
     }
 
