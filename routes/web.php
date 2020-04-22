@@ -184,11 +184,20 @@ Route::prefix('')->namespace('Staff')->group(function(){
     });
 
     //Report
-    Route::prefix('')->namespace('MH\Report')->group(function() {
+    Route::prefix('staff')->namespace('MH\Report')->group(function() {
         Route::get('order-analysis', 'ReportMHOrderController@analysis')->name('staff.mh.report.order_analysis');
         Route::get('download_shoes_analysis_with_size', 'ReportMHOrderController@download_shoes_analysis_with_size')->name('staff.mh.report.download_shoes_analysis_with_size');
     });
 });
+
+
+Route::prefix('staff')->name('staff.')->namespace('Staff')->group(function(){
+        //Staff
+        Route::resource('excel_like', 'StaffExcelLikeController');
+
+});
+
+
 
 
 

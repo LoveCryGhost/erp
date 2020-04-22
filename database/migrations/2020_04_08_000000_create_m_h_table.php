@@ -175,6 +175,7 @@ class CreateMHTable extends Migration
     public function down()
     {
         Schema::dropIfExists('mh_shoes_ee');
+        Schema::dropIfExists('mh_shoes_db');
         Schema::dropIfExists('mh_shoes_models');
         Schema::dropIfExists('mh_shoes_customers');
         Schema::dropIfExists('mh_shoes_materials');

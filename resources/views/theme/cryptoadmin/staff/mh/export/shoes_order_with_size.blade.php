@@ -1,3 +1,8 @@
+@extends(config('theme.staff.staff-app'))
+
+@section('title','控制台')
+
+@section('content')
 <table class="table table-bordered table-striped table-hover fontsize-1">
     <thead class="text-center">
     <tr class="bg-primary">
@@ -71,3 +76,4 @@
     @endforeach
     </tbody>
 </table>
+@endsection

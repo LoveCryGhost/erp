@@ -22,6 +22,10 @@ class ReportMHOrderController extends Controller
 {
     public $filters;
 
+    public function __construct()
+    {
+        $this->middleware('auth:staff');
+    }
 
     public function analysis(){
 
