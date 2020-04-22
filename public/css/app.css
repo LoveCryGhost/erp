@@ -78,6 +78,10 @@
   cursor: pointer;
 }
 
+.staff-excel_like-page .table {
+  background-color: red;
+}
+
 .m-t-0 {
   margin-top: 0px;
 }
