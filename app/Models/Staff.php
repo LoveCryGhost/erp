@@ -14,7 +14,7 @@ class Staff extends Authenticatable implements MustVerifyEmailContract
     protected $table = "staffs";
     protected $primaryKey='id';
 
-    protected $with=['staffDepartments'];
+    //protected $with=['staffDepartments'];
 
     protected $fillable = [
         'id_code', 'pic', 'password',

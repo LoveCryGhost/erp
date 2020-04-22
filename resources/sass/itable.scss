@@ -1,0 +1,26 @@
+.itable{
+  //table-layout: fixed;
+  text-align: center;
+  width: 100%;
+
+  thead{
+    tr{
+      background-color: lightskyblue;
+    }
+    tr th{
+      border: 1px black solid;
+      padding: 5px;
+      word-break: keep-all;
+    }
+  }
+
+  tbody{
+    tr:hover{
+      background-color: gold;
+    }
+    tr td{
+      border: 1px black solid;
+      word-break: keep-all;
+    }
+  }
+}

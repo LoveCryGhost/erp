@@ -68,8 +68,6 @@
   border-radius: 5px;
 }
 
-/*member-product-index-page*/
-
 .staff-staff_list .staff-list-img {
   width: 5px;
   height: 5px;
@@ -3158,5 +3156,29 @@ colgroup col.info {
   right: 0;
   margin: auto;
   cursor: pointer;
+}
+
+.itable {
+  text-align: center;
+  width: 100%;
+}
+
+.itable thead tr {
+  background-color: lightskyblue;
+}
+
+.itable thead tr th {
+  border: 1px black solid;
+  padding: 5px;
+  word-break: keep-all;
+}
+
+.itable tbody tr:hover {
+  background-color: gold;
+}
+
+.itable tbody tr td {
+  border: 1px black solid;
+  word-break: keep-all;
 }
 

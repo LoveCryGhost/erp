@@ -10,6 +10,7 @@ class CreateExcelLikeTable extends Migration
     {
         Schema::create('staff_excel_likes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('id_code')->nullable();
             $table->bigInteger('pic')->nullable();
             $table->boolean('is_active')->nullable()->default(1);
             $table->boolean('showable')->nullable()->default(1);

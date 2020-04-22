@@ -10,6 +10,7 @@ class StaffExcelLike extends CoreModel
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'id_code',
         'pic',
         'is_active',
         'showable',
@@ -31,6 +32,6 @@ class StaffExcelLike extends CoreModel
 
     public function staff()
     {
-        return $this->belongsTo(Staff::class, 'pic', 'id');
+        return $this->belongsTo(Staff::class, 'pic', 'id')->without(['staffDepartments']);
     }
 }
