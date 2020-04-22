@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
 
         //$this->call(CrawlerTaskTableSeeder::class);
 
+        $this->call(RolesAndPermissionsSeeder::class);
+
     }
 }

@@ -112,10 +112,10 @@ Route::prefix('')->namespace('Admin')->group(function(){
         Route::resource('staff', 'AdminStaffsController');
 
         Route::get('crawler_monitor', 'AdminMonitorsController@crawler_monitor')->name('crawler.monitor');
+        Route::resource('permission', 'AdminPermissionsController');
 
     });
     Route::resource('admin', 'AdminsController');
-
 });
 
 //======================================================================================================================
@@ -185,6 +185,7 @@ Route::prefix('')->namespace('Staff')->group(function(){
         Route::get('download_shoes_analysis_with_size', 'ReportMHOrderController@download_shoes_analysis_with_size')->name('staff.mh.report.download_shoes_analysis_with_size');
     });
 });
+
 //Staff
 Route::prefix('staff')->name('staff.')->namespace('Staff')->group(function(){
     //ExcelLike

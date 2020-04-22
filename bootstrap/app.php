@@ -53,13 +53,13 @@ $app->singleton(
 */
 
 
-//權限管理系統
-$app->routeMiddleware([
-    'auth'       => App\Http\Middleware\Authenticate::class,
-    'permission' => Spatie\Permission\Middlewares\PermissionMiddleware::class,
-    'role'       => Spatie\Permission\Middlewares\RoleMiddleware::class,
-]);
-$app->configure('permission');
-$app->register(Spatie\Permission\PermissionServiceProvider::class);
+////權限管理系統
+//$app->routeMiddleware([
+//    'auth'       => App\Http\Middleware\Authenticate::class,
+//    'permission' => Spatie\Permission\Middlewares\PermissionMiddleware::class,
+//    'role'       => Spatie\Permission\Middlewares\RoleMiddleware::class,
+//]);
+//$app->configure('permission');
+//$app->register(Spatie\Permission\PermissionServiceProvider::class);
 
 return $app;
