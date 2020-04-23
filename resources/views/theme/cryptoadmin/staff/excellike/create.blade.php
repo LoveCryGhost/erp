@@ -19,7 +19,7 @@
 <div class="container-full">
     <!-- Main content -->
     <section class="content">
-        <form action="{{route('staff.excel_like.store')}}" class="form-control" method="post">
+        <form action="{{route('staff.staffExcelLike.store')}}" class="form-control" method="post">
             @csrf
             
             <div class="box">
@@ -63,16 +63,16 @@
                     {{--ExcelLike--}}
                     <div class="row">
                         <div class="col-12">
-                            <div id='excel_content' class="form-control"></div>
-                            <textarea name="excel_content"></textarea>
+                            <div id='excel_content' ></div>
+                            <textarea name="excel_content" ></textarea>
                         </div>
                     </div>
     
                     {{--Jquery Editor--}}
-                    <div class="row">
+                    <div class="row" {{Auth::guard('admin')->check()? "":"style=visibility:hidden;" }}>
                         <div class="col-12">
-                            <pre class="ace-editor" id="jquery" data-plugin="ace" data-mode="javascript" style="width: 100%;"></pre>
-                            <textarea name="jquery" style=""></textarea>
+                            <pre class="ace-editor" id="jquery" data-plugin="ace" data-mode="javascript" {{Auth::guard('admin')->check()? "style=width:100%;":"" }}></pre>
+                            <textarea name="jquery" style="display: none;"></textarea>
                         </div>
                     </div>
                     

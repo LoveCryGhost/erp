@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;;
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
+use Spatie\Permission\Traits\HasRoles;
+
+;
 
 class Staff extends Authenticatable implements MustVerifyEmailContract
 {
     use Notifiable, MustVerifyEmailTrait;
-
+    use HasRoles;
     protected $table = "staffs";
     protected $primaryKey='id';
+
 
     //protected $with=['staffDepartments'];
 

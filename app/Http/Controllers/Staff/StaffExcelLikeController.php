@@ -21,6 +21,11 @@ class StaffExcelLikeController extends StaffCoreController
     public function __construct(StaffExcelLikeService $staffExcelLikeService)
     {
         $this->middleware(['auth:staff']);
+        $this->middleware(['permission:staff.staffExcelLike.index'])->only('index');
+        $this->middleware(['permission:staff.staffExcelLike.create'])->only('create');
+        $this->middleware(['permission:staff.staffExcelLike.edit'])->only('edit');
+        $this->middleware(['permission:staff.staffExcelLike.update'])->only('update');
+
         $this->staffExcelLikeService = $staffExcelLikeService;
     }
 
@@ -34,7 +39,7 @@ class StaffExcelLikeController extends StaffCoreController
     }
 
     public function create(){
-        return view(config('theme.staff.view').'excellike.create');
+        return view(config('theme.staff.view') . 'excellike.create');
     }
 
     public function store(Request $request){

@@ -40,7 +40,18 @@
                     <li><a href="{{route('admin.staff.index')}}"><i class="ti-more"></i>Staff - 清單</a></li>
                 </ul>
             </li>
-
+            <li class="treeview">
+                <a href="#">
+                    <i class="ti-user"></i>
+                    <span>權限系統</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('admin.assign_staff_role_permission.index')}}"><i class="ti-more"></i>Staff - 權限</a></li>
+                </ul>
+            
             <li class="treeview">
                 <a href="#">
                     <i class="ti-user"></i>
