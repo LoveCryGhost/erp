@@ -17,7 +17,6 @@ class AdminStaffsController extends AdminCoreController
     protected $staffService;
     public function __construct(StaffService $staffService)
     {
-        $this->middleware('auth:admin');
         $this->staffService = $staffService;
     }
 
@@ -27,19 +26,21 @@ class AdminStaffsController extends AdminCoreController
         return view(config('theme.admin.view').'staff.index', compact('staffs'));
     }
 
-    public function edit(Staff $staff){
+    public function edit(Staff $adminStaff){
+        $staff = $adminStaff;
         $staffs = $this->staffService->StaffRepo->builder()->get();
         return view(config('theme.admin.view').'staff.edit', compact('staff', 'staffs'));
     }
 
-    public function update(AdminStaffRequest $request , ImageUploadHandler $uploader, Staff $staff)
+    public function update(AdminStaffRequest $request , ImageUploadHandler $uploader, Staff $adminStaff)
     {
+        $staff = $adminStaff;
         $data = $request->all();
 
         $data = $this->staffService->save_avatar($data, $staff,$request, $uploader);
 
         $staff->update($data);
-        return redirect()->route('admin.staff.edit',['staff'=>$staff->id])
+        return redirect()->route('admin.adminStaff.edit',['adminStaff'=>$staff->id])
             ->with('toast', [
                 "heading" => "員工訊息 - 更新成功",
                 "text" =>  '',
@@ -52,8 +53,9 @@ class AdminStaffsController extends AdminCoreController
     }
 
     //更新密碼
-    public function update_password(Request $request, Staff $staff)
+    public function updatePassword(Request $request, Staff $adminStaff)
     {
+        $staff = $adminStaff;
         //驗證
         $this->validate($request, [
             'new_password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -67,7 +69,7 @@ class AdminStaffsController extends AdminCoreController
         $data = $this->staffService->save_change_password($data, $staff,$request);
 
         $staff->update($data);
-        return redirect()->route('admin.staff.edit', ['staff'=> $staff->id])
+        return redirect()->route('admin.adminStaff.edit', ['adminStaff'=> $staff->id])
             ->with('toast', [
                 "heading" => "Staff 密碼 - 更新成功",
                 "text" =>  '',

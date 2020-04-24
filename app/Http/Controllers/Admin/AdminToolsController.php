@@ -14,7 +14,7 @@ class AdminToolsController extends AdminCoreController
         $this->middleware('auth:admin');
     }
 
-    public function guard_switcher_user(Request $request)
+    public function guard_switcher(Request $request)
     {
         $id= $request->input('id');
         $guard= $request->input('guard');

@@ -18,7 +18,7 @@
 
             <!-- Main content -->
             <section class="content">
-                <form method="post" action="{{route('admin.member.update', ['member'=>$member->id])}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('admin.adminMember.update', ['adminMember'=> $member->id])}}" enctype="multipart/form-data">
 
                     @csrf
                     @method('put')
@@ -129,7 +129,7 @@
                     </div>
                 </form>
                 {{--更改密碼--}}
-                <form method="post" action="{{route('admin.member.update_password', ['member'=>$member->id])}}" >
+                <form method="post" action="{{route('admin.adminMember.updatePassword', ['member'=>$member->id])}}" >
                     @csrf
                     @method('put')
                     <div class="row">

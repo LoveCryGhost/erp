@@ -4,32 +4,35 @@ use Illuminate\Support\Facades\Route;
 
 // 生成Dashboard
 Route::prefix('')->namespace('Admin')->group(function(){
-    Route::prefix('admin')->name('admin.')->group(function(){
+    Route::prefix('admin')->name('admin.')
+        ->middleware('auth:admin')
+        ->group(function(){
 
-        Route::middleware('auth:admin')->get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+        Route::get('logViewer', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')
+            ->middleware(['permission:admin.logViewer.index'])
+            ->name('logViewer.index'); //RolePermission
 
         //Guard-Switcher-User
-        Route::post('tool/guard_switcher_user', 'AdminToolsController@guard_switcher_user')->name('tool.guard_switcher_user');
+        Route::post('adminTool', 'AdminToolsController@guard_switcher')->name('adminTool.guard_switcher'); //RolePermission
 
         //AdminUser
-        Route::put('user_update_password/{user}', 'AdminUsersController@update_password')->name('user.update_password');
-        Route::resource('user', 'AdminUsersController');
+        Route::put('adminUser_updatePpassword/{user}', 'AdminUsersController@updatePpassword')->name('adminUser.updatePpassword'); //RolePermission
+        Route::resource('adminUser', 'AdminUsersController'); //RolePermission
 
         //AdminMember
-        Route::put('member_update_password/{member}', 'AdminMembersController@update_password')->name('member.update_password');
-        Route::resource('member', 'AdminMembersController');
+        Route::put('adminMember_updatePassword/{adminMember}', 'AdminMembersController@updatePassword')->name('adminMember.updatePassword'); //RolePermission
+        Route::resource('adminMember', 'AdminMembersController'); //RolePermission
 
         //AdminMember
-        Route::put('staff_update_password/{staff}', 'AdminStaffsController@update_password')->name('staff.update_password');
-        Route::resource('staff', 'AdminStaffsController');
+        Route::put('adminStaff_updatePassword/{adminStaff}', 'AdminStaffsController@updatePassword')->name('adminStaff.updatePassword'); //RolePermission
+        Route::resource('adminStaff', 'AdminStaffsController'); //RolePermission
 
-        Route::get('crawler_monitor', 'AdminMonitorsController@crawler_monitor')->name('crawler.monitor');
-        Route::resource('permission', 'AdminPermissionsController');
-        Route::resource('role', 'AdminRolesController');
+        Route::resource('adminPermission', 'AdminPermissionsController'); //RolePermission
+        Route::resource('adminRole', 'AdminRolesController'); //RolePermission
 
         //指派Staff權限
-        Route::resource('assign_staff_role_permission', 'AdminStaffAssignRolePermissionsController');
+        Route::resource('adminStaffRolePermission', 'AdminStaffRolePermissionsController'); //RolePermission
 
     });
-    Route::resource('admin', 'AdminsController');
+    Route::resource('admin', 'AdminsController'); //RolePermission
 });

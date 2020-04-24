@@ -50,7 +50,7 @@
 
 <div id="guard-switcher-user" class="text-center">
     <div class="align-middle mt-10">
-        <form class="frm-guard-switcher-user" method="post" action="{{route('admin.tool.guard_switcher_user')}}">
+        <form class="frm-guard-switcher-user" method="post" action="{{route('admin.adminTool.guard_switcher')}}">
             @csrf
             <input type="text" name="guard" hidden>
             <input type="text" name="id" hidden>

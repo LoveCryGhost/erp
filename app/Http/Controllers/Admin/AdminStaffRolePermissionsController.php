@@ -14,12 +14,12 @@ use function view;
 /**
 
  */
-class AdminStaffAssignRolePermissionsController extends AdminCoreController
+class AdminStaffRolePermissionsController extends AdminCoreController
 {
     public $staffService;
     public function __construct(StaffService $staffService)
     {
-        $this->middleware('auth:admin');
+        $this->middleware(['permission:admin.adminStaff.*|permission:admin.adminStaff.index'])->only('index');
         $this->staffService = $staffService;
     }
 
@@ -27,7 +27,7 @@ class AdminStaffAssignRolePermissionsController extends AdminCoreController
     {
         //所有Staff
         $staffs =$this->staffService->StaffRepo->builder()->with(['roles'])->paginate(10);
-        return view(config('theme.admin.view').'.assignRolePermission.index',[
+        return view(config('theme.admin.view').'.adminRolePermission.index',[
             'staffs' => $staffs
         ]);
     }

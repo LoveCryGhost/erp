@@ -55,7 +55,7 @@
                                                 @endforeach
                                             </td>
                                             <td>
-                                                <a class="btn btn-warning" href="{{route('admin.assign_staff_role_permission.edit', ['assign_staff_role_permission'=> $staff->id])}}"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-warning" href="{{route('admin.adminStaffRolePermission.edit', ['adminStaffRolePermission'=> $staff->id])}}"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
 

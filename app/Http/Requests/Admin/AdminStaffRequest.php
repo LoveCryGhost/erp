@@ -13,7 +13,7 @@ class AdminStaffRequest extends Request
     public function rules()
     {
 
-        $staff = $this->staff;
+        $staff = $this->adminStaff;
         switch($this->method())
         {
             // CREATE
@@ -52,7 +52,7 @@ class AdminStaffRequest extends Request
                     return [
                         'name' => [
                             'required',
-                            Rule::unique('staffs')->ignore($staff->id),
+                                Rule::unique('staffs')->ignore($staff->id),
                             'regex:/^[A-Za-z0-9\-\_]+$/'
                         ],
                         'birthday' => 'date|nullable',

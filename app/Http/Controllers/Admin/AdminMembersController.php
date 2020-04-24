@@ -7,17 +7,25 @@ use App\Http\Requests\Admin\AdminMemberRequest;
 use App\Models\Member;
 use App\Services\Member\MemberService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /**
 
  */
 class AdminMembersController extends AdminCoreController
 {
-
     protected $memberService;
     public function __construct(MemberService $memberService)
     {
-        $this->middleware('auth:admin');
+        $actions = [
+            'index',
+            'show', 'edit','update',
+            'create', 'store',
+            'destory',
+            'show',
+            'updatePassword'];
+        $this->coreMiddleware('AdminMembersController',$guard='admin', $route="adminMember", $actions);
+
         $this->memberService = $memberService;
     }
 
@@ -27,18 +35,21 @@ class AdminMembersController extends AdminCoreController
         return view(config('theme.admin.view').'member.index', compact('members'));
     }
 
-    public function edit(Member $member){
+    public function edit(Member $adminMember){
+        $member = $adminMember;
         return view(config('theme.admin.view').'member.edit', compact('member'));
     }
 
-    public function update(AdminMemberRequest $request , ImageUploadHandler $uploader, Member $member)
+    public function update(AdminMemberRequest $request , ImageUploadHandler $uploader, Member $adminMember)
     {
+        $member = $adminMember;
         $data = $request->all();
+
 
         $data = $this->memberService->save_avatar($data, $member,$request, $uploader);
 
         $member->update($data);
-        return redirect()->route('admin.member.index')
+        return redirect()->route('admin.adminMember.index')
             ->with('toast', [
                 "heading" => "個人訊息 - 更新成功",
                 "text" =>  '',
@@ -51,7 +62,7 @@ class AdminMembersController extends AdminCoreController
     }
 
     //更新密碼
-    public function update_password(Request $request, Member $member)
+    public function updatePassword(Request $request, Member $member)
     {
         //驗證
         $this->validate($request, [
@@ -66,7 +77,7 @@ class AdminMembersController extends AdminCoreController
         $data = $this->memberService->save_change_password($data, $member,$request);
 
         $member->update($data);
-        return redirect()->route('admin.member.edit', ['member'=> $member->id])
+        return redirect()->route('admin.adminMember.edit', ['adminMember'=> $member->id])
             ->with('toast', [
                 "heading" => "Member 密碼 - 更新成功",
                 "text" =>  '',

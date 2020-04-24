@@ -21,13 +21,7 @@
  *
  *
  * */
-use Illuminate\Support\Facades\Route;
-use App\Handlers\ShopeeHandler;
-use App\Models\CrawlerItem;
-use App\Models\CrawlerTask;
-use App\Repositories\Member\MemberCoreRepository;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 
 Route::get('/', function () {
     return view('welcome');

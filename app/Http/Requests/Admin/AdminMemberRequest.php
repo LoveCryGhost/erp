@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-
-
 use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -12,7 +10,6 @@ class AdminMemberRequest extends Request
 {
     public function rules()
     {
-
         switch($this->method())
         {
             // CREATE

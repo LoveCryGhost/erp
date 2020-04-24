@@ -25,7 +25,18 @@
         <ul class="sidebar-menu" data-widget="tree">
 
             <li class="header nav-small-cap">PERSONAL</li>
-
+            <li class="treeview">
+                <a href="#">
+                    <i class="ti-user"></i>
+                    <span>監測</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('admin.logViewer.index')}}"><i class="ti-more"></i>Logs</a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="ti-user"></i>
@@ -35,9 +46,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('admin.user.index')}}"><i class="ti-more"></i>User - 清單</a></li>
-                    <li><a href="{{route('admin.member.index')}}"><i class="ti-more"></i>Member - 清單</a></li>
-                    <li><a href="{{route('admin.staff.index')}}"><i class="ti-more"></i>Staff - 清單</a></li>
+                    <li><a href="{{route('admin.adminUser.index')}}"><i class="ti-more"></i>User - 清單</a></li>
+                    <li><a href="{{route('admin.adminMember.index')}}"><i class="ti-more"></i>Member - 清單</a></li>
+                    <li><a href="{{route('admin.adminStaff.index')}}"><i class="ti-more"></i>Staff - 清單</a></li>
                 </ul>
             </li>
             <li class="treeview">
@@ -49,21 +60,10 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('admin.assign_staff_role_permission.index')}}"><i class="ti-more"></i>Staff - 權限</a></li>
+                    <li><a href="{{route('admin.adminStaffRolePermission.index')}}"><i class="ti-more"></i>Staff - 權限</a></li>
                 </ul>
             
-            <li class="treeview">
-                <a href="#">
-                    <i class="ti-user"></i>
-                    <span>監測</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-right pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('admin.crawler.monitor')}}"><i class="ti-more"></i>爬蟲</a></li>
-                </ul>
-            </li>
+            
 
 {{--            <li class="treeview">--}}
 {{--                <a href="#">--}}
