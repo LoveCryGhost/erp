@@ -27,7 +27,11 @@ class StaffsTableSeeder extends Seeder
                 $Staff->avatar = $faker->randomElement($avatars);
                 $Staff->id_code = (new BarcodeHandler())->barcode_generation(config('barcode.staff'), $index+1);
                 $Staff->d_id = rand(2,6);
-                $Staff->sex = 1;
+                $Staff->sex = rand(0,1);
+                $Staff->staff_code = rand(10000,99999);
+                $Staff->tel1 = $faker->phoneNumber;
+                $Staff->phone1 = $faker->phoneNumber;
+                $Staff->join_at = $faker->dateTimeThisDecade();
                 $Staff->avatar = '/images/default/avatars/avatar'.($index+1).'.jpg';
                 $Staff->join_at = today();
             });
@@ -39,13 +43,13 @@ class StaffsTableSeeder extends Seeder
         Staff::insert($Staff_array);
 
         $Staff = Staff::find(1);
-        $Staff->name = 'Staff-1';
-        $Staff->email = 'Staff1@app.com';
+        $Staff->name = 'Staff-Admin';
+        $Staff->email = 'staff_admin@app.com';
         $Staff->save();
 
         $Staff = Staff::find(2);
-        $Staff->name = 'Staff-2';
-        $Staff->email = 'Staff2@app.com';
+        $Staff->name = 'Staff-HR';
+        $Staff->email = 'staff_hr@app.com';
         $Staff->save();
 
         //Staff - Department

@@ -17,7 +17,6 @@ class AdminPermissionsController extends AdminCoreController
     public $adminPermissionService;
     public function __construct(AdminPermissionService $adminPermissionService)
     {
-        $this->middleware('auth:admin');
         $this->adminPermissionService = $adminPermissionService;
     }
 

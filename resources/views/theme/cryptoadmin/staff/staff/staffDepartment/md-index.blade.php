@@ -95,7 +95,7 @@
         $.ajaxSetup(active_ajax_header());
         $.ajax({
             type: 'get',
-            url: '{{route('staff.staff-department.index')}}/'+php_inject.models.staff.id+'/edit?st_id='+php_inject.models.staff.id + '&sd_id='+staff_department_id,
+            url: '{{route('staff.staffDepartment.index')}}/'+php_inject.models.staff.id+'/edit?st_id='+php_inject.models.staff.id + '&sd_id='+staff_department_id,
             data: '',
             async: true,
             crossDomain: true,
@@ -114,7 +114,7 @@
         $.ajaxSetup(active_ajax_header());
         $.ajax({
             type: 'get',
-            url: '{{route('staff.staff-department.create')}}?st_id='+php_inject.models.staff.id,
+            url: '{{route('staff.staffDepartment.create')}}?st_id='+php_inject.models.staff.id,
             data: '',
             async: true,
             crossDomain: true,
@@ -135,7 +135,7 @@
         $.ajaxSetup(active_ajax_header());
         $.ajax({
             type: 'post',
-            url: '{{route('staff.staff-department.index')}}/N?st_id='+php_inject.models.staff.id+'&sd_id='+ php_inject.options.sd_id,
+            url: '{{route('staff.staffDepartment.index')}}/N?st_id='+php_inject.models.staff.id+'&sd_id='+ php_inject.options.sd_id,
             data: formData,
             async: true,
             crossDomain: true,

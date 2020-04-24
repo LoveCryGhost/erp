@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 // 生成  Dashboard
 // http://localhost.com/
-Route::prefix('')->namespace('Staff')->group(function(){
+Route::prefix('')->namespace('Staff')
+    ->middleware('auth:staff')
+    ->group(function(){
     // http://localhost.com/staff/
     Route::prefix('staff')->name('staff.')->group(function(){
         //ExcelLike
@@ -13,14 +15,14 @@ Route::prefix('')->namespace('Staff')->group(function(){
         //Dashboard
         Route::get('dashboard', 'StaffDashboardsController@dashboard')->name('staff.dashboard');
 
-        //staff_list
-        Route::get('staff_list', 'StaffsController@list')->name('staff.staff_list');;
+        //staffList
+        Route::get('staffList', 'StaffsController@list')->name('staff.staffLlist');;
 
         //Staff
         Route::resource('staff', 'StaffsController');
 
         //StaffDepartment
-        Route::resource('staff-department', 'Staff_DepartmentsController');
+        Route::resource('staffDepartment', 'StaffDepartmentsController');
     });
 
     //更新密碼

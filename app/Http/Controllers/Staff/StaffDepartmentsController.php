@@ -9,7 +9,7 @@ use App\Services\Staff\Staff_DepartmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Staff_DepartmentsController extends StaffCoreController
+class StaffDepartmentsController extends StaffCoreController
 {
     private $staff_DepartmentService;
 

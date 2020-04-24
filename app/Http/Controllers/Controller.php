@@ -10,4 +10,11 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function coreMiddleware($controller, $guard, $route, $actions)
+    {
+        foreach ($actions as $action) {
+            $this->middleware(['permission:'.$guard.'.' . $route . '.*|permission:'.$guard.'.' . $route . '.' . $action ])->only($action);
+        }
+    }
 }

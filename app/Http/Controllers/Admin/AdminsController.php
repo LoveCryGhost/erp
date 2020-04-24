@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\Admin\AdminRequest;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
 
 class AdminsController extends AdminCoreController
 {
@@ -16,6 +17,7 @@ class AdminsController extends AdminCoreController
 
     //Dashboard
     public function index(){
+
         return view(config('theme.admin.view').'admin.index');
     }
 

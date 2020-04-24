@@ -20,7 +20,25 @@
                 </div>
             </div>
         </div>
-
+    
+        <ul class="sidebar-menu" data-widget="tree">
+        
+            <li class="treeview">
+                <a href="#">
+                    <i class="ti-cup"></i>
+                    <span>人事資料維護</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('staff.staff.index')}}"><i class="ti-more"></i>員工基本資料</a></li>
+                </ul>
+            </li>
+    
+    
+        </ul>
+        
         <ul class="sidebar-menu" data-widget="tree">
 
             <li class="treeview">

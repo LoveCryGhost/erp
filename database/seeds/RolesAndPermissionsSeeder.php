@@ -3,6 +3,7 @@
 use App\Models\Admin;
 use App\Models\Member;
 use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -94,7 +95,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         //Role 綁定 Permission
         $role = Role::where('guard_name','admin')->where('name', 'SupderAdmin')->first();
-//        $role->givePermissionTo(Permission::where('guard_name', 'admin')->get());
+        $role->givePermissionTo(Permission::where('guard_name', 'admin')->get());
 
         $role = Role::where('guard_name','admin')->where('name', 'admin')->first();
         $role->givePermissionTo([
@@ -142,29 +143,62 @@ class RolesAndPermissionsSeeder extends Seeder
         //權限 Permissions
         $routes_actions = [
             'staff' => ['*' ,'crud'],
-            'staffExcelLike' => ['*' ,'crud']
+            'staffExcelLike' => ['*' ,'crud'],
+            'staffDepartment' => ['*' ,'crud'],
+            'staffList' => ['*' ,'crud'],
         ];
         $this->mass_create_permission($guard="staff", $routes_actions);
 
         //角色 Roles
-        $create_roles = ['guest', 'staff'];
+        $create_roles = ['guest', 'staff-admin', 'staff-HR'];
         $this->mass_create_role('staff',$create_roles);
 
         //Role 綁定 Permission
+        $role = Role::where('guard_name','staff')->where('name', 'staff-admin')->first();
+        $role->givePermissionTo(Permission::where('guard_name','staff')->get());
+
+        $role = Role::where('guard_name','staff')->where('name', 'staff-HR')->first();
+        $role->givePermissionTo([
+            'staff.staff.*',
+            'staff.staffDepartment.*',
+            'staff.staffList.*',
+        ]);
+
         $role = Role::where('guard_name','staff')->where('name', 'guest')->first();
         $role->givePermissionTo('staff.staff.show');
         $role->givePermissionTo('staff.staff.edit');
         $role->givePermissionTo('staff.staff.update');
 
-        //User 綁定 Role
+        //Staff 綁定 Role
         $staff = Staff::find(1);
-        $staff->assignRole('guest', 'staff');
+        $staff->assignRole('guest', 'staff-admin');
+
+        $staff = Staff::find(2);
+        $staff->assignRole('guest', 'staff-HR');
 
     }
 
     public function UserRoleAndPermission()
     {
+        //權限 Permissions
+        $routes_actions = [
+            'staff' => ['*' ,'crud'],
+            'staffExcelLike' => ['*' ,'crud'],
+            'staffDepartment' => ['*' ,'crud'],
+            'staffList' => ['*' ,'crud'],
+        ];
+        $this->mass_create_permission($guard="user", $routes_actions);
+
+        //角色 Roles
         $create_roles = ['guest'];
         $this->mass_create_role('web',$create_roles);
+
+        //Role 綁定 Permission
+        $role = Role::where('guard_name','web')->where('name', 'guest')->first();
+        $role->givePermissionTo(Permission::where('guard_name','web')->get());
+
+        //User 綁定 Role
+        $user = User::find(1);
+        $user->assignRole('guest');
     }
 }
