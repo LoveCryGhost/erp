@@ -18,13 +18,15 @@ use function request;
 use function trim;
 use function view;
 
-class ReportMHOrderController extends Controller
+class ReportMHOrdersController extends Controller
 {
     public $filters;
 
     public function __construct()
     {
-        $this->middleware('auth:staff');
+        $actions = [
+            'analysis'];
+        $this->coreMiddleware('ReportMHOrdersController',$guard='staff', $route="reportMHOrder", $actions);
     }
 
     public function analysis(){

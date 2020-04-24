@@ -122,7 +122,7 @@
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="{{route('staff.mh.report.order_analysis')}}" class="form-control btn btn-sm btn-primary">重新搜尋</a>
+                                        <a href="{{route('staff.reportMHOrder.analysis')}}" class="form-control btn btn-sm btn-primary">重新搜尋</a>
                                     </div>
                                     <div class="col-6">
                                         <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">搜尋</button>

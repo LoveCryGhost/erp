@@ -146,11 +146,12 @@ class RolesAndPermissionsSeeder extends Seeder
             'staffExcelLike' => ['*' ,'crud'],
             'staffDepartment' => ['*' ,'crud'],
             'staffList' => ['*' ,'crud'],
+            'reportMHOrder' => ['analysis']
         ];
         $this->mass_create_permission($guard="staff", $routes_actions);
 
         //角色 Roles
-        $create_roles = ['guest', 'staff-admin', 'staff-HR'];
+        $create_roles = ['guest', 'staff-admin', 'staff-HR', 'staff-scheduling'];
         $this->mass_create_role('staff',$create_roles);
 
         //Role 綁定 Permission
@@ -169,12 +170,18 @@ class RolesAndPermissionsSeeder extends Seeder
         $role->givePermissionTo('staff.staff.edit');
         $role->givePermissionTo('staff.staff.update');
 
+        $role = Role::where('guard_name','staff')->where('name', 'staff-scheduling')->first();
+        $role->givePermissionTo('staff.reportMHOrder.analysis');
+
         //Staff 綁定 Role
         $staff = Staff::find(1);
         $staff->assignRole('guest', 'staff-admin');
 
         $staff = Staff::find(2);
         $staff->assignRole('guest', 'staff-HR');
+
+        $staff = Staff::find(3);
+        $staff->assignRole('guest', 'staff-scheduling');
 
     }
 

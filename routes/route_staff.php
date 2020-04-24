@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Route;
 // http://localhost.com/
 Route::prefix('')->namespace('Staff')
     ->middleware('auth:staff')
+    ->name('staff.')
     ->group(function(){
     // http://localhost.com/staff/
-    Route::prefix('staff')->name('staff.')->group(function(){
+    Route::prefix('staff')->group(function(){
         //ExcelLike
         Route::resource('staffExcelLike', 'StaffExcelLikeController');
 
@@ -26,11 +27,11 @@ Route::prefix('')->namespace('Staff')
     });
 
     //更新密碼
-    Route::put('staff_update_password/{staff}', 'StaffsController@update_password')->name('staff.update_password');
+    Route::put('staff_update_password/{staff}', 'StaffsController@update_password')->name('update_password');
 
     //Report
     Route::prefix('staff')->namespace('MH\Report')->group(function() {
-        Route::get('order-analysis', 'ReportMHOrderController@analysis')->name('staff.mh.report.order_analysis');
+        Route::get('reportMHOrder_analysis', 'ReportMHOrdersController@analysis')->name('reportMHOrder.analysis');
         Route::get('download_shoes_analysis_with_size', 'ReportMHOrderController@download_shoes_analysis_with_size')->name('staff.mh.report.download_shoes_analysis_with_size');
     });
 
