@@ -30,18 +30,20 @@ class AdminPermissionsController extends AdminCoreController
             ]);
     }
 
-    public function edit(Permission $permission)
+    public function edit(Permission $adminPermission)
     {
+        $permission = $adminPermission;
        return view(config('theme.admin.view').'permission.edit',
            [
                'permission' => $permission
            ]);
     }
 
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, Permission $adminPermission)
     {
+        $permission = $adminPermission;
         $data = $request->all();
         $this->adminPermissionService->update($permission, $data);
-        return redirect()->route('admin.permission.index');
+        return redirect()->route('admin.adminPermission.index');
     }
 }

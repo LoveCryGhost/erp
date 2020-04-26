@@ -29,6 +29,7 @@
 											<th>No</th>
 											<th>Guard</th>
 											<th>權限名稱</th>
+											<th>描述</th>
 											<th>更改時間</th>
 											<th>建立時間</th>
 											<th>操作</th>
@@ -39,11 +40,17 @@
 										<tr>
 											<td>{{$loop->iteration}}</td>
 											<td>{{$role->guard_name}}</td>
-											<td>{{$role->name}}</td>
+											<td>
+												<button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-right"
+												        onclick="show_all_permissions(this, php_inject={{json_encode(['models' => ['role' => $role]])}})">
+													{{$role->name}}
+												</button>
+											</td>
+											<td>{{$role->description}}</td>
 											<td>{{$role->updated_at->format('Y-m-d')}}</td>
 											<td>{{$role->created_at->format('Y-m-d')}}</td>
 											<td>
-												<a href="{{route('admin.role.edit', ['role'=>$role->id])}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+												<a href="{{route('admin.adminRole.edit', ['adminRole'=>$role->id])}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
 											</td>
 										</tr>
 										@endforeach
@@ -59,7 +66,46 @@
 @endsection
 
 @section('js')
-	@parent
+@parent
+<script type="text/javascript">
+    $(function() {
+        $('.infinite-scroll').jscroll({
+            // 当滚动到底部时,自动加载下一页
+            autoTrigger: true,
+            // 限制自动加载, 仅限前两页, 后面就要用户点击才加载
+            autoTriggerUntil: 0,
+            // 设置加载下一页缓冲时的图片
+            loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
+            padding: 0,
+            nextSelector: 'a.jscroll-next:last',
+            contentSelector: 'div.infinite-scroll',
+            callback: function () {
+                float_image(className = "item-image", x = 90, y = -10)
+            }
+        });
+    });
+
+    function show_all_permissions(_this, php_inject) {
+        role = php_inject.models.role;
+        $.ajaxSetup(active_ajax_header());
+        $.ajax({
+            type: 'get',
+            url: '{{route('admin.adminRole.showAllPermission')}}?role_id='+role.id,
+            data: '',
+            async: true,
+            crossDomain: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#modal-right .modal-title').html('所有權限 - 列表');
+                $('#modal-right .modal-body').html(data.view)
+            },
+            error: function(data) {
+            }
+        });
+    }
+
+</script>
 @endsection
 
 

@@ -30,8 +30,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
     public function mass_create_role($guard, $roles)
     {
-        foreach($roles as $role){
-            Role::create(['guard_name' => $guard, 'name' => $role]);
+        foreach($roles as $role => $descripition){
+            Role::create(['guard_name' => $guard, 'name' => $role, 'description' => $descripition]);
         }
     }
 
@@ -108,7 +108,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $this->mass_create_permission($guard="admin", $routes_actions);
 
         //角色 Roles
-        $create_roles = ['SupderAdmin','admin'];
+        $create_roles = ['SupderAdmin' => '超級管理員', 'admin' => '管理員'];
         $this->mass_create_role('admin',$create_roles);
 
         //Role 綁定 Permission
@@ -148,7 +148,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $this->mass_create_permission($guard="member", $routes_actions);
 
         //角色 Roles
-        $create_roles = ['guest', 'member'];
+        $create_roles = ['guest' => '訪客', 'member' => '會員'];
         $this->mass_create_role('member',$create_roles);
 
 
@@ -169,10 +169,12 @@ class RolesAndPermissionsSeeder extends Seeder
         $this->mass_create_permission($guard="staff", $routes_actions);
 
         //角色 Roles
-        $create_roles = [   'guest', 'staff-Admin', 
-                            'staff-HR', 'staff-HR-Test', 
-                            'staff-Scheduling',
-                            'staff-Mold'];
+        $create_roles = [   'guest' => '訪客',
+                            'staff-Admin' => '超級員工',
+                            'staff-HR' => '人事',
+                            'staff-HR-Test' => '人事-測試',
+                            'staff-Scheduling' => '排程',
+                            'staff-Mold' => '模具'];
         $this->mass_create_role('staff',$create_roles);
 
         //Role 綁定 Permission
@@ -233,7 +235,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $this->mass_create_permission($guard="user", $routes_actions);
 
         //角色 Roles
-        $create_roles = ['guest'];
+        $create_roles = ['guest' => '訪客'];
         $this->mass_create_role('web',$create_roles);
 
         //Role 綁定 Permission

@@ -29,6 +29,9 @@ Route::prefix('')->namespace('Admin')->group(function(){
 
         Route::resource('adminPermission', 'AdminPermissionsController'); //RolePermission
         Route::resource('adminRole', 'AdminRolesController'); //RolePermission
+        Route::get('adminRole_showAllPermission', 'AdminRolesController@showAllPermission')->name('adminRole.showAllPermission'); //RolePermission
+        Route::post('adminRole_assignPermissionToRole', 'AdminRolesController@assignPermissionToRole')->name('adminRole.assignPermissionToRole'); //RolePermission
+
 
         //指派Staff權限
         Route::resource('adminStaffRolePermission', 'AdminStaffRolePermissionsController'); //RolePermission

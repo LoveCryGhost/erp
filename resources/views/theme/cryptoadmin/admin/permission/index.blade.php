@@ -29,6 +29,7 @@
 											<th>No</th>
 											<th>Guard</th>
 											<th>權限名稱</th>
+											<th>描述</th>
 											<th>更改時間</th>
 											<th>建立時間</th>
 											<th>操作</th>
@@ -40,10 +41,11 @@
 											<td>{{$loop->iteration}}</td>
 											<td>{{$permission->guard_name}}</td>
 											<td>{{$permission->name}}</td>
+											<td>{{$permission->description}}</td>
 											<td>{{$permission->updated_at->format('Y-m-d')}}</td>
 											<td>{{$permission->created_at->format('Y-m-d')}}</td>
 											<td>
-												<a href="{{route('admin.permission.edit', ['permission'=>$permission->id])}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
+												<a href="{{route('admin.adminPermission.edit', ['adminPermission'=>$permission->id])}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
 											</td>
 										</tr>
 										@endforeach
