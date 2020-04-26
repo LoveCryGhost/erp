@@ -52,6 +52,21 @@ class StaffsTableSeeder extends Seeder
         $Staff->email = 'staff_hr@app.com';
         $Staff->save();
 
+        $Staff = Staff::find(3);
+        $Staff->name = 'Staff-HR-Test';
+        $Staff->email = 'staff_hr_test@app.com';
+        $Staff->save();
+
+        $Staff = Staff::find(4);
+        $Staff->name = 'Staff-Scheduling';
+        $Staff->email = 'staff_scheduling@app.com';
+        $Staff->save();
+
+        $Staff = Staff::find(5);
+        $Staff->name = 'Staff-Mold';
+        $Staff->email = 'staff_mold@app.com';
+        $Staff->save();
+
         //Staff - Department
         $staffs = Staff::get();
         foreach ($staffs as $staff){

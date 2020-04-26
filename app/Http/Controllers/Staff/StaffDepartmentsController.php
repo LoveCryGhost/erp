@@ -15,7 +15,6 @@ class StaffDepartmentsController extends StaffCoreController
 
     public function __construct(Staff_DepartmentService $staff_DepartmentService)
     {
-        $this->middleware('auth:staff');
         $this->staff_DepartmentService = $staff_DepartmentService;
     }
 

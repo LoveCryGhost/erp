@@ -15,7 +15,6 @@ class RolesAndPermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-
         //User 角色-全限
         $this->UserRoleAndPermission();
 
@@ -63,7 +62,26 @@ class RolesAndPermissionsSeeder extends Seeder
                 }
             }
         }
+    }
 
+    public function mass_assign_permission($role, $guard, $route, $permissions)
+    {
+        foreach($permissions as $permission){
+            switch ($permission){
+                case "*";
+                    $role->givePermissionTo($guard.'.'.$route.'.'.$permission);
+                    break;
+                case "crud":
+                    foreach (['index','create', 'edit', 'show', 'update', 'store', 'destoryed'] as $my_action)
+                        $role->givePermissionTo($guard.'.'.$route.'.'.$my_action);
+                    break;
+
+                default:
+                    $role->givePermissionTo($guard.'.'.$route.'.'.$permission);
+                    break;
+            }
+
+        }
     }
 
     public function AdminRoleAndPermission()
@@ -98,20 +116,18 @@ class RolesAndPermissionsSeeder extends Seeder
         $role->givePermissionTo(Permission::where('guard_name', 'admin')->get());
 
         $role = Role::where('guard_name','admin')->where('name', 'admin')->first();
-        $role->givePermissionTo([
-            'admin.adminUser_updatePassword.updatePassword',
-            'admin.adminUser.*',
+        $this->mass_assign_permission($role, $guard='admin',$route='adminUser_updatePassword', $permissions=['updatePassword']);
+        $this->mass_assign_permission($role, $guard='admin',$route='adminUser', $permissions=['*']);
 
-            'admin.adminStaff_updatePassword.updatePassword',
-            'admin.adminStaff.*',
+        $this->mass_assign_permission($role, $guard='admin',$route='adminStaff_updatePassword', $permissions=['updatePassword']);
+        $this->mass_assign_permission($role, $guard='admin',$route='adminStaff', $permissions=['*']);
 
-            'admin.adminMember_updatePassword.updatePassword',
-            'admin.adminMember.*',
+        $this->mass_assign_permission($role, $guard='admin',$route='adminMember_updatePassword', $permissions=['updatePassword']);
+        $this->mass_assign_permission($role, $guard='admin',$route='adminMember', $permissions=['*']);
 
-            'admin.adminRolePermission.*',
-            'admin.adminPermission.*',
-            'admin.adminStaffRolePermission.*',
-        ]);
+        $this->mass_assign_permission($role, $guard='admin',$route='adminRolePermission', $permissions=['*']);
+        $this->mass_assign_permission($role, $guard='admin',$route='adminPermission', $permissions=['*']);
+        $this->mass_assign_permission($role, $guard='admin',$route='adminStaffRolePermission', $permissions=['*']);
 
 
         //User 綁定 Role
@@ -146,42 +162,62 @@ class RolesAndPermissionsSeeder extends Seeder
             'staffExcelLike' => ['*' ,'crud'],
             'staffDepartment' => ['*' ,'crud'],
             'staffList' => ['*' ,'crud'],
-            'reportMHOrder' => ['analysis']
+            'mhMold' => ['*', 'crud'],
+            'reportMHOrder' => ['analysis'],
+            'reportMHMold' => ['analysis'],
         ];
         $this->mass_create_permission($guard="staff", $routes_actions);
 
         //角色 Roles
-        $create_roles = ['guest', 'staff-admin', 'staff-HR', 'staff-scheduling'];
+        $create_roles = [   'guest', 'staff-Admin', 
+                            'staff-HR', 'staff-HR-Test', 
+                            'staff-Scheduling',
+                            'staff-Mold'];
         $this->mass_create_role('staff',$create_roles);
 
         //Role 綁定 Permission
-        $role = Role::where('guard_name','staff')->where('name', 'staff-admin')->first();
+        $role = Role::where('guard_name','staff')->where('name', 'staff-Admin')->first();
         $role->givePermissionTo(Permission::where('guard_name','staff')->get());
 
+
         $role = Role::where('guard_name','staff')->where('name', 'staff-HR')->first();
-        $role->givePermissionTo([
-            'staff.staff.*',
-            'staff.staffDepartment.*',
-            'staff.staffList.*',
-        ]);
+        $this->mass_assign_permission($role, $guard='staff',$route='staff', $permissions=['*']);
+        $this->mass_assign_permission($role, $guard='staff',$route='staffDepartment', $permissions=['*']);
+        $this->mass_assign_permission($role, $guard='staff',$route='staffList', $permissions=['*']);
+
+
+        $role = Role::where('guard_name','staff')->where('name', 'staff-HR-Test')->first();
+        $this->mass_assign_permission($role, $guard='staff',$route='staff', $permissions=['index']);
+
 
         $role = Role::where('guard_name','staff')->where('name', 'guest')->first();
-        $role->givePermissionTo('staff.staff.show');
-        $role->givePermissionTo('staff.staff.edit');
-        $role->givePermissionTo('staff.staff.update');
+        $this->mass_assign_permission($role, $guard='staff',$route='staff', $permissions=['show']);
 
-        $role = Role::where('guard_name','staff')->where('name', 'staff-scheduling')->first();
-        $role->givePermissionTo('staff.reportMHOrder.analysis');
+
+        $role = Role::where('guard_name','staff')->where('name', 'staff-Scheduling')->first();
+        $this->mass_assign_permission($role, $guard='staff',$route='reportMHOrder', $permissions=['analysis']);
+
+
+        $role = Role::where('guard_name','staff')->where('name', 'staff-Mold')->first();
+        $this->mass_assign_permission($role, $guard='staff',$route='mhMold', $permissions=['*', 'crud']);
+        $this->mass_assign_permission($role, $guard='staff',$route='reportMHMold', $permissions=['analysis']);
+
 
         //Staff 綁定 Role
         $staff = Staff::find(1);
-        $staff->assignRole('guest', 'staff-admin');
+        $staff->assignRole('guest', 'staff-Admin');
 
         $staff = Staff::find(2);
         $staff->assignRole('guest', 'staff-HR');
 
         $staff = Staff::find(3);
-        $staff->assignRole('guest', 'staff-scheduling');
+        $staff->assignRole('guest', 'staff-HR-Test');
+
+        $staff = Staff::find(4);
+        $staff->assignRole('guest', 'staff-Scheduling');
+
+        $staff = Staff::find(5);
+        $staff->assignRole('guest', 'staff-Mold');
 
     }
 

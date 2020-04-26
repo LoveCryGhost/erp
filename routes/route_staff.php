@@ -22,18 +22,20 @@ Route::prefix('')->namespace('Staff')
         //Staff
         Route::resource('staff', 'StaffsController');
 
-        //StaffDepartment
+        //StaffDepartmentxr
         Route::resource('staffDepartment', 'StaffDepartmentsController');
+
+
     });
 
     //更新密碼
     Route::put('staff_update_password/{staff}', 'StaffsController@update_password')->name('update_password');
 
-    //Report
-    Route::prefix('staff')->namespace('MH\Report')->group(function() {
-        Route::get('reportMHOrder_analysis', 'ReportMHOrdersController@analysis')->name('reportMHOrder.analysis');
-        Route::get('download_shoes_analysis_with_size', 'ReportMHOrderController@download_shoes_analysis_with_size')->name('staff.mh.report.download_shoes_analysis_with_size');
-    });
+
+
+
+
+
 
 
 });

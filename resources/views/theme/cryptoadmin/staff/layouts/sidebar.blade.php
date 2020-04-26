@@ -22,7 +22,6 @@
         </div>
     
         <ul class="sidebar-menu" data-widget="tree">
-        
             <li class="treeview">
                 <a href="#">
                     <i class="ti-cup"></i>
@@ -35,8 +34,20 @@
                     <li><a href="{{route('staff.staff.index')}}"><i class="ti-more"></i>員工基本資料</a></li>
                 </ul>
             </li>
-    
-    
+        </ul>
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="treeview">
+                <a href="#">
+                    <i class="ti-cup"></i>
+                    <span>生產設定</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('staff.mhMold.index')}}"><i class="ti-more"></i>模具基本基料</a></li>
+                </ul>
+            </li>
         </ul>
         
         <ul class="sidebar-menu" data-widget="tree">
@@ -68,8 +79,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-{{--                    <li><a href="{{route('staff.staff.edit',['staff' => Auth::guard('staff')->user()->id])}}"><i class="ti-more"></i>個人訊息</a></li>--}}
                     <li><a href="{{route('staff.reportMHOrder.analysis')}}"><i class="ti-more"></i>訂單報表</a></li>
+                    <li><a href="{{route('staff.reportMHMold.analysis')}}"><i class="ti-more"></i>模具報表</a></li>
                 </ul>
             </li>
 

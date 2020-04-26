@@ -33,6 +33,7 @@ Route::get('/', function () {
 @include('route_user.php');
 @include('route_member.php');
 @include('route_staff.php');
+@include('route_staff_mh.php');
 @include('route_admin.php');
 
 

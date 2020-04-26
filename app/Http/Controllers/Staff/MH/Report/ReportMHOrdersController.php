@@ -24,6 +24,7 @@ class ReportMHOrdersController extends Controller
 
     public function __construct()
     {
+        app()->make(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
         $actions = [
             'analysis'];
         $this->coreMiddleware('ReportMHOrdersController',$guard='staff', $route="reportMHOrder", $actions);

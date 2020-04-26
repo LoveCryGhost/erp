@@ -14,7 +14,7 @@ class Controller extends BaseController
     public function coreMiddleware($controller, $guard, $route, $actions)
     {
         foreach ($actions as $action) {
-            $this->middleware(['permission:'.$guard.'.' . $route . '.*|permission:'.$guard.'.' . $route . '.' . $action ])->only($action);
+            $this->middleware(['permission:'.$guard.'.' . $route . '.' . $action ])->only($action);
         }
     }
 }

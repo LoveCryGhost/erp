@@ -11,7 +11,6 @@ class StaffDashboardsController extends StaffCoreController
 
     public function __construct()
     {
-        $this->middleware('auth:staff');
     }
 
     //Dashboard

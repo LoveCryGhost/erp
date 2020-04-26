@@ -21,7 +21,7 @@ class AdminMembersController extends AdminCoreController
             'index',
             'show', 'edit','update',
             'create', 'store',
-            'destory',
+            'destroy',
             'show',
             'updatePassword'];
         $this->coreMiddleware('AdminMembersController',$guard='admin', $route="adminMember", $actions);

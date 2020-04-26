@@ -10,6 +10,7 @@ use App\Services\Staff\StaffService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function dd;
+use function redirect;
 
 class StaffsController extends StaffCoreController
 {
@@ -22,7 +23,7 @@ class StaffsController extends StaffCoreController
             'index',
             'show', 'edit','update',
             'create', 'store',
-            'destory',
+            'destroy',
             'show',
             'updatePassword'];
         $this->coreMiddleware('StaffsController',$guard='staff', $route="staff", $actions);
@@ -149,4 +150,9 @@ class StaffsController extends StaffCoreController
     }
 
 
+    public function destroy(Request $request, Staff $staff)
+    {
+        $staff->delete();
+        return redirect()->route('staff.staff.index');
+    }
 }

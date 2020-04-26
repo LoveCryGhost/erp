@@ -26,7 +26,7 @@
                             @include(config('theme.staff.view').'layouts.errors')
                         </div>
                         <div class="col-xl-12 col-lg-12 text-right mb-5">
-                            <a class="btn btn-warning" href="{{route('staff.staff.staffList')}}" ><i class="fa fa-list"></i></a>
+                            <a class="btn btn-warning" href="{{route('staff.staff.index')}}" ><i class="fa fa-list"></i></a>
                             @include(config('theme.staff.btn.edit.crud'))
                         </div>
                         {{--個人信息--}}
