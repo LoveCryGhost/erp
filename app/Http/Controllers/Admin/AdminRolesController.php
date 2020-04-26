@@ -9,8 +9,10 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use function compact;
 use function config;
+use function explode;
 use function redirect;
 use function request;
+use function strpos;
 use function view;
 
 class AdminRolesController extends AdminCoreController
@@ -77,12 +79,26 @@ class AdminRolesController extends AdminCoreController
         $role = Role::find($data['role_id']);
         $permission = Permission::find($data['permission_id']);
 
+        //移除
         if($role->hasPermissionTo($permission->name)){
-            //移除
-            $permission->removeRole($role);
+            //是否有萬用字元, 乳果有萬用字元，就將相關權限都移除
+            if(false !== ($rst = strpos($permission->name, ".*"))){
+                $_route = explode('.*',$permission->name);
+                $permissions = Permission::where('guard_name', $role->guard_name)->where('name','LIKE','%'.$_route[0].'.%')->get();
+                $role->revokePermissionTo($permissions);
+            }else{
+                $permission->removeRole($role);
+            }
+        //新增
         }else{
-            //新增
-            $permission->assignRole($role);
+            //是否有萬用字元, 乳果有萬用字元，就將相關權限都移除
+            if(false !== ($rst = strpos($permission->name, ".*"))){
+                $_route = explode('.*',$permission->name);
+                $permissions = Permission::where('guard_name', $role->guard_name)->where('name','LIKE','%'.$_route[0].'.%')->get();
+                $role->givePermissionTo($permissions);
+            }else{
+                $permission->assignRole($role);
+            }
         }
 
 

@@ -23,9 +23,8 @@
 			<td class="text-left">{{$permission->name}}</td>
 			<td>
 				<div class="checkbox">
-					<input type="checkbox" name="permission_{{$permission->id}}" id="permission_{{$permission->id}}"
-					  
-							{{$role->hasPermissionTo($permission->name)? "checked":"--"}}
+					<input type="checkbox" class="permission_check" name="{{$permission->name}}" id="permission_{{$permission->id}}"
+							{{$role->hasPermissionTo($permission->name)? "checked":""}}
 							onclick="assignPermissionToRole(this, php_inject={{json_encode(['models' => ['role' => $role, 'permission'=>$permission]])}})">
 					<label for="permission_{{$permission->id}}" class="text-dark"></label>
 				</div>
@@ -58,4 +57,71 @@
             }
         });
     }
+    
+    $(function () {
+		$('.permission_check').click(function(){
+		    _permiision_name = $(this).attr('name');
+			//選取
+			if($(this).is(':checked')){
+				//是select_all => 字串包含.*
+                if (_permiision_name.toLowerCase().indexOf(".*") >= 0){
+                    _permission_route = _permiision_name.replace(".*", "");
+					_lth = $('input.permission_check[name^="'+_permission_route+'."]').prop('checked', true);
+					
+                //不是select_all
+                }else{
+                    //先處理name字串
+                    _permission_route="";
+                    _permiision_name_arr = _permiision_name.split('.');
+                    for(var i=0; i<_permiision_name_arr.length-1; i++){
+                        _permission_route+= _permiision_name_arr[i]+'.';
+                    }
+                    //刪除最後一個字元
+                    _permission_route = _permission_route.substr(0, _permission_route.length - 1);
+                    //檢查有多少個同組子元素(非.*)
+	                $els = $('input.permission_check[name^="'+_permission_route+'."][name!="'+_permission_route+'.*"]');
+	                $elements_length = $els.length;
+	                $elements_checked_length = $('input.permission_check[name^="'+_permission_route+'."][name!="'+_permission_route+'.*"]:checked').length;
+	                
+	                //全選
+	                if($elements_length==$elements_checked_length){
+                        $('input.permission_check[name^="'+_permission_route+'.*"]').prop('checked',true);
+	                }
+                }
+                
+            //取消
+			}else{
+				//是select_all => 字串包含.*
+                if (_permiision_name.toLowerCase().indexOf(".*") >= 0){
+                    _permission_route = _permiision_name.replace(".*", "");
+                    $('input.permission_check[name^="'+_permission_route+'."]').prop('checked', false);
+                    
+                //不是select_all
+                }else{
+					//先處理name字串
+                    _permission_route="";
+                    _permiision_name_arr = _permiision_name.split('.');
+                    for(var i=0; i<_permiision_name_arr.length-1; i++){
+                        _permission_route+= _permiision_name_arr[i]+'.';
+                    }
+                    //刪除最後一個字元
+                    _permission_route = _permission_route.substr(0, _permission_route.length - 1);
+                    //檢查有多少個同組子元素(非.*)
+                    $els = $('input.permission_check[name^="'+_permission_route+'."][name!="'+_permission_route+'.*"]');
+                    $elements_length = $els.length;
+                    $elements_checked_length = $('input.permission_check[name^="'+_permission_route+'."][name!="'+_permission_route+'.*"]:checked').length;
+
+                    //全選
+                    if($elements_length!=$elements_checked_length){
+                        $('input.permission_check[name^="'+_permission_route+'.*"]').prop('checked',false);
+                    }
+                }
+            }
+				
+			
+			
+			
+			
+	    });
+    })
 </script>
