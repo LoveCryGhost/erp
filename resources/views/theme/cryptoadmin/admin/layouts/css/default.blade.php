@@ -3,6 +3,8 @@
 <!-- Bootstrap 4.0-->
 <link rel="stylesheet" href="{{asset('theme/cryptoadmin/vendor_components/bootstrap/dist/css/bootstrap.css')}}">
 
+<!--nestable CSS -->
+<link href="{{asset('theme/cryptoadmin/vendor_components/nestable/nestable.css')}}" rel="stylesheet" type="text/css" />
 
 @include(config('theme.user.css.toast'))
 <!-- Bootstrap switch-->

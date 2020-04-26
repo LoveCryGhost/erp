@@ -19,5 +19,9 @@ Route::prefix('test') ->group(function(){
         Excel::import(new MHMoldImport(), storage_path('app/MHMoldExcelImport.xlsx'));
         return redirect()->route('staff.mhMold.index', );
     });
+
+    Route::get('nestable',function (){
+       return view('test.nestable');
+    });
 });
 
