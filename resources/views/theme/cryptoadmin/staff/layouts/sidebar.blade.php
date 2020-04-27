@@ -24,7 +24,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-cup"></i>
+                    <i class="fa fa-vcard "></i>
                     <span>人事資料維護</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -38,7 +38,7 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-cup"></i>
+                    <i class="fa fa-cubes"></i>
                     <span>生產設定</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -54,7 +54,7 @@
 
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-cup"></i>
+                    <i class="fa fa-clipboard"></i>
                     <span>生管資料維護</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -64,15 +64,13 @@
                     <li><a href="{{route('staff.staffExcelLike.index')}}"><i class="ti-more"></i>報表維護</a></li>
                 </ul>
             </li>
-
-
         </ul>
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
 
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-cup"></i>
+                    <i class="fa fa-bar-chart"></i>
                     <span>報表</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -83,8 +81,19 @@
                     <li><a href="{{route('staff.reportMHMold.analysis')}}"><i class="ti-more"></i>模具報表</a></li>
                 </ul>
             </li>
-
-
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-line-chart"></i>
+                    <span>成本模組</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                   
+                    <li><a href="{{route('staff.staffExcelView.costSPLabor')}}"><i class="ti-more"></i>SP 人工計算</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
 </aside>

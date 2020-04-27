@@ -23,11 +23,10 @@
 
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
-
             <li class="header nav-small-cap">PERSONAL</li>
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-user"></i>
+                    <i class="fa fa-cogs"></i>
                     <span>監測</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -39,7 +38,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-user"></i>
+                    <i class="fa fa-user"></i>
                     <span>會員</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -53,7 +52,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-user"></i>
+                    <i class="fa fa-users"></i>
                     <span>權限系統</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -63,7 +62,6 @@
                     <li><a href="{{route('admin.adminRole.index')}}"><i class="ti-more"></i>Role - 角色</a></li>
                     <li><a href="{{route('admin.adminPermission.index')}}"><i class="ti-more"></i>Permission - 權限</a></li>
                     <li><a href="{{route('admin.adminStaffRolePermission.index')}}"><i class="ti-more"></i>Staff - 指派權限</a></li>
-                    
                 </ul>
             </li>
         </ul>

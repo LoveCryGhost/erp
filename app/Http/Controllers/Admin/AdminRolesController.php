@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Services\Admin\AdminRoleService;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use function compact;
 use function config;
 use function explode;
@@ -57,7 +57,7 @@ class AdminRolesController extends AdminCoreController
         $data = $request->all();
 
         $role = Role::with(['permissions'])->find($data['role_id']);
-        $permissions = Permission::where('guard_name', $role->guard_name)->get();
+        $permissions = Permission::where('guard_name', $role->guard_name)->where('p_id',0)->get();
         $view = view(config('theme.admin.view').'role.showAllPermission',[
             'data' => $data, 'role' => $role,
             'permissions' => $permissions

@@ -25,5 +25,12 @@ Route::prefix('')->namespace('Staff')
 
     });
 
+    //ExcelView
+    Route::prefix('staff')->namespace('MH\ExcelView')->name('staff.')->group(function() {
+        Route::get('staffExcelView_costSPLabor', 'StaffExcelViewController@costSPLabor')->name('staffExcelView.costSPLabor');
+    });
+
+
+
 });
 

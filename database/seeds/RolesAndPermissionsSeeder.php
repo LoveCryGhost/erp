@@ -165,6 +165,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'mhMold' => ['*', 'crud'],
             'reportMHOrder' => ['analysis'],
             'reportMHMold' => ['analysis'],
+            'staffExcelView' => ['costSPLabor'],
         ];
         $this->mass_create_permission($guard="staff", $routes_actions);
 
@@ -174,7 +175,9 @@ class RolesAndPermissionsSeeder extends Seeder
                             'staff-HR' => '人事',
                             'staff-HR-Test' => '人事-測試',
                             'staff-Scheduling' => '排程',
-                            'staff-Mold' => '模具'];
+                            'staff-Mold' => '模具',
+                            'staff-Cost' => '成本分析'];
+
         $this->mass_create_role('staff',$create_roles);
 
         //Role 綁定 Permission
