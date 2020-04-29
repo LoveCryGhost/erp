@@ -16,7 +16,14 @@ class CrawlerTasksController extends MemberCoreController
 
     public function __construct(CrawlerTaskService $crawlerTaskService)
     {
-        $this->middleware('auth:member');
+        $actions = [
+            '*',
+            'index',
+            'show', 'edit','update',
+            'create', 'store',
+            'destroy',
+            'show'];
+        $this->coreMiddleware('CrawlerTasksController',$guard='member', $route="crawlerTask", $actions);
         $this->crawlerTaskService = $crawlerTaskService;
     }
 
@@ -29,7 +36,7 @@ class CrawlerTasksController extends MemberCoreController
     {
         $data = $request->all();
         $crawlerTask = $this->crawlerTaskService->store($data);
-        return redirect()->route('member.crawlertask.index')->with('toast', parent::$toast_store);
+        return redirect()->route('member.crawlerTask.index')->with('toast', parent::$toast_store);
     }
 
     public function index()
@@ -38,27 +45,27 @@ class CrawlerTasksController extends MemberCoreController
         return view(config('theme.member.view').'crawlerTask.index', compact('crawlerTasks'));
     }
 
-    public function edit(CrawlerTask $crawlertask)
+    public function edit(CrawlerTask $crawlerTask)
     {
-        $this->authorize('update', $crawlertask);
-        return view(config('theme.member.view').'crawlerTask.edit', compact('crawlertask'));
+        $this->authorize('update', $crawlerTask);
+        return view(config('theme.member.view').'crawlerTask.edit', compact('crawlerTask'));
     }
 
-    public function update(CrawlerTaskRequest $request, CrawlerTask $crawlertask)
+    public function update(CrawlerTaskRequest $request, CrawlerTask $crawlerTask)
     {
-        $this->authorize('update', $crawlertask);
+        $this->authorize('update', $crawlerTask);
         $data = $request->all();
-        $TF = $this->crawlerTaskService->update($crawlertask,$data);
+        $TF = $this->crawlerTaskService->update($crawlerTask,$data);
 
-        return redirect()->route('member.crawlertask.index')->with('toast', parent::$toast_update);
+        return redirect()->route('member.crawlerTask.index')->with('toast', parent::$toast_update);
     }
 
-    public function destroy(Request $request, CrawlerTask $crawlertask)
+    public function destroy(Request $request, CrawlerTask $crawlerTask)
     {
-        $this->authorize('destroy', $crawlertask);
+        $this->authorize('destroy', $crawlerTask);
         $data = $request->all();
-        $toast = $this->crawlerTaskService->destroy($crawlertask, $data);
-        return redirect()->route('member.crawlertask.index')->with('toast', parent::$toast_destroy);
+        $toast = $this->crawlerTaskService->destroy($crawlerTask, $data);
+        return redirect()->route('member.crawlerTask.index')->with('toast', parent::$toast_destroy);
     }
 
     public function refresh()
@@ -69,6 +76,6 @@ class CrawlerTasksController extends MemberCoreController
 
         //CrawlerItem 在 Job  中更新
 
-        return redirect()->route('member.crawlertask.index');
+        return redirect()->route('member.crawlerTask.index');
     }
 }

@@ -65,7 +65,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('member.crawlertask.index')}}"><i class="ti-more"></i>Shoppee任務</a></li>
+                    <li><a href="{{route('member.crawlerTask.index')}}"><i class="ti-more"></i>Shoppee任務</a></li>
                 </ul>
             </li>
 
@@ -79,7 +79,7 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('member.reports.sku.crawleritem_analysis')}}"><i class="ti-more"></i>利潤分析</a></li>
+                        <li><a href="{{route('member.reports.sku.crawlerItem_analysis')}}"><i class="ti-more"></i>利潤分析</a></li>
                     </ul>
                 </li>
             @endif

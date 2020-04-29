@@ -26,7 +26,7 @@
                     <div class="box-body">
                         {{--CrawlerTask 爬蟲任務--}}
                         <div class="">
-                            <form action="{{route('member.crawleritem.save_cralwertask_info', ['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active])}}" method="post">
+                            <form action="{{route('member.crawlerItem.save_cralwerTask_info', ['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active])}}" method="post">
                                 @csrf
                                 <table class="table table-primary table-bordered table-striped">
                                 <thead>
@@ -185,7 +185,7 @@ function show_crawler_item_skus(_this, php_inject) {
     $.ajaxSetup(active_ajax_header());
     $.ajax({
         type: 'get',
-        url: '{{route('member.crawleritemsku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id+'&ct_i_id='+php_inject.models.crawlerItem.pivot.ct_i_id,
+        url: '{{route('member.crawlerItemSku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id+'&ct_i_id='+php_inject.models.crawlerItem.pivot.ct_i_id,
         data: '',
         async: true,
         crossDomain: true,
@@ -202,9 +202,9 @@ function show_crawler_item_skus(_this, php_inject) {
 
 function toggle_crawler_items_reload(_this, _TF) {
     if(_TF===true){
-        window.location.replace("{{route('member.crawleritem.index')}}?crawlerTask=" + _this.data('crawlertask-id') + "&is_active=1");
+        window.location.replace("{{route('member.crawlerItem.index')}}?crawlerTask=" + _this.data('crawlertask-id') + "&is_active=1");
     }else{
-        window.location.replace("{{route('member.crawleritem.index')}}?crawlerTask=" + _this.data('crawlertask-id') + "&is_active=0");
+        window.location.replace("{{route('member.crawlerItem.index')}}?crawlerTask=" + _this.data('crawlertask-id') + "&is_active=0");
     }
 }
 
@@ -218,7 +218,7 @@ function toggle_crawler_item(_this, php_inject) {
 
     $.ajax({
         type: 'post',
-        url: '{{route('member.crawleritem.toggle')}}',
+        url: '{{route('member.crawlerItem.toggle')}}',
         data: formData,
         async: true,
         crossDomain: true,

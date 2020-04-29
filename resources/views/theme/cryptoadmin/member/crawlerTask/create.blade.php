@@ -17,7 +17,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <form method="post" action="{{route('member.crawlertask.store')}}">
+        <form method="post" action="{{route('member.crawlerTask.store')}}">
             @csrf
             <div class="row">
                 <div class="col-xl-12 col-lg-12">

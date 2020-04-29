@@ -54,7 +54,7 @@ class CrawlerItemSKUsController extends MemberCoreController
      * */
     public function put_product_id()
     {
-        Session::put('member_crawleritem_product_id', request()->product_id );
+        Session::put('member_crawlerItem_product_id', request()->product_id );
     }
 
     /*
@@ -63,7 +63,7 @@ class CrawlerItemSKUsController extends MemberCoreController
     public function show_product_skus()
     {
         $data = request()->all();
-        $product_id = Session::get('member_crawleritem_product_id');
+        $product_id = Session::get('member_crawlerItem_product_id');
         $product = $this->crawlerItemSKUService->productRepo->getById($product_id);
         $skus = $product->all_skus;
         $view = view(config('theme.member.view').'crawlerItemSKU.productSKU.md-index',compact('data','skus'))->render();
@@ -83,7 +83,7 @@ class CrawlerItemSKUsController extends MemberCoreController
      * */
     public function bind_product_sku_to_crawler_sku(){
 
-        if(!Session::has('member_crawleritem_product_id')){
+        if(!Session::has('member_crawlerItem_product_id')){
             return false;
         }
         $data = request()->all();

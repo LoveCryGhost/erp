@@ -145,14 +145,50 @@ class RolesAndPermissionsSeeder extends Seeder
 
         //權限 Permissions
         $routes_actions = [
-            'memberExcelLike' => ['*' ,'crud']
+            'memberExcelLike' => ['*' ,'crud'],
+            'supplier' => ['*' ,'crud'],
+            'supplierGroup' => ['*' ,'crud'],
+            'type' => ['*' ,'crud'],
+            'attribute' => ['*' ,'crud'],
+            'product' => ['*' ,'crud'],
+            'crawlerTask' => ['*' ,'crud'],
+            'crawlerItem' => ['*' ,'crud'],
         ];
         $this->mass_create_permission($guard="member", $routes_actions);
 
         //角色 Roles
-        $create_roles = ['guest' => '訪客', 'member' => '會員'];
+        $create_roles = [
+                'guest' => '訪客',
+                'supperMember' => '超級會員',
+                'member' => '會員',
+                'crawlerTask' => '爬蟲任務',
+                'crawlerTaskAnalysis' => '爬蟲任務分析',
+            ];
         $this->mass_create_role('member',$create_roles);
 
+        $role = Role::where('guard_name','member')->where('name', 'supperMember')->first();
+        $role->givePermissionTo(Permission::where('guard_name', 'member')->get());
+
+        $role = Role::where('guard_name','member')->where('name', 'crawlerTask')->first();
+        $this->mass_assign_permission($role, $guard='member', $route='crawlerTask', $permissions=['*' ,'crud']);
+        $this->mass_assign_permission($role, $guard='member', $route='crawlerItem', $permissions=['*' ,'crud']);
+
+
+        //User 綁定 Role
+        $member = Member::find(1);
+        $member->assignRole('supperMember');
+
+        $member = Member::find(2);
+        $member->assignRole('crawlerTask');
+
+        $member = Member::find(3);
+        $member->assignRole('crawlerTask');
+
+        $member = Member::find(4);
+        $member->assignRole('crawlerTask');
+
+        $member = Member::find(5);
+        $member->assignRole('crawlerTask');
 
     }
 

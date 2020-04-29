@@ -190,7 +190,7 @@
         $.ajaxSetup(active_ajax_header());
         $.ajax({
             type: 'post',
-            url: '{{route('member.crawleritemsku.put_product_id')}}?product_id='+$(_this).val(),
+            url: '{{route('member.crawlerItemSku.putProductId')}}?product_id='+$(_this).val(),
             data: '',
             async: true,
             crossDomain: true,
@@ -213,7 +213,7 @@
         formData.append('modelid', php_inject.modelid);
         $.ajax({
             type: 'post',
-            url: '{{route('member.crawleritemsku.show_product_skus')}}',
+            url: '{{route('member.crawlerItemSku.showProductSkus')}}',
             data: formData,
             async: true,
             crossDomain: true,
