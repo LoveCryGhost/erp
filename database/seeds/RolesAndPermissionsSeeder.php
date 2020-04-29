@@ -153,6 +153,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'product' => ['*' ,'crud'],
             'crawlerTask' => ['*' ,'crud'],
             'crawlerItem' => ['*' ,'crud'],
+            'reportSKU' => ['crawlerItemAanalysis'],
+
         ];
         $this->mass_create_permission($guard="member", $routes_actions);
 

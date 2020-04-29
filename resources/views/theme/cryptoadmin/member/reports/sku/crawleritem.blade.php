@@ -60,7 +60,6 @@
                                             foreach($sku->crawlerTaskItemSKU as $crawlerTaskItemSKU){
                                                 if($crawlerTaskItemSKU->crawlerItemSKUDetails->count()>0){
                                                     $daySales7 = $crawlerTaskItemSKU->nDaysSales(7);
-                                                    //$daySales30 = $crawlerTaskItemSKU->nDaysSales(30);
                                                     $nDays_total+=$crawlerTaskItemSKU->crawlerItemSKUDetails->last()->sold;
                                                     $daySales7_total+= $daySales7;
                                                     $daySales30_total+= $daySales30;

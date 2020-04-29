@@ -24,7 +24,8 @@
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
 
-            @if(Auth::guard('admin')->check())
+            
+            @can('member.supplier.index')
             <li class="treeview">
                 <a href="#">
                     <i class="ti-cup"></i>
@@ -39,7 +40,9 @@
                     <li><a href="#"><i class="ti-more"></i>供應商聯絡人</a></li>
                 </ul>
             </li>
-
+            @endcan
+    
+            @can('member.product.index')
             <li class="treeview">
                 <a href="#">
                     <i class="ti-cup"></i>
@@ -54,8 +57,9 @@
                     <li><a href="{{route('member.product.index')}}"><i class="ti-more"></i>產品</a></li>
                 </ul>
             </li>
-            @endif
+            @endcan
 
+            @can('member.crawlerTask.index')
             <li class="treeview">
                 <a href="#">
                     <i class="ti-cup"></i>
@@ -68,8 +72,9 @@
                     <li><a href="{{route('member.crawlerTask.index')}}"><i class="ti-more"></i>Shoppee任務</a></li>
                 </ul>
             </li>
+            @endcan
 
-            @if(Auth::guard('admin')->check())
+            @can('member.reportSKU.crawlerItemAanalysis')
                 <li class="treeview">
                     <a href="#">
                         <i class="ti-cup"></i>
@@ -79,10 +84,10 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('member.reports.sku.crawlerItem_analysis')}}"><i class="ti-more"></i>利潤分析</a></li>
+                        <li><a href="{{route('member.reportSKU.crawlerItemAanalysis')}}"><i class="ti-more"></i>利潤分析</a></li>
                     </ul>
                 </li>
-            @endif
+            @endcan
 
         </ul>
     </section>

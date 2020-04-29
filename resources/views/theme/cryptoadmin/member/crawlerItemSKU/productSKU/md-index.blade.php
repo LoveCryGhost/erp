@@ -30,7 +30,7 @@
                 formData.append('sku_id', php_inject.sku_id);
                 $.ajax({
                     type: 'post',
-                    url: '{{route('member.crawleritemsku.bind_product_sku_to_crawler_sku')}}',
+                    url: '{{route('member.crawlerItemSku.bind_product_sku_to_crawler_sku')}}',
                     data: formData,
                     async: true,
                     crossDomain: true,

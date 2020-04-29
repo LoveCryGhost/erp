@@ -85,7 +85,7 @@
                                             <td>
                                                 @include(config('theme.member.btn.index.table_tr'),['id' => $crawlerTask->ct_id])
                                                 <a class="btn btn-primary btn-sm" target="_blank"
-                                                   href="{{route('member.crawleritem.index',['crawlerTask' => $crawlerTask->ct_id, 'is_active' =>  $crawlerTask->is_active])}}">
+                                                   href="{{route('member.crawlerItem.index',['crawlerTask' => $crawlerTask->ct_id, 'is_active' =>  $crawlerTask->is_active])}}">
                                                     <i class="fa fa-external-link"></i> 商品</a>
                                             </td>
                                         </tr>

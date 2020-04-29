@@ -7,15 +7,15 @@
 
         <div class="row">
             <div class="col-md-12">
-                @if(Auth::guard('admin')->check())
+                @can('member.reportSKU.crawlerItemAanalysis')
                     請選擇商品:
                     <select name="p_id" onchange="product_select_change(this, php_inject={{json_encode(['models'])}})">
                         <option>Select...</option>
                         @foreach($products as $product)
-                            <option value="{{$product->p_id}}" {{Session::get('member_crawleritem_product_id')==$product->p_id? "selected":""}}>{{$product->p_name}}</option>
+                            <option value="{{$product->p_id}}" {{Session::get('member_crawlerItem_product_id')==$product->p_id? "selected":""}}>{{$product->p_name}}</option>
                         @endforeach
                     </select>
-                @endif
+                @endcan
             </div>
             <div class="col-md-6">
                 <table class="table table-hover table-bordered table-primary font-size-10">
@@ -43,8 +43,8 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
-
-                                @if(Auth::guard('admin')->check())
+    
+                                @can('member.reportSKU.crawlerItemAanalysis')
                                     @php
                                         $qty = $crawlerItemSKU->sku_count();
                                     @endphp
@@ -58,7 +58,7 @@
                                         {!! $qty>0? "<span class='btn btn-success btn-circle btn-xs'>".$qty."</span>":"" !!}{{$crawlerItemSKU->name}}
                                     </a>
                                 @else
-                                    <a class="pointer">
+                                    <a>
                                         {{$crawlerItemSKU->name}}
                                     </a>
                                 @endif
@@ -149,38 +149,24 @@
             "minorGridAlpha": 0.08,
             "minorGridEnabled": true,
             "position": "top",
-            "axisAlpha": 0
+            "axisAlpha": 0,
+            "minimum": 0
         }],
         "startDuration": 1,
         "graphs": [{
-            "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b></span>",
-            "title": "銷量",
-            "type": "column",
-            "fillAlphas": 0.8,
-
-            "valueField": "sold"
-        }
-        // , {
-        //     "balloonText": "<span style='font-size:13px;'>[[title]] in [[category]]:<b>[[value]]</b></span>",
-        //     "bullet": "round",
-        //     "bulletBorderAlpha": 1,
-        //     "bulletColor": "#FFFFFF",
-        //     "useLineColorForBulletBorder": true,
-        //     "fillAlphas": 0,
-        //     "lineThickness": 2,
-        //     "lineAlpha": 1,
-        //     "bulletSize": 7,
-        //     "title": "Expenses",
-        //     "valueField": "expenses"
-        // }
-        ],
+                "balloonText": "<span style='font-size:13px;'>[[category]] 的[[title]] :<b>[[value]]</b></span>",
+                "title": "銷量",
+                "type": "column",
+                "fillAlphas": 0.8,
+                "valueField": "sold"
+            }],
         "rotate": true,
         "categoryField": "year",
         "categoryAxis": {
             "gridPosition": "start"
         },
         "export": {
-            "enabled": true
+            "enabled": false
         }
 
     });

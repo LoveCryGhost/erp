@@ -47,8 +47,8 @@ Route::prefix('')->middleware('auth:member')->namespace('Member')->group(functio
         });
 
         //Member - Report
-        Route::prefix('')->namespace('Report')->name('member.reports.sku.')->group(function () {
-            Route::get('crawlerItem_analysis', 'ReportSKUController@crawlerItem_analysis')->name('crawlerItem_analysis');
+        Route::prefix('')->namespace('Report')->name('member.')->group(function () {
+            Route::get('reportSKU_crawlerItemAanalysis', 'ReportSKUController@crawlerItemAanalysis')->name('reportSKU.crawlerItemAanalysis');
         });
     });
 });

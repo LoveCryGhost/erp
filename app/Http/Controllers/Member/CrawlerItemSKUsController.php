@@ -52,7 +52,7 @@ class CrawlerItemSKUsController extends MemberCoreController
     /*
      * CrawlerItemSKU中選定Product -> Product-id
      * */
-    public function put_product_id()
+    public function putProductId()
     {
         Session::put('member_crawlerItem_product_id', request()->product_id );
     }
@@ -60,7 +60,7 @@ class CrawlerItemSKUsController extends MemberCoreController
     /*
      *
      * */
-    public function show_product_skus()
+    public function showProductSkus()
     {
         $data = request()->all();
         $product_id = Session::get('member_crawlerItem_product_id');

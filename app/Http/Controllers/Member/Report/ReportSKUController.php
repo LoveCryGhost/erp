@@ -14,12 +14,15 @@ class ReportSKUController extends MemberCoreController
 
     public function __construct()
     {
-        $this->middleware('auth:member');
+        $actions = [
+            'crawlerItemAanalysis'];
+        $this->coreMiddleware('ReportSKUController',$guard='member', $route="reportSKU", $actions);
     }
 
-    public function crawleritem_analysis()
-    {
 
+    //Product SKU 綁定 爬蟲產品分析
+    public function crawlerItemAanalysis()
+    {
         $products = Product::with(['all_skus','all_skus.crawlerTaskItemSKU', 'all_skus.crawlerTaskItemSKU.crawlerItemSKUDetails'])
             ->where('member_id', Auth::guard('member')->user()->id)->get();
         return $view = view(config('theme.member.view').'reports.sku.crawleritem',compact(['products']));
