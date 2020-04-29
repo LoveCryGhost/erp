@@ -102,6 +102,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
             'adminRolePermission' => ['*', 'crud'],
             'adminPermission' => ['*', 'crud'],
+            'adminRole' => ['*', 'crud',
+                            'assignPermissionToRole','update_nestable_order'],
             'adminStaffRolePermission' => ['*', 'crud']
 
         ];

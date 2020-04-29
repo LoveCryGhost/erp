@@ -42,7 +42,7 @@
 											<td>{{$role->guard_name}}</td>
 											<td>
 												<button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-right"
-												        onclick="show_all_permissions(this, php_inject={{json_encode(['models' => ['role' => $role]])}})">
+												        onclick="change_modal_style(modal_id='modal-right',width='500px'),show_all_permissions(this, php_inject={{json_encode(['models' => ['role' => $role]])}})">
 													{{$role->name}}
 												</button>
 											</td>
@@ -67,6 +67,7 @@
 
 @section('js')
 @parent
+<script src="{{asset('js/jscroll.min.js')}}"></script>
 <script type="text/javascript">
     $(function() {
         $('.infinite-scroll').jscroll({

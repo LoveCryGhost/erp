@@ -1,99 +1,40 @@
 
-<div >
-	{{$role->guard_name}} / {{$role->name}}
-</div>
-<div >
-	{{$role->description}}
+<div class="row">
+	<div class="col-4">
+		{{$role->guard_name}} / {{$role->name}}
+	</div>
+	<div class="col-4">
+		{{$role->description}}
+	</div>
+	<div class="col-4 ">
+		<textarea id="nestable_output" style="display: none;"></textarea>
+		<button class="btn btn-success pull-right" onclick="update_nestable_order();">儲存</button>
+	</div>
 </div>
 
-<div class="myadmin-dd-empty dd" id="nestable2">
+
+<div class="myadmin-dd-empty dd" id="permission_nestable">
 	<ol class="dd-list">
-		<li class="dd-item dd3-item" data-id="13">
-			<div class="dd-handle dd3-handle"></div>
-			<div class="dd3-content"> Item 13 </div>
-		</li>
-		<li class="dd-item dd3-item" data-id="14">
-			<div class="dd-handle dd3-handle"></div>
-			<div class="dd3-content"> Item 14 </div>
-		</li>
-		<li class="dd-item dd3-item" data-id="14">
-			<div class="dd-handle dd3-handle"></div>
-			<div class="dd3-content"> Item 16 </div>
-		</li>
-		<li class="dd-item dd3-item" data-id="14">
-			<div class="dd-handle dd3-handle"></div>
-			<div class="dd3-content"> Item 17 </div>
-		</li>
-		<li class="dd-item dd3-item" data-id="14">
-			<div class="dd-handle dd3-handle"></div>
-			<div class="dd3-content"> Item 18 </div>
-		</li>
-		<li class="dd-item dd3-item" data-id="14">
-			<div class="dd-handle dd3-handle"></div>
-			<div class="dd3-content"> Item 19 </div>
-		</li>
-		<li class="dd-item dd3-item" data-id="15">
-			<div class="dd-handle dd3-handle"></div>
-			<div class="dd3-content"> Item 15 </div>
-			<ol class="dd-list">
-				<li class="dd-item dd3-item" data-id="16">
-					<div class="dd-handle dd3-handle"></div>
-					<div class="dd3-content"> Item 16 </div>
-				</li>
-				<li class="dd-item dd3-item" data-id="17">
-					<div class="dd-handle dd3-handle"></div>
-					<div class="dd3-content"> Item 17 </div>
-				</li>
-				<li class="dd-item dd3-item" data-id="18">
-					<div class="dd-handle dd3-handle"></div>
-					<div class="dd3-content"> Item 18 </div>
-				</li>
-			</ol>
-		</li>
+		@foreach($permissions as $permission)
+			@include('theme.cryptoadmin.admin.role.showPermissionParent', ['permission'=>$permission])
+		@endforeach
 	</ol>
 </div>
 
-<table class="itable">
-	<thead>
-	
-		<tr>
-			<th>No.</th>
-			<th>Guard</th>
-			<th>權限名稱</th>
-			<th>操作</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach($permissions as $permission)
-		<tr>
-			<td>{{$loop->iteration}}</td>
-			<td>{{$permission->guard_name}}</td>
-			<td class="text-left">{{$permission->name}}</td>
-			<td>
-				<div class="checkbox">
-					<input type="checkbox" class="permission_check" name="{{$permission->name}}" id="permission_{{$permission->id}}"
-							{{$role->hasPermissionTo($permission->name)? "checked":""}}
-							onclick="assignPermissionToRole(this, php_inject={{json_encode(['models' => ['role' => $role, 'permission'=>$permission]])}})">
-					<label for="permission_{{$permission->id}}" class="text-dark"></label>
-				</div>
-			</td>
-		</tr>
-		@endforeach
-	</tbody>
-</table>
-
 <!--Nestable js -->
-
-
 <script>
 	
 	function assignPermissionToRole(_this, php_inject) {
-	    role = php_inject.models.role;
-        permission = php_inject.models.permission;
+	    //可以用
+	    //console.log($('#nestable_output').val());
+        role_id = php_inject.role_id;
+        permission_id = php_inject.permission_id;
         $.ajaxSetup(active_ajax_header());
         var formData = new FormData();
-        formData.append('role_id', role.id);
-        formData.append('permission_id', permission.id);
+        formData.append('role_id', role_id);
+        formData.append('permission_id', permission_id);
+        // formData.append('nestable_output', $('#nestable_output').val());
+        
         $.ajax({
             type: 'post',
             url: '{{route('admin.adminRole.assignPermissionToRole')}}',
@@ -103,7 +44,7 @@
             contentType: false,
             processData: false,
             success: function(data) {
-				
+            
             },
             error: function(data) {
             }
@@ -173,5 +114,48 @@
     })
 </script>
 
-<script src="{{asset('theme/cryptoadmin/vendor_components/nestable/jquery.nestable.js')}}"></script>
-<script src="{{asset('theme/cryptoadmin/js/pages/nestable.js')}}"></script>
+
+<script>
+   var update_nestable_order = function(){
+       //可以用
+       //console.log($('#nestable_output').val());
+       role_id = php_inject.role_id;
+       permission_id = php_inject.permission_id;
+       $.ajaxSetup(active_ajax_header());
+       var formData = new FormData();
+       formData.append('nestable_output', $('#nestable_output').val());
+
+       $.ajax({
+           type: 'post',
+           url: '{{route('admin.adminRole.update_nestable_order')}}',
+           data: formData,
+           async: true,
+           crossDomain: true,
+           contentType: false,
+           processData: false,
+           success: function(data) {
+               clean_close_modal('modal-right');
+           },
+           error: function(data) {
+           }
+       });
+   }
+    
+    $(function () {
+
+        var updateOutput = function (e) {
+            var list = e.length ? e : $(e.target)
+                , output = list.data('output');
+            if (window.JSON) {
+                output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
+            }
+            else {
+                output.val('JSON browser support required for this demo.');
+            }
+        };
+        $('#permission_nestable').nestable({
+            group: 1
+        }).on('change', updateOutput);
+        updateOutput($('#permission_nestable').data('output', $('#nestable_output')));;
+    })
+</script>

@@ -31,6 +31,7 @@ Route::prefix('')->namespace('Admin')->group(function(){
         Route::resource('adminRole', 'AdminRolesController'); //RolePermission
         Route::get('adminRole_showAllPermission', 'AdminRolesController@showAllPermission')->name('adminRole.showAllPermission'); //RolePermission
         Route::post('adminRole_assignPermissionToRole', 'AdminRolesController@assignPermissionToRole')->name('adminRole.assignPermissionToRole'); //RolePermission
+        Route::post('adminRole_update_nestable_order', 'AdminRolesController@update_nestable_order')->name('adminRole.update_nestable_order'); //RolePermission
 
 
         //指派Staff權限

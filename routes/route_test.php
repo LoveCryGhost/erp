@@ -13,7 +13,7 @@ Route::get('/', function () {
     return view('theme.cryptoadmin.user.welcome');
 });
 
-Route::prefix('test') ->group(function(){
+Route::prefix('test') ->middleware('auth:admin')->group(function(){
     Route::get('excelImport',function (){
         DB::table('mh_shoes_molds')->truncate();
         Excel::import(new MHMoldImport(), storage_path('app/MHMoldExcelImport.xlsx'));
@@ -21,7 +21,17 @@ Route::prefix('test') ->group(function(){
     });
 
     Route::get('nestable',function (){
+        if(request()->input('submit')=="get"){
+            $output = request()->input('nestable_output');
+            $output = json_decode($output);
+        }
        return view('test.nestable');
     });
+
+    Route::get('spreadjs',function (){
+        return view('test.spreadjs');
+    });
+
+
 });
 

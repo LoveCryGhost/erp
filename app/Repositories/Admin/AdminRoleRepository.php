@@ -4,7 +4,7 @@ namespace App\Repositories\Admin;
 
 use Spatie\Permission\Models\Role;
 
-class AdminRoleRepository
+class AdminRoleRepository extends AdminCoreRepository
 {
     public function __construct(Role $role)
     {
@@ -20,4 +20,6 @@ class AdminRoleRepository
     {
         return $this->adminRoleRepo->find($id);
     }
+
+
 }
