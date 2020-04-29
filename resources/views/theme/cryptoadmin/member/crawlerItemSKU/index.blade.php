@@ -74,7 +74,13 @@
                             <td class="text-right">{{$daySales7}}</td>
                             <td class="text-right">{{$daySales30}}</td>
                             <td class="text-right">{{number_format($crawlerItemSKU->sold, 0, "", ",")}}</td>
-                            <td class="text-right">{{number_format(($crawlerItemSKU->sold/$crawlerItem->crawlerItemSKUs->sum('sold'))*100, 0, ".", ",")}}%</td>
+                            
+                            {{--解決-分母等於0 問題--}}
+                            @if($crawlerItem->crawlerItemSKUs->sum('sold')!=0)
+                                <td class="text-right">{{number_format(($crawlerItemSKU->sold/$crawlerItem->crawlerItemSKUs->sum('sold'))*100, 0, ".", ",")}}%</td>
+                            @else
+                                <td class="text-right">0 %</td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>

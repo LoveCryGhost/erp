@@ -3,16 +3,20 @@
 namespace App\Handlers;
 
 use GuzzleHttp\Client;
+use function dd;
 
 class ShopeeHandler
 {
     public function ClientHeader_Shopee($url){
         $client = new Client();
         $response = $client->request('GET', $url, [
+            'auth' => ['user', 'pass'],
+
             'headers' => [
                 'x-api-source' => 'pc',
             ]
         ]);
+
         while($response->getStatusCode()!=200){
             $response = $client->request('GET', $url, [
                 'headers' => [

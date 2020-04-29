@@ -90,6 +90,7 @@ class CrawlerTaskJob implements ShouldQueue
                 foreach ($items_order as $itemid){
                     $sync_ids[$crawlerItem_ids[$itemid]]= ['sort_order'=>$index++];
                 }
+
                 //Sync刪除並更新
                 $crawlerTask->crawlerItems()->sync($sync_ids);
 

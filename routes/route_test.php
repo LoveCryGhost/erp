@@ -32,6 +32,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         return view('test.spreadjs');
     });
 
-
 });
 
+
+@include('route_test_crawlerTaskJob.php');
