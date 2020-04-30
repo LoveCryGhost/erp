@@ -10,8 +10,6 @@ class ShopeeHandler
     public function ClientHeader_Shopee($url){
         $client = new Client();
         $response = $client->request('GET', $url, [
-            'auth' => ['user', 'pass'],
-
             'headers' => [
                 'x-api-source' => 'pc',
             ]
