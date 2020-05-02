@@ -9,14 +9,14 @@
 <a class="btn btn-warning btn-sm"
    href="{{route($route_edit,
             [$route_param => $id])}}">
-    <i class="fa fa-edit mr-5"></i>編輯</a>
+    <i class="fa fa-edit mr-5"></i>{{__('member/supplierGroup.index.table.edit')}}</a>
 
 <form action="{{route($route_destroy, [$route_param=> $id])}}" method="post"
       style="display: inline-block;"
-      onsubmit="return confirm('您确定要删除吗？');">
+      onsubmit="return confirm('{{__('member/supplierGroup.index.table.delete_confirm')}}');">
     @csrf
     @method('delete')
     <button type="submit" class="btn btn-secondary btn-sm">
-        <i class="fa fa-trash mr-5"></i>刪除
+        <i class="fa fa-trash mr-5"></i>{{__('member/supplierGroup.index.table.delete')}}
     </button>
 </form>

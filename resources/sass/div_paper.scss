@@ -59,3 +59,18 @@
     cursor: pointer;
   }
 }
+
+section.content{
+  padding-top: 0px;
+
+  .box-header{
+    padding:0px;
+    margin:0px;
+  }
+
+  .box-body{
+    padding:5px;
+    margin:5px;
+  }
+
+}

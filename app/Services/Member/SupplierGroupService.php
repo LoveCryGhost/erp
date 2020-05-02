@@ -64,5 +64,12 @@ class SupplierGroupService extends MemberCoreService implements MemberServiceInt
         return $supplierGroup->delete();
     }
 
+    public function index_filters($query, $filters)
+    {
+        $query  = $this->filter_like($query,'sg_name', $filters['sg_name']);
+        $query  = $this->filter_like($query,'id_code', $filters['id_code']);
+
+        return $query;
+    }
 
 }

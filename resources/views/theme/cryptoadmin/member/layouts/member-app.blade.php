@@ -6,8 +6,7 @@
 <title>member - @yield('title')</title>
 
 
-{{--CSS--}}
-@include(config('theme.member.css.default'))
+
 @section('css')
     @parent
     @yield('css')
@@ -51,5 +50,4 @@
     @yield('js')
 @endsection
 
-{{--Footer--}}
-@include(config('theme.member.js.default'))
+

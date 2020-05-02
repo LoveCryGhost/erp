@@ -48,11 +48,9 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">啟用</label>
                                         <div class="col-sm-10">
-                                            <input type="checkbox" class="bt-switch" name="is_active"  value="1" {{$crawlerTask->is_active==1? "checked" : ""}}
-                                                data-label-width="100%"
-                                                data-label-text="啟用" data-size="min"
-                                                data-on-text="On"    data-on-color="primary"
-                                                data-off-text="Off"  data-off-color="danger"/>
+                                            <input type="checkbox" class="permission_check" name="is_active" value="1" id="is_active"
+                                                   {{$crawlerTask->is_active===1? "checked": ""}}>
+                                            <label for="is_active" class="text-dark p-0 m-0"></label>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -142,11 +140,7 @@
 
 @section('js')
     @parent
-    <script type="text/javascript">
-        $(function(){
-            active_switch(switch_class='bt-switch', options=[]);
-        })
-    </script>
+
 @endsection
 
 

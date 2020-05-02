@@ -35,6 +35,7 @@ class CrawlerTasksController extends MemberCoreController
     {
         $query = $this->crawlerTaskService->crawlertaskRepo->builder()
             ->where('member_id', Auth::guard('member')->user()->id);
+
         $this->filters = [
             'ct_name' => request()->ct_name,
             'description' => request()->description,
