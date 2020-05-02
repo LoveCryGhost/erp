@@ -32,6 +32,9 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         return view('test.spreadjs');
     });
 
+    Route::get('blade',function (){
+        return view('test.blade.index');
+    });
 });
 
 
