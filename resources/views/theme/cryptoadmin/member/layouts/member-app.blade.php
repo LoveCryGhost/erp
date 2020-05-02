@@ -8,6 +8,7 @@
 
 {{--CSS--}}
 @include(config('theme.member.css.default'))
+
 @section('css')
     @parent
     @yield('css')

@@ -22,27 +22,12 @@
         </div>
 
         <div class="msg_box">
-            {{--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-fill">--}}
-                {{--全1--}}
-            {{--</button>--}}
-            {{--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-fill-2">--}}
-                {{--全2--}}
-            {{--</button>--}}
-            {{--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">--}}
-                {{--大--}}
-            {{--</button>--}}
-            {{--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-md">--}}
-                {{--中--}}
-            {{--</button>--}}
-            {{--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-left">--}}
-                {{--左--}}
-            {{--</button>--}}
-            {{--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-right">--}}
-                {{--右--}}
-            {{--</button>--}}
-            {{--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-center">--}}
-                {{--央--}}
-            {{--</button>--}}
+            <li><a href="{{ url('locale/en') }}" ><i class="fa fa-language"></i> EN</a></li>
+    
+            <li><a href="{{ url('locale/tw') }}" ><i class="fa fa-language"></i>台灣</a></li>
+        </div>
+        <div >
+            <h1>{{ __('messages.welcome') }}</h1>
         </div>
 
         <div class="navbar-custom-menu r-side">
@@ -59,8 +44,6 @@
                 {{--使用者資料--}}
                 @include(config('theme.member.header-member-profiles'))
 
-                {{--Guard-Switcher--}}
-                {{--@include(config('theme.admin.tools.guard-switcher'))--}}
             </ul>
         </div>
     </nav>

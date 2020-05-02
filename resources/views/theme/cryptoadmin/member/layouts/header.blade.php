@@ -21,6 +21,7 @@
         <div class="navbar-custom-menu r-side">
             <ul class="nav navbar-nav">
                 <li class="search-bar">
+                
                     <div class="lookup lookup-circle lookup-right">
                         <input type="text" name="search">
                     </div>
@@ -31,9 +32,6 @@
                         <i class="mdi mdi-login-variant"></i>
                     </a>
                 </li>
-
-                {{--Guard-Switcher--}}
-                {{--@include(config('theme.admin.tools.guard-switcher'))--}}
             </ul>
         </div>
 
