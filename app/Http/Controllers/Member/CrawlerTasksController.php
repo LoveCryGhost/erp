@@ -8,11 +8,15 @@ use App\Services\Member\CrawlerTaskService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function explode;
+use function request;
+use function trim;
 
 class CrawlerTasksController extends MemberCoreController
 {
 
     protected $crawlerTaskService;
+    public $filters;
 
     public function __construct(CrawlerTaskService $crawlerTaskService)
     {
@@ -27,6 +31,24 @@ class CrawlerTasksController extends MemberCoreController
         $this->crawlerTaskService = $crawlerTaskService;
     }
 
+    public function index()
+    {
+        $query = $this->crawlerTaskService->crawlertaskRepo->builder();
+        $this->filters = [
+            'ct_name' => request()->ct_name,
+            'description' => request()->description,
+            'domain_name' => request()->domain_name,
+            'id_code' => request()->id_code,
+        ];
+
+        $query = $this->index_filters($query, $this->filters);
+        $crawlerTasks = $query->paginate(10);
+        return view(config('theme.member.view').'crawlerTask.index', [
+                'crawlerTasks' => $crawlerTasks,
+                'filters' => $this->filters
+            ]);
+    }
+
     public function create()
     {
         return view(config('theme.member.view').'crawlerTask.create');
@@ -39,11 +61,7 @@ class CrawlerTasksController extends MemberCoreController
         return redirect()->route('member.crawlerTask.index')->with('toast', parent::$toast_store);
     }
 
-    public function index()
-    {
-        $crawlerTasks = $this->crawlerTaskService->index();
-        return view(config('theme.member.view').'crawlerTask.index', compact('crawlerTasks'));
-    }
+
 
     public function edit(CrawlerTask $crawlerTask)
     {
@@ -77,5 +95,15 @@ class CrawlerTasksController extends MemberCoreController
         //CrawlerItem 在 Job  中更新
 
         return redirect()->route('member.crawlerTask.index');
+    }
+
+    public function index_filters($query, $filters)
+    {
+        $query  = $this->filter_like($query,'ct_namee', $filters['ct_name']);
+        $query  = $this->filter_like($query,'description', $filters['description']);
+        $query  = $this->filter_like($query,'domain_name', $filters['domain_name']);
+        $query  = $this->filter_like($query,'id_code', $filters['id_code']);
+
+      return $query;
     }
 }

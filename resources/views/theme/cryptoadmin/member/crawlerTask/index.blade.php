@@ -22,6 +22,44 @@
             <div class="row">
                 <div class="col-12">
                     <div class="box">
+                        <div class="box-header with-border m-10 p-0">
+                            <form class="mb-0">
+                    <div class="row">
+                        <label class="col-sm-1 col-form-label">Barcode</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">
+                        </div>
+                        <label class="col-sm-1 col-form-label">任務名稱</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="ct_name" placeholder="任務名稱" value="{{request()->ct_name}}">
+                        </div>
+                        <label class="col-sm-1 col-form-label">網域</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="domain_name" placeholder="網域" value="{{request()->domain_name}}">
+                        </div>
+                        <label class="col-sm-1 col-form-label">描述</label>
+                        <div class="col-sm-2">
+                            <input class="form-control" type="text" name="description" placeholder="描述" value="{{request()->description}}">
+                        </div>
+                    </div>
+                    
+        
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="{{route('member.crawlerTask.index')}}" class="form-control btn btn-sm btn-primary">重新搜尋</a>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">搜尋</button>
+                        </div>
+                    </div>
+                </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="box">
                         <div class="box-body">
                             <div class="col-xl-12 col-lg-12 text-right mb-5">
                                 @include(config('theme.member.btn.index.crud'))
@@ -36,7 +74,8 @@
                                 </form>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <div class="infinite-scroll">
+                                    <table class="itable">
                                     <thead>
                                     <tr class="">
                                         <th>排序</th>
@@ -59,7 +98,8 @@
                                                     <a href="#"><strong>{{$crawlerTask->ct_name}}</strong></a><br>
                                                 </p>
                                             </td>
-                                            <td>頁數：{{$crawlerTask->pages}}<br>
+                                            <td class="text-left">
+                                                頁數：{{$crawlerTask->pages}}<br>
                                                 網域：{{$crawlerTask->domain_name}}<br>
                                                 搜尋方式：{{$crawlerTask->sort_by}}
 
@@ -70,11 +110,9 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <input type="checkbox" class="bt-switch" name="is_active"  value="1" {{$crawlerTask->is_active===1? "checked": ""}}
-                                                data-label-width="100%"
-                                                       data-label-text="啟用"
-                                                       data-on-text="On"    data-on-color="primary"
-                                                       data-off-text="Off"  data-off-color="danger"/>
+                                                <input type="checkbox" class="permission_check" name="is_active" id="is_active_{{$crawlerTask->ct_id}}"
+                                                        {{$crawlerTask->is_active===1? "checked": ""}} disabled>
+                                                <label for="is_active_{{$crawlerTask->ct_id}}" class="text-dark p-0 m-0"></label>
                                             </td>
                                             <td>
                                                 <p class="mb-0">
@@ -92,7 +130,20 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <div class=""> {{$crawlerTasks->links("pagination::bootstrap-4")}}</div>
+    
+                                    {{--点击加载下一页的按钮--}}
+                                    <div class="text-center">
+                                        {{--判断到最后一页就终止, 否则 jscroll 又会从第一页开始一直循环加载--}}
+                                        @if( $crawlerTasks->currentPage() == $crawlerTasks->lastPage())
+                                            <span class="text-center text-muted">没有更多了</span>
+                                        @else
+                                            {{-- 这里调用 paginator 对象的 nextPageUrl() 方法, 以获得下一页的路由 --}}
+                                            <a class="jscroll-next btn btn-outline-secondary btn-block rounded-pill" href="{{ $crawlerTasks->appends($filters)->nextPageUrl() }}">
+                                                加载更多....
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -104,12 +155,24 @@
 
 @section('js')
     @parent
+    <script src="{{asset('js/jscroll.min.js')}}"></script>
     <script type="text/javascript">
-        $(function(){
-            active_switch(switch_class='bt-switch', options=[]);
-        })
+        $(function() {
+            $('.infinite-scroll').jscroll({
+                // 当滚动到底部时,自动加载下一页
+                autoTrigger: true,
+                // 限制自动加载, 仅限前两页, 后面就要用户点击才加载
+                autoTriggerUntil: 2,
+                // 设置加载下一页缓冲时的图片
+                loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
+                padding: 0,
+                nextSelector: 'a.jscroll-next:last',
+                contentSelector: '.infinite-scroll',
+                callback:function() {
+                    float_image(className="item-image", x=90, y=-10)
+                }
+            });
+        });
     </script>
 @endsection
-
-
 

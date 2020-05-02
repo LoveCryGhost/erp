@@ -69,7 +69,7 @@ class CrawlerItemsController extends MemberCoreController
             $crawlerTask->save();
         }
 
-        return redirect()->route('member.crawleritem.index',['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active]);
+        return redirect()->route('member.crawlerItem.index',['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active]);
 
     }
 }

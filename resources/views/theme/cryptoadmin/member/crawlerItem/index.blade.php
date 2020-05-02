@@ -92,6 +92,8 @@
                                                     <label for="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" class="text-dark">隱藏</label>
                                                 </div>
                                             @endif
+    
+                                           
                                         </div>
                                         <div class="col-md-1">
                                             @if($crawlerItem->images==null)
