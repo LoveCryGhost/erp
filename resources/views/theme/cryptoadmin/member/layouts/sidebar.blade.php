@@ -28,7 +28,7 @@
             @can('member.supplier.index')
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-cup"></i>
+                    <i class="fa fa-chain"></i>
                     <span>供應商模組</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -45,7 +45,7 @@
             @can('member.product.index')
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-cup"></i>
+                    <i class="fa fa-cubes"></i>
                     <span>產品模組</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -62,7 +62,7 @@
             @can('member.crawlerTask.index')
             <li class="treeview">
                 <a href="#">
-                    <i class="ti-cup"></i>
+                    <i class="fa fa-bug"></i>
                     <span>Shopee爬蟲模組</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-right pull-right"></i>
@@ -77,7 +77,7 @@
             @can('member.reportSKU.crawlerItemAanalysis')
                 <li class="treeview">
                     <a href="#">
-                        <i class="ti-cup"></i>
+                        <i class="fa fa-bar-chart"></i>
                         <span>Report報表</span>
                         <span class="pull-right-container">
                   <i class="fa fa-angle-right pull-right"></i>
