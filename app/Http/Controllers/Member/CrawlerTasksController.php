@@ -42,7 +42,7 @@ class CrawlerTasksController extends MemberCoreController
             'id_code' => request()->id_code,
         ];
 
-//        $query = $this->index_filters($query, $this->filters);
+        $query = $this->index_filters($query, $this->filters);
         $crawlerTasks = $query->paginate(10);
         return view(config('theme.member.view').'crawlerTask.index', [
                 'crawlerTasks' => $crawlerTasks,
