@@ -18,6 +18,8 @@
     @yield('content-header')
 @endsection
 
+@include(config('theme.member.css.default'))
+
 <body class="hold-transition fixed light-skin dark-sidebar sidebar-mini theme-blue sidebar-collapse">
 <div id="app"  class="{{ route_class() }}-page xbody">
     @section('app-content')
@@ -50,4 +52,4 @@
     @yield('js')
 @endsection
 
-
+@include(config('theme.member.js.default'))
