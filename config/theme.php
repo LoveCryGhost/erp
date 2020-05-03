@@ -19,6 +19,7 @@ return [
 
             'welcome' => $user_style.'.welcome',
             'header-notifications' => $user_style.'.layouts.header-notifications',
+            'header-language' => $user_style.'.layouts.header-language',
             'header-user-profiles' => $user_style.'.layouts.header-user-profiles',
              'errors' => $user_style.'.layouts.errors',
             'css' => [
@@ -46,7 +47,9 @@ return [
 
             'welcome' => $admin_style.'.welcome',
             'header-notifications' => $admin_style.'.layouts.header-notifications',
+            'header-language' => $admin_style.'.layouts.header-language',
             'header-admin-profiles' => $admin_style.'.layouts.header-admin-profiles',
+
             'errors' => $admin_style.'.layouts.errors',
             'css' => [
                 'default' => $admin_style.'.layouts.css.default',
@@ -85,6 +88,7 @@ return [
 
             'welcome' => $member_style.'.welcome',
             'header-notifications' => $member_style.'.layouts.header-notifications',
+            'header-language' => $member_style.'.layouts.header-language',
             'header-member-profiles' => $member_style.'.layouts.header-member-profiles',
             'errors' => $member_style.'.layouts.errors',
             'css' => [
@@ -123,6 +127,7 @@ return [
 
             'welcome' => $staff_style.'.welcome',
             'header-notifications' => $staff_style.'.layouts.header-notifications',
+            'header-language' => $staff_style.'.layouts.header-language',
             'header-staff-profiles' => $staff_style.'.layouts.header-staff-profiles',
             'errors' => $staff_style.'.layouts.errors',
             'css' => [
