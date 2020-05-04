@@ -3,7 +3,7 @@
     <a href="#" class="" data-toggle="dropdown" title="Notifications">
         @switch(Session::get('locale'))
             @case("en")
-            <i class="flag-icon flag-icon-en"></i>
+            <i class="flag-icon flag-icon-us"></i>
                 @break
             
             @case("cn")
