@@ -1,9 +1,9 @@
 <?php
 return [
 
-    'title' => "Shopee Item",
+    'title' => "Shopee 產品",
     //Index
-    'index.title'       => 'Shopee - Item List',
+    'index.title'       => 'Shopee - 產品 List',
     'index.search.barcode' => '條碼',
     'index.search.taskName' => '任務名稱',
     'index.search.domain_name' => '網域',

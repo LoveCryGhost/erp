@@ -1,9 +1,9 @@
 <?php
 return [
 
-    'title' => "Shopee Task",
+    'title' => "Shopee 任務",
     //Index
-    'index.title'       => 'Shopee - Task 列表',
+    'index.title'       => 'Shopee - 任務 列表',
     'index.search.barcode' => '條碼',
     'index.search.taskName' => '任務名稱',
     'index.search.domain_name' => '網域',
@@ -34,7 +34,7 @@ return [
 
 
     //Edit
-    'edit.title'       => 'Shopee - Task 編輯',
+    'edit.title'       => 'Shopee - 任務 編輯',
     'edit.barcode' => '條碼',
     'edit.auto_generate' => '自動生成 !!',
     'edit.taskName' => '任務名稱',
