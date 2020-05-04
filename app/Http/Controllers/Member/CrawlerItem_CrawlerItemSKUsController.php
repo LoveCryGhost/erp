@@ -9,9 +9,10 @@ use App\Repositories\Member\ProductRepository;
 use App\Services\Member\CrawlerItemSKUService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use function strlen;
+use function substr;
 
-
-class CrawlerItemSKUsController extends MemberCoreController
+class CrawlerItem_CrawlerItemSKUsController extends MemberCoreController
 {
     private $crawlerItemSKUService;
     public function __construct(CrawlerItemSKUService $crawlerItemSKUService)
@@ -30,13 +31,18 @@ class CrawlerItemSKUsController extends MemberCoreController
                             ->where('member_id', Auth::guard('member')->user()->id)->get();
 
         foreach($crawlerItem->crawlerItemSKUs as $crawlerItemSKU){
+            if(strlen($crawlerItemSKU->name)>30){
+                $skuName =  substr($crawlerItemSKU->name,0,30).'...';
+            }else{
+                $skuName =  $crawlerItemSKU->name;
+            }
             $amCharProvider[] = [
-                "year" => $crawlerItemSKU->name,
+                "sku_name" => $skuName,
                 'sold' => $crawlerItemSKU->sold
             ];
         }
 
-        $view = view(config('theme.member.view').'crawlerItemSKU.index',compact('data', 'crawlerItem', 'amCharProvider', 'products'))->render();
+        $view = view(config('theme.member.view').'crawlerItem.crawlerItemSKU.index',compact('data', 'crawlerItem', 'amCharProvider', 'products'))->render();
         return [
             'errors' => '',
             'models'=> [
@@ -46,7 +52,6 @@ class CrawlerItemSKUsController extends MemberCoreController
             'view' => $view,
             'options'=>[]
         ];
-
     }
 
     /*
@@ -66,7 +71,7 @@ class CrawlerItemSKUsController extends MemberCoreController
         $product_id = Session::get('member_crawlerItem_product_id');
         $product = $this->crawlerItemSKUService->productRepo->getById($product_id);
         $skus = $product->all_skus;
-        $view = view(config('theme.member.view').'crawlerItemSKU.productSKU.md-index',compact('data','skus'))->render();
+        $view = view(config('theme.member.view').'crawlerItem.crawlerItemSKU.productSKU.md-index',compact('data','skus'))->render();
         return [
             'errors' => '',
             'models'=> [
@@ -81,7 +86,7 @@ class CrawlerItemSKUsController extends MemberCoreController
     /*
      *
      * */
-    public function bind_product_sku_to_crawler_sku(){
+    public function bindProductSkuToCrawlerSku(){
 
         if(!Session::has('member_crawlerItem_product_id')){
             return false;

@@ -1,11 +1,11 @@
 
-@if(Auth::guard('admin')->check())
+@can('member.reportSKU.crawlerItemAanalysis')
     <div class="btn btn-primary mb-10" onclick="bind_product_sku_to_crawler_sku(this, php_inject={{json_encode([
                         "ct_i_id" => $data['ct_i_id'],
                         "itemid" => $data['itemid'],
                         "shopid" => $data['shopid'],
                         "modelid" => $data['modelid']
-                    ])}})">取消</div><br>
+                    ])}})">{{__('member/crawlerItem.sku_detail.product.cancel')}}</div><br>
 
     @foreach($skus as $sku)
         <div class="btn btn-primary mb-10" onclick="bind_product_sku_to_crawler_sku(this, php_inject={{json_encode([
@@ -30,7 +30,7 @@
                 formData.append('sku_id', php_inject.sku_id);
                 $.ajax({
                     type: 'post',
-                    url: '{{route('member.crawlerItemSku.bind_product_sku_to_crawler_sku')}}',
+                    url: '{{route('member.crawlerItem-crawlerItemSku.bindProductSkuToCrawlerSku')}}',
                     data: formData,
                     async: true,
                     crossDomain: true,
@@ -54,4 +54,4 @@
         }
     </script>
 
-@endif
+@endcan

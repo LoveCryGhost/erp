@@ -28,22 +28,6 @@
         <li class="user-footer">
             <div>
                 <div class="flexbox">
-                    {{--<div>--}}
-                        {{--<h4 class="mb-0 mt-0">--}}
-                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-                               {{--onclick="event.preventDefault();document.getElementById('logout-form').submit();">--}}
-                                {{--登出--}}
-                            {{--</a>--}}
-                        {{--</h4>--}}
-                    {{--</div>--}}
-                    {{--<div>--}}
-                        {{--<h4 class="mb-0 mt-0">--}}
-                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-                               {{--onclick="event.preventDefault();document.getElementById('logout-form').submit();">--}}
-                                {{--登出--}}
-                            {{--</a>--}}
-                        {{--</h4>--}}
-                    {{--</div>--}}
                     <div>
                         <h4 class="mb-0 mt-0">
                             <a class="dropdown-item" href="{{ route('member.logout') }}"

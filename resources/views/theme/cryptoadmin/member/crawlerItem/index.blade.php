@@ -25,7 +25,7 @@
                     <div class="box-header">
                         <div class="row">
                             <div class="col">
-                                <form class="form-control" action="{{route('member.crawlerItem.save_cralwerTask_info', ['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active])}}" method="post">
+                                <form class="form-control" action="{{route('member.crawlerItem.saveCralwerTaskInfo', ['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active])}}" method="post">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-3 border">
@@ -133,11 +133,11 @@
                             <div class="text-center">
                                 {{--判断到最后一页就终止, 否则 jscroll 又会从第一页开始一直循环加载--}}
                                 @if( $crawlerItems->currentPage() == $crawlerItems->lastPage())
-                                    <span class="text-center text-muted">没有更多了</span>
+                                    <span class="text-center text-muted">{{__('default.index.lazzyload_no_more_records')}}</span>
                                 @else
                                     {{-- 这里调用 paginator 对象的 nextPageUrl() 方法, 以获得下一页的路由 --}}
                                     <a class="jscroll-next btn btn-outline-secondary btn-block rounded-pill" href="{{ $crawlerItems->appends($filters)->nextPageUrl() }}">
-                                        加载更多....
+                                        {{__('default.index.lazzyload_more_records')}}
                                     </a>
                                 @endif
                             </div>
@@ -185,14 +185,14 @@
         $.ajaxSetup(active_ajax_header());
         $.ajax({
             type: 'get',
-            url: '{{route('member.crawlerItemSku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id+'&ct_i_id='+php_inject.models.crawlerItem.pivot.ct_i_id,
+            url: '{{route('member.crawlerItem-crawlerItemSku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id+'&ct_i_id='+php_inject.models.crawlerItem.pivot.ct_i_id,
             data: '',
             async: true,
             crossDomain: true,
             contentType: false,
             processData: false,
             success: function(data) {
-                $('#modal-left .modal-title').html('SKUs - 列表');
+                $('#modal-left .modal-title').html('{{__('member/crawlerItem.sku_detail.title')}}');
                 $('#modal-left .modal-body').html(data.view)
             },
             error: function(data) {

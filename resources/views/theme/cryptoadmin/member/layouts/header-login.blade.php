@@ -23,9 +23,6 @@
 
         <div class="msg_box">
         </div>
-        <div >
-            <h1>{{ __('messages.welcome') }}</h1>
-        </div>
 
         <div class="navbar-custom-menu r-side">
             <ul class="nav navbar-nav">

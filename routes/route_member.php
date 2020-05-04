@@ -34,12 +34,12 @@ Route::prefix('')->middleware('auth:member')->namespace('Member')->group(functio
             Route::post('crawlertask_refresh', 'CrawlerTasksController@refresh')->name('crawler.refresh');
             Route::resource('crawlerItem', 'CrawlerItemsController');
             Route::post('crawlerItem_toggle', 'CrawlerItemsController@toggle')->name('crawlerItem.toggle');
-            Route::post('crawlerItem_save_cralwerTask_info', 'CrawlerItemsController@save_cralwertask_info')->name('crawlerItem.save_cralwerTask_info');
+            Route::post('crawlerItem_saveCralwerTaskInfo', 'CrawlerItemsController@saveCralwerTaskInfo')->name('crawlerItem.saveCralwerTaskInfo');
 
-            Route::resource('crawlerItemSku', 'CrawlerItemSKUsController');
-            Route::post('crawlerItemSku-putProductId', 'CrawlerItemSKUsController@putProductId')->name('crawlerItemSku.putProductId');
-            Route::post('crawlerItemSku-showProductSkus', 'CrawlerItemSKUsController@showProductSkus')->name('crawlerItemSku.showProductSkus');
-            Route::post('crawlerItemSku-bind_product_sku_to_crawler_sku', 'CrawlerItemSKUsController@bind_product_sku_to_crawler_sku')->name('crawlerItemSku.bind_product_sku_to_crawler_sku');
+            Route::resource('crawlerItem-crawlerItemSku', 'CrawlerItem_CrawlerItemSKUsController');
+            Route::post('crawlerItem-crawlerItemSku_putProductId', 'CrawlerItem_CrawlerItemSKUsController@putProductId')->name('crawlerItem-crawlerItemSku.putProductId');
+            Route::post('crawlerItem-crawlerItemSku_showProductSkus', 'CrawlerItem_CrawlerItemSKUsController@showProductSkus')->name('crawlerItem-crawlerItemSku.showProductSkus');
+            Route::post('crawlerItem-crawlerItemSku_bindProductSkuToCrawlerSku', 'CrawlerItem_CrawlerItemSKUsController@bindProductSkuToCrawlerSku')->name('crawlerItem-crawlerItemSku.bindProductSkuToCrawlerSku');
 
             //PurchaseOrderCartItem
             Route::post('purchaseOrderCartItem_add', 'PurchaseOrderCartItemsController@add')->name('purchaseOrderCartItem.add');

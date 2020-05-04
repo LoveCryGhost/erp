@@ -60,7 +60,7 @@ class CrawlerItemsController extends MemberCoreController
         }
     }
 
-    public function save_cralwertask_info()
+    public function saveCralwerTaskInfo()
     {
         $crawlerTask = $this->crawlerService->crawlerTaskRepo->builder()
             ->where('member_id', Auth::guard('member')->user()->id)->find(request()->crawlerTask);
@@ -69,7 +69,8 @@ class CrawlerItemsController extends MemberCoreController
             $crawlerTask->save();
         }
 
-        return redirect()->route('member.crawlerItem.index',['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active]);
+        return redirect()->route('member.crawlerItem.index',['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active])
+            ->with('toast', parent::$toast_update);
 
     }
 }
