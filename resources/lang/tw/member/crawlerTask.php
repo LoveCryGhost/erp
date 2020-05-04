@@ -10,6 +10,7 @@ return [
     'index.search.description' => '描述',
     'index.search.submit' => '搜尋',
     'index.search.reset' => '重新搜尋',
+    'index.search.reload_task' => '確認全部要重新爬蟲?',
 
     'index.table.no' => '編號',
     'index.table.barcode' => '條碼',

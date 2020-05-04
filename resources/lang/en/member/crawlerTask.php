@@ -10,6 +10,7 @@ return [
     'index.search.description' => 'Description',
     'index.search.submit' => 'Search',
     'index.search.reset' => 'Reset',
+    'index.search.reload_task' => 'Do You Want to Crawler All ?',
 
     'index.table.no' => 'No.',
     'index.table.barcode' => 'Barcode',

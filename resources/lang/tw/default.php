@@ -1,12 +1,28 @@
 <?php
 
 return [
+
+    'login'=>[
+        'hompage' => '首頁',
+        'rember_me' => '記住我',
+        'forget_password' => '忘記密碼 ?',
+        'login' => '登入',
+    ],
+    'resetPassword' => [
+        'reset_password' => '重置密碼',
+        'email_has_send' => '密碼重置郵件已經發送至您的指定信箱 !'
+    ],
+
+
+
     'info' => [
+        'home' => '首頁',
+        'dashboard' => '控制台',
         'email' => '郵箱',
         'setting' => '設定',
         'logout' => '登出',
         'login' => '登入',
-        'rember_me' => '記住我',
+
         'join_at' => '加入時間',
         'member_info' => '會員資料'
     ],

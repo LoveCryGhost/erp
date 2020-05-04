@@ -28,12 +28,12 @@
             <ul class="nav navbar-nav">
                 <li class="search-bar">
                     <div class="lookup lookup-circle lookup-right">
-                        <input type="text" name="search">
+                        <input type="text" name="search" class="w-200">
                     </div>
                 </li>
 
                 {{--消息通知--}}
-                @include(config('theme.member.header-notifications'))
+{{--                @include(config('theme.member.header-notifications'))--}}
 
                 {{--使用者資料--}}
                 @include(config('theme.member.header-member-profiles'))

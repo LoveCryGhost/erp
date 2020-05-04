@@ -61,9 +61,9 @@
                 <div class="box-body">
                     <div class="col-xl-12 col-lg-12 text-right">
                         @include(config('theme.member.btn.index.crud'))
-                        <form action="{{route('member.crawler.refresh')}}" method="post" class="m-b-0"
+                        <form action="{{route('member.crawlerTask.refresh')}}" method="post" class="m-b-0"
                               style="display: inline-block;"
-                              onsubmit="return confirm('{{__('member/crawlerTask.index.search.delete_confirm')}}');">
+                              onsubmit="return confirm('{{__('member/crawlerTask.index.search.reload_task')}}');">
                             @csrf
                             @method('post')
                             <button type="submit" class="btn btn-secondary">
