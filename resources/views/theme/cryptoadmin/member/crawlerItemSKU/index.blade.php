@@ -20,15 +20,15 @@
             <div class="col-md-6">
                 <table class="table table-hover table-bordered table-primary font-size-10">
                     <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>名稱</th>
-                            <th>售價</th>
-                            <th>庫存</th>
-                            <th>週銷量</th>
-                            <th>月銷量</th>
-                            <th>歷史銷量</th>
-                            <th>歷史銷量(%)</th>
+                        <tr class="text-center">
+                            <th>{{__('member/crawlerItem.sku_detail.table.no')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.name')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.price')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.stock')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.weekly_sale')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.monthly_sale')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.historic_sale')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.historic_sale_percentage')}}</th>
 
                         </tr>
                     </thead>

@@ -10,11 +10,11 @@
             <h3>
                 {{__('member/crawlerTask.index.title')}}
             </h3>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Members</a></li>
-                <li class="breadcrumb-item active">Members List</li>
-            </ol>
+{{--            <ol class="breadcrumb">--}}
+{{--                <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--}}
+{{--                <li class="breadcrumb-item"><a href="#">Members</a></li>--}}
+{{--                <li class="breadcrumb-item active">Members List</li>--}}
+{{--            </ol>--}}
         </div>
 
         <!-- Main content -->
@@ -125,7 +125,7 @@
     
                                             <form action="{{route('member.crawlerTask.destroy', [ $crawlerTask->ct_id])}}" method="post"
                                                   style="display: inline-block;"
-                                                  onsubmit="return confirm('{{__('member/supplierGroup.index.table.delete_confirm')}}');">
+                                                  onsubmit="return confirm('{{__('member/crawlerTask.index.table.delete_confirm')}}');">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-secondary btn-sm">
