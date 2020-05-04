@@ -1,4 +1,5 @@
-git 
+<?php
+
 return [
     'index'       => [
         'lazzyload_more_records' => 'Load more ... ',
