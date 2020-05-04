@@ -19,7 +19,7 @@ return [
     'index.table.description' => '描述',
     'index.table.is_active' => '啟用',
     'index.table.information' => '訊息',
-    'index.table.action' => '啟用',
+    'index.table.action' => '操作',
     'index.table.created_by' => '建立者',
     'index.table.updated_at' => '最後更新',
 
@@ -54,7 +54,7 @@ return [
     'edit.is_active' => '啟用',
     'edit.information' => '信息',
     'edit.local' => '國家',
-    'edit.action' => '啟用',
+    'edit.action' => '操作',
     'edit.created_by' => '建立者',
     'edit.updated_at' => '更新時間',
 

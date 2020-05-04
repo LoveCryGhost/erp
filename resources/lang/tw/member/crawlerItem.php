@@ -27,7 +27,7 @@ return [
     'index.table.information.monthly_sale' => '月銷量',
     'index.table.information.historic_sale' => '歷史銷量',
 
-    'index.table.action' => '啟用',
+    'index.table.action' => '操作',
     'index.table.created_by' => '建立者',
     'index.table.updated_at' => '最後更新',
 
@@ -62,7 +62,7 @@ return [
     'edit.is_active' => '啟用',
     'edit.information' => '訊息',
     'edit.local' => '國家',
-    'edit.action' => '啟用',
+    'edit.action' => '操作',
     'edit.created_by' => '建立者',
     'edit.updated_at' => '最後更新',
 

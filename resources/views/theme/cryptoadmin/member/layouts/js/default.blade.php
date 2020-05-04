@@ -73,7 +73,7 @@
 <script src="http://www.amcharts.com/lib/3/plugins/export/export.min.js" type="text/javascript"></script>
 <script src="http://www.amcharts.com/lib/3/themes/light.js" type="text/javascript"></script>
 
-
+w
 <!-- InputMask -->
 <!-- Bootstrap touchspin -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js')}}"></script>
