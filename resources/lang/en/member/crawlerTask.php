@@ -52,7 +52,7 @@ return [
     'edit.description' => 'Description',
     'edit.category' => 'Category',
     'edit.author' => 'Author',
-    'edit.is_active' => 'Active',
+    'edit.is_active' => 'Track',
     'edit.information' => 'Info',
     'edit.local' => 'Country',
     'edit.action' => 'Action',

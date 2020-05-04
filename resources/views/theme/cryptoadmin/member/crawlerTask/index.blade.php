@@ -24,7 +24,7 @@
                 <div class="box-header">
                     <div class="row">
                         <div class="col">
-                            <form class="form-control m-b-0">
+                            <form class="form-control m-b-0 bg-color-lightblue">
                                 <div class="row">
                                     <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.barcode')}}</label>
                                     <div class="col-sm-2">
