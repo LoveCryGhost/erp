@@ -75,16 +75,16 @@
                         <div class="infinite-scroll">
                             <table class="itable">
                                 <thead>
-                                <tr class="">
-                                    <th>{{__('member/crawlerTask.index.table.no')}}</th>
-                                    <th>{{__('member/crawlerTask.index.table.barcode')}}</th>
-                                    <th>{{__('member/crawlerTask.index.table.taskName')}}</th>
-                                    <th>{{__('member/crawlerTask.index.table.domain_name')}}</th>
-                                    <th>{{__('member/crawlerTask.index.table.description')}}</th>
-                                    <th>{{__('member/crawlerTask.index.table.is_active')}}</th>
-                                    <th>{{__('member/crawlerTask.index.table.information')}}</th>
-                                    <th>{{__('member/crawlerTask.index.table.action')}}</th>
-                                </tr>
+                                    <tr>
+                                        <th>{{__('member/crawlerTask.index.table.no')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.barcode')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.taskName')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.domain_name')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.description')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.is_active')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.information')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.action')}}</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($crawlerTasks as $crawlerTask)
@@ -97,7 +97,7 @@
                                             </p>
                                         </td>
                                         <td class="text-left">
-                                            {{__('member/crawlerTask.index.table.pages')}}：{{$crawlerTask->pagess}}<br>
+                                            {{__('member/crawlerTask.index.table.pages')}}：{{$crawlerTask->pages}}<br>
                                             {{__('member/crawlerTask.index.table.domain')}}：{{$crawlerTask->domain_name}}<br>
                                             {{__('member/crawlerTask.index.table.sortBy')}}：{{$crawlerTask->sort_by}}
                     
