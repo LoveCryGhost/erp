@@ -59,7 +59,7 @@ return [
     'edit.description' => '描述',
     'edit.category' => '類別',
     'edit.author' => '建立者',
-    'edit.is_active' => '啟用',
+    'edit.is_active' => '追蹤',
     'edit.information' => '訊息',
     'edit.local' => '國家',
     'edit.action' => '操作',
