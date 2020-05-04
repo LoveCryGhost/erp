@@ -34,22 +34,22 @@
         <li>
             <!-- inner menu: contains the actual data -->
             <ul class="menu sm-scrol">
-                <li><a href="{{ url('locale/en') }}" class="text-success"><i class="flag-icon flag-icon-us"></i> EN
+                <li><a href="{{ url('locale/en') }}"><i class="flag-icon flag-icon-us"></i> {{__('default.language.en')}}
                         {!! Session::get('locale')=="en"? '<sapn class="text-right text-primary"> V </sapn>':"" !!}
                     </a></li>
-                <li><a href="{{ url('locale/cn') }}" class="text-success"><i class="flag-icon flag-icon-cn"></i> 中國(簡)
+                <li><a href="{{ url('locale/cn') }}"><i class="flag-icon flag-icon-cn"></i> {{__('default.language.cn')}}
                         {!! Session::get('locale')=="cn"? '<sapn class="text-right text-primary"> V </sapn>':"" !!}
                     </a></li>
-                <li><a href="{{ url('locale/tw') }}" class="text-success"><i class="flag-icon flag-icon-tw"></i> 中國(台灣-繁)
+                <li><a href="{{ url('locale/tw') }}"><i class="flag-icon flag-icon-tw"></i> {{__('default.language.tw')}}
                         {!! Session::get('locale')=="tw"? '<sapn class="text-right text-primary"> V </sapn>':"" !!}
                     </a></li>
-                <li><a href="{{ url('locale/id') }}" class="text-success"><i class="flag-icon flag-icon-id"></i> 印尼
+                <li><a href="{{ url('locale/id') }}"><i class="flag-icon flag-icon-id"></i> {{__('default.language.id')}}
                         {!! Session::get('locale')=="id"? '<sapn class="text-right text-primary"> V </sapn>':"" !!}
                     </a></li>
-                <li><a href="{{ url('locale/th') }}" class="text-success"><i class="flag-icon flag-icon-th"></i> 泰國
+                <li><a href="{{ url('locale/th') }}"><i class="flag-icon flag-icon-th"></i> {{__('default.language.th')}}
                         {!! Session::get('locale')=="th"? '<sapn class="text-right  text-primary"> V </sapn>':"" !!}
                     </a></li>
-                <li><a href="{{ url('locale/vn') }}" class="text-success"><i class="flag-icon flag-icon-vn"></i> 越南
+                <li><a href="{{ url('locale/vn') }}"><i class="flag-icon flag-icon-vn"></i> {{__('default.language.vn')}}
                         {!! Session::get('locale')=="vn"? '<sapn class="text-right text-primary"> V </sapn>':"" !!}
                     </a></li>
             </ul>

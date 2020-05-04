@@ -25,24 +25,24 @@
                     <div class="box-header">
                         <div class="row">
                             <div class="col">
-                                <form class="form-control" action="{{route('member.crawlerItem.saveCralwerTaskInfo', ['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active])}}" method="post">
+                                <form class="form-control bg-color-lightblue" action="{{route('member.crawlerItem.saveCralwerTaskInfo', ['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active])}}" method="post">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-3 border">
+                                        <div class="col-md-3">
                                             {{__('member/crawlerItem.index.search.taskName')}}：{{$crawlerTask->ct_name}}<br>
                                             {{__('member/crawlerItem.index.search.domain_name')}}：{{$crawlerTask->domain_name}}<br>
                                             {{__('member/crawlerItem.index.search.pages')}}：{{$crawlerTask->pages}}<br>
                                         </div>
-                                        <div class="col-md-3 border">
+                                        <div class="col-md-3">
                                             {{__('member/crawlerItem.index.search.url')}}：<a href="{{$crawlerTask->url}}" class="btn btn-sm btn-primary" target="_blank">{{__('member/crawlerItem.index.search.show_task_in_shopee')}}</a><br>
                                             {{__('member/crawlerItem.index.search.created_by')}}：{{$crawlerTask->member->name}}
                                         </div>
-                                        <div class="col-md-3 border">
+                                        <div class="col-md-3">
                                             {{__('member/crawlerItem.index.search.category')}}：{{$crawlerTask->cat}}<br>
                                             {{__('member/crawlerItem.index.search.sortBy')}}：{{$crawlerTask->sort_by}}<br>
                                             {{__('member/crawlerItem.index.search.coutnry')}}：{{$crawlerTask->local}}
                                         </div>
-                                        <div class="col-md-3 border">
+                                        <div class="col-md-3">
                                             <input type="checkbox" class="crawlertask" id="crawlertask-bt-switch" value="1" {{request()->is_active==1? "checked" : ""}}
                                             data-label-width="100%"
                                                    data-label-text="{{__('member/crawlerItem.index.search.active')}}" data-size="mini"
@@ -52,10 +52,10 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-8 border">
+                                        <div class="col-md-12 m-b-5">
                                             <textarea class="form-control" type="text" name="description" placeholder="描述" >{{$crawlerTask->description}}</textarea>
                                         </div>
-                                        <div class="col-md-4 border">
+                                        <div class="col-md-12">
                                             <button type="submit" class="btn btn-primary form-control">{{__('member/crawlerItem.index.search.save')}}</button>
                                         </div>
                                     </div>

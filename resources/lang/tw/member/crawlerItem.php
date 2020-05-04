@@ -2,13 +2,14 @@
 return [
 
     'title' => "Shopee 產品",
+
     //Index
     'index.title'       => 'Shopee - 產品 List',
     'index.search.barcode' => '條碼',
     'index.search.taskName' => '任務名稱',
     'index.search.domain_name' => '網域',
     'index.search.pages' => '頁數',
-    'index.search.active' => '啟用',
+    'index.search.active' => '追蹤',
     'index.search.description' => '描述',
     'index.search.url' => '網頁連結',
     'index.search.category' => '類別',
@@ -42,7 +43,7 @@ return [
 
 
     //Edit
-    'edit.title'       => 'Shopee - Task 編輯',
+    'edit.title' => 'Shopee - Task 編輯',
     'edit.barcode' => '條碼',
     'edit.auto_generate' => '自動生成 !!',
     'edit.taskName' => '任務名稱',
@@ -55,7 +56,7 @@ return [
     'edit.barcode' => '條碼',
     'edit.taskName' => '任務名稱',
     'edit.domain_name' => '網域',
-    'edit.url' => 'ㄏ',
+    'edit.url' => '',
     'edit.description' => '描述',
     'edit.category' => '類別',
     'edit.author' => '建立者',

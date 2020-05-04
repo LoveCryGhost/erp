@@ -28,7 +28,7 @@
                 </li>
                 <!-- Messages -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="{{route('login')}}"  title="登入">
+                    <a class="dropdown-toggle" href="{{route('login')}}"  title="{{__('default.info.login')}}">
                         <i class="mdi mdi-login-variant"></i>
                     </a>
                 </li>
