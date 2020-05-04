@@ -4,7 +4,7 @@ return [
     'title' => "Shopee Item",
     //Index
     'index.title'       => 'Shopee - Item List',
-    'index.search.barcode' => 'Barcode',
+    'index.search.barcode' => '條碼',
     'index.search.taskName' => '任務名稱',
     'index.search.domain_name' => '網域',
     'index.search.pages' => '頁數',
@@ -43,7 +43,7 @@ return [
 
     //Edit
     'edit.title'       => 'Shopee - Task 編輯',
-    'edit.barcode' => 'Barcode',
+    'edit.barcode' => '條碼',
     'edit.auto_generate' => '自動生成 !!',
     'edit.taskName' => '任務名稱',
     'edit.domain_name' => '網域',
@@ -51,8 +51,8 @@ return [
     'edit.submit' => '搜尋',
     'edit.reset' => '重新搜尋',
 
-    'edit.no' => 'No.',
-    'edit.barcode' => 'Barcode',
+    'edit.no' => '編號',
+    'edit.barcode' => '條碼',
     'edit.taskName' => '任務名稱',
     'edit.domain_name' => '網域',
     'edit.url' => 'ㄏ',
@@ -80,7 +80,7 @@ return [
     'sku_detail.title' => 'SKU 明細',
     'sku_detail.selectProduct' => '請選擇產品',
     'sku_detail.table.title' =>  'SKU 明細',
-    'sku_detail.table.no' =>  'No.',
+    'sku_detail.table.no' =>  '編號',
     'sku_detail.table.name' =>  '名稱',
     'sku_detail.table.price' =>  '價格',
     'sku_detail.table.stock' =>  '庫存',

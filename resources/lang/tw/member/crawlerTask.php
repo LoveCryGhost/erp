@@ -4,15 +4,15 @@ return [
     'title' => "Shopee Task",
     //Index
     'index.title'       => 'Shopee - Task 列表',
-    'index.search.barcode' => 'Barcode',
+    'index.search.barcode' => '條碼',
     'index.search.taskName' => '任務名稱',
     'index.search.domain_name' => '網域',
     'index.search.description' => '描述',
     'index.search.submit' => 'Search',
     'index.search.reset' => 'Reset',
 
-    'index.table.no' => 'No.',
-    'index.table.barcode' => 'Barcode',
+    'index.table.no' => '編號',
+    'index.table.barcode' => '條碼',
 
     'index.table.taskName' => '任務名稱',
     'index.table.domain_name' => '網域',
@@ -35,7 +35,7 @@ return [
 
     //Edit
     'edit.title'       => 'Shopee - Task 編輯',
-    'edit.barcode' => 'Barcode',
+    'edit.barcode' => '條碼',
     'edit.auto_generate' => '自動生成 !!',
     'edit.taskName' => '任務名稱',
     'edit.domain_name' => '網域',
@@ -43,8 +43,8 @@ return [
     'edit.submit' => '搜尋',
     'edit.reset' => '重新搜尋',
 
-    'edit.no' => 'No.',
-    'edit.barcode' => 'Barcode',
+    'edit.no' => '編號',
+    'edit.barcode' => '條碼',
     'edit.taskName' => '任務名稱',
     'edit.domain_name' => '網域',
     'edit.url' => '網域',
