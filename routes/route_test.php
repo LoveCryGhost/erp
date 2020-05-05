@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 include('test/test.php');
 include('test/test_mh_erp.php');
 include('test/route_test_crawlerTaskJob.php');
+include('test/route_test_crawlerCategoryJob.php');
 
 Route::get('/', function () {
     return view('theme.cryptoadmin.user.welcome');

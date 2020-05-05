@@ -9,6 +9,16 @@ class CreateCrawlerTasksTable extends Migration
 
     public function up()
     {
+        Schema::create('crawler_categories', function (Blueprint $table) {
+            $table->bigIncrements('c_id');
+            $table->integer('p_id')->nullable()->default(0);
+            $table->string('code')->nullable();
+            $table->string('name')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('locale')->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('crawler_tasks', function (Blueprint $table) {
             $table->bigIncrements('ct_id');
             $table->string('id_code')->unique()->nullable();
@@ -43,5 +53,6 @@ class CreateCrawlerTasksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('crawler_tasks');
+        Schema::dropIfExists('crawler_categories');
     }
 }

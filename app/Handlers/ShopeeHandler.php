@@ -3,7 +3,6 @@
 namespace App\Handlers;
 
 use GuzzleHttp\Client;
-use function dd;
 
 class ShopeeHandler
 {
