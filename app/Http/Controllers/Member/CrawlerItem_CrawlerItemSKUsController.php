@@ -31,16 +31,17 @@ class CrawlerItem_CrawlerItemSKUsController extends MemberCoreController
                             ->where('member_id', Auth::guard('member')->user()->id)->get();
 
         foreach($crawlerItem->crawlerItemSKUs as $crawlerItemSKU){
-            if(strlen($crawlerItemSKU->name)>30){
-                $skuName =  substr($crawlerItemSKU->name,0,30).'...';
-            }else{
-                $skuName =  $crawlerItemSKU->name;
-            }
+//            if(strlen($crawlerItemSKU->name)>30){
+//                $skuName =  substr($crawlerItemSKU->name,0,30).'...';
+//            }else{
+//                $skuName =  $crawlerItemSKU->name;
+//            }
             $amCharProvider[] = [
-                "sku_name" => $skuName,
+                "sku_name" => $crawlerItemSKU->name,
                 'sold' => $crawlerItemSKU->sold
             ];
         }
+
 
         $view = view(config('theme.member.view').'crawlerItem.crawlerItemSKU.index',compact('data', 'crawlerItem', 'amCharProvider', 'products'))->render();
         return [
