@@ -18,6 +18,7 @@ return [
     //Shopee
     'shopee.ul' => "Shopee Module",
     'shopee.task' => "Shopee Task",
+    'shopee.search' => "Shopee Global",
 
     //Report
     'report.ul' => "Report Module",

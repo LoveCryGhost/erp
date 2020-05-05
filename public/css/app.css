@@ -66,6 +66,15 @@
   border-radius: 5px;
 }
 
+.member-crawlerItemSearch-index-page .item-image {
+  border-radius: 3px;
+  border: lightgrey 1px solid;
+  padding: 3px;
+  box-shadow: 2px 2px lightcyan;
+  margin: 3px;
+  width: 80px;
+}
+
 .staff-staffList .staff-list-img {
   width: 5px;
   height: 5px;

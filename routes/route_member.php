@@ -41,6 +41,7 @@ Route::prefix('')->middleware('auth:member')->namespace('Member')->group(functio
             Route::post('crawlerItem-crawlerItemSku_showProductSkus', 'CrawlerItem_CrawlerItemSKUsController@showProductSkus')->name('crawlerItem-crawlerItemSku.showProductSkus');
             Route::post('crawlerItem-crawlerItemSku_bindProductSkuToCrawlerSku', 'CrawlerItem_CrawlerItemSKUsController@bindProductSkuToCrawlerSku')->name('crawlerItem-crawlerItemSku.bindProductSkuToCrawlerSku');
 
+            Route::resource('crawlerItemSearch', 'CrawlerItemSearchsController');
             //PurchaseOrderCartItem
             Route::post('purchaseOrderCartItem_add', 'PurchaseOrderCartItemsController@add')->name('purchaseOrderCartItem.add');
             Route::get('purchaseOrderCartItem_index', 'PurchaseOrderCartItemsController@index')->name('purchaseOrderCartItem.index');

@@ -18,6 +18,7 @@ return [
     //Shopee
     'shopee.ul' => "Shopee 模組",
     'shopee.task' => "Shopee 任務",
+    'shopee.search' => "Shopee 全球",
 
     //Report
     'report.ul' => "報表",
