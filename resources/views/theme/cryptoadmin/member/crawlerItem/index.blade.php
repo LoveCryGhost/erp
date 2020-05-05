@@ -1,21 +1,20 @@
 @extends(config('theme.member.member-app'))
 
-@section('title','Shopee任務 - 列表')
+@section('title',__('member/crawlerItem.title'))
 
 @section('content-header','')
 
 @section('content')
 <div class="container-full">
-    <!-- Content Header (Page header) -->
     <div class="content-header">
         <h3>
-            Shopee任務 - 列表
+            {{__('member/crawlerItem.index.title')}}
         </h3>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Members</a></li>
-            <li class="breadcrumb-item active">Members List</li>
-        </ol>
+{{--        <ol class="breadcrumb">--}}
+{{--            <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--}}
+{{--            <li class="breadcrumb-item"><a href="#">Members</a></li>--}}
+{{--            <li class="breadcrumb-item active">Members List</li>--}}
+{{--        </ol>--}}
     </div>
 
     <!-- Main content -->
@@ -23,54 +22,48 @@
         <div class="row">
             <div class="col-12">
                 <div class="box">
-                    <div class="box-body">
-                        {{--CrawlerTask 爬蟲任務--}}
-                        <div class="">
-                            <form action="{{route('member.crawlerItem.save_cralwerTask_info', ['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active])}}" method="post">
-                                @csrf
-                                <table class="table table-primary table-bordered table-striped">
-                                <thead>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>任務信息</td>
-                                        <td>
-                                            任務名稱：{{$crawlerTask->ct_name}}<br>
-                                            網域:{{$crawlerTask->domain_name}}<br>
-                                            搜尋頁數:{{$crawlerTask->pages}}<br>
-                                        </td>
-                                        <td>
-                                            網址:<a href="{{$crawlerTask->url}}" target="_blank">顯示Shopee頁面</a><br>
-                                            創建者:{{$crawlerTask->member->name}}
-                                        </td>
-                                        <td>
-                                            類別:{{$crawlerTask->cat}}<br>
-                                            搜索方式:{{$crawlerTask->sort_by}}<br>
-                                            國家:{{$crawlerTask->local}}
-                                        </td>
-                                        <td>
+                    <div class="box-header">
+                        <div class="row">
+                            <div class="col">
+                                <form class="form-control bg-color-lightblue" action="{{route('member.crawlerItem.saveCralwerTaskInfo', ['crawlerTask'=>request()->crawlerTask, 'is_active'=> request()->is_active])}}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            {{__('member/crawlerItem.index.search.taskName')}}：{{$crawlerTask->ct_name}}<br>
+                                            {{__('member/crawlerItem.index.search.domain_name')}}：{{$crawlerTask->domain_name}}<br>
+                                            {{__('member/crawlerItem.index.search.pages')}}：{{$crawlerTask->pages}}<br>
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{__('member/crawlerItem.index.search.url')}}：<a href="{{$crawlerTask->url}}" class="btn btn-sm btn-primary" target="_blank">{{__('member/crawlerItem.index.search.show_task_in_shopee')}}</a><br>
+                                            {{__('member/crawlerItem.index.search.created_by')}}：{{$crawlerTask->member->name}}
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{__('member/crawlerItem.index.search.category')}}：{{$crawlerTask->cat}}<br>
+                                            {{__('member/crawlerItem.index.search.sortBy')}}：{{$crawlerTask->sort_by}}<br>
+                                            {{__('member/crawlerItem.index.search.coutnry')}}：{{$crawlerTask->local}}
+                                        </div>
+                                        <div class="col-md-3">
                                             <input type="checkbox" class="crawlertask" id="crawlertask-bt-switch" value="1" {{request()->is_active==1? "checked" : ""}}
                                             data-label-width="100%"
-                                                   data-label-text="啟用" data-size="mini"
+                                                   data-label-text="{{__('member/crawlerItem.index.search.active')}}" data-size="mini"
                                                    data-on-text="On"    data-on-color="primary"
                                                    data-off-text="Off"  data-off-color="danger"
                                                    data-crawlertask-id="{{$crawlerTask->ct_id}}"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4">
-                                            <textarea class="form-control" type="text" name="description" placeholder="描述" >{{$crawlerTask->description}}</textarea>
-                                        </td>
-                                        <td>
-                                            <button type="submit" class="btn btn-secondary">儲存訊息</button>
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 m-b-5">
+                                            <textarea class="form-control" type="text" name="description" placeholder="{{__('member/crawlerItem.index.search.description')}}" >{{$crawlerTask->description}}</textarea>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary form-control">{{__('member/crawlerItem.index.search.save')}}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-
+                    </div>
+                    <div class="box-body">
                         {{--CrawlerItem 爬蟲項目--}}
                         <div class="infinite-scroll">
                             @foreach($crawlerItems as $crawlerItem)
@@ -84,12 +77,12 @@
                                             @if(request()->is_active==0)
                                                 <div class="checkbox">
                                                     <input type="checkbox" class="item-is-active" id="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" onchange="toggle_crawler_item(this, php_inject={{json_encode([ 'ct_id'=> $crawlerTask->ct_id, 'ci_id' =>$crawlerItem->ci_id, 'ct_i_id' => $crawlerItem->pivot->ct_i_id])}});" data-ct_i_id="{{$crawlerItem->pivot->ct_i_id}}">
-                                                    <label for="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" class="text-dark">顯示</label>
+                                                    <label for="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" class="text-dark">{{__('member/crawlerItem.index.table.show')}}</label>
                                                 </div>
                                             @else
                                                 <div class="checkbox">
                                                     <input type="checkbox" class="item-is-active" id="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" onchange="toggle_crawler_item(this, php_inject={{json_encode([ 'ct_id'=> $crawlerTask->ct_id, 'ci_id' =>$crawlerItem->ci_id, 'ct_i_id' => $crawlerItem->pivot->ct_i_id])}});" data-ctrlitem-id="{{$crawlerItem->pivot->ct_i_id}}">
-                                                    <label for="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" class="text-dark">隱藏</label>
+                                                    <label for="item-is-active-{{$crawlerItem->pivot->ct_i_id}}" class="text-dark">{{__('member/crawlerItem.index.table.hide')}}</label>
                                                 </div>
                                             @endif
     
@@ -118,28 +111,33 @@
                                             {{number_format($crawlerItem->crawlerItemSKUs->max('price')/10, 0,".",",")}}
                                         </div>
                                         <div class="col-md-3">
-                                            <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-left"
-                                               onclick="show_crawler_item_skus(this, php_inject={{json_encode(['models' => ['crawlerItem' => $crawlerItem]])}})">SKU-明細</a><br>
-                                            月銷量 : {{number_format($crawlerItem->sold,0,".",",")}}<br>
-                                            歷史銷量 : {{number_format($crawlerItem->historical_sold,0,".",",")}}<br>
-                                            最後更新時間 : {{$crawlerItem->updated_at!=null? $crawlerItem->updated_at->diffForHumans() : ""}}<br>
-                                            <div class="text-right">{{now()}} - {{$crawlerItem->updated_at}}</div>
+                                            <div>
+                                                <div><a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-left"
+                                                                           onclick="show_crawler_item_skus(this, php_inject={{json_encode(['models' => ['crawlerItem' => $crawlerItem]])}})"> {{__('member/crawlerItem.index.table.sku_detail')}}</a></div>
+                                                <div class="float-right">{{$crawlerItem->updated_at}}</div>
+                                            </div>
+                                            <div>
+                                                {{__('member/crawlerItem.index.table.information.monthly_sale')}} : {{number_format($crawlerItem->sold,0,".",",")}}<br>
+                                                {{__('member/crawlerItem.index.table.information.historic_sale')}} : {{number_format($crawlerItem->historical_sold,0,".",",")}}<br>
+                                                {{__('member/crawlerItem.index.table.updated_at')}} : {{$crawlerItem->updated_at!=null? $crawlerItem->updated_at->diffForHumans() : ""}}<br>
+                                            </div>
                                         </div>
 
                                     </div>
 
                                 </div>
+                                
                             @endforeach
 
                             {{--点击加载下一页的按钮--}}
                             <div class="text-center">
                                 {{--判断到最后一页就终止, 否则 jscroll 又会从第一页开始一直循环加载--}}
                                 @if( $crawlerItems->currentPage() == $crawlerItems->lastPage())
-                                    <span class="text-center text-muted">没有更多了</span>
+                                    <span class="text-center text-muted">{{__('default.index.lazzyload_no_more_records')}}</span>
                                 @else
                                     {{-- 这里调用 paginator 对象的 nextPageUrl() 方法, 以获得下一页的路由 --}}
                                     <a class="jscroll-next btn btn-outline-secondary btn-block rounded-pill" href="{{ $crawlerItems->appends($filters)->nextPageUrl() }}">
-                                        加载更多....
+                                        {{__('default.index.lazzyload_more_records')}}
                                     </a>
                                 @endif
                             </div>
@@ -155,85 +153,85 @@
 @section('js')
     @parent
     <script src="{{asset('js/jscroll.min.js')}}"></script>
-<script type="text/javascript">
-$(function() {
-    $('.infinite-scroll').jscroll({
-        // 当滚动到底部时,自动加载下一页
-        autoTrigger: true,
-        // 限制自动加载, 仅限前两页, 后面就要用户点击才加载
-        autoTriggerUntil: 0,
-        // 设置加载下一页缓冲时的图片
-        loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
-        padding: 0,
-        nextSelector: 'a.jscroll-next:last',
-        contentSelector: 'div.infinite-scroll',
-        callback:function() {
-            float_image(className="item-image", x=90, y=-10)
-        }
-    });
+    <script type="text/javascript">
+        $(function() {
+            $('.infinite-scroll').jscroll({
+                // 当滚动到底部时,自动加载下一页
+                autoTrigger: true,
+                // 限制自动加载, 仅限前两页, 后面就要用户点击才加载
+                autoTriggerUntil: 0,
+                // 设置加载下一页缓冲时的图片
+                loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
+                padding: 0,
+                nextSelector: 'a.jscroll-next:last',
+                contentSelector: 'div.infinite-scroll',
+                callback:function() {
+                    float_image(className="item-image", x=90, y=-10)
+                }
+            });
+        
+            $(".crawlertask").bootstrapSwitch({
+                'size': 'mini',
+                'onSwitchChange': function(event, state){
+                    toggle_crawler_items_reload($(this), state);
+                },
+            }).bootstrapSwitch('toggleState',true);
+            float_image(className="item-image", x=90, y=0)
+        
+        
+        });
 
-    $(".crawlertask").bootstrapSwitch({
-        'size': 'mini',
-        'onSwitchChange': function(event, state){
-            toggle_crawler_items_reload($(this), state);
-        },
-    }).bootstrapSwitch('toggleState',true);
-    float_image(className="item-image", x=90, y=0)
-
-
-});
-
-function show_crawler_item_skus(_this, php_inject) {
-    $.ajaxSetup(active_ajax_header());
-    $.ajax({
-        type: 'get',
-        url: '{{route('member.crawlerItemSku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id+'&ct_i_id='+php_inject.models.crawlerItem.pivot.ct_i_id,
-        data: '',
-        async: true,
-        crossDomain: true,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-            $('#modal-left .modal-title').html('SKUs - 列表');
-            $('#modal-left .modal-body').html(data.view)
-        },
-        error: function(data) {
-        }
-    });
-}
-
-function toggle_crawler_items_reload(_this, _TF) {
-    if(_TF===true){
-        window.location.replace("{{route('member.crawlerItem.index')}}?crawlerTask=" + _this.data('crawlertask-id') + "&is_active=1");
-    }else{
-        window.location.replace("{{route('member.crawlerItem.index')}}?crawlerTask=" + _this.data('crawlertask-id') + "&is_active=0");
+    function show_crawler_item_skus(_this, php_inject) {
+        $.ajaxSetup(active_ajax_header());
+        $.ajax({
+            type: 'get',
+            url: '{{route('member.crawlerItem-crawlerItemSku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id+'&ct_i_id='+php_inject.models.crawlerItem.pivot.ct_i_id,
+            data: '',
+            async: true,
+            crossDomain: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('#modal-left .modal-title').html('{{__('member/crawlerItem.sku_detail.title')}}');
+                $('#modal-left .modal-body').html(data.view)
+            },
+            error: function(data) {
+            }
+        });
     }
-}
 
-
-function toggle_crawler_item(_this, php_inject) {
-    $.ajaxSetup(active_ajax_header());
-    var formData = new FormData();
-    formData.append('ct_i_id', php_inject.ct_i_id);
-    formData.append('ci_id', php_inject.ci_id);
-    formData.append('ct_id', php_inject.ct_id);
-
-    $.ajax({
-        type: 'post',
-        url: '{{route('member.crawlerItem.toggle')}}',
-        data: formData,
-        async: true,
-        crossDomain: true,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-
-        },
-        error: function(data) {
+    function toggle_crawler_items_reload(_this, _TF) {
+        if(_TF===true){
+            window.location.replace("{{route('member.crawlerItem.index')}}?crawlerTask=" + _this.data('crawlertask-id') + "&is_active=1");
+        }else{
+            window.location.replace("{{route('member.crawlerItem.index')}}?crawlerTask=" + _this.data('crawlertask-id') + "&is_active=0");
         }
-    });
-}
+    }
 
 
-</script>
+    function toggle_crawler_item(_this, php_inject) {
+        $.ajaxSetup(active_ajax_header());
+        var formData = new FormData();
+        formData.append('ct_i_id', php_inject.ct_i_id);
+        formData.append('ci_id', php_inject.ci_id);
+        formData.append('ct_id', php_inject.ct_id);
+    
+        $.ajax({
+            type: 'post',
+            url: '{{route('member.crawlerItem.toggle')}}',
+            data: formData,
+            async: true,
+            crossDomain: true,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+    
+            },
+            error: function(data) {
+            }
+        });
+    }
+    
+    
+    </script>
 @endsection

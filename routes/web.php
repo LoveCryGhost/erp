@@ -27,7 +27,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//語言 Language
+// 語言 Language
 Route::get('locale/{locale}', function ($locale){
     Session::put('locale', $locale);
     return redirect()->back();

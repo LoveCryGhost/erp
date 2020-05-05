@@ -101,7 +101,7 @@ class CrawlerTasksController extends MemberCoreController
 
     public function index_filters($query, $filters)
     {
-        $query  = $this->filter_like($query,'ct_namee', $filters['ct_name']);
+        $query  = $this->filter_like($query,'ct_name', $filters['ct_name']);
         $query  = $this->filter_like($query,'description', $filters['description']);
         $query  = $this->filter_like($query,'domain_name', $filters['domain_name']);
         $query  = $this->filter_like($query,'id_code', $filters['id_code']);

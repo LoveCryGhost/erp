@@ -1,18 +1,17 @@
 @extends(config('theme.member.member-app'))
 
-@section('title','重置密碼')
-
+@section('title',__('default.resetPassword.reset_password'))
 
 {{--清空--}}
 @section('app-content','')
 
 @section('content-header')
-    <body class="hold-transition theme-yellow bg-img" style="background-image: url({{asset('theme/cryptoadmin/images/auth-bg/bg.jpg')}})" data-overlay="3">
+    <body class="hold-transition theme-yellow bg-img"  data-overlay="3">
 
     <div class="auth-2-outer row align-items-center h-p100 m-0">
         <div class="auth-2 bg-primary">
             <div class="auth-logo font-size-30">
-                <a href="/" class="text-dark"><b>Member - 重置密碼</b></a>
+                <a href="/" class="text-dark"><b>Member - {{__('default.resetPassword.reset_password')}}</b></a>
             </div>
             <!-- /.login-logo -->
             <div class="auth-body">
@@ -58,7 +57,7 @@
                     {{--註冊提交按鈕--}}
                     <div class="row">
                         <div class="col-12 text-center">
-                            <button type="submit" class="btn my-20 btn-success">重置密碼</button>
+                            <button type="submit" class="btn my-20 btn-success">{{__('default.resetPassword.reset_password')}}</button>
                         </div>
                         <!-- /.col -->
                     </div>

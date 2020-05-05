@@ -1,6 +1,6 @@
 @extends(config('theme.member.member-app'))
 
-@section('title','Shopee任務 - 列表')
+@section('title',__('member/crawlerTask.title'))
 
 @section('content-header','')
 @section('content')
@@ -8,13 +8,13 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <h3>
-                Shopee任務 - 列表
+                {{__('member/crawlerTask.index.title')}}
             </h3>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Members</a></li>
-                <li class="breadcrumb-item active">Members List</li>
-            </ol>
+{{--            <ol class="breadcrumb">--}}
+{{--                <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--}}
+{{--                <li class="breadcrumb-item"><a href="#">Members</a></li>--}}
+{{--                <li class="breadcrumb-item active">Members List</li>--}}
+{{--            </ol>--}}
         </div>
 
         <!-- Main content -->
@@ -24,33 +24,33 @@
                 <div class="box-header">
                     <div class="row">
                         <div class="col">
-                            <form class="form-control m-b-0">
+                            <form class="form-control m-b-0 bg-color-lightblue">
                                 <div class="row">
-                                    <label class="col-sm-1 col-form-label">Barcode</label>
+                                    <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.barcode')}}</label>
                                     <div class="col-sm-2">
-                                        <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">
+                                        <input class="form-control" type="text" name="id_code" placeholder="{{__('member/crawlerTask.index.search.barcode')}}" value="{{request()->id_code}}">
                                     </div>
-                                    <label class="col-sm-1 col-form-label">任務名稱</label>
+                                    <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.taskName')}}</label>
                                     <div class="col-sm-2">
-                                        <input class="form-control" type="text" name="ct_name" placeholder="任務名稱" value="{{request()->ct_name}}">
+                                        <input class="form-control" type="text" name="ct_name" placeholder="{{__('member/crawlerTask.index.search.taskName')}}" value="{{request()->ct_name}}">
                                     </div>
-                                    <label class="col-sm-1 col-form-label">網域</label>
+                                    <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.domain_name')}}</label>
                                     <div class="col-sm-2">
-                                        <input class="form-control" type="text" name="domain_name" placeholder="網域" value="{{request()->domain_name}}">
+                                        <input class="form-control" type="text" name="domain_name" placeholder="{{__('member/crawlerTask.index.search.domain_name')}}" value="{{request()->domain_name}}">
                                     </div>
-                                    <label class="col-sm-1 col-form-label">描述</label>
+                                    <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.description')}}</label>
                                     <div class="col-sm-2">
-                                        <input class="form-control" type="text" name="description" placeholder="描述" value="{{request()->description}}">
+                                        <input class="form-control" type="text" name="description" placeholder="{{__('member/crawlerTask.index.search.description')}}" value="{{request()->description}}">
                                     </div>
                                 </div>
                                 
                     
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="{{route('member.crawlerTask.index')}}" class="form-control btn btn-sm btn-primary">重新搜尋</a>
+                                        <a href="{{route('member.crawlerTask.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/crawlerTask.index.search.reset')}}</a>
                                     </div>
                                     <div class="col-6">
-                                        <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">搜尋</button>
+                                        <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">{{__('member/crawlerTask.index.search.submit')}}</button>
                                     </div>
                                 </div>
                             </form>
@@ -61,9 +61,9 @@
                 <div class="box-body">
                     <div class="col-xl-12 col-lg-12 text-right">
                         @include(config('theme.member.btn.index.crud'))
-                        <form action="{{route('member.crawler.refresh')}}" method="post" class="m-b-0"
+                        <form action="{{route('member.crawlerTask.refresh')}}" method="post" class="m-b-0"
                               style="display: inline-block;"
-                              onsubmit="return confirm('您确定要重新爬蟲吗？');">
+                              onsubmit="return confirm('{{__('member/crawlerTask.index.search.reload_task')}}');">
                             @csrf
                             @method('post')
                             <button type="submit" class="btn btn-secondary">
@@ -75,16 +75,16 @@
                         <div class="infinite-scroll">
                             <table class="itable">
                                 <thead>
-                                <tr class="">
-                                    <th>排序</th>
-                                    <th>Barcode</th>
-                                    <th>任務名稱</th>
-                                    <th>區域</th>
-                                    <th>描述</th>
-                                    <th>啟用</th>
-                                    <th>訊息</th>
-                                    <th>操作</th>
-                                </tr>
+                                    <tr>
+                                        <th>{{__('member/crawlerTask.index.table.no')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.barcode')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.taskName')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.domain_name')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.description')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.is_active')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.information')}}</th>
+                                        <th>{{__('member/crawlerTask.index.table.action')}}</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($crawlerTasks as $crawlerTask)
@@ -97,9 +97,9 @@
                                             </p>
                                         </td>
                                         <td class="text-left">
-                                            頁數：{{$crawlerTask->pages}}<br>
-                                            網域：{{$crawlerTask->domain_name}}<br>
-                                            搜尋方式：{{$crawlerTask->sort_by}}
+                                            {{__('member/crawlerTask.index.table.pages')}}：{{$crawlerTask->pages}}<br>
+                                            {{__('member/crawlerTask.index.table.domain')}}：{{$crawlerTask->domain_name}}<br>
+                                            {{__('member/crawlerTask.index.table.sortBy')}}：{{$crawlerTask->sort_by}}
                     
                                         </td>
                                         <td>
@@ -107,22 +107,34 @@
                                                 <i class="btn btn-secondary fa fa-pencil"></i>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <input type="checkbox" class="permission_check" name="is_active" id="is_active_{{$crawlerTask->ct_id}}"
                                                    {{$crawlerTask->is_active===1? "checked": ""}} disabled>
                                             <label for="is_active_{{$crawlerTask->ct_id}}" class="text-dark p-0 m-0"></label>
                                         </td>
                                         <td>
-                                            <p class="mb-0">
-                                                <small>修改人 : {{$crawlerTask->member->name}}</small><br>
-                                                <small>最後更新 : {{$crawlerTask->updated_at==null? "": $crawlerTask->updated_at->diffForHumans()}}</small>
+                                            <p class="mb-0 text-left">
+                                                <small>{{__('member/crawlerTask.index.table.created_by')}} : {{$crawlerTask->member->name}}</small><br>
+                                                <small>{{__('member/crawlerTask.index.table.updated_at')}}  : {{$crawlerTask->updated_at==null? "": $crawlerTask->updated_at->diffForHumans()}}</small>
                                             </p>
                                         </td>
                                         <td>
-                                            @include(config('theme.member.btn.index.table_tr'),['id' => $crawlerTask->ct_id])
+                                            <a class="btn btn-warning btn-sm"
+                                                    href="{{route('member.crawlerTask.edit',[ $crawlerTask->ct_id])}}">
+                                                <i class="fa fa-edit mr-5"></i>{{__('member/crawlerTask.index.table.edit')}}</a>
+    
+                                            <form action="{{route('member.crawlerTask.destroy', [ $crawlerTask->ct_id])}}" method="post"
+                                                  style="display: inline-block;"
+                                                  onsubmit="return confirm('{{__('member/crawlerTask.index.table.delete_confirm')}}');">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-secondary btn-sm">
+                                                    <i class="fa fa-trash mr-5"></i>{{__('member/crawlerTask.index.table.delete')}}
+                                                </button>
+                                            </form>
                                             <a class="btn btn-primary btn-sm" target="_blank"
                                                href="{{route('member.crawlerItem.index',['crawlerTask' => $crawlerTask->ct_id, 'is_active' =>  $crawlerTask->is_active])}}">
-                                                <i class="fa fa-external-link"></i> 商品</a>
+                                                <i class="fa fa-external-link"></i> {{__('member/crawlerTask.index.table.show_items')}}</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -133,11 +145,11 @@
                             <div class="text-center">
                                 {{--判断到最后一页就终止, 否则 jscroll 又会从第一页开始一直循环加载--}}
                                 @if( $crawlerTasks->currentPage() == $crawlerTasks->lastPage())
-                                    <span class="text-center text-muted">没有更多了</span>
+                                    <span class="text-center text-muted">{{__('default.index.lazzyload_no_more_records')}}</span>
                                 @else
                                     {{-- 这里调用 paginator 对象的 nextPageUrl() 方法, 以获得下一页的路由 --}}
                                     <a class="jscroll-next btn btn-outline-secondary btn-block rounded-pill" href="{{ $crawlerTasks->appends($filters)->nextPageUrl() }}">
-                                        加载更多....
+                                        {{__('default.index.lazzyload_more_records')}}
                                     </a>
                                 @endif
                             </div>

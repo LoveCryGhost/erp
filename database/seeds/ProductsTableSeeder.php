@@ -61,7 +61,7 @@ class ProductsTableSeeder extends Seeder
             $products = [
                 [
                     'is_active' => 1, 'publish_at' => null, 'member_id' => 1,
-                    'p_name' => "Pizza 烤盤", 't_id' => 1,
+                    'p_name' => "Pizza 烤盤3", 't_id' => 1,
                     'c_ids' => [2],
                     'produuct_thumnail_ids' => ['/images/default/products/pizza_pan_1.jpg', '/images/default/products/pizza_pan_2.jpg'],
                     'skus' => [

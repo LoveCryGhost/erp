@@ -22,28 +22,25 @@
         </div>
 
         <div class="msg_box">
-            <li><a href="{{ url('locale/en') }}" ><i class="fa fa-language"></i> EN</a></li>
-    
-            <li><a href="{{ url('locale/tw') }}" ><i class="fa fa-language"></i>台灣</a></li>
-        </div>
-        <div >
-            <h1>{{ __('messages.welcome') }}</h1>
         </div>
 
         <div class="navbar-custom-menu r-side">
             <ul class="nav navbar-nav">
                 <li class="search-bar">
                     <div class="lookup lookup-circle lookup-right">
-                        <input type="text" name="search">
+                        <input type="text" name="search" class="w-200">
                     </div>
                 </li>
 
                 {{--消息通知--}}
-                @include(config('theme.member.header-notifications'))
+{{--                @include(config('theme.member.header-notifications'))--}}
 
                 {{--使用者資料--}}
                 @include(config('theme.member.header-member-profiles'))
-
+    
+                {{--消息通知--}}
+                @include(config('theme.member.header-language'))
+                
             </ul>
         </div>
     </nav>

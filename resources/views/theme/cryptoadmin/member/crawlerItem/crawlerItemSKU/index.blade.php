@@ -1,6 +1,6 @@
 <div class="box box-solid box-inverse box-dark">
     <div class="box-header  p-5">
-        <h5 class="box-title m-0">產品SKU - 供應商列表</h5>
+        <h5 class="box-title m-0">{{__('member/crawlerItem.sku_detail.title')}}</h5>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">
                 @can('member.reportSKU.crawlerItemAanalysis')
-                    請選擇商品:
+                    {{__('member/crawlerItem.sku_detail.selectProduct')}}：
                     <select name="p_id" onchange="product_select_change(this, php_inject={{json_encode(['models'])}})">
                         <option>Select...</option>
                         @foreach($products as $product)
@@ -20,16 +20,15 @@
             <div class="col-md-6">
                 <table class="table table-hover table-bordered table-primary font-size-10">
                     <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>名稱</th>
-                            <th>售價</th>
-                            <th>庫存</th>
-                            <th>週銷量</th>
-                            <th>月銷量</th>
-                            <th>歷史銷量</th>
-                            <th>歷史銷量(%)</th>
-
+                        <tr class="text-center">
+                            <th>{{__('member/crawlerItem.sku_detail.table.no')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.name')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.price')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.stock')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.weekly_sale')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.monthly_sale')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.historic_sale')}}</th>
+                            <th>{{__('member/crawlerItem.sku_detail.table.historic_sale_percentage')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,28 +112,6 @@
 </div>
 
 <script type="text/javascript">
-    a  = [{
-        "year": 2005,
-        "income": 23.5,
-        "expenses": 18.1
-    }, {
-        "year": 2006,
-        "income": 26.2,
-        "expenses": 22.8
-    }, {
-        "year": 2007,
-        "income": 30.1,
-        "expenses": 23.9
-    }, {
-        "year": 2008,
-        "income": 29.5,
-        "expenses": 25.1
-    }, {
-        "year": 2009,
-        "income": 24.6,
-        "expenses": 25
-    }];
-
     $('#modal-left').unbind('hidden.bs.modal').on('hidden.bs.modal', function () {
         $('#modal-left .modal-body').html('');
     });
@@ -161,13 +138,13 @@
         "startDuration": 1,
         "graphs": [{
                 "balloonText": "<span style='font-size:13px;'>[[category]] 的[[title]] :<b>[[value]]</b></span>",
-                "title": "銷量",
+                "title": "{{__('member/crawlerItem.sku_detail.sale_qty')}}",
                 "type": "column",
                 "fillAlphas": 0.8,
                 "valueField": "sold"
             }],
         "rotate": true,
-        "categoryField": "year",
+        "categoryField": "sku_name",
         "categoryAxis": {
             "gridPosition": "start"
         },
@@ -179,10 +156,11 @@
 
     function product_select_change(_this, php_inject) {
         $('#modal-right .modal-body').html("");
+        $('#modal-right .modal-title').html("");
         $.ajaxSetup(active_ajax_header());
         $.ajax({
             type: 'post',
-            url: '{{route('member.crawlerItemSku.putProductId')}}?product_id='+$(_this).val(),
+            url: '{{route('member.crawlerItem-crawlerItemSku.putProductId')}}?product_id='+$(_this).val(),
             data: '',
             async: true,
             crossDomain: true,
@@ -197,6 +175,7 @@
 
     function crawler_item_sku_click(_this, php_inject ) {
         $('#modal-right .modal-body').html("");
+        $('#modal-right .title').html("");
         $.ajaxSetup(active_ajax_header());
         var formData = new FormData();
         formData.append('ct_i_id', php_inject.ct_i_id);
@@ -205,15 +184,15 @@
         formData.append('modelid', php_inject.modelid);
         $.ajax({
             type: 'post',
-            url: '{{route('member.crawlerItemSku.showProductSkus')}}',
+            url: '{{route('member.crawlerItem-crawlerItemSku.showProductSkus')}}',
             data: formData,
             async: true,
             crossDomain: true,
             contentType: false,
             processData: false,
             success: function(data) {
+                $('#modal-right .modal-title').html('{{__('member/crawlerItem.sku_detail.product.title')}}');
                 $('#modal-right .modal-body').html(data.view);
-
             },
             error: function(data) {
             }

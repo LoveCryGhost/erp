@@ -64,6 +64,21 @@
                     <li><a href="{{route('admin.adminStaffRolePermission.index')}}"><i class="ti-more"></i>Staff - 指派權限</a></li>
                 </ul>
             </li>
+    
+            {{--DB --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-database"></i>
+                    <span>DB 資料庫</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('admin.adminCrawlerTask.index')}}"><i class="ti-more"></i>CrawlerTask</a></li>
+                    <li><a href="{{route('admin.adminCrawlerItem.index')}}"><i class="ti-more"></i>CrawlerItem</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
 </aside>

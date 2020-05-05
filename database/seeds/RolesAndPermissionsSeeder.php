@@ -191,6 +191,9 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $member = Member::find(5);
         $member->assignRole('crawlerTask');
+        
+        $member = Member::find(6);
+        $member->assignRole('crawlerTask');
 
     }
 
