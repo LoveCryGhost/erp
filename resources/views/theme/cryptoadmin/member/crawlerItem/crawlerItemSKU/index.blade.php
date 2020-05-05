@@ -127,7 +127,7 @@
             "valueWidth": 0,
             "verticalGap": 0
         },
-        "dataProvider": {!! collect($amCharProvider)!!},
+        "dataProvider": "{!! collect($amCharProvider)!!}",
         "valueAxes": [{
             "minorGridAlpha": 0.08,
             "minorGridEnabled": true,

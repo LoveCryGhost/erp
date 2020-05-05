@@ -8,7 +8,7 @@ return [
     'index.search.taskName' => 'Task Name',
     'index.search.domain_name' => 'Domain',
     'index.search.pages' => 'Pages',
-    'index.search.active' => 'Active',
+    'index.search.active' => 'Track',
     'index.search.description' => 'Description',
     'index.search.url' => 'Website Link',
     'index.search.category' => 'Category',

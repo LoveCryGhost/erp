@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 m-b-5">
-                                            <textarea class="form-control" type="text" name="description" placeholder="描述" >{{$crawlerTask->description}}</textarea>
+                                            <textarea class="form-control" type="text" name="description" placeholder="{{__('member/crawlerItem.index.search.description')}}" >{{$crawlerTask->description}}</textarea>
                                         </div>
                                         <div class="col-md-12">
                                             <button type="submit" class="btn btn-primary form-control">{{__('member/crawlerItem.index.search.save')}}</button>

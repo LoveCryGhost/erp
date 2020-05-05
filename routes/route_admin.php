@@ -37,6 +37,10 @@ Route::prefix('')->namespace('Admin')->group(function(){
         //指派Staff權限
         Route::resource('adminStaffRolePermission', 'AdminStaffRolePermissionsController'); //RolePermission
 
+        //Crawler
+            Route::resource('adminCrawlerTask', 'AdminCrawlerTasksController'); //RolePermission
+            Route::resource('adminCrawlerItem', 'AdminCrawlerItemsController'); //RolePermission
+
     });
     Route::resource('admin', 'AdminsController'); //RolePermission
 });
