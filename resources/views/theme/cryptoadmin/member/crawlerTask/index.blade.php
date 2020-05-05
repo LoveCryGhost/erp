@@ -89,7 +89,7 @@
                                 <tbody>
                                 @foreach($crawlerTasks as $crawlerTask)
                                     <tr>
-                                        <td class="w-20 text-center">{{$loop->iteration}}</td>
+                                        <td class="w-20 text-center">{{($crawlerTasks->currentPage()-1)*($crawlerTasks->perPage()) + $loop->iteration}}</td>
                                         <td>{{$crawlerTask->id_code}}</td>
                                         <td class="w-200">
                                             <p class="mb-0">
