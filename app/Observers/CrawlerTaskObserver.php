@@ -14,7 +14,7 @@ class CrawlerTaskObserver extends Observer
 
     public function saving(CrawlerTask $crawlerTask)
     {
-        if(request()->is_active === "1" or request()->is_active === 1 or request()->is_active === true ){
+        if(request()->is_active === "1" or request()->is_active === 1 or request()->is_active === true or $crawlerTask->is_active==1 ){
             $crawlerTask->is_active = 1;
         }else{
             $crawlerTask->is_active = 0;

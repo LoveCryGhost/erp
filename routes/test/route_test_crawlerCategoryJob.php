@@ -1,6 +1,10 @@
 <?php
 
 use App\Handlers\ShopeeHandler;
+use App\Jobs\CrawlerTaskJob;
+use App\Models\CrawlerCategory;
+use App\Models\CrawlerItem;
+use App\Models\CrawlerTask;
 use App\Repositories\Member\MemberCoreRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
@@ -18,77 +22,84 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         $json = json_decode($ClientResponse->getBody(), true);
 
         //寫入資料庫
+        foreach ($json['data']['category_list'] as $category){
+            $row_categories[]=[
+                'catid' => $category['catid'],
+                'p_id' => 0,
+                'display_name' => $category['display_name'],
+                'image' => $category['image'],
+                'local' => 'tw',
+            ];
 
-        dd($json['data']['category_list']);
-//
-//        $urls = $this->shopeeHandler->crawlerTaskGenerateAPIUrl($crawlerTask);
+            //https://shopee.co.id/Makanan&Minuman-cat.157?page=0&sortBy=sales
+            $row_crawlerTasks[]=[
+                "is_active" => 1,
+                "ct_name" =>  $category['display_name'],
+                "url" => "https://shopee.tw/".$category['display_name']."-cat.".$category['catid']."?sortBy=sales",
+                "pages" => 1,
+                "description" => "",
+                'display_name' => $category['display_name']
+            ];
+        }
+        //Update CrawlerCategories
+        $crawlerCategory = new CrawlerCategory();
+        $TF = (new MemberCoreRepository())->massUpdate($crawlerCategory, $row_categories);
 
-        //更新所 - Url
-//        foreach ($urls as $url) {
-//            $ClientResponse = $this->shopeeHandler->ClientHeader_Shopee($url);
-//            $json = json_decode($ClientResponse->getBody(), true);
-//            dd($json);
-            //指定使用者
-//            $member_id = Auth::guard('member')->check() ? Auth::guard('member')->user()->id : '1';
-//            foreach ($json['items'] as $item) {
-//
-//                //商品資訊
-//                $row_items[] = [
-//                    'itemid' => $item['itemid'],
-//                    'shopid' => $item['shopid'],
-//                    'sold' => $item['sold'] !== null ? $item['sold'] : 0,
-//                    'historical_sold' => $item['historical_sold'],
-//                    'domain_name' => $crawlerTask->domain_name,
-//                    'local' => $crawlerTask->local,
-//                    'member_id' => $member_id,
-//                    'updated_at' => null
-//                ];
-//
-//                //商店資訊
-//                $row_shops[] = [
-//                    'shopid' => $item['shopid'],
-//                    'shop_location' => "",
-//                    'local' => $crawlerTask->local,
-//                    'domain_name' => $crawlerTask->domain_name,
-//                    'member_id' => $member_id
-//                ];
-//
-//                $value_arr[] = [$item['itemid'], $item['shopid'], $crawlerTask->local];
-//                $items_order[]=$item['itemid'];
-//            };
-//
-//
-//            dd($row_items);
-//            //批量儲存Item
-//            $crawlerItem = new CrawlerItem();
-//            $TF = (new MemberCoreRepository())->massUpdate($crawlerItem, $row_items);
-//
-//            //這次抓到的商品id 還有順序
-//            $crawlerItem_ids = CrawlerItem::whereInMultiple(['itemid', 'shopid', 'local'], $value_arr)
-//                ->pluck('ci_id', 'itemid');
-//
-//
-//            $index=1;
-//            foreach ($items_order as $itemid){
-//                $sync_ids[$crawlerItem_ids[$itemid]]= ['sort_order'=>$index++];
-//            }
-//
-//            //Sync刪除並更新
-//            $crawlerTask->crawlerItems()->sync($sync_ids);
-//
-//            //$crawlerItem->timestamps = false;
-//            //$crawlerItem->whereIn('ci_id', $crawlerItem_ids)->update(['created_at' => now()]);
-//
-//            //批量儲存Shop
-//            $crawlerShop = new CrawlerShop();
-//            $TF = (new MemberCoreRepository())->massUpdate($crawlerShop, $row_shops);
-//
-//            dispatch((new CrawlerTaskJob())->onQueue('high'));
-//            dispatch((new CrawlerItemJob())->onQueue('low'));
-//            dispatch((new CrawlerShopJob())->onQueue('low'));
-//        }
-//        $crawlerTask->updated_at = Carbon::now();
-//        $crawlerTask->save();
+
+        foreach($row_crawlerTasks as $row_crawlerTask){
+            $url_params = $this->shopeeHandler->shopee_url($row_crawlerTask['url']);
+            $data['url_params'] = $url_params;
+            $data['local'] = $data['url_params']['local'];
+            $data['domain_name'] = $data['url_params']['domain_name'];
+            if(isset( $data['url_params']['gets']['sortBy'])){
+                $data['sort_by'] = $data['url_params']['gets']['sortBy'];
+            }else{
+                $data['sort_by'] = 'relevancy';
+            }
+            if(isset( $data['url_params']['gets']['category'])){
+                $data['category'] = $data['url_params']['gets']['category'];
+            }
+            if(isset( $data['url_params']['gets']['subcategory'])){
+                $data['subcategory'] = $data['url_params']['gets']['subcategory'];
+            }
+            if(isset( $data['url_params']['gets']['keyword'])){
+                $data['keyword'] = $data['url_params']['gets']['keyword'];
+            }
+
+            if(isset( $data['url_params']['gets']['order'])){
+                $data['order'] = $data['url_params']['gets']['order'];
+            }
+
+            if(isset( $data['url_params']['gets']['locations'])){
+                $data['locations'] = $data['url_params']['gets']['locations'];
+            }
+            if(isset( $data['url_params']['gets']['ratingFilter'])){
+                $data['ratingFilter'] = $data['url_params']['gets']['ratingFilter'];
+            }
+            if(isset( $data['url_params']['gets']['facet'])){
+                $data['facet'] = $data['url_params']['gets']['facet'];
+            }
+            if(isset( $data['url_params']['gets']['shippingOptions'])){
+                $data['shippingOptions'] = $data['url_params']['gets']['shippingOptions'];
+            }
+            if(isset( $data['url_params']['gets']['officialMall'])){
+                $data['officialMall'] = $data['url_params']['gets']['officialMall'];
+            }
+
+            //新增爬蟲任務
+            CrawlerTask::updateOrCreate([
+                'category' => $data['category'],
+                'domain_name' => $data['domain_name'],
+                'local' => $data['local'],
+                'sort_by' => $data['sort_by']
+            ],[
+                'is_active' => 1,
+                'ct_name' => '分類 - '.$row_crawlerTask['display_name'],
+                'website' => $data['url_params']['website'],
+                'url' => $data['url_params']['url']
+            ]);
+        }
+        dispatch((new CrawlerTaskJob())->onQueue('high'));
     });
 });
 
