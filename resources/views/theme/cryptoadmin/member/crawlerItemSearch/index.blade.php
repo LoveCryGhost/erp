@@ -60,8 +60,11 @@
 						</div>
 						<div class="box-body">
 							<div class="table-responsive">
-								<div class="pull-right"> {{number_format($crawlerItem_total-$crawlerItem_total_waiting_update,0, "", ",")}} / {{number_format($crawlerItem_total,0, "", ",")}}
-									{{__('member/crawlerItemSearch.index.search.records')}} ({{number_format((($crawlerItem_total-$crawlerItem_total_waiting_update)/$crawlerItem_total)*100, 1,".",",")}} %)
+								<div class="pull-right"> {{number_format($crawlerItem_total_updated,0, "", ",")}} / {{number_format($crawlerItem_total_records,0, "", ",")}}
+									{{__('member/crawlerItemSearch.index.search.records')}}
+									@if($crawlerItem_total_records>0)
+										({{number_format(($crawlerItem_total_updated/$crawlerItem_total_records)*100, 1,".",",")}} %)
+									@endif
 								</div>
 								<div class="infinite-scroll">
 									<table class="itable">
