@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 use App\Models\CrawlerItem;
 use App\Models\CrawlerTask;
 use App\Services\Member\CrawlerItemService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -40,12 +41,14 @@ class CrawlerItemSearchsController extends MemberCoreController
         $query = $this->index_filters($query, $this->filters);
 
         $crawlerItem_total = $query->count();
+        $crawlerItem_total_waiting_update = $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')->count();
         $crawlerItems = $query->paginate(20);
 
         return view(config('theme.member.view').'crawlerItemSearch.index',
             [
                 'crawlerItems' => $crawlerItems,
                 'crawlerItem_total' => $crawlerItem_total,
+                'crawlerItem_total_waiting_update' => $crawlerItem_total_waiting_update,
                 'filters' => [
                     'name' => request()->name,
                 ]
