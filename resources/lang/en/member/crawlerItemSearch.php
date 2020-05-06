@@ -13,7 +13,7 @@ return [
     'index.search.price_max' => 'max Price',
     'index.search.sold' => 'Monthly Sale',
 
-    'index.search.historical_sold' => 'Historic Sale',
+    'index.search.historical_sold' => 'Historic Sales',
     'index.search.records' => 'Records',
 
     'index.search.reset' => 'Re-Search',
@@ -24,6 +24,6 @@ return [
     'index.table.productName' => 'Product Name',
     'index.table.price_min' => 'min Price',
     'index.table.price_max' => 'max Price',
-    'index.table.sale' => 'Historic Sales',
+    'index.table.sales' => 'Historic Sales',
 
 ];

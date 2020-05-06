@@ -70,7 +70,7 @@
 												<th>{{__('member/crawlerItemSearch.index.table.productName')}}</th>
 												<th class="w-50">{{__('member/crawlerItemSearch.index.table.price_min')}}</th>
 												<th class="w-50">{{__('member/crawlerItemSearch.index.table.price_max')}}</th>
-												<th>{{__('member/crawlerItemSearch.index.table.sale')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.sales')}}</th>
 											</tr>
 										</thead>
 									<tbody>
