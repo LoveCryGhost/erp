@@ -60,17 +60,17 @@
 						</div>
 						<div class="box-body">
 							<div class="table-responsive">
-								<div class="pull-right">{{number_format($crawlerItem_total,0, "", ",")}} 筆數</div>
+								<div class="pull-right">{{number_format($crawlerItem_total,0, "", ",")}} {{__('member/crawlerItemSearch.index.search.records')}}</div>
 								<div class="infinite-scroll">
 									<table class="itable">
 										<thead>
 											<tr>
 												<th class="w-30">No</th>
-												<th>照片</th>
-												<th>商品名稱</th>
-												<th class="w-50">售價(低)</th>
-												<th class="w-50">售價(高)</th>
-												<th>歷史銷量</th>
+												<th>{{__('member/crawlerItemSearch.index.table.image')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.productName')}}</th>
+												<th class="w-50">{{__('member/crawlerItemSearch.index.table.price_min')}}</th>
+												<th class="w-50">{{__('member/crawlerItemSearch.index.table.price_max')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.sale')}}</th>
 											</tr>
 										</thead>
 									<tbody>
