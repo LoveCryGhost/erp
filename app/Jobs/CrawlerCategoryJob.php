@@ -36,19 +36,21 @@ class CrawlerCategoryJob implements ShouldQueue
     {
         $this->shopeeHandler = new ShopeeHandler();
         //國家
-        $countries = ['shopee.tw','shopee.co.id', 'shopee.co.th'];
-        foreach ($countries as $country){
+        $countries = [
+            'tw' => 'shopee.tw',
+            'id' => 'shopee.co.id',
+            'th' => 'shopee.co.th'];
+        foreach ($countries as $country_code => $country){
             $url = 'https://'.$country.'/api/v2/category_list/get';
-            $this->crawler_catergory($url);
+            $this->crawler_catergory($country_code, $country, $url);
         }
     }
 
-    public function crawler_catergory($url)
+    public function crawler_catergory($country_code, $country, $url)
     {
         //Category url
-        $category_url = $url ;
         //先找主Category 資料
-        $ClientResponse = $this->shopeeHandler->ClientHeader_Shopee($category_url);
+        $ClientResponse = $this->shopeeHandler->ClientHeader_Shopee($url);
         $json = json_decode($ClientResponse->getBody(), true);
 
         //寫入資料庫
@@ -58,15 +60,15 @@ class CrawlerCategoryJob implements ShouldQueue
                 'p_id' => 0,
                 'display_name' => $category['display_name'],
                 'image' => $category['image'],
-                'local' => 'tw',
+                'local' => $country_code
             ];
 
             //https://shopee.co.id/Makanan&Minuman-cat.157?page=0&sortBy=sales
             $row_crawlerTasks[]=[
                 "is_active" => 1,
                 "ct_name" =>  $category['display_name'],
-                "url" => "https://shopee.tw/".$category['display_name']."-cat.".$category['catid']."?sortBy=sales",
-                "pages" => 1,
+                "url" => "https://".$country."/".$category['display_name']."-cat.".$category['catid']."?sortBy=sales",
+                "pages" => 10,
                 "description" => "",
                 'display_name' => $category['display_name']
             ];
@@ -120,15 +122,18 @@ class CrawlerCategoryJob implements ShouldQueue
             CrawlerTask::updateOrCreate([
                 'category' => $data['category'],
                 'domain_name' => $data['domain_name'],
-                'local' => $data['local'],
+                'local' => $data['url_params']['local'],
                 'sort_by' => $data['sort_by']
             ],[
+
                 'is_active' => 1,
                 'ct_name' => '分類 - '.$row_crawlerTask['display_name'],
                 'website' => $data['url_params']['website'],
-                'url' => $data['url_params']['url']
+                'url' => $data['url_params']['url'],
+                'member_id' => 1, //default 1
+                'pages' => $row_crawlerTask['pages']
             ]);
         }
-        //dispatch((new CrawlerTaskJob())->onQueue('high'));
+        dispatch((new CrawlerTaskJob())->onQueue('high'));
     }
 }

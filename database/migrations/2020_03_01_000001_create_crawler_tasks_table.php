@@ -34,7 +34,7 @@ class CreateCrawlerTasksTable extends Migration
             $table->string('local')->nullable();
             $table->text('description')->nullable();
 
-            $table->bigInteger('member_id')->unsigned();
+            $table->bigInteger('member_id')->default(1)->unsigned();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamps();
         });

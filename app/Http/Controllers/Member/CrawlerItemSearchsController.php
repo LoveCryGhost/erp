@@ -15,14 +15,14 @@ class CrawlerItemSearchsController extends MemberCoreController
     public $filters;
     public function __construct()
     {
-//        $actions = [
-//            '*',
-//            'index',
-//            'show', 'edit','update',
-//            'create', 'store',
-//            'destroy',
-//            'show'];
-//        $this->coreMiddleware('CrawlerTasksController',$guard='member', $route="crawlerTask", $actions);
+        $actions = [
+            '*',
+            'index',
+            'show', 'edit','update',
+            'create', 'store',
+            'destroy',
+            'show'];
+        $this->coreMiddleware('CrawlerItemSearchsController',$guard='member', $route="crawlerItemSearch", $actions);
     }
 
     public function index()

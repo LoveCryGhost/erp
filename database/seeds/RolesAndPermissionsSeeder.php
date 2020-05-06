@@ -154,6 +154,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'crawlerTask' => ['*' ,'crud'],
             'crawlerItem' => ['*' ,'crud'],
             'reportSKU' => ['crawlerItemAanalysis'],
+            'crawlerItemSearch' => ['*' ,'crud'],
 
         ];
         $this->mass_create_permission($guard="member", $routes_actions);
@@ -174,7 +175,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $role = Role::where('guard_name','member')->where('name', 'crawlerTask')->first();
         $this->mass_assign_permission($role, $guard='member', $route='crawlerTask', $permissions=['*' ,'crud']);
         $this->mass_assign_permission($role, $guard='member', $route='crawlerItem', $permissions=['*' ,'crud']);
-
+        $this->mass_assign_permission($role, $guard='member', $route='crawlerItemSearch', $permissions=['*' ,'crud']);
 
         //User 綁定 Role
         $member = Member::find(1);
