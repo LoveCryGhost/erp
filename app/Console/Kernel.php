@@ -19,24 +19,23 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //上線時執行任務
-//        if (app()->environment('production')) {
-//            $schedule->command('backup:run')->cron('0 */4 * * *');
-//            $schedule->command('backup:monitor')->dailyAt('03:00');
-//            $schedule->command('backup:clean')->dailyAt('03:10');
-//        }
+        if (app()->environment('production')) {
+            $schedule->command('backup:run')->cron('0 */4 * * *');
+            $schedule->command('backup:monitor')->dailyAt('03:00');
+            $schedule->command('backup:clean')->dailyAt('03:10');
+        }
+        //更新item and shop
+        $schedule->command('command:crawler_first_time_update_item_and_shop')->everyMinute()->withoutOverlapping();
 
-//        //更新item and shop
-//        $schedule->command('command:crawler_first_time_update_item_and_shop')->everyMinute()->withoutOverlapping();
-//
-//        //更新CrawlerTask
-//        $schedule->command('command:crawler_task')->everyMinute()->withoutOverlapping();
-//        $schedule->command('command:crawler_clean')->dailyAt(06);
-//
-//        //更CrawlerCategory
-//        $schedule->command('command:crawler_category')->everyMinute()->withoutOverlapping();
+        //更新CrawlerTask
+        $schedule->command('command:crawler_task')->everyMinute()->withoutOverlapping();
+        $schedule->command('command:crawler_clean')->dailyAt(06);
+
+        //更CrawlerCategory
+        $schedule->command('command:crawler_category')->everyMinute()->withoutOverlapping();
 
         //茂弘
-        //$schedule->command('command:mh_shoes_material_control')->everyMinute()->withoutOverlapping();
+        $schedule->command('command:mh_shoes_material_control')->everyMinute()->withoutOverlapping();
     }
 
     protected function commands()
