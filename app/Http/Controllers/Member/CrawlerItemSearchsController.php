@@ -40,9 +40,9 @@ class CrawlerItemSearchsController extends MemberCoreController
         ];
         $query = $this->index_filters($query, $this->filters);
 
+        $crawlerItems =$query->paginate(20);
         $crawlerItem_total = $query->count();
         $crawlerItem_total_waiting_update = $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')->count();
-        $crawlerItems = $query->paginate(20);
 
         return view(config('theme.member.view').'crawlerItemSearch.index',
             [
