@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function dd;
 use function request;
 
 class CrawlerItemSearchsController extends MemberCoreController
@@ -28,6 +29,7 @@ class CrawlerItemSearchsController extends MemberCoreController
 
     public function index()
     {
+
         $query = CrawlerItem::with(['crawlerShop','crawlerItemSKUs'])
             ->where('member_id', 1);
 
@@ -37,6 +39,8 @@ class CrawlerItemSearchsController extends MemberCoreController
             'price_max' => request()->price_max,
             'sold' => request()->sold, //月銷量
             'historical_sold' => request()->historical_sold, //歷史銷量
+            'local' => request()->local
+
         ];
         $query = $this->index_filters($query, $this->filters);
 
@@ -58,6 +62,7 @@ class CrawlerItemSearchsController extends MemberCoreController
     public function index_filters($query, $filters)
     {
         $query = $this->filter_like($query,'name', $filters['name']);
+        $query = $this->filter_checkbox($query, 'local', $filters['local']);
 
         if($filters['sold']>0){
             $query = $query->where('crawler_items.sold' , '>=',  $filters['sold']);

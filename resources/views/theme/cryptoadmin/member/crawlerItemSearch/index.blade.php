@@ -47,15 +47,15 @@
 										{{--國家--}}
 										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.country')}}</label>
 										<div class="col-sm-1">
-											<input type="checkbox" class="" name="local[]"  id="local_tw" value="tw">
+											<input type="checkbox" class="" name="local[tw]"  id="local_tw" value="tw" {{isset(request()->local['tw'])?  "checked":""}}>
 											<label for="local_tw" class="text-dark m-t-5 ">台灣</label>
 										</div>
 										<div class="col-sm-1">
-											<input type="checkbox" class="permission_check" name="local[]"  id="local_id" value="id">
+											<input type="checkbox" class="permission_check" name="local[id]"  id="local_id" value="id" {{isset(request()->local['id'])?  "checked":""}}>
 											<label for="local_id" class="text-dark m-t-5">印尼</label>
 										</div>
 										<div class="col-sm-1">
-											<input type="checkbox" class="permission_check" name="local[]"  id="local_th" value="th">
+											<input type="checkbox" class="permission_check" name="local[th]"  id="local_th" value="th" {{isset(request()->local['th'])?  "checked":""}}>
 											<label for="local_th" class="text-dark m-t-5">泰國</label>
 										</div>
 									
