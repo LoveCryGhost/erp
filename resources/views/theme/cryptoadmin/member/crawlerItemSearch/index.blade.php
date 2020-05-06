@@ -7,7 +7,7 @@
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
 			<h3>
-				Shopee 全球 ccc - 列表
+				Shopee 全球 - 列表
 			</h3>
 		</div>
 		
