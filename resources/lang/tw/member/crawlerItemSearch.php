@@ -12,6 +12,7 @@ return [
     'index.search.price_min' => '售價(低)',
     'index.search.price_max' => '售價(高)',
     'index.search.sold' => '月銷量',
+    'index.search.country' => '國家',
     'index.search.historical_sold' => '歷史銷量',
     'index.search.records' => '筆數',
 

@@ -12,7 +12,7 @@ return [
     'index.search.price_min' => 'min Price',
     'index.search.price_max' => 'max Price',
     'index.search.sold' => 'Monthly Sale',
-
+    'index.search.country' => 'Country',
     'index.search.historical_sold' => 'Historic Sales',
     'index.search.records' => 'Records',
 

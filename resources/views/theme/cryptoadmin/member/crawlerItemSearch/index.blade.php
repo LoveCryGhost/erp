@@ -43,6 +43,21 @@
 										<div class="col-sm-2">
 											<input class="form-control"  type="text" name="historical_sold" placeholder="{{__('member/crawlerItemSearch.index.search.historical_sold')}}" value="{{request()->historical_sold}}">
 										</div>
+										
+										{{--國家--}}
+										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.country')}}</label>
+										<div class="col-sm-1">
+											<input type="checkbox" class="" name="local[]"  id="local_tw" value="tw">
+											<label for="local_tw" class="text-dark m-t-5 ">台灣</label>
+										</div>
+										<div class="col-sm-1">
+											<input type="checkbox" class="permission_check" name="local[]"  id="local_id" value="id">
+											<label for="local_id" class="text-dark m-t-5">印尼</label>
+										</div>
+										<div class="col-sm-1">
+											<input type="checkbox" class="permission_check" name="local[]"  id="local_th" value="th">
+											<label for="local_th" class="text-dark m-t-5">泰國</label>
+										</div>
 									
 									</div>
 									
@@ -90,7 +105,20 @@
 												@endif
 											</td>
 											<td class="text-left">
-												{!! str_replace(request()->name, "<span class='text-red'><u><b>".request()->name.'</b></u></span>',$crawlerItem->name)!!}<br>
+												
+												{{--標註提醒--}}
+												@php
+													$inputs = explode(',', request()->name);
+													$name = $crawlerItem->name;
+													foreach($inputs as $input){
+												     	$input= trim($input);
+												     	if($input!=""){
+															$name = str_replace($input, "<span class='text-red'><u><b>".$input.'</b></u></span>',$name);
+														}
+													}
+												@endphp
+												{!! $name!!}<br>
+												
 												<a class="btn btn-sm btn-info" target="_blank"
 												   href="https://{{$crawlerItem->domain_name}}/{{$crawlerItem->name==null? "waiting-upload-data":$crawlerItem->name}}-i.{{$crawlerItem->shopid}}.{{$crawlerItem->itemid}}" >
 													<i class="fa fa-external-link"></i> {{$crawlerItem->itemid}}</a>
@@ -148,7 +176,7 @@
                 // 设置加载下一页缓冲时的图片
                 loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
 	            //设置距离底部多远时开始加载下一页
-                padding: 20,
+                padding: 0,
                 nextSelector: 'a.jscroll-next:last',
                 contentSelector: '.infinite-scroll',
                 callback:function() {
