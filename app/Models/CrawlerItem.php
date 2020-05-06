@@ -35,13 +35,13 @@ class CrawlerItem extends CoreModel
     }
 
     public function crawlerItemSKUs(){
-        return $this->hasMany(CrawlerItemSKU::class, 'ci_id');
+        return $this->hasMany(CrawlerItemSKU::class, 'ci_id', 'ci_id');
     }
 
 
     public function crawlerTask()
     {
-        return $this->belongsToMany(CrawlerTask::class, 'ctasks_items','ci_id','ct_id')
+        return $this->belongsToMany(CrawlerTask::class, 'ctasks_items','ci_id')
             ->withPivot(['ct_i_id','sort_order', 'is_active']);
     }
 

@@ -16,17 +16,46 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="box">
+						<div class="box-header">
+							<form class="form-control m-b-0 bg-color-lightblue">
+								<div class="row">
+								<div class="col-md-12">
+									<div class="row">
+										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.name')}}</label>
+										<div class="col-sm-2">
+											<input class="form-control" type="text" name="name" placeholder="{{__('member/crawlerItemSearch.index.search.name')}}" value="{{request()->name}}">
+										</div>
+										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.price')}}</label>
+										<div class="col-sm-4 form-control">
+											<input class="w-200" style="width: auto;" type="text" name="price_min" placeholder="{{__('member/crawlerItemSearch.index.search.price_min')}}" value="{{request()->price_min}}"> ~
+											<input class="w-200" style="width: auto;" type="text" name="price_max" placeholder="{{__('member/crawlerItemSearch.index.search.price_max')}}" value="{{request()->price_max}}">
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="col-6">
+											<a href="{{route('member.crawlerItemSearch.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/crawlerItemSearch.index.search.reset')}}</a>
+										</div>
+										<div class="col-6">
+											<button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">{{__('member/crawlerItemSearch.index.search.submit')}}</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							</form>
+						</div>
 						<div class="box-body">
 							<div class="table-responsive">
-								<div class="">{{$crawlerItem_total}} 比數</div>
+								<div class="pull-right">{{number_format($crawlerItem_total,0, "", ",")}} 筆數</div>
 								<div class="infinite-scroll">
 									<table class="itable">
 										<thead>
-											<tr class="">
+											<tr>
 												<th class="w-30">No</th>
 												<th>照片</th>
-												<th class="w-100">商品名稱</th>
-												<th>連接任務數量</th>
+												<th>商品名稱</th>
+												<th class="w-50">售價(低)</th>
+												<th class="w-50">售價(高)</th>
 												<th>歷史銷量</th>
 											</tr>
 										</thead>
@@ -41,9 +70,22 @@
 													<img src="https://cf.{{$crawlerItem->domain_name}}/file/{{$crawlerItem->images}}_tn" class="item-image"><br>
 												@endif
 											</td>
-											<td class="text-left">{{$crawlerItem->name}}</td>
-											<td>{{$crawlerItem->crawlerTasks->count()}}</td>
-											<td>{{number_format($crawlerItem->historical_sold,0,"",",")}}</td>
+											<td class="text-left">
+												{{$crawlerItem->name}}<br>
+												<a class="btn btn-sm btn-info" target="_blank"
+												   href="https://{{$crawlerItem->domain_name}}/{{$crawlerItem->name==null? "waiting-upload-data":$crawlerItem->name}}-i.{{$crawlerItem->shopid}}.{{$crawlerItem->itemid}}" >
+													<i class="fa fa-external-link"></i> {{$crawlerItem->itemid}}</a>
+												<a class="btn btn-sm btn-info" target="_blank"
+												   href="https://{{$crawlerItem->domain_name}}/shop/{{$crawlerItem->shopid}}" >
+													<i class="fa fa-shopping-bag"></i> {{$crawlerItem->crawlerShop->username}}</a>
+											</td>
+											<td>{{number_format($crawlerItem->crawlerItemSKUs->min('price')/10, 0,".",",")}}</td>
+											<td>{{number_format($crawlerItem->crawlerItemSKUs->max('price')/10, 0,".",",")}}</td>
+											<td class="text-left">
+												{{__('member/crawlerItem.index.table.information.monthly_sale')}} : {{number_format($crawlerItem->sold,0,".",",")}}<br>
+												{{__('member/crawlerItem.index.table.information.historic_sale')}} : {{number_format($crawlerItem->historical_sold,0,".",",")}}<br>
+												{{__('member/crawlerItem.index.table.updated_at')}} : {{$crawlerItem->updated_at!=null? $crawlerItem->updated_at->diffForHumans() : ""}}<br>
+											</td>
 										</tr>
 										@endforeach
 									</tbody>

@@ -20,7 +20,7 @@ class CrawlerItemSKU extends Model
 
     protected $fillable = [
         'ci_id', 'itemid', 'shopid', 'modelid',
-        'name', 'local', 'sold', 'stock'
+        'name', 'local', 'sold', 'stock', 'price'
     ];
 
     //public $with=['sku'];

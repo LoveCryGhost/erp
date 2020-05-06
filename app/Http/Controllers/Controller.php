@@ -22,7 +22,6 @@ class Controller extends BaseController
 
     public function filter_like($query, $column_name , $inputs)
     {
-        // ct_name
         $inputs = explode(',', $inputs);
         $query = $query->where(function($query) use($column_name, $inputs){
             $index=1;
@@ -40,6 +39,14 @@ class Controller extends BaseController
             return $query;
         });
 
+        return $query;
+    }
+
+    public function filter_relation_between($query, $relations,  $column_name , $inputs)
+    {
+        $query->with([$relations => function($query) use($inputs){
+            return $query->whereBetween('price',[$inputs[0],$inputs[1]]);
+        }]);
         return $query;
     }
 }
