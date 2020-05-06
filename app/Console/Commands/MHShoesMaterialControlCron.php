@@ -2,8 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\CrawlerShopJob;
-use App\Jobs\CrawlerTaskJob;
+
 use App\Jobs\MHShoesMaterialControlJob;
 use App\Models\User;
 use Illuminate\Console\Command;
