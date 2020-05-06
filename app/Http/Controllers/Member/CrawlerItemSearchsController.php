@@ -27,16 +27,16 @@ class CrawlerItemSearchsController extends MemberCoreController
 
     public function index()
     {
+        $query = CrawlerItem::with(['crawlerShop','crawlerItemSKUs'])
+            ->where('member_id', 1);
+
         $this->filters = [
             'name' => request()->name,
             'price_min' => request()->price_min,
             'price_max' => request()->price_max,
+            'sold' => request()->sold, //月銷量
+            'historical_sold' => request()->historical_sold, //歷史銷量
         ];
-
-        $filters = $this->filters;
-        $query = CrawlerItem::with(['crawlerShop', 'crawlerItemSKUs'])
-                    ->where('member_id', 1);
-
         $query = $this->index_filters($query, $this->filters);
 
         $crawlerItem_total = $query->count();
@@ -54,8 +54,14 @@ class CrawlerItemSearchsController extends MemberCoreController
 
     public function index_filters($query, $filters)
     {
-        $query = $this->filter_like($query,'crawler_items.name', $filters['name']);
-//        $query = $this->filter_relation_between($query, $relations='crawlerItemSKUs', 'price', array($filters['price_min'],$filters['price_max']));
+        $query = $this->filter_like($query,'name', $filters['name']);
+
+        if($filters['sold']>0){
+            $query = $query->where('crawler_items.sold' , '>=',  $filters['sold']);
+        }
+        if($filters['historical_sold']>0){
+            $query = $query->where('historical_sold' , '>=',  $filters['historical_sold']);
+        }
         return $query;
     }
 }

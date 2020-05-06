@@ -31,6 +31,20 @@
 											<input class="w-200" style="width: auto;" type="text" name="price_max" placeholder="{{__('member/crawlerItemSearch.index.search.price_max')}}" value="{{request()->price_max}}">
 										</div>
 									</div>
+									<div class="row">
+										{{--最低周銷量--}}
+										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.sold')}}</label>
+										<div class="col-sm-2">
+											<input class="form-control"  type="text" name="sold" placeholder="{{__('member/crawlerItemSearch.index.search.sold')}}" value="{{request()->sold}}">
+										</div>
+										
+										{{--最低歷史銷量--}}
+										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.historical_sold')}}</label>
+										<div class="col-sm-2">
+											<input class="form-control"  type="text" name="historical_sold" placeholder="{{__('member/crawlerItemSearch.index.search.historical_sold')}}" value="{{request()->historical_sold}}">
+										</div>
+									
+									</div>
 									
 									<div class="row">
 										<div class="col-6">
@@ -71,7 +85,7 @@
 												@endif
 											</td>
 											<td class="text-left">
-												{{$crawlerItem->name}}<br>
+												{!! str_replace(request()->name, "<span class='text-red'><u><b>".request()->name.'</b></u></span>',$crawlerItem->name)!!}<br>
 												<a class="btn btn-sm btn-info" target="_blank"
 												   href="https://{{$crawlerItem->domain_name}}/{{$crawlerItem->name==null? "waiting-upload-data":$crawlerItem->name}}-i.{{$crawlerItem->shopid}}.{{$crawlerItem->itemid}}" >
 													<i class="fa fa-external-link"></i> {{$crawlerItem->itemid}}</a>

@@ -41,12 +41,4 @@ class Controller extends BaseController
 
         return $query;
     }
-
-    public function filter_relation_between($query, $relations,  $column_name , $inputs)
-    {
-        $query->with([$relations => function($query) use($inputs){
-            return $query->whereBetween('price',[$inputs[0],$inputs[1]]);
-        }]);
-        return $query;
-    }
 }

@@ -9,15 +9,7 @@ class CreateCrawlerTasksTable extends Migration
 
     public function up()
     {
-        Schema::create('crawler_categories', function (Blueprint $table) {
-            $table->integer('catid')->primary();
-            $table->string('p_id')->nullable()->default(0);
-            $table->string('display_name')->nullable();
-            $table->string('image')->nullable();
-            $table->string('local')->default('tw');
-            $table->timestamp('updated_at')->useCurrent()->nullable();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-        });
+
 
         Schema::create('crawler_tasks', function (Blueprint $table) {
             $table->bigIncrements('ct_id');
@@ -53,6 +45,5 @@ class CreateCrawlerTasksTable extends Migration
     public function down()
     {
         Schema::dropIfExists('crawler_tasks');
-        Schema::dropIfExists('crawler_categories');
     }
 }

@@ -11,6 +11,8 @@ return [
     'index.search.price' => '售價',
     'index.search.price_min' => '售價(低)',
     'index.search.price_max' => '售價(高)',
+    'index.search.sold' => '月銷量',
+    'index.search.historical_sold' => '歷史銷量',
 
     'index.search.reset' => '重新搜尋',
     'index.search.submit' => '搜尋',
