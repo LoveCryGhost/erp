@@ -27,7 +27,7 @@ class CreateCrawlerItemsTable extends Migration
             $table->bigInteger('member_id')->unsigned();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamp('updated_at')->useCurrent()->nullable();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->useCurrent()->nullable();
         });
 
         Schema::create('crawler_shops', function (Blueprint $table) {
