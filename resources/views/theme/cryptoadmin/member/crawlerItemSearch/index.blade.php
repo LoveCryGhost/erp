@@ -81,12 +81,12 @@
 									@endif
 								</div>
 								<div class="infinite-scroll">
-									<table class="itable">
+									<table class="itable table" >
 										<thead>
 											<tr>
 												<th>No</th>
 												<th>{{__('member/crawlerItemSearch.index.table.image')}}</th>
-												<th width="0%">{{__('member/crawlerItemSearch.index.table.productName')}}</th>
+												<th width="40%">{{__('member/crawlerItemSearch.index.table.productName')}}</th>
 												<th>{{__('member/crawlerItemSearch.index.table.price_min')}}</th>
 												<th>{{__('member/crawlerItemSearch.index.table.price_max')}}</th>
 												<th>{{__('member/crawlerItemSearch.index.table.sales')}}</th>
