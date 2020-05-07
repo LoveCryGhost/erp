@@ -12,6 +12,19 @@ use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
+//有用的Test
+include('test/test_mh_erp.php');
+include('test/route_test_crawlerTaskJob.php');
+include('test/route_test_crawlerCategoryJob.php');
+
+/*
+ * ExcelLike
+ * */
+Route::prefix('test')->namespace('Test')->group(function(){
+    Route::get('excel_like', 'TestController@excel_like')->name('test.excel_like');
+});
+
+//無用的Test
 Route::prefix('test') ->middleware('auth:admin')->group(function(){
     Route::get('/console',function (){
         $sub_domain = current(explode('.', request()->getHost()));

@@ -42,8 +42,8 @@ Route::get('locale/{locale}', function ($locale){
     return redirect()->back();
 });
 
-
-@include('route_test.php');
+@include('test/test.php');
+@include('route_run.php');
 @include('route_tools.php');
 @include('route_guard.php');
 @include('route_user.php');
