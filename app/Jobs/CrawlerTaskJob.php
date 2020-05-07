@@ -40,7 +40,6 @@ class CrawlerTaskJob implements ShouldQueue
 
         //更新任務 - Urls
         if($crawlerTask) {
-
             //組合Url連結組合
             $urls = $this->shopeeHandler->crawlerTaskGenerateAPIUrl($crawlerTask);
 
