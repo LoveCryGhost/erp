@@ -23,9 +23,18 @@
  * */
 
 
+use App\Jobs\CrawlerTaskJob;
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/console', function () {
+    dispatch((new CrawlerTaskJob())->onQueue('high'));
+});
+
+
 
 // 語言 Language
 Route::get('locale/{locale}', function ($locale){

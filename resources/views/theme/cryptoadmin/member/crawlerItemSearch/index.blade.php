@@ -113,7 +113,7 @@
 													foreach($inputs as $input){
 												     	$input= trim($input);
 												     	if($input!=""){
-															$name = str_replace($input, "<span class='text-red'><u><b>".$input.'</b></u></span>',$name);
+															$name = str_ireplace($input, "<span class='text-red'><u><b>".$input.'</b></u></span>',$name);
 														}
 													}
 												@endphp
