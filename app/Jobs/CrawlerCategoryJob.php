@@ -28,6 +28,7 @@ class CrawlerCategoryJob implements ShouldQueue
 
     private $url;
     private $shopeeHandler;
+    public $timeout = 0;
 
     public function __construct()
     {
@@ -44,7 +45,7 @@ class CrawlerCategoryJob implements ShouldQueue
             $params['pages'] = 1;
             $params['limit_tasks']=2;
         }else{
-            $params['pages'] = 25;
+            $params['pages'] = 20;
             $params['limit_tasks']=10000;
         }
 
