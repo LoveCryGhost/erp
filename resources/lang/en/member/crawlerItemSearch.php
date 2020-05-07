@@ -4,7 +4,7 @@ return [
     'title' => "Shopee 全球",
 
     //Index
-    'index.title'       => 'Shopee - 全球 List',
+    'index.title'       => 'Shopee - Global List',
     'index.search.barcode' => 'Barcode',
     'index.search.name' => 'Product Name',
     'index.search.taskName' => 'Task Name',

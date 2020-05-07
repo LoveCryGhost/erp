@@ -7,7 +7,7 @@
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
 			<h3>
-				Shopee 全球 - 列表
+				{{__('member/crawlerItemSearch.index.title')}}
 			</h3>
 		</div>
 		
@@ -86,7 +86,7 @@
 											<tr>
 												<th>No</th>
 												<th>{{__('member/crawlerItemSearch.index.table.image')}}</th>
-												<th width="40%">{{__('member/crawlerItemSearch.index.table.productName')}}</th>
+												<th width="0%">{{__('member/crawlerItemSearch.index.table.productName')}}</th>
 												<th>{{__('member/crawlerItemSearch.index.table.price_min')}}</th>
 												<th>{{__('member/crawlerItemSearch.index.table.price_max')}}</th>
 												<th>{{__('member/crawlerItemSearch.index.table.sales')}}</th>
