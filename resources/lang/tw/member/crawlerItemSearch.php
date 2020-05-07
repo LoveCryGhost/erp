@@ -15,6 +15,11 @@ return [
     'index.search.country' => '國家',
     'index.search.historical_sold' => '歷史銷量',
     'index.search.records' => '筆數',
+    'index.search.language.tw' => '台灣',
+    'index.search.language.id' => '印尼',
+    'index.search.language.th' => '泰國',
+    'index.search.language.vn' => '越南',
+
 
     'index.search.reset' => '重新搜尋',
     'index.search.submit' => '搜尋',
@@ -25,5 +30,10 @@ return [
     'index.table.price_min' => '售價(低)',
     'index.table.price_max' => '售價(高)',
     'index.table.sale' => '歷史銷量',
+    'index.table.sku' => 'SKU 明細',
+    'index.table.information.monthly_sale' => '月銷量',
+    'index.table.information.historic_sale' => '歷史銷量',
+    'index.table.updated_at' => '最後更新',
+    'index.table.skuDetailBtn' => 'SKU',
 
 ];

@@ -37,8 +37,6 @@ class CreateCrawlerItemsTable extends Migration
             $table->string('shop_location')->nullable();
             $table->string('domain_name')->nullable();
             $table->string('local')->nullable();
-//            $table->bigInteger('ci_id')->unsigned();
-//            $table->foreign('ci_id')->references('ci_id')->on('crawler_items')->onDelete('cascade');
             $table->bigInteger('member_id')->unsigned();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamps();

@@ -48,17 +48,16 @@
 										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.country')}}</label>
 										<div class="col-sm-1">
 											<input type="checkbox" class="" name="local[tw]"  id="local_tw" value="tw" {{isset(request()->local['tw'])?  "checked":""}}>
-											<label for="local_tw" class="text-dark m-t-5 ">台灣</label>
+											<label for="local_tw" class="text-dark m-t-5 ">{{__('member/crawlerItemSearch.index.search.language.tw')}}</label>
 										</div>
 										<div class="col-sm-1">
 											<input type="checkbox" class="permission_check" name="local[id]"  id="local_id" value="id" {{isset(request()->local['id'])?  "checked":""}}>
-											<label for="local_id" class="text-dark m-t-5">印尼</label>
+											<label for="local_id" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.id')}}</label>
 										</div>
 										<div class="col-sm-1">
 											<input type="checkbox" class="permission_check" name="local[th]"  id="local_th" value="th" {{isset(request()->local['th'])?  "checked":""}}>
-											<label for="local_th" class="text-dark m-t-5">泰國</label>
+											<label for="local_th" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.th')}}</label>
 										</div>
-									
 									</div>
 									
 									<div class="row">
@@ -85,12 +84,13 @@
 									<table class="itable">
 										<thead>
 											<tr>
-												<th class="w-30">No</th>
+												<th>No</th>
 												<th>{{__('member/crawlerItemSearch.index.table.image')}}</th>
-												<th>{{__('member/crawlerItemSearch.index.table.productName')}}</th>
-												<th class="w-50">{{__('member/crawlerItemSearch.index.table.price_min')}}</th>
-												<th class="w-50">{{__('member/crawlerItemSearch.index.table.price_max')}}</th>
+												<th width="40%">{{__('member/crawlerItemSearch.index.table.productName')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.price_min')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.price_max')}}</th>
 												<th>{{__('member/crawlerItemSearch.index.table.sales')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.sku')}}</th>
 											</tr>
 										</thead>
 									<tbody>
@@ -129,9 +129,14 @@
 											<td>{{number_format($crawlerItem->crawlerItemSKUs->min('price')/10, 0,".",",")}}</td>
 											<td>{{number_format($crawlerItem->crawlerItemSKUs->max('price')/10, 0,".",",")}}</td>
 											<td class="text-left">
-												{{__('member/crawlerItem.index.table.information.monthly_sale')}} : {{number_format($crawlerItem->sold,0,".",",")}}<br>
-												{{__('member/crawlerItem.index.table.information.historic_sale')}} : {{number_format($crawlerItem->historical_sold,0,".",",")}}<br>
-												{{__('member/crawlerItem.index.table.updated_at')}} : {{$crawlerItem->updated_at!=null? $crawlerItem->updated_at->diffForHumans() : ""}}<br>
+												{{__('member/crawlerItemSearch.index.table.information.monthly_sale')}} : {{number_format($crawlerItem->sold,0,".",",")}}<br>
+												{{__('member/crawlerItemSearch.index.table.information.historic_sale')}} : {{number_format($crawlerItem->historical_sold,0,".",",")}}<br>
+												{{__('member/crawlerItemSearch.index.table.updated_at')}} : {{$crawlerItem->updated_at!=null? $crawlerItem->updated_at->diffForHumans() : ""}}<br>
+											</td>
+											
+											<td>
+												<a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-left"
+												   onclick="show_crawler_item_skus(this, php_inject={{json_encode(['models' => ['crawlerItem' => $crawlerItem]])}})"> {{__('member/crawlerItemSearch.index.table.skuDetailBtn')}}</a>
 											</td>
 										</tr>
 										@endforeach
@@ -184,7 +189,27 @@
                 }
             });
         });
+
+        function show_crawler_item_skus(_this, php_inject) {
+            $.ajaxSetup(active_ajax_header());
+            $.ajax({
+                type: 'get',
+                url: '{{route('member.crawlerItem-crawlerItemSku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id,
+                data: '',
+                async: true,
+                crossDomain: true,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $('#modal-left .modal-title').html('{{__('member/crawlerItem.sku_detail.title')}}');
+                    $('#modal-left .modal-body').html(data.view)
+                },
+                error: function(data) {
+                }
+            });
+        }
 	</script>
+	
 @endsection
 
 

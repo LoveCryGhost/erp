@@ -18,7 +18,6 @@ class CrawlerItemsController extends MemberCoreController
 
     public function __construct(CrawlerItemService $crawlerItemService)
     {
-        $this->middleware('auth:member');
         $this->crawlerService = $crawlerItemService;
     }
 
