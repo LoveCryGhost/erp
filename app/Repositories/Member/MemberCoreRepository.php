@@ -42,8 +42,7 @@ class MemberCoreRepository extends Repository {
                                 }else{
                                     //return '"'.str_replace('"', '""', $value).'"';
                                     $_str = $value;
-                                    $_str = str_replace('"', '""', $_str);
-                                    $_str =  str_replace('\""', '\"', $_str);
+                                    $_str = str_replace('"', '&quot;', $_str);
                                     return '"' .$_str.'"';
                                 }
                             } , $row )
