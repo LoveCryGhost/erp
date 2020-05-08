@@ -40,10 +40,11 @@ class MemberCoreRepository extends Repository {
                                 if($value===null){
                                     return "NULL";
                                 }else{
-                                    return '"'
-                                        //取代是有順序的, 不可任意更改
-                                        .str_replace('"', '""', $value).'"'
-                                        .str_replace('\""', '\"', $value).'"';
+                                    //取代是有順序的, 不可任意更改
+                                    $_str = $value;
+                                    $_str = str_replace('"', '""', $value);
+                                    $_str =  str_replace('\""', '\"', $value);
+                                    return '"' .$_str.'"';
                                 }
                             } , $row )
                     ).')';
