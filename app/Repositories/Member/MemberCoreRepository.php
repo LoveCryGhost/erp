@@ -40,9 +40,14 @@ class MemberCoreRepository extends Repository {
                                 if($value===null){
                                     return "NULL";
                                 }else{
-                                    //return '"'.str_replace('"', '""', $value).'"';
                                     $_str = $value;
                                     $_str = str_replace('"', '&quot;', $_str);
+
+                                    //檢查最後字元
+                                    if(substr($_str, -1)=="\\"){
+                                        $_str = substr($_str,0,-1);
+                                    }
+                                    //return '"'.str_replace('"', '""', $value).'"';
                                     return '"' .$_str.'"';
                                 }
                             } , $row )
