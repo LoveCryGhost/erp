@@ -51,7 +51,6 @@ class CrawlerItemsController extends MemberCoreController
         $crawlerItem = CrawlerItem::find($ci_id);
         $pivot = $crawlerItem->crawlerTask()->wherePivot('ct_i_id', $data['ct_i_id'])->first()->pivot;
 
-
         if($pivot->is_active==1){
             DB::table('ctasks_items')->where('ct_i_id', $data['ct_i_id'])->update(['is_active'=>0]);
         }else{

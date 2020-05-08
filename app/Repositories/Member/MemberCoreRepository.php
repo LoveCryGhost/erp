@@ -5,6 +5,7 @@ namespace App\Repositories\Member;
 
 use App\Repositories\Repository;
 use Illuminate\Support\Facades\DB;
+use function str_replace;
 
 class MemberCoreRepository extends Repository {
 
@@ -39,7 +40,10 @@ class MemberCoreRepository extends Repository {
                                 if($value===null){
                                     return "NULL";
                                 }else{
-                                    return '"'.str_replace('"', '""', $value).'"';
+                                    return '"'
+                                        //取代是有順序的, 不可任意更改
+                                        .str_replace('"', '""', $value).'"'
+                                        .str_replace('\""', '\"', $value).'"';
                                 }
                             } , $row )
                     ).')';
