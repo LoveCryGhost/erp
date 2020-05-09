@@ -13,7 +13,7 @@ Route::prefix('run') ->middleware('auth:admin')->group(function(){
         return redirect()->route('admin.index');
     });
     Route::get('crawlerTaskJob',function () {
-        dispatch((new CrawlerTaskJob())->onQueue('high'));
+        dispatch((new CrawlerTaskJob())->onQueue('default'));
         return redirect()->route('admin.index');
     });
     Route::get('crawlerItemJob',function () {

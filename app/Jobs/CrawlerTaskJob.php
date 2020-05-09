@@ -118,7 +118,6 @@ class CrawlerTaskJob implements ShouldQueue
             if($crawlerTask->current_page == $crawlerTask->pages){
                 $crawlerTask->updated_at = Carbon::now();
             }
-
             $crawlerTask->save();
 
             dispatch((new CrawlerTaskJob())->onQueue('high'));
@@ -133,7 +132,6 @@ class CrawlerTaskJob implements ShouldQueue
         if($crawlerTask->current_page == $crawlerTask->pages){
             $crawlerTask->current_page=1;
         }
-
         return $crawlerTask;
     }
 }
