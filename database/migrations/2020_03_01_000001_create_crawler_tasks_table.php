@@ -19,8 +19,8 @@ class CreateCrawlerTasksTable extends Migration
             $table->string('ct_name');
             $table->string('url',500);
             $table->string('domain_name')->nullable();
-            $table->string('current_page')->default(0);
-            $table->string('pages')->default(2);
+            $table->integer('current_page')->default(0);
+            $table->integer('pages')->default(2);
             $table->string('category')->nullable();
             $table->string('subcategory')->nullable();
             $table->string('keyword')->nullable();

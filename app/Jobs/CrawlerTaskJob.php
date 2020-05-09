@@ -15,6 +15,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function config;
+use function dd;
+use function dispatch;
 
 class CrawlerTaskJob implements ShouldQueue
 {
@@ -90,14 +93,18 @@ class CrawlerTaskJob implements ShouldQueue
                 $crawlerItem_ids = CrawlerItem::whereInMultiple(['itemid', 'shopid', 'local'], $value_arr)
                     ->pluck('ci_id', 'itemid');
 
-
-                $index=1;
+                $insert_item_qty = config('crawler.insert_item_qty');
+                $index=$crawlerTask->current_page*$insert_item_qty + 1;
                 foreach ($items_order as $itemid){
                     $sync_ids[$crawlerItem_ids[$itemid]]= ['sort_order'=>$index++];
                 }
 
                 //Sync刪除並更新
-                $crawlerTask->crawlerItems()->sync($sync_ids);
+                if($crawlerTask->current_page == 0) {
+                    $crawlerTask->crawlerItems()->sync($sync_ids);
+                }else{
+                    $crawlerTask->crawlerItems()->syncwithoutdetaching($sync_ids);
+                }
 
                 //$crawlerItem->timestamps = false;
                 //$crawlerItem->whereIn('ci_id', $crawlerItem_ids)->update(['created_at' => now()]);
@@ -105,16 +112,18 @@ class CrawlerTaskJob implements ShouldQueue
                 //批量儲存Shop
                 $crawlerShop = new CrawlerShop();
                 $TF = (new MemberCoreRepository())->massUpdate($crawlerShop, $row_shops);
-
-
-                dispatch((new CrawlerTaskJob())->onQueue('high'));
-                dispatch((new CrawlerItemJob())->onQueue('low'));
-                dispatch((new CrawlerShopJob())->onQueue('low'));
             }
 
-            $crawlerTask->updated_at = Carbon::now();
             $crawlerTask->current_page++;
+            if($crawlerTask->current_page == $crawlerTask->pages){
+                $crawlerTask->updated_at = Carbon::now();
+            }
+
             $crawlerTask->save();
+
+            dispatch((new CrawlerTaskJob())->onQueue('high'));
+            dispatch((new CrawlerItemJob())->onQueue('low'));
+            dispatch((new CrawlerShopJob())->onQueue('low'));
         }
     }
 
@@ -122,7 +131,9 @@ class CrawlerTaskJob implements ShouldQueue
     {
         //當兩者相同，表示需要重新開始
         if($crawlerTask->current_page == $crawlerTask->pages){
-            $crawlerTask = 1;
+            $crawlerTask->current_page=1;
         }
+
+        return $crawlerTask;
     }
 }

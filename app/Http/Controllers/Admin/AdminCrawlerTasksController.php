@@ -31,7 +31,7 @@ class AdminCrawlerTasksController extends AdminCoreController
     }
 
     public function index(){
-        $query = CrawlerTask::with(['member']);
+        $query = CrawlerTask::with(['member', 'crawlerItems']);
         $crawlerTask_total = $query->count();
 
         $crawlerTasks = $query->paginate(10);

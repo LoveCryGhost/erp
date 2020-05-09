@@ -24,16 +24,18 @@
 						<div class="box-body">
 							<div class="table-responsive">
 								<div class="infinite-scroll">
-									<table class="itable">
+									<table class="itable table">
 										<thead>
-											<tr class="">
+											<tr>
 												<th class="w-30">No</th>
 												<th class="w-30">建立者</th>
 												<th class="w-100">任務名稱</th>
 												<th class="w-100">區域</th>
 												<th class="w-100">國家</th>
+												<th class="w-20">當前頁數</th>
 												<th class="w-20">頁數</th>
 												<th class="w-20">資料筆數</th>
+												<th class="w-20">更新時間</th>
 											</tr>
 										</thead>
 									<tbody>
@@ -41,11 +43,13 @@
 										<tr>
 											<td>{{($crawlerTasks->currentPage()-1)*($crawlerTasks->perPage()) + $loop->iteration}}</td>
 											<td>{{$crawlerTask->member->name}}</td>
-											<td>{{$crawlerTask->ct_name}}</td>
+											<td class="text-left">{{$crawlerTask->ct_name}}</td>
 											<td>{{$crawlerTask->domain_name}}</td>
 											<td>{{$crawlerTask->local}}</td>
+											<td>{{$crawlerTask->current_page}}</td>
 											<td>{{$crawlerTask->pages}}</td>
 											<td>{{$crawlerTask->crawlerItems->count()}}</td>
+											<td>{{$crawlerTask->updated_at}}</td>
 										</tr>
 										@endforeach
 									</tbody>
