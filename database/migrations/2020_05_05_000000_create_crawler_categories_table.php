@@ -15,7 +15,7 @@ class CreateCrawlerCategoriesTable extends Migration
             $table->string('image')->nullable();
             $table->string('local')->default('tw');
             $table->timestamp('updated_at')->useCurrent()->nullable();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

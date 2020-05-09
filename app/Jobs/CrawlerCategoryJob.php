@@ -16,8 +16,12 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function current;
 use function dispatch;
+use function explode;
 use function json_decode;
+use function redirect;
+use function request;
 
 class CrawlerCategoryJob implements ShouldQueue
 {
@@ -25,6 +29,7 @@ class CrawlerCategoryJob implements ShouldQueue
 
     private $url;
     private $shopeeHandler;
+    public $timeout = 0;
 
     public function __construct()
     {
@@ -36,17 +41,28 @@ class CrawlerCategoryJob implements ShouldQueue
     {
         $this->shopeeHandler = new ShopeeHandler();
         //國家
-        $countries = [
-            'tw' => 'shopee.tw',
-            'id' => 'shopee.co.id',
-            'th' => 'shopee.co.th'];
+        $sub_domain = current(explode('.', request()->getHost()));
+        if($sub_domain=='localhost'){
+            $params['pages'] = 1;
+            $params['limit_tasks']=2;
+        }else{
+            $params['pages'] = 20;
+            $params['limit_tasks']=10000;
+        }
+
+        $countries = [];
+        $countries['tw'] = 'shopee.tw';
+        $countries['id'] = 'shopee.co.id';
+        $countries['th'] = 'shopee.co.th';
+
+
         foreach ($countries as $country_code => $country){
             $url = 'https://'.$country.'/api/v2/category_list/get';
-            $this->crawler_catergory($country_code, $country, $url);
+            $this->crawler_catergory($country_code, $country, $url, $params);
         }
     }
 
-    public function crawler_catergory($country_code, $country, $url)
+    public function crawler_catergory($country_code, $country, $url, $params=[])
     {
         //Category url
         //先找主Category 資料
@@ -55,6 +71,7 @@ class CrawlerCategoryJob implements ShouldQueue
 
         //寫入資料庫
         foreach ($json['data']['category_list'] as $category){
+
             $row_categories[]=[
                 'catid' => $category['catid'],
                 'p_id' => 0,
@@ -68,7 +85,7 @@ class CrawlerCategoryJob implements ShouldQueue
                 "is_active" => 1,
                 "ct_name" =>  $category['display_name'],
                 "url" => "https://".$country."/".$category['display_name']."-cat.".$category['catid']."?sortBy=sales",
-                "pages" => 10,
+                "pages" => $params['pages'],
                 "description" => "",
                 'display_name' => $category['display_name']
             ];
@@ -77,8 +94,11 @@ class CrawlerCategoryJob implements ShouldQueue
         $crawlerCategory = new CrawlerCategory();
         $TF = (new MemberCoreRepository())->massUpdate($crawlerCategory, $row_categories);
 
-
+        $index=0;
         foreach($row_crawlerTasks as $row_crawlerTask){
+            if($index >= $params['limit_tasks']){
+                break;
+            }
             $url_params = $this->shopeeHandler->shopee_url($row_crawlerTask['url']);
             $data['url_params'] = $url_params;
             $data['local'] = $data['url_params']['local'];
@@ -127,13 +147,17 @@ class CrawlerCategoryJob implements ShouldQueue
             ],[
 
                 'is_active' => 1,
-                'ct_name' => '分類 - '.$row_crawlerTask['display_name'],
+                'ct_name' => 'Cat. - '.$row_crawlerTask['display_name'],
                 'website' => $data['url_params']['website'],
                 'url' => $data['url_params']['url'],
                 'member_id' => 1, //default 1
                 'pages' => $row_crawlerTask['pages']
             ]);
+
+            $index++;
         }
+
         dispatch((new CrawlerTaskJob())->onQueue('high'));
+        return redirect()->back();
     }
 }

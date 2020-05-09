@@ -7,7 +7,7 @@
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
 			<h3>
-				Shopee 全球 - 列表
+				{{__('member/crawlerItemSearch.index.title')}}
 			</h3>
 		</div>
 		
@@ -43,7 +43,21 @@
 										<div class="col-sm-2">
 											<input class="form-control"  type="text" name="historical_sold" placeholder="{{__('member/crawlerItemSearch.index.search.historical_sold')}}" value="{{request()->historical_sold}}">
 										</div>
-									
+										
+										{{--國家--}}
+										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.country')}}</label>
+										<div class="col-sm-1">
+											<input type="checkbox" class="" name="local[tw]"  id="local_tw" value="tw" {{isset(request()->local['tw'])?  "checked":""}}>
+											<label for="local_tw" class="text-dark m-t-5 ">{{__('member/crawlerItemSearch.index.search.language.tw')}}</label>
+										</div>
+										<div class="col-sm-1">
+											<input type="checkbox" class="permission_check" name="local[id]"  id="local_id" value="id" {{isset(request()->local['id'])?  "checked":""}}>
+											<label for="local_id" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.id')}}</label>
+										</div>
+										<div class="col-sm-1">
+											<input type="checkbox" class="permission_check" name="local[th]"  id="local_th" value="th" {{isset(request()->local['th'])?  "checked":""}}>
+											<label for="local_th" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.th')}}</label>
+										</div>
 									</div>
 									
 									<div class="row">
@@ -60,17 +74,23 @@
 						</div>
 						<div class="box-body">
 							<div class="table-responsive">
-								<div class="pull-right">{{number_format($crawlerItem_total,0, "", ",")}} 筆數</div>
+								<div class="pull-right"> {{number_format($crawlerItem_total_updated,0, "", ",")}} / {{number_format($crawlerItem_total_records,0, "", ",")}}
+									{{__('member/crawlerItemSearch.index.search.records')}}
+									@if($crawlerItem_total_records>0)
+										({{number_format(($crawlerItem_total_updated/$crawlerItem_total_records)*100, 1,".",",")}} %)
+									@endif
+								</div>
 								<div class="infinite-scroll">
-									<table class="itable">
+									<table class="itable table" >
 										<thead>
 											<tr>
-												<th class="w-30">No</th>
-												<th>照片</th>
-												<th>商品名稱</th>
-												<th class="w-50">售價(低)</th>
-												<th class="w-50">售價(高)</th>
-												<th>歷史銷量</th>
+												<th>No</th>
+												<th>{{__('member/crawlerItemSearch.index.table.image')}}</th>
+												<th width="40%">{{__('member/crawlerItemSearch.index.table.productName')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.price_min')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.price_max')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.sales')}}</th>
+												<th>{{__('member/crawlerItemSearch.index.table.sku')}}</th>
 											</tr>
 										</thead>
 									<tbody>
@@ -85,7 +105,20 @@
 												@endif
 											</td>
 											<td class="text-left">
-												{!! str_replace(request()->name, "<span class='text-red'><u><b>".request()->name.'</b></u></span>',$crawlerItem->name)!!}<br>
+												
+												{{--標註提醒--}}
+												@php
+													$inputs = explode(',', request()->name);
+													$name = $crawlerItem->name;
+													foreach($inputs as $input){
+												     	$input= trim($input);
+												     	if($input!=""){
+															$name = str_ireplace($input, "<span class='text-red'><u><b>".$input.'</b></u></span>',$name);
+														}
+													}
+												@endphp
+												{!! $name!!}<br>
+												
 												<a class="btn btn-sm btn-info" target="_blank"
 												   href="https://{{$crawlerItem->domain_name}}/{{$crawlerItem->name==null? "waiting-upload-data":$crawlerItem->name}}-i.{{$crawlerItem->shopid}}.{{$crawlerItem->itemid}}" >
 													<i class="fa fa-external-link"></i> {{$crawlerItem->itemid}}</a>
@@ -96,9 +129,14 @@
 											<td>{{number_format($crawlerItem->crawlerItemSKUs->min('price')/10, 0,".",",")}}</td>
 											<td>{{number_format($crawlerItem->crawlerItemSKUs->max('price')/10, 0,".",",")}}</td>
 											<td class="text-left">
-												{{__('member/crawlerItem.index.table.information.monthly_sale')}} : {{number_format($crawlerItem->sold,0,".",",")}}<br>
-												{{__('member/crawlerItem.index.table.information.historic_sale')}} : {{number_format($crawlerItem->historical_sold,0,".",",")}}<br>
-												{{__('member/crawlerItem.index.table.updated_at')}} : {{$crawlerItem->updated_at!=null? $crawlerItem->updated_at->diffForHumans() : ""}}<br>
+												{{__('member/crawlerItemSearch.index.table.information.monthly_sale')}} : {{number_format($crawlerItem->sold,0,".",",")}}<br>
+												{{__('member/crawlerItemSearch.index.table.information.historic_sale')}} : {{number_format($crawlerItem->historical_sold,0,".",",")}}<br>
+												{{__('member/crawlerItemSearch.index.table.updated_at')}} : {{$crawlerItem->updated_at!=null? $crawlerItem->updated_at->diffForHumans() : ""}}<br>
+											</td>
+											
+											<td>
+												<a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-left"
+												   onclick="show_crawler_item_skus(this, php_inject={{json_encode(['models' => ['crawlerItem' => $crawlerItem]])}})"> {{__('member/crawlerItemSearch.index.table.skuDetailBtn')}}</a>
 											</td>
 										</tr>
 										@endforeach
@@ -139,9 +177,10 @@
                 // 当滚动到底部时,自动加载下一页
                 autoTrigger: true,
                 // 限制自动加载, 仅限前两页, 后面就要用户点击才加载
-                autoTriggerUntil: 2,
+                autoTriggerUntil: 1,
                 // 设置加载下一页缓冲时的图片
                 loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
+	            //设置距离底部多远时开始加载下一页
                 padding: 0,
                 nextSelector: 'a.jscroll-next:last',
                 contentSelector: '.infinite-scroll',
@@ -150,7 +189,27 @@
                 }
             });
         });
+
+        function show_crawler_item_skus(_this, php_inject) {
+            $.ajaxSetup(active_ajax_header());
+            $.ajax({
+                type: 'get',
+                url: '{{route('member.crawlerItem-crawlerItemSku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id,
+                data: '',
+                async: true,
+                crossDomain: true,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $('#modal-left .modal-title').html('{{__('member/crawlerItem.sku_detail.title')}}');
+                    $('#modal-left .modal-body').html(data.view)
+                },
+                error: function(data) {
+                }
+            });
+        }
 	</script>
+	
 @endsection
 
 

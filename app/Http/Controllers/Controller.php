@@ -41,4 +41,27 @@ class Controller extends BaseController
 
         return $query;
     }
+
+    public function filter_checkbox($query, $column_name , $checkboxes)
+    {
+        $query = $query->where(function($query) use($column_name, $checkboxes){
+            $index=1;
+            if($checkboxes!=""){
+                foreach($checkboxes as $checkbox_value){
+                    if($index==1) {
+                        $query = $query->where($column_name, $checkbox_value);
+                    }else{
+                        $query->orwhere(function($q) use($column_name, $checkbox_value) {
+                            $q->where($column_name, $checkbox_value);
+                        });
+                    }
+                    $index++;
+                }
+                return $query;
+            }
+
+        });
+        return $query;
+    }
+
 }

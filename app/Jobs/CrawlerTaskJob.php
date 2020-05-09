@@ -42,6 +42,7 @@ class CrawlerTaskJob implements ShouldQueue
 
         //更新任務 - Urls
         if($crawlerTask) {
+
             //處理Page問題
             $crawlerTask = $this->handle_page($crawlerTask);
 

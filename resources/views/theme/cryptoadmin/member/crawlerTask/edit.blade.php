@@ -109,7 +109,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">{{__('member/crawlerTask.edit.description')}}</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" type="text" name="{{__('member/crawlerTask.edit.description')}}" placeholder="描述" >{{$crawlerTask->description}}</textarea>
+                                            <textarea class="form-control" type="text" name="description" placeholder="描述" >{{$crawlerTask->description}}</textarea>
                                         </div>
                                     </div>
 
