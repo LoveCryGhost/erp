@@ -34,6 +34,7 @@ Route::prefix('')->middleware('auth:member')->namespace('Member')->group(functio
             Route::post('crawlerTask_refresh', 'CrawlerTasksController@refresh')->name('crawlerTask.refresh');
             Route::resource('crawlerItem', 'CrawlerItemsController');
             Route::post('crawlerItem_toggle', 'CrawlerItemsController@toggle')->name('crawlerItem.toggle');
+                //Route::get('crawlerItem_toggle', 'CrawlerItemsController@toggle')->name('crawlerItem.toggle');
             Route::post('crawlerItem_saveCralwerTaskInfo', 'CrawlerItemsController@saveCralwerTaskInfo')->name('crawlerItem.saveCralwerTaskInfo');
 
             Route::resource('crawlerItem-crawlerItemSku', 'CrawlerItem_CrawlerItemSKUsController');

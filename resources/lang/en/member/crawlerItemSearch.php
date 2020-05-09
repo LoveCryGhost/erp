@@ -32,7 +32,7 @@ return [
     'index.table.sku' => 'SKU Detail',
     'index.table.information.monthly_sale' => 'Monthly Sale',
     'index.table.information.historic_sale' => 'Hsitoric Sale',
-    'index.table.updated_at' => 'SKU',
+    'index.table.updated_at' => 'Updated at',
     'index.table.skuDetailBtn' => 'SKU',
 
 

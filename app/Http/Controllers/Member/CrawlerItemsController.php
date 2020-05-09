@@ -8,6 +8,7 @@ use App\Services\Member\CrawlerItemService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function dd;
 
 class CrawlerItemsController extends MemberCoreController
 {
@@ -48,6 +49,7 @@ class CrawlerItemsController extends MemberCoreController
         $data = $request->all();
 
         $ci_id = $data['ci_id'];
+
         $crawlerItem = CrawlerItem::find($ci_id);
         $pivot = $crawlerItem->crawlerTask()->wherePivot('ct_i_id', $data['ct_i_id'])->first()->pivot;
 

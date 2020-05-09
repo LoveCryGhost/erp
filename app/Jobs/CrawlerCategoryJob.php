@@ -20,6 +20,7 @@ use function current;
 use function dispatch;
 use function explode;
 use function json_decode;
+use function redirect;
 use function request;
 
 class CrawlerCategoryJob implements ShouldQueue
@@ -146,7 +147,7 @@ class CrawlerCategoryJob implements ShouldQueue
             ],[
 
                 'is_active' => 1,
-                'ct_name' => '分類 - '.$row_crawlerTask['display_name'],
+                'ct_name' => 'Cat. - '.$row_crawlerTask['display_name'],
                 'website' => $data['url_params']['website'],
                 'url' => $data['url_params']['url'],
                 'member_id' => 1, //default 1
@@ -157,5 +158,6 @@ class CrawlerCategoryJob implements ShouldQueue
         }
 
         dispatch((new CrawlerTaskJob())->onQueue('high'));
+        return redirect()->back();
     }
 }

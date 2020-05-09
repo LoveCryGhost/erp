@@ -8,7 +8,7 @@ return [
     'index.search.taskName' => 'Task Name',
     'index.search.domain_name' => 'Domain',
     'index.search.description' => 'Description',
-    'index.search.submit' => 'Search',
+    'index.search.submit' => 'Save',
     'index.search.reset' => 'Reset',
     'index.search.reload_task' => 'Do You Want to Crawler All ?',
 
@@ -41,7 +41,7 @@ return [
     'edit.taskName' => 'Task Name',
     'edit.domain_name' => 'Domain',
     'edit.description' => 'Description',
-    'edit.submit' => 'Search',
+    'edit.submit' => 'Save',
     'edit.reset' => 'Reset',
 
     'edit.no' => 'No.',
