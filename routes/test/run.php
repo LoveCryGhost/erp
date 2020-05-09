@@ -8,4 +8,7 @@ Route::prefix('run') ->middleware('auth:admin')->group(function(){
         dispatch((new CrawlerCategoryJob())->onQueue('high'));
         return redirect()->route('admin.index');
     });
+    Route::get('test',function () {
+        return redirect()->route('admin.index');
+    });
 });
