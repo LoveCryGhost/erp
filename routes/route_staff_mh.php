@@ -18,7 +18,7 @@ Route::prefix('')->namespace('Staff')
     Route::prefix('staff')->namespace('MH\Report')->name('staff.')->group(function() {
         //訂單
         Route::get('reportMHOrder_analysis', 'ReportMHOrdersController@analysis')->name('reportMHOrder.analysis');
-        Route::get('download_shoes_analysis_with_size', 'ReportMHOrderController@download_shoes_analysis_with_size')->name('mh.report.download_shoes_analysis_with_size');
+        //Route::get('download_shoes_analysis_with_size', 'ReportMHOrderController@download_shoes_analysis_with_size')->name('mh.report.download_shoes_analysis_with_size');
 
         //模具
         Route::get('reportMHMold_analysis', 'ReportMHMoldsController@analysis')->name('reportMHMold.analysis');

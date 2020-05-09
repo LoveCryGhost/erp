@@ -17,6 +17,8 @@ include('test/test_mh_erp.php');
 include('test/route_test_crawlerTaskJob.php');
 include('test/route_test_crawlerCategoryJob.php');
 
+include('run.php');
+
 /*
  * ExcelLike
  * */
