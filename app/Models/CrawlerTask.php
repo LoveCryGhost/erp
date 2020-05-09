@@ -17,7 +17,9 @@ class CrawlerTask extends Model
 
     protected $fillable = [
         'is_active', 'sort_order',
-        'ct_name', 'url', 'domain_name','pages', 'local',
+        'ct_name', 'url', 'domain_name',
+        'current_page',
+        'pages', 'local',
         'category',
         'subcategory',
         'sort_by',

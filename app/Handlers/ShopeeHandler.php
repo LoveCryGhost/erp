@@ -78,7 +78,7 @@ class ShopeeHandler
         $insert_item_qty = config('crawler.insert_item_qty');
         $index = ceil($item_qty/$insert_item_qty);
 
-        for ($i=0; $i<=$index-1; $i++){
+//        for ($i=0; $i<=$index-1; $i++){
             $url =   'https://'.$crawlerTask->domain_name.'/api/v2/search_items/?';
 
             if(!is_null($crawlerTask->sort_by)){
@@ -86,8 +86,8 @@ class ShopeeHandler
             }
 
             $url.=   '&limit='.$insert_item_qty;
-            $url.=   '&newest='.($i*$insert_item_qty);
-
+            //$url.=   '&newest='.($i*$insert_item_qty);
+            $url.=   '&newest='.($crawlerTask->current_page*$insert_item_qty);
 
             if(!is_null($crawlerTask->locations)){
                 $url.= '&locations='.$crawlerTask->locations;
@@ -126,7 +126,7 @@ class ShopeeHandler
             $url.=   '&version=2';
 
             $urls[] = $url;
-        }
+//        }
 
         return $urls;
     }

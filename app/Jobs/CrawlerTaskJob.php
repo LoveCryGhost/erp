@@ -35,11 +35,15 @@ class CrawlerTaskJob implements ShouldQueue
         //找CrawlerTask
         //更新時間(1)空或(2)不等於今天
         $crawlerTask = CrawlerTask::where(function ($query) {
-            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+            $query->whereDate('updated_at','<>',Carbon::today())
+                ->orWhereNull('updated_at')
+                ->orWhereRaw('current_page < pages');
         })->first();
 
         //更新任務 - Urls
         if($crawlerTask) {
+            //處理Page問題
+            $crawlerTask = $this->handle_page($crawlerTask);
 
             //組合Url連結組合
             $urls = $this->shopeeHandler->crawlerTaskGenerateAPIUrl($crawlerTask);
@@ -101,12 +105,23 @@ class CrawlerTaskJob implements ShouldQueue
                 $crawlerShop = new CrawlerShop();
                 $TF = (new MemberCoreRepository())->massUpdate($crawlerShop, $row_shops);
 
+
                 dispatch((new CrawlerTaskJob())->onQueue('high'));
                 dispatch((new CrawlerItemJob())->onQueue('low'));
                 dispatch((new CrawlerShopJob())->onQueue('low'));
             }
+
             $crawlerTask->updated_at = Carbon::now();
+            $crawlerTask->current_page++;
             $crawlerTask->save();
+        }
+    }
+
+    public function handle_page($crawlerTask)
+    {
+        //當兩者相同，表示需要重新開始
+        if($crawlerTask->current_page == $crawlerTask->pages){
+            $crawlerTask = 1;
         }
     }
 }
