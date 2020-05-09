@@ -30,8 +30,7 @@ class CrawlerItemSearchsController extends MemberCoreController
     public function index()
     {
 
-        $query = CrawlerItem::with(['crawlerShop','crawlerItemSKUs'])
-            ->where('member_id', 1);
+        $query = CrawlerItem::with(['crawlerShop','crawlerItemSKUs']);
 
         $this->filters = [
             'name' => request()->name,
