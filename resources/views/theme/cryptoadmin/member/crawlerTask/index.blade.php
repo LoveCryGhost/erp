@@ -10,11 +10,6 @@
             <h3>
                 {{__('member/crawlerTask.index.title')}}
             </h3>
-{{--            <ol class="breadcrumb">--}}
-{{--                <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>--}}
-{{--                <li class="breadcrumb-item"><a href="#">Members</a></li>--}}
-{{--                <li class="breadcrumb-item active">Members List</li>--}}
-{{--            </ol>--}}
         </div>
 
         <!-- Main content -->
@@ -60,16 +55,34 @@
     
                 <div class="box-body">
                     <div class="col-xl-12 col-lg-12 text-right">
+                        
                         @include(config('theme.member.btn.index.crud'))
-                        <form action="{{route('member.crawlerTask.refresh')}}" method="post" class="m-b-0"
-                              style="display: inline-block;"
-                              onsubmit="return confirm('{{__('member/crawlerTask.index.search.reload_task')}}');">
-                            @csrf
-                            @method('post')
-                            <button type="submit" class="btn btn-secondary">
-                                <i class="fa fa-refresh"></i>
-                            </button>
-                        </form>
+                        @if(auth('admin')->check() && auth('admin')->user()->hasAnyRole('admin'))
+                            {{--TW--}}
+                            <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerCategoryJob">tw-Category</a>
+                            <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerItemJob">tw-Item</a>
+                            <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerShopJob">tw-Shop</a>
+    
+                            {{--Id--}}
+                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerCategoryJob">id-Category</a>
+                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerItemJob">id-Item</a>
+                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerShopJob">id-Shop</a>
+        
+                            {{--Th--}}
+                            <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerCategoryJob">th-Category</a>
+                            <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerItemJob">th-Item</a>
+                            <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerShopJob">th-Shop</a>
+                        
+                            <form action="{{route('member.crawlerTask.refresh')}}" method="post" class="m-b-0"
+                                  style="display: inline-block;"
+                                  onsubmit="return confirm('{{__('member/crawlerTask.index.search.reload_task')}}');">
+                                @csrf
+                                @method('post')
+                                <button type="submit" class="btn btn-secondary">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+                            </form>
+                        @endif
                     </div>
                     <div class="table-responsive">
                         <div class="infinite-scroll">

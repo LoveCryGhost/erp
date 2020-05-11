@@ -143,6 +143,8 @@ class ShopeeHandler
             $query = $query->where('local', 'id');
         }elseif($sub_domain=='th'){
             $query = $query->where('local', 'th');
+        }else{
+            $query = $query->where('local', 'None');
         }
         return $query;
     }

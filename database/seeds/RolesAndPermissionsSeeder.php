@@ -134,7 +134,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         //User 綁定 Role
         $admin = Admin::find(1);
-        $admin->assignRole('SupderAdmin');
+        $admin->assignRole(['SupderAdmin','admin']);
 
         $admin = Admin::find(2);
         $admin->assignRole('admin');

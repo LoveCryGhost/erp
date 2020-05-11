@@ -15,22 +15,26 @@ use Symfony\Component\Process\Process;
 Route::prefix('run') ->middleware('auth:admin')->group(function(){
     Route::get('crawlerCategoryJob',function () {
         dispatch((new CrawlerCategoryJob())->onQueue('high'));
-        return redirect()->route('admin.index');
-    });
+        return redirect()->back();
+    })->name('member.run.crawlerCategoryJob');
+
     Route::get('crawlerTaskJob',function () {
         dispatch((new CrawlerTaskJob())->onQueue('default'));
-        return redirect()->route('admin.index');
-    });
+        return redirect()->back();
+    })->name('member.run.crawlerTaskJob');
+
     Route::get('crawlerItemJob',function () {
         dispatch((new CrawlerItemJob())->onQueue('low'));
-        return redirect()->route('admin.index');
-    });
+        return redirect()->back();
+    })->name('member.run.crawlerItemJob');
+
     Route::get('crawlerShopJob',function () {
         dispatch((new CrawlerShopJob())->onQueue('low'));
-        return redirect()->route('admin.index');
-    });
+        return redirect()->back();
+    })->name('member.run.crawlerShopJob');
+
     Route::get('test',function () {
-        return redirect()->route('admin.index');
+        return redirect()->back();
     });
 });
 
