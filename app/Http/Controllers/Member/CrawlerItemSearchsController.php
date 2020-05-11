@@ -54,6 +54,11 @@ class CrawlerItemSearchsController extends MemberCoreController
                 'crawlerItem_total_updated' => $crawlerItem_total_updated,
                 'filters' => [
                     'name' => request()->name,
+                    'price_min' => request()->price_min,
+                    'price_max' => request()->price_max,
+                    'sold' => request()->sold, //月銷量
+                    'historical_sold' => request()->historical_sold, //歷史銷量
+                    'local' => request()->local
                 ]
             ]);
     }
