@@ -19,12 +19,7 @@ include('test/route_test_crawlerCategoryJob.php');
 
 include('run.php');
 
-/*
- * ExcelLike
- * */
-Route::prefix('test')->namespace('Test')->group(function(){
-    Route::get('excel_like', 'TestController@excel_like')->name('test.excel_like');
-});
+
 
 //無用的Test
 Route::prefix('test') ->middleware('auth:admin')->group(function(){
@@ -32,4 +27,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         $sub_domain = current(explode('.', request()->getHost()));
         dd($sub_domain);
     });
+
+
 });
+

@@ -23,4 +23,7 @@ return [
     //Report
     'report.ul' => "Report Module",
     'report.reportSKU.crawlerItemAnalysis' => "Crawler Analysis",
+
+    'tools.ul' => "Tools",
+    'tools.compoundInterest' => "Compound Interest",
 ];

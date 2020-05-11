@@ -23,4 +23,7 @@ return [
     //Report
     'report.ul' => "報表",
     'report.reportSKU.crawlerItemAnalysis' => "爬蟲分析",
+
+    'tools.ul' => "工具",
+    'tools.compoundInterest' => "複利表",
 ];

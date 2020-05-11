@@ -52,5 +52,14 @@ Route::prefix('')->middleware('auth:member')->namespace('Member')->group(functio
         Route::prefix('')->namespace('Report')->name('member.')->group(function () {
             Route::get('reportSKU_crawlerItemAanalysis', 'ReportSKUController@crawlerItemAanalysis')->name('reportSKU.crawlerItemAanalysis');
         });
+
+        /*
+         * Tools
+         * */
+        //ExcelLike
+        Route::prefix('tools')->namespace('Tools')->name('member.')->group(function(){
+            Route::get('excel_like', 'ToolsController@excel_like')->name('tools.excel_like');
+            Route::get('compound_interest', 'ToolsController@compound_interest')->name('tools.compound_interest');
+        });
     });
 });

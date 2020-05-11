@@ -24,7 +24,7 @@
         <!-- sidebar menu-->
         <ul class="sidebar-menu" data-widget="tree">
 
-            
+
             @can('member.supplier.index')
             <li class="treeview">
                 <a href="#">
@@ -41,7 +41,7 @@
                 </ul>
             </li>
             @endcan
-    
+
             @can('member.product.index')
             <li class="treeview">
                 <a href="#">
@@ -81,14 +81,29 @@
                         <i class="fa fa-bar-chart"></i>
                         <span>{{__('member/sidebar.report.ul')}}</span>
                         <span class="pull-right-container">
-                  <i class="fa fa-angle-right pull-right"></i>
-                </span>
+                          <i class="fa fa-angle-right pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{route('member.reportSKU.crawlerItemAanalysis')}}"><i class="ti-more"></i>{{__('member/sidebar.report.reportSKU.crawlerItemAnalysis')}}</a></li>
                     </ul>
                 </li>
             @endcan
+
+                @can('member.reportSKU.crawlerItemAanalysis')
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-table"></i>
+                            <span>{{__('member/sidebar.tools.ul')}}</span>
+                            <span class="pull-right-container">
+                              <i class="fa fa-angle-right pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{route('member.tools.compound_interest')}}"><i class="ti-more"></i>{{__('member/sidebar.tools.compoundInterest')}}</a></li>
+                        </ul>
+                    </li>
+                @endcan
 
         </ul>
     </section>
