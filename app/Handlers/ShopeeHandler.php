@@ -148,4 +148,20 @@ class ShopeeHandler
         }
         return $query;
     }
+
+    public function crawlerSeperator_coutnry()
+    {
+        $sub_domain = current(explode('.', request()->getHost()));
+        if($sub_domain=='tw'){
+            $countries['tw'] = 'shopee.tw';
+        }elseif($sub_domain=='id'){
+            $countries['id'] = 'shopee.co.id';
+        }elseif($sub_domain=='th'){
+            $countries['th'] = 'shopee.co.th';
+        }elseif($sub_domain=='my'){
+            $countries['my'] = 'shopee.my';
+        }
+        return $countries;
+
+    }
 }

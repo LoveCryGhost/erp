@@ -50,10 +50,9 @@ class CrawlerCategoryJob implements ShouldQueue
             $params['limit_tasks']=1000;
         }
 
-        $countries = [];
-        $countries['tw'] = 'shopee.tw';
-        $countries['id'] = 'shopee.co.id';
-        $countries['th'] = 'shopee.co.th';
+        $countries = $this->shopeeHandler->crawlerSeperator_coutnry();
+
+
 
 
         foreach ($countries as $country_code => $country){
