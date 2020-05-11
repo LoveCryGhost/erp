@@ -16,8 +16,11 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use function config;
+use function current;
 use function dd;
 use function dispatch;
+use function explode;
+use function request;
 
 class CrawlerTaskJob implements ShouldQueue
 {
@@ -37,11 +40,13 @@ class CrawlerTaskJob implements ShouldQueue
     {
         //找CrawlerTask
         //更新時間(1)空或(2)不等於今天
-        $crawlerTask = CrawlerTask::where(function ($query) {
+        $query = CrawlerTask::where(function ($query) {
             $query->whereDate('updated_at','<>',Carbon::today())
                 ->orWhereNull('updated_at')
                 ->orWhereRaw('current_page < pages');
-        })->first();
+        });
+        $query = $this->shopeeHandler->crawlerSeperator($query);
+        $crawlerTask = $query->first();
 
         //更新任務 - Urls
         if($crawlerTask) {

@@ -43,10 +43,10 @@ class CrawlerCategoryJob implements ShouldQueue
         //國家
         $sub_domain = current(explode('.', request()->getHost()));
         if($sub_domain=='localhost'){
-            $params['pages'] = 20;
+            $params['pages'] = 10;
             $params['limit_tasks']=5;
         }else{
-            $params['pages'] = 60;
+            $params['pages'] = 30;
             $params['limit_tasks']=1000;
         }
 

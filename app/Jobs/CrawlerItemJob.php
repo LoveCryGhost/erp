@@ -14,6 +14,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
+use function config;
+use function current;
+use function explode;
+use function request;
 
 class CrawlerItemJob implements ShouldQueue
 {
@@ -31,9 +35,13 @@ class CrawlerItemJob implements ShouldQueue
     {
         $member_id = Auth::guard('member')->check()?  Auth::guard('member')->user()->id: '1';
 
-        $crawler_items = CrawlerItem::where(function ($query) {
-                            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
-                        })->take(config('crawler.update_item_qty'))->get();
+
+        $query = CrawlerItem::where(function ($query) {
+            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+        })->take(config('crawler.update_item_qty'));
+
+        $query = $this->shopeeHandler->crawlerSeperator($query);
+        $crawler_items = $query->get();
 
         if(count($crawler_items)>0){
             foreach ($crawler_items as $crawler_item){
