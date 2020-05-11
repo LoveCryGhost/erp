@@ -136,7 +136,7 @@ class ShopeeHandler
 
     public function crawlerSeperator($query)
     {
-        $query = current(explode('.', request()->getHost()));
+        $sub_domain = current(explode('.', request()->getHost()));
         if($sub_domain=='tw'){
             $query = $query->where('local', 'tw');
         }elseif($sub_domain=='id'){
