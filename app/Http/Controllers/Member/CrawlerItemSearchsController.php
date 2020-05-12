@@ -47,6 +47,7 @@ class CrawlerItemSearchsController extends MemberCoreController
         $crawlerItem_total_records = $query->count();
         $crawlerItem_total_updated = $query->whereDate('updated_at','=',Carbon::today())->whereNotNull('updated_at')->count();
 
+        //$crawlerItem_total_updated/$crawlerItem_total_records
         return view(config('theme.member.view').'crawlerItemSearch.index',
             [
                 'crawlerItems' => $crawlerItems,

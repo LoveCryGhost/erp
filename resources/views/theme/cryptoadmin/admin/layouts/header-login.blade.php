@@ -21,9 +21,24 @@
             </a>
     
             @php
+                $countries = ['tw', 'th', 'id'];
                 $crawlerCategory =  new App\Models\CrawlerCategory();
                 $crawlerTask =  new App\Models\CrawlerTask();
                 $crawlerItem =  new App\Models\CrawlerItem();
+                $crawlerCategory_total = [];
+                $crawlerCategory_total_updated = [];
+                $crawlerTask_total = [];
+                $crawlerTask_total_updated = [];
+                $crawlerItem_total = [];
+                $crawlerItem_total_updated = [];
+                foreach($countries = ['tw', 'th', 'id'] as $country){
+                    $crawlerCategory_total[$country] = $crawlerCategory->where('local',$country)->count();
+                    $crawlerCategory_total_updated[$country] =  $crawlerCategory->where('local', $country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
+                    $crawlerTask_total[$country] = $crawlerTask->where('local', $country)->count();
+                    $crawlerTask_total_updated[$country] = $crawlerTask->where('local',$country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
+                    $crawlerItem_total[$country] = $crawlerItem->where('local',$country)->count();
+                    $crawlerItem_total_updated[$country] = $crawlerItem->where('local',$country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
+                }
                 
             @endphp
             <div class="pull-left">
@@ -37,24 +52,56 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>TW</td>
-                            <td>{{$crawlerCategory->where('local','tw')->count()}}</td>
-                            <td>{{$crawlerTask->where('local','tw')->count()}}</td>
-                            <td>{{$crawlerItem->where('local','tw')->count()}}</td>
-                        </tr>
-                        <tr>
-                            <td>ID</td>
-                            <td>{{$crawlerCategory->where('local','id')->count()}}</td>
-                            <td>{{$crawlerTask->where('local','id')->count()}}</td>
-                            <td>{{$crawlerItem->where('local','id')->count()}}</td>
-                        </tr>
-                        <tr>
-                            <td>TH</td>
-                            <td>{{$crawlerCategory->where('local','th')->count()}}</td>
-                            <td>{{$crawlerTask->where('local','th')->count()}}</td>
-                            <td>{{$crawlerItem->where('local','th')->count()}}</td>
-                        </tr>
+                        @if(current(explode('.', request()->getHost())) == "test")
+                            @foreach($countries as $country)
+                                <tr>
+                                    <td>{{$country}}</td>
+                                    <td>
+                                        @if($crawlerCategory_total[$country]>0)
+                                            {{$crawlerCategory_total_updated[$country]}} / {{$crawlerCategory_total[$country]}}
+                                        @endif
+                                        <a href="http://test.mherp.test/run/crawlerCategoryJob"><i class="btn btn-sm btn-primary fa fa-refresh"></i></a>
+                                    </td>
+                                    <td>
+                                        @if($crawlerTask_total[$country]>0)
+                                            {{$crawlerTask_total_updated[$country]}} / {{$crawlerTask_total[$country]}}
+                                        @endif
+                                        <a href="http://test.mherp.test/run/crawlerTaskJob"><i class="btn btn-sm btn-primary fa fa-refresh"></i></a>
+                                    </td>
+                                    <td>
+                                        @if($crawlerItem_total[$country]>0)
+                                            {{$crawlerItem_total_updated[$country]}}/ {{$crawlerItem_total[$country]}} ({{ number_format( ($crawlerItem_total_updated[$country]/$crawlerItem_total[$country])*100 , 2,".",',')}}%)
+                                        @endif
+                                        <a href="http://test.mherp.test/run/crawlerItemJob"><i class="btn btn-sm btn-primary fa fa-refresh"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            @foreach($countries as $country)
+                                <tr>
+                                    <td>{{$country}}</td>
+                                    <td>
+                                        @if($crawlerCategory_total[$country]>0)
+                                            {{$crawlerCategory_total_updated[$country]}} / {{$crawlerCategory_total[$country]}}
+                                        @endif
+                                        <a href="http://{{$country}}.cc-shop.com.cn/run/crawlerCategoryJob"><i class="btn btn-sm btn-primary fa fa-refresh"></i></a>
+                                    </td>
+                                    <td>
+                                        @if($crawlerTask_total[$country]>0)
+                                            {{$crawlerTask_total_updated[$country]}} / {{$crawlerTask_total[$country]}}
+                                        @endif
+                                        <a href="http://{{$country}}.cc-shop.com.cn/run/crawlerTaskJob"><i class="btn btn-sm btn-primary fa fa-refresh"></i></a>
+                                    </td>
+                                    <td>
+                                        @if($crawlerItem_total[$country]>0)
+                                            {{$crawlerItem_total_updated[$country]}}/ {{$crawlerItem_total[$country]}} ({{ number_format( ($crawlerItem_total_updated[$country]/$crawlerItem_total[$country])*100 , 2,".",',')}}%)
+                                        @endif
+                                        <a href="http://{{$country}}.cc-shop.com.cn/run/crawlerItemJob"><i class="btn btn-sm btn-primary fa fa-refresh"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                       
                     </tbody>
                 </table>
             </div>

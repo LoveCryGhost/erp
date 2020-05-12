@@ -144,7 +144,7 @@ class ShopeeHandler
             $query = $query->where('local', 'id');
         }elseif($sub_domain=='th'){
             $query = $query->where('local', 'th');
-        }elseif($sub_domain=='localhost'){
+        }elseif($sub_domain=='test' or $sub_domain=='localhost' ){
             $query = $query;
         }else{
             $query = $query->where('local', 'None');
@@ -165,8 +165,8 @@ class ShopeeHandler
             $countries['my'] = 'shopee.my';
         }elseif($sub_domain=='localhost'){
             $countries['tw'] = 'shopee.tw';
-            $countries['th'] = 'shopee.th';
-            $countries['id'] = 'shopee.id';
+            $countries['th'] = 'shopee.co.th';
+            $countries['id'] = 'shopee.co.id';
         }else{
             $countries[] = [];
         }
