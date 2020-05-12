@@ -41,7 +41,7 @@ class CrawlerItemJob implements ShouldQueue
         })->take(config('crawler.update_item_qty'));
 
         $query = $this->shopeeHandler->crawlerSeperator($query);
-        $crawler_items = $query->get();
+        $crawler_items = $query->orderBy('member_id', 'DESC')->get();
 
         if(count($crawler_items)>0){
             foreach ($crawler_items as $crawler_item){

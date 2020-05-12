@@ -34,7 +34,7 @@ class CrawlerShopJob implements ShouldQueue
 
         $query = CrawlerShop::whereNull('updated_at')->take(config('crawler.update_shop_qty'));
         $query = $this->shopeeHandler->crawlerSeperator($query);
-        $crawler_shops = $query->get();
+        $crawler_shops = $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')->get();
 
         if(count($crawler_shops)>0) {
             foreach ($crawler_shops as $crawler_shop){
