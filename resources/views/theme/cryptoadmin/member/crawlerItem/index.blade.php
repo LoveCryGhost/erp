@@ -102,7 +102,7 @@
                                                 <i class="fa fa-external-link"></i> {{$crawlerItem->itemid}}</a>
                                             <a class="btn btn-sm btn-info" target="_blank"
                                                href="https://{{$crawlerTask->domain_name}}/shop/{{$crawlerItem->shopid}}" >
-                                                <i class="fa fa-shopping-bag"></i> {{$crawlerItem->crawlerShop->username}}</a>
+                                                <i class="fa fa-shopping-bag"></i> {{$crawlerItem->crawlerShop? $crawlerItem->crawlerShop->username : ""}}</a>
                                         </div>
                                         <div class="col-md-1">
                                             {{number_format($crawlerItem->crawlerItemSKUs->min('price')/10, 0,".",",")}}
