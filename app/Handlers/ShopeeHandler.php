@@ -4,6 +4,7 @@ namespace App\Handlers;
 
 use GuzzleHttp\Client;
 use function current;
+use function dd;
 use function explode;
 use function request;
 
@@ -143,6 +144,8 @@ class ShopeeHandler
             $query = $query->where('local', 'id');
         }elseif($sub_domain=='th'){
             $query = $query->where('local', 'th');
+        }elseif($sub_domain=='localhost'){
+            $query = $query;
         }else{
             $query = $query->where('local', 'None');
         }
@@ -160,7 +163,14 @@ class ShopeeHandler
             $countries['th'] = 'shopee.co.th';
         }elseif($sub_domain=='my'){
             $countries['my'] = 'shopee.my';
+        }elseif($sub_domain=='localhost'){
+            $countries['tw'] = 'shopee.tw';
+            $countries['th'] = 'shopee.th';
+            $countries['id'] = 'shopee.id';
+        }else{
+            $countries[] = [];
         }
+
         return $countries;
 
     }

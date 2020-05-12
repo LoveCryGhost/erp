@@ -51,10 +51,6 @@ class CrawlerCategoryJob implements ShouldQueue
         }
 
         $countries = $this->shopeeHandler->crawlerSeperator_coutnry();
-
-
-
-
         foreach ($countries as $country_code => $country){
             $url = 'https://'.$country.'/api/v2/category_list/get';
             $this->crawler_catergory($country_code, $country, $url, $params);
