@@ -124,7 +124,7 @@
 													<i class="fa fa-external-link"></i> {{$crawlerItem->itemid}}</a>
 												<a class="btn btn-sm btn-info" target="_blank"
 												   href="https://{{$crawlerItem->domain_name}}/shop/{{$crawlerItem->shopid}}" >
-													<i class="fa fa-shopping-bag"></i> {{$crawlerItem->crawlerShop->username}}</a>
+													<i class="fa fa-shopping-bag"></i> {{$crawlerItem->crawlerShop? $crawlerItem->crawlerShop->username:""}}</a>
 											</td>
 											<td>{{number_format($crawlerItem->crawlerItemSKUs->min('price')/10, 0,".",",")}}</td>
 											<td>{{number_format($crawlerItem->crawlerItemSKUs->max('price')/10, 0,".",",")}}</td>
