@@ -19,9 +19,10 @@ class MembersController extends MemberCoreController
         $this->middleware('auth:member');
         $this->memberService = $memberService;
     }
-
+    
     //Dashboard
     public function index(){
+
         return view(config('theme.member.view').'member.index');
     }
 

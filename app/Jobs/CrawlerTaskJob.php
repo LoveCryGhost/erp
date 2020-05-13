@@ -35,23 +35,11 @@ class CrawlerTaskJob implements ShouldQueue
         $this->shopeeHandler = new ShopeeHandler();
     }
 
-    //處理的工作
     public function handle()
     {
-        //找CrawlerTask
-        //更新時間(1)空或(2)不等於今天
-        $query = CrawlerTask::where(function ($query) {
-            $query->whereDate('updated_at','<>',Carbon::today())
-                ->orWhereNull('updated_at')
-                ->orWhereRaw('current_page < pages');
-        });
-        $query = $this->shopeeHandler->crawlerSeperator($query);
-        $crawlerTask = $query->first();
 
-        //更新任務 - Urls
+        $crawlerTask = $this->crawlerTask();
         if($crawlerTask) {
-
-            //處理Page問題
             $crawlerTask = $this->handle_page($crawlerTask);
 
             //組合Url連結組合
@@ -111,9 +99,6 @@ class CrawlerTaskJob implements ShouldQueue
                     $crawlerTask->crawlerItems()->syncwithoutdetaching($sync_ids);
                 }
 
-                //$crawlerItem->timestamps = false;
-                //$crawlerItem->whereIn('ci_id', $crawlerItem_ids)->update(['created_at' => now()]);
-
                 //批量儲存Shop
                 $crawlerShop = new CrawlerShop();
                 $TF = (new MemberCoreRepository())->massUpdate($crawlerShop, $row_shops);
@@ -125,9 +110,7 @@ class CrawlerTaskJob implements ShouldQueue
             }
             $crawlerTask->save();
 
-            dispatch((new CrawlerTaskJob())->onQueue('high'));
-            //dispatch((new CrawlerItemJob())->onQueue('low'));
-            //dispatch((new CrawlerShopJob())->onQueue('low'));
+            dispatch((new CrawlerTaskJob())->onQueue('default'));
         }
     }
 
@@ -137,6 +120,22 @@ class CrawlerTaskJob implements ShouldQueue
         if($crawlerTask->current_page == $crawlerTask->pages){
             $crawlerTask->current_page=1;
         }
+        return $crawlerTask;
+    }
+
+    /*
+     * 更新Task
+     * 條件 今天未更新 或 從為更新過 updated_at == null
+    */
+    public function crawlerTask()
+    {
+        $query = CrawlerTask::where(function ($query) {
+            $query->whereDate('updated_at','<>',Carbon::today())
+                ->orWhereNull('updated_at')
+                ->orWhereRaw('current_page < pages');
+        });
+        $query = $this->shopeeHandler->crawlerSeperator($query);
+        $crawlerTask = $query->first();
         return $crawlerTask;
     }
 }

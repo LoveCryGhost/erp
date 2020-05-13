@@ -36,7 +36,7 @@ class CreateStocksTable extends Migration
             $table->primary(['date', 'stock_code','type','local']);
 
             $table->timestamp('updated_at')->useCurrent()->nullable();
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('created_at');
         });
     }
 

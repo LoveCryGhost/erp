@@ -33,6 +33,7 @@ class CrawlerItemJob implements ShouldQueue
     //處理的工作
     public function handle()
     {
+
         $member_id = Auth::guard('member')->check()?  Auth::guard('member')->user()->id: '1';
 
 

@@ -36,6 +36,8 @@ Route::prefix('run') ->middleware('auth:admin')->group(function(){
     Route::get('test',function () {
         return redirect()->back();
     });
+
+
 });
 
 

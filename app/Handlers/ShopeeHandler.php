@@ -82,55 +82,53 @@ class ShopeeHandler
         $insert_item_qty = config('crawler.insert_item_qty');
         $index = ceil($item_qty/$insert_item_qty);
 
-//        for ($i=0; $i<=$index-1; $i++){
-            $url =   'https://'.$crawlerTask->domain_name.'/api/v2/search_items/?';
+        $url =   'https://'.$crawlerTask->domain_name.'/api/v2/search_items/?';
 
-            if(!is_null($crawlerTask->sort_by)){
-                $url.= '&by='.$crawlerTask->sort_by;
-            }
+        if(!is_null($crawlerTask->sort_by)){
+            $url.= '&by='.$crawlerTask->sort_by;
+        }
 
-            $url.=   '&limit='.$insert_item_qty;
-            //$url.=   '&newest='.($i*$insert_item_qty);
-            $url.=   '&newest='.($crawlerTask->current_page*$insert_item_qty);
+        $url.=   '&limit='.$insert_item_qty;
+        //$url.=   '&newest='.($i*$insert_item_qty);
+        $url.=   '&newest='.($crawlerTask->current_page*$insert_item_qty);
 
-            if(!is_null($crawlerTask->locations)){
-                $url.= '&locations='.$crawlerTask->locations;
-            }
+        if(!is_null($crawlerTask->locations)){
+            $url.= '&locations='.$crawlerTask->locations;
+        }
 
-            if(!is_null($crawlerTask->subcategory)){
-                $url.=   '&fe_categoryids='.$crawlerTask->subcategory;
-            }elseif(!is_null($crawlerTask->category)){
-                $url.=   '&fe_categoryids='.$crawlerTask->category;
-            }
+        if(!is_null($crawlerTask->subcategory)){
+            $url.=   '&fe_categoryids='.$crawlerTask->subcategory;
+        }elseif(!is_null($crawlerTask->category)){
+            $url.=   '&fe_categoryids='.$crawlerTask->category;
+        }
 
-            if(!is_null($crawlerTask->facet)){
-                $url.= '&categoryids='.$crawlerTask->facet;
-            }
-            if(!is_null($crawlerTask->ratingFilter)){
-                $url.= '&rating_filter='.$crawlerTask->ratingFilter;
-            }
-            if(!is_null($crawlerTask->wholesale)){
-                $url.= '&wholesale='.$crawlerTask->wholesale;
-            }
-            if(!is_null($crawlerTask->shippingOptions)){
-                $url.= '&shippings='.$crawlerTask->shippingOptions;
-            }
-            if(!is_null($crawlerTask->officialMall)){
-                $url.= '&official_mall='.$crawlerTask->officialMall;
-            }
-            if(!is_null($crawlerTask->keyword)){
-                $url.= '&keyword='.$crawlerTask->keyword;
-            }
+        if(!is_null($crawlerTask->facet)){
+            $url.= '&categoryids='.$crawlerTask->facet;
+        }
+        if(!is_null($crawlerTask->ratingFilter)){
+            $url.= '&rating_filter='.$crawlerTask->ratingFilter;
+        }
+        if(!is_null($crawlerTask->wholesale)){
+            $url.= '&wholesale='.$crawlerTask->wholesale;
+        }
+        if(!is_null($crawlerTask->shippingOptions)){
+            $url.= '&shippings='.$crawlerTask->shippingOptions;
+        }
+        if(!is_null($crawlerTask->officialMall)){
+            $url.= '&official_mall='.$crawlerTask->officialMall;
+        }
+        if(!is_null($crawlerTask->keyword)){
+            $url.= '&keyword='.$crawlerTask->keyword;
+        }
 
-            if(!is_null($crawlerTask->order)){
-                $url.= '&order='.$crawlerTask->order;
-            }
+        if(!is_null($crawlerTask->order)){
+            $url.= '&order='.$crawlerTask->order;
+        }
 
-            $url.=   '&page_type=search';
-            $url.=   '&version=2';
+        $url.=   '&page_type=search';
+        $url.=   '&version=2';
 
-            $urls[] = $url;
-//        }
+        $urls[] = $url;
 
         return $urls;
     }
@@ -163,7 +161,7 @@ class ShopeeHandler
             $countries['th'] = 'shopee.co.th';
         }elseif($sub_domain=='my'){
             $countries['my'] = 'shopee.my';
-        }elseif($sub_domain=='localhost'){
+        }elseif($sub_domain=='localhost' or $sub_domain == 'test'){
             $countries['tw'] = 'shopee.tw';
             $countries['th'] = 'shopee.co.th';
             $countries['id'] = 'shopee.co.id';

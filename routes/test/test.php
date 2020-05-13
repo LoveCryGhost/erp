@@ -13,11 +13,12 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 //有用的Test
-include('test/test_mh_erp.php');
-include('test/route_test_crawlerTaskJob.php');
-include('test/route_test_crawlerCategoryJob.php');
+include('test_mh_erp.php');
+include('route_test_crawlerTaskJob.php');
+include('route_test_crawlerCategoryJob.php');
+include('route_test_crawlerSubCategoryJob.php');
 
-include('run.php');
+
 
 
 
@@ -25,7 +26,6 @@ include('run.php');
 Route::prefix('test') ->middleware('auth:admin')->group(function(){
     Route::get('/console',function (){
         $sub_domain = current(explode('.', request()->getHost()));
-        dd($sub_domain);
     });
 
 
