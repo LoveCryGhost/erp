@@ -58,6 +58,7 @@
                         
                         @include(config('theme.member.btn.index.crud'))
                         @if(auth('admin')->check() && auth('admin')->user()->hasAnyRole('admin'))
+                            
                             {{--TW--}}
                             <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerCategoryJob">tw-Category</a>
                             <a class="btn btn-sm btn-primary" href="http://tw.cc-shop.com.cn/run/crawlerTaskJob">tw-Task</a>
@@ -71,7 +72,6 @@
                             <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerShopJob">id-Shop</a>
         
                             {{--Th--}}
-                            
                             <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerCategoryJob">th-Category</a>
                             <a class="btn btn-sm btn-primary" href="http://th.cc-shop.com.cn/run/crawlerTaskJob">th-Task</a>
                             <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerItemJob">th-Item</a>
@@ -173,7 +173,6 @@
                         </div>
                     </div>
                 </div>
-    
             </div>
         </section>
     </div>

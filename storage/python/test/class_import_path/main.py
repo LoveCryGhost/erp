@@ -12,5 +12,3 @@ cursor.execute(sqlStatement)
 records = cursor.fetchall()
 for row in records:
     print(row)
-
-print(123)
