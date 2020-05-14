@@ -188,7 +188,7 @@
                 // 当滚动到底部时,自动加载下一页
                 autoTrigger: true,
                 // 限制自动加载, 仅限前两页, 后面就要用户点击才加载
-                autoTriggerUntil: 10,
+                autoTriggerUntil: 50,
                 // 设置加载下一页缓冲时的图片
                 loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
                 padding: 0,

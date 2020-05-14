@@ -29,7 +29,7 @@ class MembersController extends MemberCoreController
         $shopeeUrl = $this->shopeeHandler->getShopeeUrl();
         $crawlerTasks = CrawlerTask::with(['crawlerItems', 'crawlerCategory2'])
             ->where('member_id',1)
-            ->orderBy('local')->paginate(6);
+            ->orderBy('local')->paginate(12);
         return view(config('theme.member.view').'member.index',[
             'crawlerTasks' => $crawlerTasks,
             'shopeeUrl' => $shopeeUrl,
