@@ -51,6 +51,6 @@ class CrawlerTask extends Model
             ->withPivot(['ct_i_id','sort_order', 'is_active']);
     }
     public function crawlerCategory2(){
-        return $this->belongsTo(crawlerCategory2::class, 'category','catid');
+        return $this->belongsTo(CrawlerCategory2::class, 'category','catid');
     }
 }
