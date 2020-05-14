@@ -110,7 +110,7 @@
                                         <td>{{$crawlerTask->id_code}}</td>
                                         <td class="w-200">
                                             <p class="mb-0">
-                                                <a href="#"><strong>{{$crawlerTask->ct_name}}</strong></a><br>
+                                                <a href="#"><strong>{{$crawlerTask->ct_name}} ({{$crawlerTask->crawlerItems->count()}})</strong></a><br>
                                             </p>
                                         </td>
                                         <td class="text-left">

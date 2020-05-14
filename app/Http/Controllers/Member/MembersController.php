@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Member;
 
 use App\Handlers\ImageUploadHandler;
+use App\Handlers\ShopeeHandler;
 use App\Http\Requests\Member\MemberRequest;
+use App\Models\CrawlerTask;
 use App\Models\Member;
 use App\Rules\CurrentPasswordRule;
 use App\Services\Member\MemberService;
@@ -16,14 +18,23 @@ class MembersController extends MemberCoreController
     protected $memberService;
     public function __construct(MemberService $memberService)
     {
+        $this->shopeeHandler = new ShopeeHandler();
         $this->middleware('auth:member');
         $this->memberService = $memberService;
     }
-    
-    //Dashboard
-    public function index(){
 
-        return view(config('theme.member.view').'member.index');
+    //Dashboard
+    public function index()
+    {
+        $shopeeUrl = $this->shopeeHandler->getShopeeUrl();
+        $crawlerTasks = CrawlerTask::with(['crawlerItems', 'crawlerCategory2'])
+            ->where('member_id',1)
+            ->orderBy('local')->paginate(12);
+        return view(config('theme.member.view').'member.index',[
+            'crawlerTasks' => $crawlerTasks,
+            'shopeeUrl' => $shopeeUrl,
+            'filters' => []
+        ]);
     }
 
     public function edit(Member $member)

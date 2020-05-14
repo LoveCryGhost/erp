@@ -162,14 +162,22 @@ class ShopeeHandler
         }elseif($sub_domain=='my'){
             $countries['my'] = 'shopee.my';
         }elseif($sub_domain=='localhost' or $sub_domain == 'test'){
-            $countries['tw'] = 'shopee.tw';
-            $countries['th'] = 'shopee.co.th';
-            $countries['id'] = 'shopee.co.id';
+
         }else{
             $countries[] = [];
         }
 
         return $countries;
+
+    }
+
+    public function getShopeeUrl()
+    {
+        $shopeeUrl['tw'] = 'shopee.tw';
+        $shopeeUrl['th'] = 'shopee.co.th';
+        $shopeeUrl['id'] = 'shopee.co.id';
+
+        return $shopeeUrl;
 
     }
 }
