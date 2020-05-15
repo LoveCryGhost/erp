@@ -24,22 +24,28 @@
                     <div class="row">
                         <div class="col">
                             <form class="form-control m-b-0">
+                            
                             <div class="row">
-                                <label class="col-sm-1 col-form-label">Barcode</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">
+                                <div class="col-sm-3 form-group">
+                                    <h5>Barcode</h5>
+                                    <div class="controls">
+                                        <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">
+                                    </div>
                                 </div>
-                                <label class="col-sm-1 col-form-label">{{__('member/supplierGroup.index.search.supplierGroupName')}}</label>
-                                <div class="col-sm-2">
-                                    <input class="form-control" type="text" name="sg_name" placeholder="任務名稱" value="{{request()->sg_name}}">
+    
+                                <div class="col-sm-3 form-group">
+                                    <h5>{{__('member/supplierGroup.index.search.supplierGroupName')}}</h5>
+                                    <div class="controls">
+                                        <input class="form-control" type="text" name="sg_name" placeholder="{{__('member/supplierGroup.index.search.supplierGroupName')}}" value="{{request()->sg_name}}">
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="{{route('member.supplierGroup.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/supplierGroup.index.search.reset')}}</a>
+                                    <a href="{{route('member.supplierGroup.index')}}" class="form-control btn btn-sm btn-primary btn-rounded">{{__('member/supplierGroup.index.search.reset')}}</a>
                                 </div>
                                 <div class="col-6">
-                                    <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">{{__('member/supplierGroup.index.search.submit')}}</button>
+                                    <button type="submit" class="form-control btn btn-sm btn-primary btn-rounded" name="submit['submit_get']" value="submit_get">{{__('member/supplierGroup.index.search.submit')}}</button>
                                 </div>
                             </div>
                         </form>

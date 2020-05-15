@@ -5,6 +5,8 @@ namespace App\Observers;
 use App\Handlers\BarcodeHandler;
 use App\Models\SupplierGroup;
 use Illuminate\Support\Facades\Auth;
+use function dd;
+use function request;
 
 
 class SupplierGroupObserver extends Observer
@@ -12,7 +14,8 @@ class SupplierGroupObserver extends Observer
 
     public function saving(SupplierGroup $supplierGroup)
     {
-        if(request()->is_active == 1 or request()->is_active ==true or $supplierGroup->is_active == 1){
+
+        if(request()->is_active == 1 or request()->is_active ==true){
             $supplierGroup->is_active = 1;
         }else{
             $supplierGroup->is_active = 0;
