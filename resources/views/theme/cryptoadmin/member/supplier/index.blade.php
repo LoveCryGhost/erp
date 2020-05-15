@@ -10,11 +10,6 @@
             <h3>
                 供應商 - 列表
             </h3>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Members</a></li>
-                <li class="breadcrumb-item active">Members List</li>
-            </ol>
         </div>
 
         <!-- Main content -->
@@ -27,13 +22,15 @@
                                 @include(config('theme.member.btn.index.crud'))
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="itable table">
                                     <thead>
-                                    <tr class="d-none">
+                                    <tr>
                                         <th>check</th>
                                         <th>Barcode</th>
                                         <th>名片</th>
                                         <th>名稱</th>
+                                        <th>啟用</th>
+                                        <th>訊息</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
