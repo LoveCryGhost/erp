@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Product extends CoreModel
 {
 
     protected $table = "products";
@@ -44,6 +44,11 @@ class Product extends Model
     public function skus($paginate=0){
           return $this->hasMany(SKU::class, 'p_id','p_id')->paginate($paginate);
     }
+
+    public function all_skus(){
+        return $this->hasMany(SKU::class, 'p_id','p_id');
+    }
+
 
 
 }

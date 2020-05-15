@@ -42,7 +42,7 @@
                                         {{$sku->id_code}}
                                     </td>
                                     <td>
-                                        <img src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}} " class="product-sku-thumbnail">
+                                        <img src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" class="product-sku-thumbnail">
                                     </td>
                                     <td>
                                         <input type="checkbox" class="bt-switch"  value="1" {{$product->is_active==1? "checked":""}}
@@ -56,7 +56,6 @@
                                     @endforeach
                                     <td>{{$sku->price}}</td>
                                     <td>
-{{--                                        @include('theme.cryptoadmin.member.layouts.btn-md-index-table_tr', ['route_name'=> 'member.product-sku', 'm_id' => $sku->sku_id])--}}
                                         <a  class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-lg"
                                             onclick="event.preventDefault();
                                                     md_product_sku_edit(this, php_inject={{json_encode(['models'  => ['sku' => $sku] ])}});">

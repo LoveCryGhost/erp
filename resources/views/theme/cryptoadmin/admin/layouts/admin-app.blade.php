@@ -1,10 +1,8 @@
 {{--繼承--}}
 @extends('layouts.app')
 
-
 {{--標題--}}
 <title>Admin - @yield('title')</title>
-
 
 {{--CSS--}}
 @include(config('theme.admin.css.default'))
@@ -12,7 +10,6 @@
     @parent
     @yield('css')
 @endsection
-
 
 {{--繼承內容--}}
     @section('app-content-header')

@@ -7,13 +7,14 @@ use App\Http\Requests\Member\SupplierGroupRequest;
 use App\Models\SupplierGroup;
 use App\Services\Member\SupplierGroupService;
 use Illuminate\Http\Request;
+use function request;
 
 
 class SupplierGroupsController extends MemberCoreController
 {
 
     protected $supplierGroupService;
-
+    public $filters=[];
     public function __construct(SupplierGroupService $supplierGroupService)
     {
         $this->middleware('auth:member');
@@ -36,8 +37,17 @@ class SupplierGroupsController extends MemberCoreController
 
     public function index()
     {
-        $supplierGroups = $this->supplierGroupService->index();
-        return view(config('theme.member.view').'supplierGroup.index', compact('supplierGroups'));
+        $query = $this->supplierGroupService->supplierGroupRepo->builder();
+        $this->filters = [
+            'sg_name' => request()->sg_name,
+            'id_code' => request()->id_code,
+        ];
+        $query = $this->supplierGroupService->index_filters($query, $this->filters);
+        $supplierGroups = $query->paginate(10);
+        return view(config('theme.member.view').'supplierGroup.index', [
+                'supplierGroups'=> $supplierGroups,
+                'filters' => $this->filters
+            ]);
     }
 
     public function edit(SupplierGroup $supplierGroup)
@@ -62,5 +72,8 @@ class SupplierGroupsController extends MemberCoreController
         $toast = $this->supplierGroupService->destroy($supplierGroup, $data);
         return redirect()->route('member.supplierGroup.index')->with('toast',  parent::$toast_destroy);
     }
+
+
+
 
 }

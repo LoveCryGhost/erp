@@ -15,9 +15,15 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminsTableSeeder::class);
         $this->call(MembersTableSeeder::class);
         $this->call(StaffDepartmentsTableSeeder::class);
-//        $this->call(CategoriesTableSeeder::class);
-//        $this->call(ProductsTableSeeder::class);
-//        $this->call(SuppliersTableSeeder::class);
-//        $this->call(StaffsTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
+        $this->call(SuppliersTableSeeder::class);
+        $this->call(StaffsTableSeeder::class);
+
+        //$this->call(CrawlerTaskTableSeeder::class);
+
+        $this->call(RolesAndPermissionsSeeder::class);
+
+        $this->call(ExcelImportSeeder::class);
     }
 }

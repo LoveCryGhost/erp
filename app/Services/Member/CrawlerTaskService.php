@@ -12,7 +12,7 @@ class CrawlerTaskService extends MemberCoreService implements MemberServiceInter
 {
 
     public $crawlertaskRepo;
-    private $shopeeHandler;
+    public $shopeeHandler;
 
     public function __construct(CrawlerTaskRepository $crawlerTaskRepository, ShopeeHandler $shopeeHandler)
     {

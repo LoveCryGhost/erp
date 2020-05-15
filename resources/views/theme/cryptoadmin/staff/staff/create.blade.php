@@ -27,7 +27,7 @@
                         <div class="col-xl-12 col-lg-12 text-right mb-5">
                             <button class="btn btn-primary" type="submit" ><i class="fa fa-floppy-o"></i></button>
                             <a class="btn btn-warning" href="{{route('staff.staff.create')}}" ><i class="fa fa-plus"></i></a>
-                            <a class="btn btn-danger" href="{{route('staff.staff.staff_list')}}" ><i class="fa fa-arrow-left"></i></a>
+                            <a class="btn btn-danger" href="{{route('staff.staff.staffList')}}" ><i class="fa fa-arrow-left"></i></a>
                         </div>
                         {{--個人信息--}}
                         <div class="col-xl-12 col-lg-12">

@@ -6,8 +6,7 @@
 <title>member - @yield('title')</title>
 
 
-{{--CSS--}}
-@include(config('theme.member.css.default'))
+
 @section('css')
     @parent
     @yield('css')
@@ -18,6 +17,8 @@
 @section('app-content-header')
     @yield('content-header')
 @endsection
+
+@include(config('theme.member.css.default'))
 
 <body class="hold-transition fixed light-skin dark-sidebar sidebar-mini theme-blue sidebar-collapse">
 <div id="app"  class="{{ route_class() }}-page">
@@ -51,5 +52,4 @@
     @yield('js')
 @endsection
 
-{{--Footer--}}
 @include(config('theme.member.js.default'))

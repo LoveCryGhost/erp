@@ -89,7 +89,7 @@
         $.ajaxSetup(active_ajax_header());
         $.ajax({
             type: 'post',
-            url: '{{route('staff.staff-department.index')}}/'+ staff_department_id +"?sd_id=" + staff_department_id + "&st_id={{$data['st_id']}}" ,
+            url: '{{route('staff.staffDepartment.index')}}/'+ staff_department_id +"?sd_id=" + staff_department_id + "&st_id={{$data['st_id']}}" ,
             data: formData,
             async: true,
             cache: false,

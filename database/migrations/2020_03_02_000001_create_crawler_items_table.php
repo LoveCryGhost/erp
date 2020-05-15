@@ -27,7 +27,7 @@ class CreateCrawlerItemsTable extends Migration
             $table->bigInteger('member_id')->unsigned();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamp('updated_at')->useCurrent()->nullable();
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->useCurrent()->nullable();
         });
 
         Schema::create('crawler_shops', function (Blueprint $table) {
@@ -37,15 +37,13 @@ class CreateCrawlerItemsTable extends Migration
             $table->string('shop_location')->nullable();
             $table->string('domain_name')->nullable();
             $table->string('local')->nullable();
-//            $table->bigInteger('ci_id')->unsigned();
-//            $table->foreign('ci_id')->references('ci_id')->on('crawler_items')->onDelete('cascade');
             $table->bigInteger('member_id')->unsigned();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('ctasks_items', function (Blueprint $table) {
-            //$table->bigIncrements('ct_i_d');
+            $table->bigIncrements('ct_i_id');
             $table->integer('sort_order')->default(9999);
             $table->bigInteger('ct_id')->unsigned();
             $table->foreign('ct_id')->references('ct_id')->on('crawler_tasks')->onDelete('cascade');

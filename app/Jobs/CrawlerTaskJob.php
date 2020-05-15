@@ -15,6 +15,12 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function config;
+use function current;
+use function dd;
+use function dispatch;
+use function explode;
+use function request;
 
 class CrawlerTaskJob implements ShouldQueue
 {
@@ -29,17 +35,12 @@ class CrawlerTaskJob implements ShouldQueue
         $this->shopeeHandler = new ShopeeHandler();
     }
 
-    //處理的工作
     public function handle()
     {
-        //找CrawlerTask
-        //更新時間(1)空或(2)不等於今天
-        $crawlerTask = CrawlerTask::where(function ($query) {
-            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
-        })->first();
 
-        //更新任務 - Urls
+        $crawlerTask = $this->crawlerTask();
         if($crawlerTask) {
+            $crawlerTask = $this->handle_page($crawlerTask);
 
             //組合Url連結組合
             $urls = $this->shopeeHandler->crawlerTaskGenerateAPIUrl($crawlerTask);
@@ -80,31 +81,61 @@ class CrawlerTaskJob implements ShouldQueue
                 //批量儲存Item
                 $crawlerItem = new CrawlerItem();
                 $TF = (new MemberCoreRepository())->massUpdate($crawlerItem, $row_items);
+
                 //這次抓到的商品id 還有順序
                 $crawlerItem_ids = CrawlerItem::whereInMultiple(['itemid', 'shopid', 'local'], $value_arr)
                     ->pluck('ci_id', 'itemid');
 
-
-                $index=0;
+                $insert_item_qty = config('crawler.insert_item_qty');
+                $index=$crawlerTask->current_page*$insert_item_qty + 1;
                 foreach ($items_order as $itemid){
                     $sync_ids[$crawlerItem_ids[$itemid]]= ['sort_order'=>$index++];
                 }
-                //Sync刪除並更新
-                $crawlerTask->crawlerItems()->sync($sync_ids);
 
-                //$crawlerItem->timestamps = false;
-                //$crawlerItem->whereIn('ci_id', $crawlerItem_ids)->update(['created_at' => now()]);
+                //Sync刪除並更新
+                if($crawlerTask->current_page == 0) {
+                    $crawlerTask->crawlerItems()->sync($sync_ids);
+                }else{
+                    $crawlerTask->crawlerItems()->syncwithoutdetaching($sync_ids);
+                }
 
                 //批量儲存Shop
                 $crawlerShop = new CrawlerShop();
                 $TF = (new MemberCoreRepository())->massUpdate($crawlerShop, $row_shops);
-
-                dispatch((new CrawlerTaskJob())->onQueue('high'));
-                dispatch((new CrawlerItemJob())->onQueue('low'));
-                dispatch((new CrawlerShopJob())->onQueue('low'));
             }
-            $crawlerTask->updated_at = now();
+
+            $crawlerTask->current_page++;
+            if($crawlerTask->current_page == $crawlerTask->pages){
+                $crawlerTask->updated_at = Carbon::now();
+            }
             $crawlerTask->save();
+
+            dispatch((new CrawlerTaskJob())->onQueue('default'));
         }
+    }
+
+    public function handle_page($crawlerTask)
+    {
+        //當兩者相同，表示需要重新開始
+        if($crawlerTask->current_page == $crawlerTask->pages){
+            $crawlerTask->current_page=1;
+        }
+        return $crawlerTask;
+    }
+
+    /*
+     * 更新Task
+     * 條件 今天未更新 或 從為更新過 updated_at == null
+    */
+    public function crawlerTask()
+    {
+        $query = CrawlerTask::where(function ($query) {
+            $query->whereDate('updated_at','<>',Carbon::today())
+                ->orWhereNull('updated_at')
+                ->orWhereRaw('current_page < pages');
+        });
+        $query = $this->shopeeHandler->crawlerSeperator($query);
+        $crawlerTask = $query->first();
+        return $crawlerTask;
     }
 }

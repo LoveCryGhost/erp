@@ -6,6 +6,8 @@ use App\Http\Requests\Member\AttributeRequest;
 use App\Models\Attribute;
 use App\Services\Member\AttributeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use function dd;
 
 
 class AttributesController extends MemberCoreController

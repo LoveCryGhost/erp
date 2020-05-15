@@ -8,8 +8,6 @@
 <!-- Bootstrap switch-->
 <link rel="stylesheet" href="{{asset('css/bootstrap-switch.css')}}">
 
-
-
 <!--amcharts -->
 <link href="https://www.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet" type="text/css" />
 

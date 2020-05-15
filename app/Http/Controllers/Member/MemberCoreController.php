@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 class MemberCoreController extends Controller
 {
+
     public  static $toast_update = [
         "heading" => "更新成功",
         "text" =>  '',
@@ -36,4 +37,6 @@ class MemberCoreController extends Controller
         "hideAfter" => 3000,
         "stack" => 6
     ];
+
+
 }

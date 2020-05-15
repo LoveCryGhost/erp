@@ -7,7 +7,7 @@
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <h3>
-                    個人訊息
+                    員工訊息
                 </h3>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/"><i class="fa fa-dashboard"></i>首頁</a></li>
@@ -26,29 +26,28 @@
                             @include(config('theme.staff.view').'layouts.errors')
                         </div>
                         <div class="col-xl-12 col-lg-12 text-right mb-5">
-                            <a class="btn btn-warning" href="{{route('staff.staff.staff_list')}}" ><i class="fa fa-list"></i></a>
+                            <a class="btn btn-warning" href="{{route('staff.staff.index')}}" ><i class="fa fa-list"></i></a>
                             @include(config('theme.staff.btn.edit.crud'))
                         </div>
                         {{--個人信息--}}
                         <div class="col-xl-12 col-lg-12">
                             <div class="box box-solid box-inverse box-dark">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">個人信息</h3>
+                                <div class="m-0 p-1">
+                                    <h3 class="box-title">員工信息</h3>
                                 </div>
-                                <!-- /.box-header -->
                                 <div class="box-body">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Barcode</label>
+                                                <label class="col-sm-1 col-form-label">Barcode</label>
                                                 <div class="col-sm-2">
                                                     <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{$staff->id_code}}">
                                                 </div>
-                                                <label class="col-sm-2 col-form-label">修改者</label>
+                                                <label class="col-sm-1 col-form-label">修改者</label>
                                                 <div class="col-sm-2">
                                                     <input class="form-control" type="text" name="pic" placeholder="修改者" value="{{$staff->pic}}">
                                                 </div>
-                                                <label class="col-sm-2 col-form-label">部門</label>
+                                                <label class="col-sm-1 col-form-label">部門</label>
                                                 <div class="col-sm-2">
                                                     @if($staff->staffDepartments->last()->parent==null)
                                                         <input class="form-control" type="text" placeholder="修改者" disabled value="{{$staff->staffDepartments->last()->name}} - ">

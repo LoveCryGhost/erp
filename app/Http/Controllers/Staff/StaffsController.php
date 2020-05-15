@@ -8,6 +8,9 @@ use App\Models\Staff;
 use App\Rules\CurrentPasswordRule;
 use App\Services\Staff\StaffService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use function dd;
+use function redirect;
 
 class StaffsController extends StaffCoreController
 {
@@ -15,13 +18,21 @@ class StaffsController extends StaffCoreController
     private $staffService;
     public function __construct(StaffService $staffService)
     {
-        $this->middleware('auth:staff');
+        $actions = [
+            '*',
+            'index',
+            'show', 'edit','update',
+            'create', 'store',
+            'destroy',
+            'show',
+            'updatePassword'];
+        $this->coreMiddleware('StaffsController',$guard='staff', $route="staff", $actions);
         $this->staffService = $staffService;
-
     }
 
     public function list()
     {
+
         $staffs = $this->staffService->StaffRepo->builder()->paginate(10);
         return view(config('theme.staff.view').'staff.list', [
             'staffs' => $staffs,
@@ -31,7 +42,13 @@ class StaffsController extends StaffCoreController
     }
 
     public function index(){
-        return view(config('theme.staff.view').'staff.index');
+        $staffs = $this->staffService->StaffRepo->builder()->paginate(10);
+        return view(config('theme.staff.view').'staff.index',
+            [
+                'staffs' => $staffs,
+                'filters' => [
+                ]
+            ]);
     }
 
     //顯示使用者資料
@@ -53,7 +70,7 @@ class StaffsController extends StaffCoreController
     {
         $data = $request->all();
         $toast = $this->staffService->store($data);
-        return redirect()->route('staff.staff.staff_list')->with('toast', parent::$toast_store);
+        return redirect()->route('staff.staff.staffList')->with('toast', parent::$toast_store);
     }
 
     public function update(StaffRequest $request,  ImageUploadHandler $uploader,Staff $staff)
@@ -133,4 +150,9 @@ class StaffsController extends StaffCoreController
     }
 
 
+    public function destroy(Request $request, Staff $staff)
+    {
+        $staff->delete();
+        return redirect()->route('staff.staff.index');
+    }
 }

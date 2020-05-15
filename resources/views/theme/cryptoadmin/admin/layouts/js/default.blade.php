@@ -108,7 +108,8 @@
 <!-- SlimScroll -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 
-
+{{--Nestabel--}}
+<script src="{{asset('theme/cryptoadmin/vendor_components/nestable/jquery.nestable.js')}}"></script>
 
 <!-- FastClick -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/fastclick/lib/fastclick.js')}}"></script>
@@ -121,6 +122,8 @@
         }
         return str;
     }
+    
+    
     function active_ajax_header(){
         return {
             headers: {
@@ -135,6 +138,7 @@
         $bt_switch.bootstrapSwitch('toggleState', true);
     }
 
+    
     function active_select2(select2_class, options={}){
         //active
         select2_item = $('.'+select2_class);
@@ -148,9 +152,7 @@
         }
 
     }
-
-
-
+    
 
     //表格
     //tr_movable_htlm
@@ -161,6 +163,7 @@
             '</span>';
     }
 
+    
     function active_table_tr_reorder_in_1st_td() {
         //排序
         $('#'+table_id+' tbody tr').each(function ($index) {
@@ -175,6 +178,8 @@
             $(this).children('td:eq(2)').html($index+1);
         })
     }
+    
+    
     function active_table_tr_reorder_nth(table_id, eq_order_index=1) {
         //排序
         $('#'+table_id+' tbody tr').each(function ($index) {
@@ -182,6 +187,7 @@
         })
     }
 
+    
     //排序表格
     function active_table_sortable(table_id, eq_order_index=1, options={}) {
         if(eq_order_index === 1){
@@ -210,6 +216,7 @@
         _modal.children().find('.modal-body').html('');
     }
 
+    
     function master_detail_errors(_this, data) {
         //轉換物件
         var request = $.parseJSON(data.responseText);
@@ -220,7 +227,14 @@
         });
         error_bag.show();
     }
+    
+    function change_modal_style(modal_id, width){
+        _modal = $('#'+modal_id);
+        _modal.children('.modal-dialog').css({'width': width});
+        //console.log(_modal.length, _modal.children('.modal-dialog').length, width);
+    }
 
+    
     function swal_delete_info(){
         return {
             title: "您確定要刪除?",

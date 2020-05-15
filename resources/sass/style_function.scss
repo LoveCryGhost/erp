@@ -1,0 +1,87 @@
+$spaceamounts: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 30, 35, 40, 45, 50,
+                51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+                61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+                80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 250,300, 350,400, 450 ,500, 550, 600); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone)
+$_colors: (
+        red, orange, yellow, green,
+        blue, purple, white, grey,
+        black, pink,
+        lightyellow, lightgreen,
+        lightblue, lightgrey);
+
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px;
+    }
+
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px;
+    }
+  }
+}
+
+@each $space in $spaceamounts {
+    .m-#{$space} {
+      margin: #{$space}px;
+    }
+
+    .p-#{$space} {
+      padding: #{$space}px;
+    }
+}
+
+//width
+@each $spaceamount in $spaceamounts {
+  .w-#{$spaceamount} {
+    width: #{$spaceamount}px;
+  }
+}
+
+//font-size
+@each $spaceamount in $spaceamounts {
+  .fontsize-#{$spaceamount} {
+    font-size: #{$spaceamount}px;
+  }
+}
+
+//text-color
+@each $_color in $_colors {
+  .text-#{$_color} {
+    color: #{$_color};
+  }
+}
+
+//background-color
+@each $_color in $_colors {
+  .bg-color-#{$_color} {
+      background-color: #{$_color};
+  }
+}
+
+
+
+
+
+
+
+
+
+colgroup col.success {
+  background-color: #dff0d8;
+}
+colgroup col.error{
+  background-color: #f2dede;
+}
+colgroup col.warning {
+  background-color: #fcf8e3;
+}
+colgroup col.info {
+  background-color: #d9edf7;
+}
+
+.pointer{
+  cursor: pointer;
+}

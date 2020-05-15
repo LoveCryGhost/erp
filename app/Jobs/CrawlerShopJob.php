@@ -5,12 +5,16 @@ namespace App\Jobs;
 use App\Handlers\ShopeeHandler;
 use App\Models\CrawlerShop;
 use App\Repositories\Member\MemberCoreRepository;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
+use function current;
+use function explode;
+use function request;
 
 class CrawlerShopJob implements ShouldQueue
 {
@@ -28,7 +32,9 @@ class CrawlerShopJob implements ShouldQueue
     {
         $member_id = Auth::guard('member')->check()?  Auth::guard('member')->user()->id: '1';
 
-        $crawler_shops = CrawlerShop::whereNull('updated_at')->take(config('crawler.update_shop_qty'))->get();
+        $query = CrawlerShop::whereNull('updated_at')->take(config('crawler.update_shop_qty'));
+        $query = $this->shopeeHandler->crawlerSeperator($query);
+        $crawler_shops = $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')->get();
 
         if(count($crawler_shops)>0) {
             foreach ($crawler_shops as $crawler_shop){
@@ -43,7 +49,7 @@ class CrawlerShopJob implements ShouldQueue
                     'domain_name' => $crawler_shop->domain_name,
                     'local' => $crawler_shop->local,
                     'member_id' => $member_id,
-                    'updated_at'=>now()
+                    'updated_at'=>Carbon::now()
                 ];
             }
 

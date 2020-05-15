@@ -7,12 +7,15 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;;
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
+use Spatie\Permission\Traits\HasRoles;
+
+;
 
 class Member extends Authenticatable implements MustVerifyEmailContract
 {
     use Notifiable, MustVerifyEmailTrait;
-
+    use HasRoles;
     protected $table = "members";
     protected $with = ['admin'];
 
@@ -64,5 +67,10 @@ class Member extends Authenticatable implements MustVerifyEmailContract
     public function isAuthorOf($model)
     {
         return $model->member_id === $this->id;
+    }
+
+    public function purchaseOrderCartItems()
+    {
+        return $this->hasMany(PurchaseOrderCartItem::class, 'member_id');
     }
 }

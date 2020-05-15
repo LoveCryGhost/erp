@@ -18,7 +18,13 @@ class AdminUsersController extends AdminCoreController
     protected $userService;
     public function __construct(UserService $userService)
     {
-        $this->middleware('auth:admin');
+        $actions = [
+            'index',
+            'show', 'edit','update',
+            'create', 'store',
+            'destroy',
+            'show'];
+        $this->coreMiddleware('AdminUsersController',$guard='admin', $route="adminUser", $actions);
         $this->userService = $userService;
     }
 

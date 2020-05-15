@@ -73,7 +73,7 @@
                                                 </nav>
                                             </td>
                                             <td>
-                                                <a class="btn btn-warning" href="{{route('admin.user.edit', ['user'=> $user->id])}}"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-warning" href="{{route('admin.adminUser.edit', ['adminUser'=> $user->id])}}"><i class="fa fa-edit"></i></a>
                                                 <a class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                             </td>
 

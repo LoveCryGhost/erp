@@ -8,16 +8,48 @@ use App\Services\Member\CrawlerTaskService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function explode;
+use function request;
+use function trim;
 
 class CrawlerTasksController extends MemberCoreController
 {
 
     protected $crawlerTaskService;
+    public $filters;
 
     public function __construct(CrawlerTaskService $crawlerTaskService)
     {
-        $this->middleware('auth:member');
+        $actions = [
+            '*',
+            'index',
+            'show', 'edit','update',
+            'create', 'store',
+            'destroy',
+            'show'];
+        $this->coreMiddleware('CrawlerTasksController',$guard='member', $route="crawlerTask", $actions);
         $this->crawlerTaskService = $crawlerTaskService;
+    }
+
+    public function index()
+    {
+        $query = $this->crawlerTaskService->crawlertaskRepo->builder()
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->with(['crawlerItems']);
+
+        $this->filters = [
+            'ct_name' => request()->ct_name,
+            'description' => request()->description,
+            'domain_name' => request()->domain_name,
+            'id_code' => request()->id_code,
+        ];
+
+        $query = $this->index_filters($query, $this->filters);
+        $crawlerTasks = $query->paginate(10);
+        return view(config('theme.member.view').'crawlerTask.index', [
+                'crawlerTasks' => $crawlerTasks,
+                'filters' => $this->filters
+            ]);
     }
 
     public function create()
@@ -29,36 +61,32 @@ class CrawlerTasksController extends MemberCoreController
     {
         $data = $request->all();
         $crawlerTask = $this->crawlerTaskService->store($data);
-        return redirect()->route('member.crawlertask.index')->with('toast', parent::$toast_store);
+        return redirect()->route('member.crawlerTask.index')->with('toast', parent::$toast_store);
     }
 
-    public function index()
+
+
+    public function edit(CrawlerTask $crawlerTask)
     {
-        $crawlerTasks = $this->crawlerTaskService->index();
-        return view(config('theme.member.view').'crawlerTask.index', compact('crawlerTasks'));
+        $this->authorize('update', $crawlerTask);
+        return view(config('theme.member.view').'crawlerTask.edit', compact('crawlerTask'));
     }
 
-    public function edit(CrawlerTask $crawlertask)
+    public function update(CrawlerTaskRequest $request, CrawlerTask $crawlerTask)
     {
-        $this->authorize('update', $crawlertask);
-        return view(config('theme.member.view').'crawlerTask.edit', compact('crawlertask'));
-    }
-
-    public function update(CrawlerTaskRequest $request, CrawlerTask $crawlertask)
-    {
-        $this->authorize('update', $crawlertask);
+        $this->authorize('update', $crawlerTask);
         $data = $request->all();
-        $TF = $this->crawlerTaskService->update($crawlertask,$data);
+        $TF = $this->crawlerTaskService->update($crawlerTask,$data);
 
-        return redirect()->route('member.crawlertask.index')->with('toast', parent::$toast_update);
+        return redirect()->route('member.crawlerTask.index')->with('toast', parent::$toast_update);
     }
 
-    public function destroy(Request $request, CrawlerTask $crawlertask)
+    public function destroy(Request $request, CrawlerTask $crawlerTask)
     {
-        $this->authorize('destroy', $crawlertask);
+        $this->authorize('destroy', $crawlerTask);
         $data = $request->all();
-        $toast = $this->crawlerTaskService->destroy($crawlertask, $data);
-        return redirect()->route('member.crawlertask.index')->with('toast', parent::$toast_destroy);
+        $toast = $this->crawlerTaskService->destroy($crawlerTask, $data);
+        return redirect()->route('member.crawlerTask.index')->with('toast', parent::$toast_destroy);
     }
 
     public function refresh()
@@ -69,6 +97,16 @@ class CrawlerTasksController extends MemberCoreController
 
         //CrawlerItem 在 Job  中更新
 
-        return redirect()->route('member.crawlertask.index');
+        return redirect()->route('member.crawlerTask.index');
+    }
+
+    public function index_filters($query, $filters)
+    {
+        $query  = $this->filter_like($query,'ct_name', $filters['ct_name']);
+        $query  = $this->filter_like($query,'description', $filters['description']);
+        $query  = $this->filter_like($query,'domain_name', $filters['domain_name']);
+        $query  = $this->filter_like($query,'id_code', $filters['id_code']);
+
+      return $query;
     }
 }

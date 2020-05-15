@@ -11,11 +11,10 @@ class StaffDashboardsController extends StaffCoreController
 
     public function __construct()
     {
-        $this->middleware('auth:staff');
     }
 
     //Dashboard
     public function dashboard(){
-       dd('dashboard');
+        return view(config('theme.staff.view').'dashboard');
     }
 }

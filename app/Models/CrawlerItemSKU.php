@@ -8,18 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;;
+use Illuminate\Support\Facades\Auth;
+use function request;
+use Illuminate\Support\Facades\DB;
 
 class CrawlerItemSKU extends Model
 {
 
     protected $table = "citem_skus";
-    protected $primaryKey='ci_id';
-//    protected $primaryKey=['shopid', 'itemid', 'modelid'];
+    //protected $primaryKey='ci_sku_id';
 
     protected $fillable = [
         'ci_id', 'itemid', 'shopid', 'modelid',
-        'name', 'local', 'sold', 'stock'
+        'name', 'local', 'sold', 'stock', 'price'
     ];
+
+    //public $with=['sku'];
 
     protected $hidden = [
 
@@ -49,7 +53,6 @@ class CrawlerItemSKU extends Model
     }
 
 
-
     public function NDaysSales($ndays = 30)
     {
         $CrawlerItemSKUs = $this->crawlerItemSKUDetails($ndays)->get();
@@ -59,4 +62,48 @@ class CrawlerItemSKU extends Model
 
     }
 
+    /* 條件
+    *  (1) 相同使用者的綁定數據
+    *  (2) 不同Task有不同的結果
+    */
+    public function sku_count_($ct_i_id, $itemid, $shopid, $modelid)
+    {
+        $crawlerTaskItemSKU =  CrawlerTaskItemSKU::where([
+                'ct_i_id' => $ct_i_id,
+                'itemid' => $itemid,
+                'shopid' => $shopid,
+                'modelid' => $modelid
+            ])
+            ->join('crawler_tasks', function($join)
+            {
+                $join->on('crawler_tasks.ct_id', '=', 'psku_cskus.ct_i_id')
+                    ->where('crawler_tasks.member_id', Auth::guard('member')->user()->id);
+            })
+            ->count();
+
+        return $crawlerTaskItemSKU;
+        //return $this->belongsToMany(SKU::class, 'psku_cskus', 'modelid', 'sku_id');
+        //return 123;
+    }
+
+    /* 條件
+   *  (1) 相同使用者的綁定數據
+   *  (2) 不同Task有不同的結果
+   */
+    public function sku_count()
+    {
+        $ct_i_ids =  CrawlerTaskItemSKU::where([
+            'itemid' => $this->itemid,
+            'shopid' => $this->shopid,
+            'modelid' => $this->modelid
+        ])->pluck('ct_i_id');
+
+        $qty = CrawlerTask::where('member_id', Auth::guard('member')->user()->id)
+                            ->join('ctasks_items', function($join) use($ct_i_ids)
+                            {
+                                $join->on('ctasks_items.ct_id', '=', 'crawler_tasks.ct_id')
+                                    ->whereIn('ctasks_items.ct_i_id', $ct_i_ids);
+                            })->count();
+        return ($qty);
+    }
 }

@@ -17,9 +17,6 @@
         <!-- Menu Body -->
         <li class="user-body">
             <a class="dropdown-item" href="{{route('admin.edit', ['admin'=> Auth::guard('admin')->user()->id])}}"><i class="ion ion-person"></i>會員資料</a>
-            {{--<a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-bag"></i> My Balance</a>--}}
-            {{--<a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-email-unread"></i> Inbox</a>--}}
-            {{--<a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-settings"></i> Account Setting</a>--}}
             <a class="dropdown-item" href="{{ route('admin.logout') }}"
                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <i class="fa fa-sign-out text-primary"></i> 登出
@@ -31,22 +28,6 @@
         <li class="user-footer">
             <div>
                 <div class="flexbox">
-                    {{--<div>--}}
-                        {{--<h4 class="mb-0 mt-0">--}}
-                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-                               {{--onclick="event.preventDefault();document.getElementById('logout-form').submit();">--}}
-                                {{--登出--}}
-                            {{--</a>--}}
-                        {{--</h4>--}}
-                    {{--</div>--}}
-                    {{--<div>--}}
-                        {{--<h4 class="mb-0 mt-0">--}}
-                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-                               {{--onclick="event.preventDefault();document.getElementById('logout-form').submit();">--}}
-                                {{--登出--}}
-                            {{--</a>--}}
-                        {{--</h4>--}}
-                    {{--</div>--}}
                     <div>
                         <h4 class="mb-0 mt-0">
                             <a class="dropdown-item" href="{{ route('admin.logout') }}"

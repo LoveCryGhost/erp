@@ -3,11 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;;
 
 class CrawlerItem extends CoreModel
 {
@@ -35,19 +31,24 @@ class CrawlerItem extends CoreModel
     }
 
     public function crawlerItemSKUs(){
-        return $this->hasMany(CrawlerItemSKU::class, 'ci_id');
+        return $this->hasMany(CrawlerItemSKU::class, 'ci_id', 'ci_id');
     }
 
 
     public function crawlerTask()
     {
-        return $this->belongsToMany(CrawlerItem::class, 'ctasks_items','ci_id','ct_id');
+        return $this->belongsToMany(CrawlerTask::class, 'ctasks_items','ci_id','ct_id')
+            ->withPivot(['ct_i_id','sort_order', 'is_active']);
+    }
+
+    public function crawlerTasks()
+    {
+        return $this->belongsToMany(CrawlerTask::class, 'ctasks_items','ci_id','ct_id')
+            ->withPivot(['ct_i_id','sort_order', 'is_active']);
     }
 
     public function crawlerShop()
     {
         return $this->hasOne(CrawlerShop::class, 'shopid', 'shopid');
-            //->where('local', $this->local)
-            //->where('domain_name', $this->domain_name);
     }
 }

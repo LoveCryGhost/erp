@@ -1,7 +1,17 @@
 <!--Theme CryptoAdmin -->
 
+<!-- Bootstrap min 4.0-->
+<link rel="stylesheet" href="{{asset('theme/cryptoadmin/vendor_components/bootstrap/dist/css/bootstrap.min.css')}}">
+
+
+<!--nestable CSS -->
+<link href="{{asset('theme/cryptoadmin/vendor_components/nestable/nestable.css')}}" rel="stylesheet" type="text/css" />
+
 <!-- Bootstrap 4.0-->
 <link rel="stylesheet" href="{{asset('theme/cryptoadmin/vendor_components/bootstrap/dist/css/bootstrap.css')}}">
+
+<!-- theme style -->
+<link rel="stylesheet" href="{{asset('theme/cryptoadmin/css/style.css')}}">
 
 
 @include(config('theme.user.css.toast'))

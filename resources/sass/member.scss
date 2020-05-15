@@ -1,4 +1,3 @@
-/*member-product-index-page*/
 .member-product-index-page{
     .product-thumbnail{
       width: 50px;
@@ -59,10 +58,8 @@
         box-shadow: 2px 2px lightcyan;
         margin: 3px;
     }
-
-
-
 }
+
 #tooltip{
     position:absolute;
     border:1px solid #ccc;
@@ -71,4 +68,24 @@
     display:none;
     color:#fff;
     z-index: 1000000000000000;
+}
+
+.member-purchaseOrderCartItem-index-page {
+    .sku-thumbnail{
+        border: red 10px;
+        width: 50px;
+        border-radius: 5px;
+    }
+
+}
+
+.member-crawlerItemSearch-index-page{
+  .item-image{
+    border-radius: 3px;
+    border: lightgrey 1px solid;
+    padding: 3px;
+    box-shadow: 2px 2px lightcyan;
+    margin: 3px;
+    width: 80px;
+  }
 }

@@ -17,7 +17,10 @@ class CrawlerTask extends Model
 
     protected $fillable = [
         'is_active', 'sort_order',
-        'ct_name', 'url', 'domain_name','pages', 'local',
+        'ct_name', 'url', 'domain_name',
+        'current_page',
+        'pages',
+        'local',
         'category',
         'subcategory',
         'sort_by',
@@ -45,6 +48,9 @@ class CrawlerTask extends Model
 
     public function crawlerItems(){
         return $this->belongsToMany(CrawlerItem::class, 'ctasks_items','ct_id','ci_id')
-            ->withPivot(['sort_order']);
+            ->withPivot(['ct_i_id','sort_order', 'is_active']);
+    }
+    public function crawlerCategory2(){
+        return $this->belongsTo(CrawlerCategory2::class, 'category','catid');
     }
 }

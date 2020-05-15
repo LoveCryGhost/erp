@@ -8,10 +8,7 @@
 
 {{--CSS--}}
 @include(config('theme.staff.css.default'))
-@section('css')
-    @parent
-    @yield('css')
-@endsection
+
 
 
 {{--繼承內容--}}

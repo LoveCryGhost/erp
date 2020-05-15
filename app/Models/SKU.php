@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class SKU extends Model
 {
@@ -37,5 +38,18 @@ class SKU extends Model
         return $this->belongsToMany(Supplier::class, 'skus_suppliers','sku_id','s_id')
             ->withPivot(['ss_id', 'is_active', 'sort_order', 'price', 'url', 's_id'])
             ->withTimestamps();
+    }
+
+    public function crawlerTaskItemSKU()
+    {
+        //須去除重複值
+        return $this->hasMany(CrawlerTaskItemSKU::class, 'sku_id')
+            ->join('ctasks_items', function ($join) {
+                $join->on('ctasks_items.ct_i_id', '=', 'psku_cskus.ct_i_id');
+            })
+            ->join('crawler_tasks', function ($join) {
+                $join->on('crawler_tasks.ct_id', '=', 'ctasks_items.ct_id')
+                    ->where('crawler_tasks.member_id', Auth::guard('member')->user()->id);
+            });
     }
 }

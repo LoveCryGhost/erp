@@ -6,6 +6,7 @@ use App\Handlers\BarcodeHandler;
 use App\Jobs\CrawlerTaskJob;
 use App\Models\CrawlerTask;
 use Illuminate\Support\Facades\Auth;
+use function request;
 
 
 class CrawlerTaskObserver extends Observer
@@ -13,11 +14,12 @@ class CrawlerTaskObserver extends Observer
 
     public function saving(CrawlerTask $crawlerTask)
     {
-        if(request()->is_active == 1 or request()->is_active == true or  $crawlerTask->is_active==1){
+        if(request()->is_active === "1" or request()->is_active === 1 or request()->is_active === true or $crawlerTask->is_active==1 ){
             $crawlerTask->is_active = 1;
         }else{
             $crawlerTask->is_active = 0;
         }
+
         //判別是否為admin建立
         if(Auth::guard('member')->user()!=null) {
             $crawlerTask->member_id = Auth::guard('member')->user()->id;

@@ -18,7 +18,7 @@
 
         <!-- Main content -->
         <section class="content">
-            <form method="post" action="{{route('admin.staff.update', ['staff' => $staff->id])}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('admin.adminStaff.update', ['adminStaff' => $staff->id])}}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="row">
@@ -26,7 +26,7 @@
                         @include(config('theme.staff.view').'layouts.errors')
                     </div>
                     <div class="col-xl-12 col-lg-12 text-right mb-5">
-                        <a class="btn btn-warning" href="{{route('admin.staff.index')}}" ><i class="fa fa-list"></i></a>
+                        <a class="btn btn-warning" href="{{route('admin.adminStaff.index')}}" ><i class="fa fa-list"></i></a>
                         @include(config('theme.staff.btn.edit.crud'))
                     </div>
                     {{--個人信息--}}
@@ -456,7 +456,7 @@
             </form>
 
             {{--更改密碼--}}
-            <form method="post" action="{{route('admin.staff.update_password', ['staff'=>$staff->id])}}" >
+            <form method="post" action="{{route('admin.adminStaff.updatePassword', ['adminStaff'=>$staff->id])}}" >
                 @csrf
                 @method('put')
                 <div class="row">

@@ -61,27 +61,31 @@ class ProductsTableSeeder extends Seeder
             $products = [
                 [
                     'is_active' => 1, 'publish_at' => null, 'member_id' => 1,
-                    'p_name' => "Pizza 烤盤", 't_id' => 1,
+                    'p_name' => "Pizza 烤盤3", 't_id' => 1,
                     'c_ids' => [2],
                     'produuct_thumnail_ids' => ['/images/default/products/pizza_pan_1.jpg', '/images/default/products/pizza_pan_2.jpg'],
                     'skus' => [
-                        ['1', 'Pizza 7"烤盤', 100, 'sku_attributes' =>[ 1=>'黑色', 2=>'鐵氟龍', 3=>'7"']], //1 = member_id
-                        ['1', 'Pizza 8"烤盤',300, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
-                        ['1', 'Pizza 9"烤盤',400, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
-                        ['1', 'Pizza 10"烤盤',700, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
-                        ['1', 'Pizza 11"烤盤',900, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
-                        ['1', 'Pizza 12"烤盤',110, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
-                        ['1', 'Pizza 13"烤盤',130, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
-                        ['1', 'Pizza 14"烤盤',150, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 7"烤盤', 111, 'sku_attributes' =>[ 1=>'黑色', 2=>'鐵氟龍', 3=>'7"']], //1 = member_id
+                        ['1', 'Pizza 8"烤盤', 112, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 9"烤盤', 113, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 10"烤盤', 114, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 11"烤盤', 115, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 12"烤盤', 116, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 13"烤盤', 117, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 14"烤盤', 118, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
                     ]
                 ],[
                     'is_active' => 1, 'publish_at' => null, 'member_id' => 1,
                     'p_name' => "吐司烤盤", 't_id' => 1,
                     'c_ids' => [2],
                     'produuct_thumnail_ids' => ['/images/default/products/toast_pan_1.jpg', '/images/default/products/toast_pan_2.jpg', '/images/default/products/toast_pan_3.jpg'],
-                    'skus' => []
+                    'skus' => [
+                        ['1', '花嘴 1', 121, 'sku_attributes' =>[ 1=>'黑色', 2=>'鐵氟龍', 3=>'7"']], //1 = member_id
+                        ['1', '花嘴 2', 122, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                    ]
                 ]
             ];
+
             //面膜
             $products = array_merge($products,[
                 [
@@ -149,13 +153,90 @@ class ProductsTableSeeder extends Seeder
 
                         //SKU Supplier
                         $sku_supplier =[
+                            1 => ['price'=>523, 'url' => "http://www.google.com"],
+                            2 => ['price'=>521, 'url' => "http://www.baidu.cn"]
+                        ];
+                        $SKU->skuSuppliers()->sync($sku_supplier);
+                    }
+                }
+            }
+
+            $products = [
+                [
+                    'is_active' => 1, 'publish_at' => null, 'member_id' =>5,
+                    'p_name' => "Pizza 烤盤", 't_id' => 1,
+                    'c_ids' => [2],
+                    'produuct_thumnail_ids' => ['/images/default/products/pizza_pan_1.jpg', '/images/default/products/pizza_pan_2.jpg'],
+                    'skus' => [
+                        ['1', 'Pizza 5-7"烤盤', 211, 'sku_attributes' =>[ 1=>'黑色', 2=>'鐵氟龍', 3=>'7"']], //1 = member_id
+                        ['1', 'Pizza 5-8"烤盤', 212, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 5-9"烤盤', 213, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 5-10"烤盤', 214, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 5-11"烤盤', 215, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 5-12"烤盤', 216, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 5-13"烤盤', 217, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                        ['1', 'Pizza 5-14"烤盤', 218, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                    ]
+                ],[
+                    'is_active' => 1, 'publish_at' => null, 'member_id' => 5,
+                    'p_name' => "吐司烤盤", 't_id' => 1,
+                    'c_ids' => [2],
+                    'produuct_thumnail_ids' => ['/images/default/products/toast_pan_1.jpg', '/images/default/products/toast_pan_2.jpg', '/images/default/products/toast_pan_3.jpg'],
+                    'skus' => [
+                        ['1', '花嘴 1', 221, 'sku_attributes' =>[ 1=>'黑色', 2=>'鐵氟龍', 3=>'7"']], //1 = member_id
+                        ['1', '花嘴 2', 222, 'sku_attributes' =>[ 1=>'AA', 2=>'BB', 3=>'CC']],
+                    ]
+                ]
+            ];
+
+            foreach ($products as $product){
+                $product['id_code'] = (new BarcodeHandler())->barcode_generation(config('barcode.product'), $index++);
+                $c_ids = $product['c_ids'];
+                $produuct_thumnail_ids = $product['produuct_thumnail_ids'];
+                $skus = $product['skus'];
+                unset($product['c_ids']);
+                unset($product['produuct_thumnail_ids']);
+                unset($product['skus']);
+
+                $product=  Product::create($product);
+                $product->categories()->attach($c_ids);
+
+                //Thumbnails
+                foreach ($produuct_thumnail_ids as $key => $thumbnail_path){
+                    $productThumbnail = new  ProductThumbnail();
+                    $productThumbnail->path = $thumbnail_path;
+                    $productThumbnail->p_id = $product->p_id;
+                    $productThumbnail->save();
+                }
+
+                //SKU
+                if(count($skus)>0){
+                    foreach ($skus as $sku){
+                        $SKU = new SKU();
+                        $SKU->p_id = $product->p_id;
+                        $SKU->id_code =  (new BarcodeHandler())->barcode_generation(config('barcode.sku'), $index++);;
+                        $SKU->member_id = $sku[0];
+                        $SKU->sku_name = $sku[1];
+                        $SKU->price = $sku[2];
+                        $SKU->save();
+
+                        //SKU-Attribute
+                        foreach ($sku['sku_attributes'] as $attr_id => $attr_value){
+                            $skuAttribute = new SKUAttribute();
+                            $skuAttribute->sku_id = $SKU->sku_id;
+                            $skuAttribute->a_id = $attr_id;
+                            $skuAttribute->a_value = $attr_value;
+                            $skuAttribute->save();
+                        }
+
+                        //SKU Supplier
+                        $sku_supplier =[
                             1 => ['price'=>123, 'url' => "http://www.google.com"],
                             2 => ['price'=>321, 'url' => "http://www.baidu.cn"]
                         ];
                         $SKU->skuSuppliers()->sync($sku_supplier);
                     }
                 }
-
             }
     }
 }

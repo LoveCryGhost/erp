@@ -31,9 +31,6 @@
                         <i class="mdi mdi-login-variant"></i>
                     </a>
                 </li>
-
-                {{--Guard-Switcher--}}
-                {{--@include(config('theme.admin.tools.guard-switcher'))--}}
             </ul>
         </div>
 

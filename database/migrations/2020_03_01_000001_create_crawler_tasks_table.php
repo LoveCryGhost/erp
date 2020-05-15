@@ -9,6 +9,8 @@ class CreateCrawlerTasksTable extends Migration
 
     public function up()
     {
+
+
         Schema::create('crawler_tasks', function (Blueprint $table) {
             $table->bigIncrements('ct_id');
             $table->string('id_code')->unique()->nullable();
@@ -17,7 +19,8 @@ class CreateCrawlerTasksTable extends Migration
             $table->string('ct_name');
             $table->string('url',500);
             $table->string('domain_name')->nullable();
-            $table->string('pages')->default(2);
+            $table->integer('current_page')->default(0);
+            $table->integer('pages')->default(2);
             $table->string('category')->nullable();
             $table->string('subcategory')->nullable();
             $table->string('keyword')->nullable();
@@ -32,7 +35,7 @@ class CreateCrawlerTasksTable extends Migration
             $table->string('local')->nullable();
             $table->text('description')->nullable();
 
-            $table->bigInteger('member_id')->unsigned();
+            $table->bigInteger('member_id')->default(1)->unsigned();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamps();
         });
