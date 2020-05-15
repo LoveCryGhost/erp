@@ -28,10 +28,29 @@ class CreateMHErpTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('mh_material_usages', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('model')->nullable();
+            $table->string('size')->nullable();
+            $table->decimal('usage',10,5)->nullable();
+            $table->bigInteger('staff_id');
+            $table->decimal('pair_per_unit',10,2)->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('mh_fee', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('model')->nullable();
+            $table->string('size')->nullable(); //工序
+            $table->decimal('usage',10,5)->nullable();
+            $table->bigInteger('staff_id');
+            $table->timestamps();
+        });
     }
 
     public function down()
     {
         Schema::dropIfExists('mh_shoes_molds');
+        Schema::dropIfExists('mh_material_usages');
     }
 }
