@@ -47,6 +47,13 @@ $_colors: (
   }
 }
 
+//image
+@each $spaceamount in $spaceamounts {
+  img.img-#{$spaceamount} {
+    width:#{$spaceamount}px;
+  }
+}
+
 //text-color
 @each $_color in $_colors {
   .text-#{$_color} {

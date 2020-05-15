@@ -9,6 +9,7 @@ return [
 
     'index.table.no' => 'No.',
     'index.table.barcode' => 'Barcode',
+    'index.table.autoGenerate' => 'Auto Generate',
     'index.table.nameCard' => 'NameCard',
     'index.table.supplierGroupName' => 'Group Name',
     'index.table.is_active' => 'Active',

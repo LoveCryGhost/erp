@@ -27,7 +27,9 @@
                     </div>
 
                     <div class="col-xl-12 col-lg-12 text-right mb-5">
-                        @include(config('theme.member.btn.edit.crud'))
+                        <button class="btn btn-primary" type="submit" ><i class="fa fa-floppy-o"></i></button>
+                        <a class="btn btn-warning" href="{{route('member.supplierGroup.create')}}" ><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-danger" href="{{route('member.supplierGroup.index')}}" ><i class="fa fa-arrow-left"></i></a>
                     </div>
                     {{--相關訊息--}}
                     <div class="col-xl-12 col-lg-12">
@@ -39,7 +41,7 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <div class="form-group">
-                                            <h5>Active</h5>
+                                            <h5>{{__('member/supplierGroup.edit.is_active')}}</h5>
                                             <div class="controls">
                                                 <input type="checkbox"  class="permission_check" name="is_active" value="1" id="is_active"
                                                         {{$supplierGroup->is_active==1? "checked":""}} >
@@ -131,7 +133,7 @@
                                             <div class=" text-center" > {{-- img-preview-frame--}}
                                                 <input type="file" name="name_card" id="name_card"  onchange="showPreview(this,['name_card_img'])" style="display: none;"/>
                                                 <label for="name_card">
-                                                    <img id="name_card_img" class="rounded img-fluid mx-auto d-block max-w-350" style="cursor: pointer;" src="{{$supplierGroup->name_card? asset($supplierGroup->name_card):asset('images/default/avatars/avatar.jpg')}}">
+                                                    <img id="name_card_img" class="rounded img-fluid mx-auto d-block img-350  cursor-pointer"  src="{{$supplierGroup->name_card? asset($supplierGroup->name_card):asset('images/default/avatars/avatar.jpg')}}">
                                                 </label>
                                             </div>
                                         </div>

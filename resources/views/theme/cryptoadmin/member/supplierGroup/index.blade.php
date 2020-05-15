@@ -97,7 +97,7 @@
                                                 <td>
                                                     <p class="mb-0">
                                                         <small> {{__('member/supplierGroup.index.table.pic')}}: {{$supplierGroup->member->name}}</small><br>
-                                                        <small>{{__('member/supplierGroup.index.table.updated_at')}} : {{$supplierGroup->updated_at->diffForHumans()}}</small>
+{{--                                                        <small>{{__('member/supplierGroup.index.table.updated_at')}} : {{$supplierGroup->updated_at->diffForHumans()}}</small>--}}
                                                     </p>
                                                 </td>
                                                 <td>

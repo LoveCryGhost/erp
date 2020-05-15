@@ -44,7 +44,7 @@
 {{--<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>--}}
 
 <!-- Crypto Admin App -->
-{{--<script src="{{asset('theme/cryptoadmin/js/template.js')}}"></script>--}}
+<script src="{{asset('theme/cryptoadmin/js/template.js')}}"></script>
 
 
 
