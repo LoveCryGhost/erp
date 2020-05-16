@@ -37,7 +37,6 @@
                 <ul class="treeview-menu">
                     <li><a href="{{route('member.supplierGroup.index')}}"><i class="ti-more"></i>{{__('member/sidebar.supplier.supplierGroup')}}</a></li>
                     <li><a href="{{route('member.supplier.index')}}"><i class="ti-more"></i>{{__('member/sidebar.supplier.supplier')}}</a></li>
-                    <li><a href="#"><i class="ti-more"></i>{{__('member/sidebar.supplier.supplierContact')}}</a></li>
                 </ul>
             </li>
             @endcan

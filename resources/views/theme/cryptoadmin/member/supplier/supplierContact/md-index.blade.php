@@ -1,6 +1,6 @@
 <div class="box box-solid box-inverse box-dark">
     <div class="box-header  p-5">
-        <h5 class="box-title m-0">產品SKU</h5>
+        <h5 class="box-title m-0">{{__('member/supplier.supplierContact.index.title')}}</h5>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -15,12 +15,12 @@
                 <table class="table table-bordered table-hover" id="tbl-supplier-contact">
                     <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>排序</th>
-                        <th>聯絡人</th>
-                        <th>電話</th>
-                        <th>手機</th>
-                        <th>操作</th>
+                        <th>{{__('member/supplier.supplierContact.index.table.no')}}</th>
+                        <th>{{__('member/supplier.supplierContact.index.table.sortOrder')}}</th>
+                        <th>{{__('member/supplier.supplierContact.index.table.contactName')}}</th>
+                        <th>{{__('member/supplier.supplierContact.index.table.phone')}}.</th>
+                        <th>{{__('member/supplier.supplierContact.index.table.tel')}}</th>
+                        <th>{{__('member/supplier.supplierContact.index.table.action')}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -45,12 +45,12 @@
                                         <a class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#modal-lg"
                                            onclick="event.preventDefault();
                                                    md_supplier_contact_edit(this, php_inject={{json_encode(['models'=>['supplier' => $supplier, 'supplierContact' => $supplierContact]])}});">
-                                            <i class="fa fa-edit mr-5"></i>編輯
+                                            <i class="fa fa-edit mr-5"></i>{{__('member/supplier.supplierContact.index.table.crud_edit')}}
                                         </a>
                                         <a class="btn btn-danger btn-sm"
                                            onclick="event.preventDefault();
                                                    md_supplier_contact_delete(this, php_inject={{json_encode(['models'=>['supplier' => $supplier, 'supplierContact' => $supplierContact]])}});">
-                                            <i class="fa fa-trash mr-5"></i>刪除
+                                            <i class="fa fa-trash mr-5"></i>{{__('member/supplier.supplierContact.index.table.crud_delete')}}
                                         </a>
                                     </td>
                                 </tr>
@@ -86,7 +86,7 @@
             contentType: false,
             processData: false,
             success: function(data) {
-                $('#modal-lg .modal-title').html('供應商 - 聯絡人');
+                $('#modal-lg .modal-title').html('{{__('member/supplier.supplierContact.create.title')}}');
                 $('#modal-lg .modal-body').html(data.view)
             },
             error: function(data) {
@@ -105,7 +105,7 @@
             contentType: false,
             processData: false,
             success: function(data) {
-                $('#modal-lg .modal-title').html('供應商 - 聯絡人');
+                $('#modal-lg .modal-title').html('{{__('member/supplier.supplierContact.edit.title')}}');
                 $('#modal-lg .modal-body').html(data.view)
             },
             error: function(data) {

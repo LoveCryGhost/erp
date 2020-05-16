@@ -1,6 +1,6 @@
 @extends(config('theme.member.member-app'))
 
-@section('title','供應商 - 列表')
+@section('title',__('member/supplier.index.title'))
 
 @section('content-header','')
 @section('content')
@@ -8,7 +8,7 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <h3>
-                供應商 - 列表
+                {{__('member/supplier.index.title')}}
             </h3>
         </div>
 
@@ -25,13 +25,13 @@
                                 <table class="itable table">
                                     <thead>
                                     <tr>
-                                        <th>check</th>
-                                        <th>Barcode</th>
-                                        <th>名片</th>
-                                        <th>名稱</th>
-                                        <th>啟用</th>
-                                        <th>訊息</th>
-                                        <th>操作</th>
+                                        <th>{{__('member/supplier.index.table.no')}}</th>
+                                        <th>{{__('member/supplier.index.table.barcode')}}</th>
+                                        <th>{{__('member/supplier.index.table.nameCard')}}</th>
+                                        <th>{{__('member/supplier.index.table.supplierName')}}</th>
+                                        <th>{{__('member/supplier.index.table.is_active')}}</th>
+                                        <th>{{__('member/supplier.index.table.information')}}</th>
+                                        <th>{{__('member/supplier.index.table.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -48,16 +48,13 @@
                                                 </p>
                                             </td>
                                             <td>
-                                                <input type="checkbox" class="bt-switch" name="is_active"  value="1" {{$supplier->is_active===1? "checked": ""}}
-                                                data-label-width="100%"
-                                                       data-label-text="啟用"
-                                                       data-on-text="On"    data-on-color="primary"
-                                                       data-off-text="Off"  data-off-color="danger"/>
+                                                <input type="checkbox" class="permission_check" name="is_active" id="is_active"
+                                                       {{$supplier->is_active===1? "checked": ""}} disabled>
+                                                <label for="is_active" class="p-0 m-0"></label>
                                             </td>
                                             <td>
                                                 <p class="mb-0">
-                                                    <small>修改人 : {{$supplier->member->name}}</small><br>
-                                                    <small>最後更新 : {{$supplier->updated_at->diffForHumans()}}</small>
+                                                    <small>{{__('member/supplier.index.table.pic')}} : {{$supplier->member->name}}</small><br>
                                                 </p>
                                             </td>
                                             <td>

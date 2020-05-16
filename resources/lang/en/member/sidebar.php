@@ -7,7 +7,6 @@ return [
     'supplier.ul' => "Supplier Module",
     'supplier.supplierGroup' => "SupplierGroup",
     'supplier.supplier' => "Supplier",
-    'supplier.supplierContact' => "supplierContact",
 
     //Product
     'product.ul' => "Product Module",

@@ -43,9 +43,9 @@
                                         </div>
         
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.index.table.barcode')}}</h5>
+                                            <h5>{{__('member/supplierGroup.edit.barcode')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text"  placeholder="{{__('member/supplierGroup.index.table.autoGenerate')}}" disabled value="{{__('member/supplierGroup.index.table.autoGenerate')}}">
+                                                <input class="form-control" type="text"  placeholder="{{__('member/supplierGroup.edit.barcode')}}" disabled value="{{__('member/supplierGroup.edit.autoGenerate')}}">
                                             </div>
                                         </div>
         

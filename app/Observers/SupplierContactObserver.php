@@ -6,6 +6,7 @@ use App\Handlers\BarcodeHandler;
 use App\Models\Supplier;
 use App\Models\SupplierContact;
 use Illuminate\Support\Facades\Auth;
+use function request;
 
 
 class SupplierContactObserver extends Observer

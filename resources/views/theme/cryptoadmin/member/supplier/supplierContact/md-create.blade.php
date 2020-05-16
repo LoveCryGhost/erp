@@ -1,66 +1,51 @@
-<div class="box box-solid box-inverse box-dark">
+<div class="box box-solid ">
     <div class="box-body">
         @include(config('theme.admin.view').'layouts.modal-errors')
         <div class="row">
-            <div class="col-12 text-right">
-                <a href="#" class="btn btn-primary"
+            <div class="col-12">
+                @include(config('theme.member.view').'layouts.errors')
+                <div class="form-group">
+                    <h5>{{__('member/supplier.supplierContact.create.contactName')}}</h5>
+                    <div class="controls">
+                        <input class="form-control" type="text" name="sc_name" id="sc_name"  placeholder="{{__('member/supplier.supplierContact.create.contactName')}}"  value="">
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <h5>{{__('member/supplier.supplierContact.create.tel')}}</h5>
+                    <div class="controls">
+                        <input class="form-control" type="text" name="tel" id="tel"  placeholder="{{__('member/supplier.supplierContact.create.tel')}}"  value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>{{__('member/supplier.supplierContact.create.phone')}}</h5>
+                    <div class="controls">
+                        <input class="form-control" type="text" name="phone" id="phone"  placeholder="{{__('member/supplier.supplierContact.create.phone')}}"  value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h5>{{__('member/supplier.supplierContact.create.introduction')}}</h5>
+                    <div class="controls">
+                        <textarea class="form-control" type="text" name="introduction" id="introduction"  placeholder="{{__('member/supplier.supplierContact.create.introduction')}}"  ></textarea>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-6">
+                <button type="button" class="btn btn-danger form-control" data-dismiss="modal">Close</button>
+            </div>
+            <div class="col-6">
+                <a href="#" class="btn btn-primary form-control"
                    onclick="event.preventDefault();
                            md_supplier_contact_store(this, php_inject={{json_encode([ 'models' => ['supplier' => $supplier]])}});">
                     <i class="fa fa-save"></i></a>
             </div>
-            <div class="col-12">
-                @include(config('theme.member.view').'layouts.errors')
-                <div class="form-group row">
-
-                    <label class="col-sm-2 col-form-label">啟用</label>
-                    <div class="col-sm-4">
-                        <input type="checkbox" class="bt-switch" name="is_active" id="is_active" value="1" {{old('is_active')==1? "checked":""}}
-                        data-label-width="100%"
-                               data-label-text="啟用" data-size="min"
-                               data-on-text="On"    data-on-color="primary"
-                               data-off-text="Off"  data-off-color="danger"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">聯絡人</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="sc_name" id="sc_name"  placeholder="聯絡人"  value="{{old('sc_name')}}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">電話</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="tel" id="tel"  placeholder="電話"  value="{{old('tel')}}">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">手機</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="phone" id="phone"  placeholder="手機"  value="{{old('phone')}}">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">備註</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" type="text" name="introduction" id="introduction"  placeholder="備註">{{old('introduction')}}</textarea>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
-
-    $(function () {
-        //Switch
-        active_switch(switch_class='bt-switch', options=[]);
-    });
-
-
+    
     function md_supplier_contact_store(_this,  php_inject){
         var formData = new FormData();
         formData.append('s_id', php_inject.models.supplier.s_id);

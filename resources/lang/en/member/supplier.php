@@ -1,6 +1,6 @@
 <?php
 return [
-    'index.title'       => 'Supplier - Group List',
+    'index.title'       => 'Supplier - List',
 
     'index.search.barcode' => 'Barcode',
     'index.search.supplierGroupName' => 'Group Name',
@@ -11,7 +11,7 @@ return [
     'index.table.barcode' => 'Barcode',
 
     'index.table.nameCard' => 'NameCard',
-    'index.table.supplierGroupName' => 'Group Name',
+    'index.table.supplierName' => 'Suuplier Name',
     'index.table.is_active' => 'Active',
     'index.table.information' => 'Info',
     'index.table.action' => 'Action',
@@ -22,11 +22,11 @@ return [
     'index.table.delete' => 'Del',
     'index.table.delete_confirm' => 'Do you really want to Deleteh this ?',
 
-    'edit.title'       => 'Supplier - Group Edit',
+    'edit.title'       => 'Supplier - Edit',
     'edit.is_active'       => 'Active',
-    'edit.supplierGroupName'       => 'Group Name',
-    'edit.barcode' => 'Barcode',
     'edit.autoGenerate' => 'Auto Generate',
+    'edit.supplierName'       => 'Supplier Name',
+    'edit.supplierGroupName'       => 'Group Name',
     'edit.address'       => 'Company Address',
     'edit.warehouseAddress'       => 'WH Address',
     'edit.tel'       => 'Tel',
@@ -48,4 +48,27 @@ return [
     'create.introduction'       => 'Introduction',
     'create.save'       => 'Save',
 
+    'supplierContact.index.title' => 'Contacts',
+    'supplierContact.index.table.no' => 'No.',
+    'supplierContact.index.table.sortOrder' => 'Sort Order',
+    'supplierContact.index.table.tel' => 'Tel',
+    'supplierContact.index.table.phone' => 'Phone',
+    'supplierContact.index.table.contactName' => 'Contact Name',
+    'supplierContact.index.table.action' => 'Action',
+    'supplierContact.index.table.crud_edit' => 'Edit',
+    'supplierContact.index.table.crud_delete' => 'Delete',
+
+    'supplierContact.edit.title' => 'Supplier Contact - Edit',
+    'supplierContact.edit.is_active' => 'Active',
+    'supplierContact.edit.contactName' => 'Contact Name',
+    'supplierContact.edit.tel' => 'Tel',
+    'supplierContact.edit.phone' => 'Phone',
+    'supplierContact.edit.introduction' => 'Introduction',
+
+    'supplierContact.create.title' => 'Supplier Contact - Create',
+    'supplierContact.create.is_active' => 'Active',
+    'supplierContact.create.contactName' => 'Contact Name',
+    'supplierContact.create.tel' => 'Tel',
+    'supplierContact.create.phone' => 'Phone',
+    'supplierContact.create.introduction' => 'Introduction',
 ];

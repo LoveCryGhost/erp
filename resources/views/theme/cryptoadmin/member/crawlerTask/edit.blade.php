@@ -26,7 +26,9 @@
                 </div>
 
                 <div class="col-xl-12 col-lg-12 text-right mb-5">
-                    @include(config('theme.member.btn.edit.crud'))
+                    <button class="btn btn-primary" type="submit" ><i class="fa fa-floppy-o"></i></button>
+                    <a class="btn btn-warning" href="{{route('member.supplier.create')}}" ><i class="fa fa-plus"></i></a>
+                    <a class="btn btn-danger" href="{{route('member.supplier.index')}}" ><i class="fa fa-arrow-left"></i></a>
                 </div>
                 {{--相關訊息--}}
                 <div class="col-xl-12 col-lg-12">
