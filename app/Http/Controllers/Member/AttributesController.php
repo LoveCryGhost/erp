@@ -23,7 +23,7 @@ class AttributesController extends MemberCoreController
 
     public function create()
     {
-        return view(config('theme.member.view').'attribute.create', compact(''));
+        return view(config('theme.member.view').'attribute.create', []);
     }
 
     public function store(AttributeRequest $request)

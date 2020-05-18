@@ -27,9 +27,50 @@ return [
         'member_info' => '會員資料'
     ],
 
+    'crud' => [
+        'edit' => 'Edit',
+        'delete' => 'Delete',
+        'create' => 'CReate',
+        'refresh' => 'Refresh',
+        'back' => 'Back'
+    ],
+
     'index'       => [
+        'table' => [
+            'no' => '編號',
+            'barcode' => '條碼',
+            'is_active' => '啟用',
+            'name' => '名稱',
+            'photo' => '照片',
+            'image' => '圖片',
+            'info' => '訊息',
+            'crud' => '操作',
+            'createdBy' => '建立者'
+        ],
         'lazzyload_more_records' => '加载更多....',
         'lazzyload_no_more_records' => '沒有資料了'
+    ],
+    'edit'       => [
+        'is_active' => '啟用',
+        'name' => '名稱',
+        'barcode' => '條碼',
+        'autoGenerate' => '自動生成',
+        'photo' => '照片',
+        'image' => '圖片',
+        'info' => '訊息',
+        'crud' => '操作',
+        'save' => '儲存'
+    ],
+    'create'       => [
+        'is_active' => '啟用',
+        'name' => '名稱',
+        'barcode' => '條碼',
+        'autoGenerate' => '自動生成',
+        'photo' => '照片',
+        'image' => '圖片',
+        'info' => '訊息',
+        'crud' => '操作',
+        'save' => '儲存'
     ],
 
     'language' => [

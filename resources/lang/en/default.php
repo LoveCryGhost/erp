@@ -25,12 +25,49 @@ return [
         'member_info' => 'Member Info'
     ],
 
-
-
-
+    'crud' => [
+        'edit' => 'Edit',
+        'delete' => 'Delete',
+        'create' => 'CReate',
+        'refresh' => 'Refresh',
+        'back' => 'Back'
+    ],
     'index'       => [
+        'table' => [
+            'no' => 'No.',
+            'barcode' => 'Barcode',
+            'is_active' => 'Active',
+            'name' => 'Name',
+            'photo' => 'Photo',
+            'image' => 'Image',
+            'info' => 'Info',
+            'crud' => 'Operation',
+            'createdBy' => 'Created By'
+        ],
         'lazzyload_more_records' => 'Load more ... ',
         'lazzyload_no_more_records' => 'No Records !!'
+    ],
+    'edit'       => [
+            'is_active' => 'Active',
+            'name' => 'Name',
+            'barcode' => 'Barcode',
+            'autoGenerate' => 'Auto Generate',
+            'photo' => 'Photo',
+            'image' => 'Image',
+            'info' => 'Info',
+            'crud' => 'Operation',
+            'save' => 'Save'
+    ],
+    'create'       => [
+        'is_active' => 'Active',
+        'name' => 'Name',
+        'barcode' => 'Barcode',
+        'autoGenerate' => 'Auto Generate',
+        'photo' => 'Photo',
+        'image' => 'Image',
+        'info' => 'Info',
+        'crud' => 'Operation',
+        'save' => 'Save'
     ],
     'language' => [
         'en' => 'America',
@@ -40,4 +77,5 @@ return [
         'th' => 'Thailand',
         'vn' => 'Vietnam',
     ],
+
 ];

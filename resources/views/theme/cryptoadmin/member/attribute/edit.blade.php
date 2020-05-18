@@ -1,19 +1,14 @@
 @extends(config('theme.member.member-app'))
 
-@section('title','產品屬性')
+@section('title', __('member/attribute.edit.title'))
 
 @section('content')
 <div class="container-full">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <h3>
-                    產品 - 屬性
+                    {{__('member/attribute.index.title')}}
                 </h3>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/"><i class="fa fa-dashboard"></i>首頁</a></li>
-                    <li class="breadcrumb-item"><a href="#">Members</a></li>
-                    <li class="breadcrumb-item active">Members Profile</li>
-                </ol>
             </div>
 
             <!-- Main content -->
@@ -31,43 +26,39 @@
                         </div>
                         {{--相關訊息--}}
                         <div class="col-xl-12 col-lg-12">
-                            <div class="box box-solid box-inverse box-dark">
+                            <div class="box box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">產品屬性</h3>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">啟用</label>
-                                                <div class="col-sm-10">
-                                                    <input type="checkbox" class="bt-switch" name="is_active"  value="1" {{$attribute->is_active==1? "checked": ""}}
-                                                    data-label-width="100%"
-                                                           data-label-text="啟用" data-size="min"
-                                                           data-on-text="On"    data-on-color="primary"
-                                                           data-off-text="Off"  data-off-color="danger"/>
+                                            <div class="form-group">
+                                                <h5>{{__('default.edit.is_active')}}</h5>
+                                                <div class="controls">
+                                                    <input type="checkbox"  class="permission_check" name="is_active" value="1" id="is_active"
+                                                            {{$attribute->is_active==1? "checked":""}} >
+                                                    <label for="is_active" class="text-dark p-0 m-0"></label>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Barcode</label>
-                                                <div class="col-sm-10">
+    
+                                            <div class="form-group">
+                                                <h5>{{__('default.edit.barcode')}}</h5>
+                                                <div class="controls">
                                                     <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{$attribute->id_code}}" disabled>
                                                 </div>
                                             </div>
-
-
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">屬性名稱</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" name="a_name" placeholder="屬性名稱"  value="{{$attribute->a_name}}">
+    
+                                            <div class="form-group">
+                                                <h5>{{__('member/attribute.edit.attributeName')}}</h5>
+                                                <div class="controls">
+                                                    <input class="form-control" type="text" name="a_name" placeholder="{{__('member/attribute.edit.attributeName')}}"  value="{{$attribute->a_name}}">
                                                 </div>
                                             </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label"></label>
-                                                <div class="col-sm-10">
-                                                    <button type="submit" class="btn btn-warning">提交訊息</button>
+    
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <button type="submit" class="btn btn-success form-control">{{__('default.edit.save')}}</button>
                                                 </div>
                                             </div>
                                         </div>
