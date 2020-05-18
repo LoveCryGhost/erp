@@ -224,13 +224,13 @@ w
 
     function swal_delete_info(){
         return {
-            title: "您確定要刪除?",
-            text: "刪除後，您將無法復原此資料!",
+            title: "{{__('default.swal.delete_title')}}",
+            text: "{{__('default.swal.delete_subTitle')}}",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "確認刪除!",
-            cancelButtonText: "取消",
+            confirmButtonText: "{{__('default.swal.delete_confirmBtn')}}!",
+            cancelButtonText: "{{__('default.swal.delete_cancleBtn')}}",
             closeOnConfirm: false
         }
     }

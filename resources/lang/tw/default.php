@@ -38,6 +38,7 @@ return [
     'index'       => [
         'table' => [
             'no' => '編號',
+            'sort_order' => '排序',
             'barcode' => '條碼',
             'is_active' => '啟用',
             'name' => '名稱',
@@ -45,7 +46,9 @@ return [
             'image' => '圖片',
             'info' => '訊息',
             'crud' => '操作',
-            'createdBy' => '建立者'
+            'createdBy' => '建立者',
+            'edit' => '編輯',
+            'delete' => '刪除'
         ],
         'lazzyload_more_records' => '加载更多....',
         'lazzyload_no_more_records' => '沒有資料了'
@@ -72,6 +75,17 @@ return [
         'crud' => '操作',
         'save' => '儲存'
     ],
+
+    'swal' => [
+        'delete_title' => '您確認要刪除 !!',
+        'delete_subTitle' => "刪除後，您將無法復原此資料" ,
+        'delete_confirm' => '',
+        'delete_concel' => '',
+        'delete_success' => '刪除成功 !!',
+        'delete_confirmBtn' => '刪除',
+        'delete_cancleBtn' => '取消'
+    ],
+
 
     'language' => [
         'en' => '美國',

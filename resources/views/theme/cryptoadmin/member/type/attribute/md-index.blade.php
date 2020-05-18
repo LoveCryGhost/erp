@@ -1,6 +1,6 @@
 <div class="box box-solid box-inverse box-dark">
     <div class="box-header  p-5">
-        <h5 class="box-title m-0">產品類型</h5>
+        <h5 class="box-title m-0">{{__('member/type.productAttribute.index.title')}}</h5>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -15,11 +15,11 @@
                 <table class="table table-bordered table-hover" id="tbl-type-attribute">
                     <thead>
                         <tr>
-                            <th>No.</th>
-                            <th>排序</th>
-                            <th>Barcode</th>
-                            <th>屬性</th>
-                            <th>操作</th>
+                            <th>{{__('default.index.table.no')}}</th>
+                            <th>{{__('default.index.table.sort_order')}}</th>
+                            <th>{{__('default.index.table.barcode')}}</th>
+                            <th>{{__('member/type.productAttribute.index.table.productAttribute')}}</th>
+                            <th>{{__('default.index.table.crud')}}</th>
                         </tr>
                     </thead>
 
@@ -45,12 +45,12 @@
                                         <a class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#modal-md"
                                            onclick="event.preventDefault();
                                                    md_type_attribute_edit(this, php_inject={{json_encode(['models'=>['type' => $type, 'attribute' => $attribute]])}});">
-                                            <i class="fa fa-edit mr-5"></i>編輯
+                                            <i class="fa fa-edit mr-5"></i>{{__('default.index.table.edit')}}
                                         </a>
                                         <a class="btn btn-danger btn-sm"
                                            onclick="event.preventDefault();
                                                    md_type_attribute_delete(this, php_inject={{json_encode(['models'=>['type' => $type, 'attribute' => $attribute]])}});">
-                                            <i class="fa fa-trash mr-5"></i>刪除
+                                            <i class="fa fa-trash mr-5"></i>{{__('default.index.table.delete')}}
                                         </a>
                                     </td>
                                 </tr>
@@ -86,7 +86,7 @@
             contentType: false,
             processData: false,
             success: function(data) {
-                $('#modal-md .modal-title').html('產品 - 屬性');
+                $('#modal-md .modal-title').html("{{__('member/type.productAttribute.edit.title')}}");
                 $('#modal-md .modal-body').html(data.view);
 
                 //插入排序value
@@ -110,7 +110,7 @@
             contentType: false,
             processData: false,
             success: function(data) {
-                $('#modal-md .modal-title').html('編輯 - 產品屬性');
+                $('#modal-md .modal-title').html("{{__('member/type.productAttribute.edit.title')}}");
                 $('#modal-md .modal-body').html(data.view);
             },
             error: function(data) {
@@ -120,7 +120,7 @@
 
     function md_type_attribute_delete(_this,  php_inject) {
         swal(swal_delete_info(), function(){
-            swal("已經刪除!", "刪除成功", "success");
+            swal("{{__('default.swal.delete_success')}}", "{{__('default.swal.delete_success')}}", "success");
 
             var formData = new FormData();
             tr_delete = tr = $('#tbl-type-attribute tbody tr[data-md-id='+php_inject.models.attribute.a_id+']');

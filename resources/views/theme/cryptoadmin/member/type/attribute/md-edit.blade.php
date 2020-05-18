@@ -1,5 +1,4 @@
-<div class="box box-solid box-inverse box-dark">
-
+<div class="box box-solid">
     <div class="box-body">
         <div class="row">
             <div class="col-12 text-right">
@@ -10,24 +9,21 @@
             </div>
             <div class="col-12">
                 {{--Select2--}}
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">產品屬性</label>
-                    <div class="col-sm-9">
-                        <select class="select2_item form-control" name="a_id" id="a_id">
-                            <option data-md-id="">Select...</option>
-                            @foreach($attributes as $attr)
-                                @if($attr->a_id == $attribute->a_id)
-                                    <option value="{{$attr->a_id}}" selected disabled="disabled" data-md-id="{{$attr->a_id}}">{{$attr->id_code}} - {{$attr->a_name}} -- (Disabled)</option>
-                                @else
-                                    <option value="{{$attr->a_id}}" data-md-id="{{$attr->a_id}}" >{{$attr->id_code}} - {{$attr->a_name}}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <h5>{{__('member/type.productAttribute.edit.productAttribute')}}</h5>
+                    <select class="select2_item form-control" name="a_id" id="a_id">
+                        <option data-md-id="">Select...</option>
+                        @foreach($attributes as $attr)
+                            @if($attr->a_id == $attribute->a_id)
+                                <option value="{{$attr->a_id}}" selected disabled="disabled" data-md-id="{{$attr->a_id}}">{{$attr->id_code}} - {{$attr->a_name}} -- (Disabled)</option>
+                            @else
+                                <option value="{{$attr->a_id}}" data-md-id="{{$attr->a_id}}" >{{$attr->id_code}} - {{$attr->a_name}}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

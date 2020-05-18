@@ -1,19 +1,15 @@
 @extends(config('theme.member.member-app'))
 
-@section('title','產品 - 類型')
+@section('title',__('member/type.title'))
 
 @section('content')
     <div class="container-full">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <h3>
-                產品 - 類型
+                {{__('member/type.index.title')}}
             </h3>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Members</a></li>
-                <li class="breadcrumb-item active">Members List</li>
-            </ol>
+            
         </div>
 
         <!-- Main content -->
@@ -26,14 +22,15 @@
                                 @include(config('theme.member.btn.index.crud'))
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="itable table">
                                     <thead>
-                                        <tr class="d-none">
-                                            <th>check</th>
-                                            <th>Barcode</th>
-                                            <th>名稱</th>
-                                            <th></th>
-                                            <th>操作</th>
+                                        <tr>
+                                            <th>{{__('default.index.table.no')}}</th>
+                                            <th>{{__('default.index.table.barcode')}}</th>
+                                            <th>{{__('member/type.index.table.productType')}}</th>
+                                            <th>{{__('default.index.table.is_active')}}</th>
+                                            <th>{{__('default.index.table.info')}}</th>
+                                            <th>{{__('default.index.table.crud')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,21 +44,15 @@
                                                 </p>
                                             </td>
                                             <td>
-                                                <input type="checkbox" class="bt-switch" name="is_active"  value="1" {{$type->is_active===1? "checked": ""}}
-                                                       data-label-width="100%"
-                                                       data-label-text="啟用"
-                                                       data-on-text="On"    data-on-color="primary"
-                                                       data-off-text="Off"  data-off-color="danger"/>
+                                                <input type="checkbox" class="permission_check" name="is_active" id="is_active"
+                                                       {{$type->is_active===1? "checked": ""}} disabled>
+                                                <label for="is_active" class="p-0 m-0"></label>
                                             </td>
-                                            <td>
                                             <td>
                                                 <p class="mb-0">
-                                                    <small>修改人 : {{$type->member->name}}</small><br>
-                                                    <small>最後更新 : {{$type->updated_at->diffForHumans()}}</small>
+                                                    <small>{{__('default.index.table.createdBy')}} : {{$type->member->name}}</small><br>
                                                 </p>
                                             </td>
-                                            </td>
-
                                             <td>
                                                 @include(config('theme.member.btn.index.table_tr'),['id' => $type->t_id])
                                             </td>

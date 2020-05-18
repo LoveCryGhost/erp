@@ -2,15 +2,15 @@
 return [
 
     //Title
-    'title' => "屬性",
+    'title' => "產品屬性",
 
-    'index.title' => '屬性 - 列表',
+    'index.title' => '產品屬性 - 列表',
     'index.table.attribute' => '屬性',
 
-    'edit.title' => '屬性 - 編輯',
-    'edit.attributeName'=> '屬性名稱',
+    'edit.title' => '產品屬性 - 編輯',
+    'edit.attributeName'=> '產品屬性名稱',
 
 
-    'create.title' => '屬性 - 新增',
-    'create.attributeName'=> '屬性 名稱'
+    'create.title' => '產品屬性 - 新增',
+    'create.attributeName'=> '產品屬性 名稱'
 ];

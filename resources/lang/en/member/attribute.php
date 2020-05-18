@@ -2,14 +2,14 @@
 return [
 
     //Title
-    'title' => "Attriibute",
+    'title' => "Product Attriibute",
 
-    'index.title' => 'Attriibute - List',
-    'index.table.attribute' => 'Attribute',
+    'index.title' => 'Product Attriibute - List',
+    'index.table.attribute' => 'Product Attribute',
 
-    'edit.title' => 'Attriibute - Edit',
-    'edit.attributeName'=> 'Attribute Name',
+    'edit.title' => 'Product Attriibute - Edit',
+    'edit.attributeName'=> 'Product Attribute Name',
 
-    'create.title' => 'Attriibute - Create',
-    'create.attributeName'=> 'Attribute Name'
+    'create.title' => 'Product Attriibute - Create',
+    'create.attributeName'=> 'Product Attribute Name'
 ];

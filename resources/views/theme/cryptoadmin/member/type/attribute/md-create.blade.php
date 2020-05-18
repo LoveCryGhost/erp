@@ -1,4 +1,4 @@
-<div class="box box-solid box-inverse box-dark">
+<div class="box box-solid">
 
     <div class="box-body">
         <div class="row">
@@ -10,16 +10,14 @@
             </div>
             <div class="col-12">
                 {{--Select2--}}
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">產品屬性</label>
-                    <div class="col-sm-9">
-                        <select class="select2_item form-control" name="a_id" id="a_id">
-                            <option value="">Select...</option>
-                            @foreach($attributes as $attribute)
-                                <option value="{{$attribute->a_id}}" >{{$attribute->id_code}} - {{$attribute->a_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <h5>{{__('member/type.productAttribute.create.productAttribute')}}</h5>
+                    <select class="select2_item form-control" name="a_id" id="a_id">
+                        <option data-md-id="">Select...</option>
+                        @foreach($attributes as $attribute)
+                            <option value="{{$attribute->a_id}}" >{{$attribute->id_code}} - {{$attribute->a_name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>

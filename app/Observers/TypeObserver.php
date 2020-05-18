@@ -12,7 +12,7 @@ class TypeObserver extends Observer
 
     public function saving(Type $type)
     {
-        if(request()->is_active == 1 or request()->is_active ==true or  $type->is_active == 1){
+        if(request()->is_active == 1 or request()->is_active ==true){
             $type->is_active = 1;
         }else{
             $type->is_active = 0;

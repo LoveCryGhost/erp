@@ -35,6 +35,7 @@ return [
     'index'       => [
         'table' => [
             'no' => 'No.',
+            'sort_order' => 'Sort Order',
             'barcode' => 'Barcode',
             'is_active' => 'Active',
             'name' => 'Name',
@@ -42,7 +43,9 @@ return [
             'image' => 'Image',
             'info' => 'Info',
             'crud' => 'Operation',
-            'createdBy' => 'Created By'
+            'createdBy' => 'Created By',
+            'edit' => 'Edit',
+            'delete' => 'Del'
         ],
         'lazzyload_more_records' => 'Load more ... ',
         'lazzyload_no_more_records' => 'No Records !!'
@@ -68,6 +71,15 @@ return [
         'info' => 'Info',
         'crud' => 'Operation',
         'save' => 'Save'
+    ],
+    'swal' => [
+        'delete_title' => 'Do You Really Want to Delete !!',
+        'delete_subTitle' => "You can not recover the record after delete !" ,
+        'delete_confirm' => '',
+        'delete_concel' => '',
+        'delete_success' => 'Delete Success !!',
+        'delete_confirmBtn' => 'Delete',
+        'delete_cancleBtn' => 'Cancel'
     ],
     'language' => [
         'en' => 'America',

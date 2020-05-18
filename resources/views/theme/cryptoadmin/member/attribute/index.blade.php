@@ -4,14 +4,12 @@
 
 @section('content')
     <div class="container-full">
-        <!-- Content Header (Page header) -->
         <div class="content-header">
             <h3>
                {{__('member/attribute.title')}}
             </h3>
         </div>
 
-        <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-12">
@@ -70,20 +68,11 @@
                 </div>
             </div>
         </section>
-        <!-- /.content -->
-
     </div>
 @stop
 
 @section('js')
     @parent
-    <script type="text/javascript">
-        $(function(){
-            $bt_switch = $('.bt-switch');
-            $bt_switch.bootstrapSwitch('toggleState');
-        })
-    </script>
-
 @endsection
 
 
