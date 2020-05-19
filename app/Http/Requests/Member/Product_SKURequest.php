@@ -4,6 +4,7 @@ namespace App\Http\Requests\Member;
 
 use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
+use function __;
 
 class Product_SKURequest extends Request
 {
@@ -34,9 +35,9 @@ class Product_SKURequest extends Request
     {
         return [
 
-            'price.required' => '售價不能為空',
-            'price.numeric' => '售價必須為數字',
-            'sku_name.required' => 'SKU 名稱不能為空'
+            'price.required' => __('member/validations.product.sku.price.required'),
+            'price.numeric' =>  __('member/validations.product.sku.price.numeric'), //'售價必須為數字',
+            'sku_name.required' =>  __('member/validations.product.sku.sku_name.required'), //'SKU 名稱不能為空'
         ];
     }
 }

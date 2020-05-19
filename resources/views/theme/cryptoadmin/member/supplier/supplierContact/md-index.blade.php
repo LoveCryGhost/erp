@@ -12,7 +12,7 @@
                     <i class="fa fa-plus"></i></a>
             </div>
             <div class="col-12">
-                <table class="table table-bordered table-hover" id="tbl-supplier-contact">
+                <table class="itable table" id="tbl-supplier-contact">
                     <thead>
                     <tr>
                         <th>{{__('member/supplier.supplierContact.index.table.no')}}</th>

@@ -25,19 +25,5 @@
                 @csrf
             </form>
         </li>
-{{--        <li class="user-footer">--}}
-{{--            <div>--}}
-{{--                <div class="flexbox">--}}
-{{--                    <div>--}}
-{{--                        <h4 class="mb-0 mt-0">--}}
-{{--                            <a class="dropdown-item" href="{{ route('member.logout') }}"--}}
-{{--                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">--}}
-{{--                                <i class="fa fa-sign-out text-primary"></i> {{__('default.info.logout')}}--}}
-{{--                            </a>--}}
-{{--                        </h4>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </li>--}}
     </ul>
 </li>

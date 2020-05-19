@@ -42,14 +42,16 @@ return [
             'photo' => 'Photo',
             'image' => 'Image',
             'info' => 'Info',
-            'crud' => 'Operation',
+            'crud' => 'Action',
             'createdBy' => 'Created By',
+            'price' => 'Price',
             'edit' => 'Edit',
             'delete' => 'Del'
         ],
-        'lazzyload_more_records' => 'Load more ... ',
-        'lazzyload_no_more_records' => 'No Records !!'
+        'lazzyload_more_records' => 'Loading more ... ',
+        'lazzyload_no_more_records' => 'No More Records !!'
     ],
+
     'edit'       => [
             'is_active' => 'Active',
             'name' => 'Name',
@@ -61,6 +63,7 @@ return [
             'crud' => 'Operation',
             'save' => 'Save'
     ],
+
     'create'       => [
         'is_active' => 'Active',
         'name' => 'Name',
@@ -72,6 +75,7 @@ return [
         'crud' => 'Operation',
         'save' => 'Save'
     ],
+
     'swal' => [
         'delete_title' => 'Do You Really Want to Delete !!',
         'delete_subTitle' => "You can not recover the record after delete !" ,

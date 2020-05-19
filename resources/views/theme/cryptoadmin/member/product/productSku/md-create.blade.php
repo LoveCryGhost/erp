@@ -1,55 +1,55 @@
-<div class="box box-solid box-inverse box-dark">
+<div class="box box-solid">
     <div class="box-body">
         @include(config('theme.admin.view').'layouts.modal-errors')
         <div class="row">
-            <div class="col-12 text-right">
-                <a href="#" class="btn btn-primary"
-                   onclick="event.preventDefault();
-                           md_product_sku_store(this, php_inject={{json_encode(['models' => ["product" => $product]])}});">
-                    <i class="fa fa-save"></i></a>
-            </div>
             <div class="col-10">
                 @include(config('theme.member.view').'layouts.errors')
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Barcode</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" placeholder="自動生成"  value="自動生成" disabled>
-                    </div>
-
-
-
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">啟用</label>
-                    <div class="col-sm-10">
-                        <input type="checkbox" class="bt-switch" name="is_active" id="is_active" value="1" {{old('is_active')==1? "checked":""}}
-                        data-label-width="100%"
-                               data-label-text="啟用" data-size="min"
-                               data-on-text="On"    data-on-color="primary"
-                               data-off-text="Off"  data-off-color="danger"/>
+                <div class="form-group">
+                    <h5>{{__('member/supplierGroup.edit.is_active')}}</h5>
+                    <div class="controls">
+                        <input type="checkbox"  class="permission_check" name="is_active" value=1 id="is_active_new">
+                        <label for="is_active_new" class="text-dark p-0 m-0"></label>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">售價</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="price" id="price"  placeholder="售價"  value="{{old('price')}}">
+    
+                <div class="form-group">
+                    <h5>{{__('default.index.table.barcode')}}</h5>
+                    <div class="controls">
+                        <input class="form-control" type="text" placeholder="{{__('default.index.table.barcode')}}"  value="" disabled>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">SKU名稱</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="sku_name" id="sku_name" placeholder="sku_name"  value="{{old('sku_name')}}">
+    
+                <div class="form-group">
+                    <h5>{{__('member/product.productSKU.edit.price')}}</h5>
+                    <div class="controls">
+                        <input class="form-control" type="text" name="price" id="price"  placeholder="售價"  value="">
                     </div>
                 </div>
+    
+                <div class="form-group">
+                    <h5>{{__('member/product.productSKU.edit.SKUName')}}</h5>
+                    <div class="controls">
+                        <input class="form-control" type="text" name="sku_name" id="sku_name" placeholder="sku_name"  value="">
+                    </div>
+                </div>
+    
+    
                 @foreach($product->type->attributes as $attribute)
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">{{$attribute->a_name}}</label>
-                        <div class="col-sm-10">
+        
+                    <div class="form-group">
+                        <h5>{{$attribute->a_name}}</h5>
+                        <div class="controls">
                             <input class="form-control attributes" type="text" name="sku_attributes[{{$attribute->a_id}}]" placeholder=""  value="{{old('skus['.$attribute->a_id.']')}}">
                         </div>
                     </div>
                 @endforeach
-
+    
+                <div class="form-group">
+                    <a href="#" class="btn btn-success form-control"
+                       onclick="event.preventDefault();
+                               md_product_sku_store(this, php_inject={{json_encode(['models' => ["product" => $product]])}});">
+                        <i class="fa fa-save"></i></a>
+                </div>
             </div>
             <div class="col-2">
                 <div class="form-group row">

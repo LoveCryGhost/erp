@@ -42,10 +42,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="{{route('member.supplierGroup.index')}}" class="form-control btn btn-sm btn-primary btn-rounded">{{__('member/supplierGroup.index.search.reset')}}</a>
+                                    <a href="{{route('member.supplierGroup.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/supplierGroup.index.search.reset')}}</a>
                                 </div>
                                 <div class="col-6">
-                                    <button type="submit" class="form-control btn btn-sm btn-primary btn-rounded" name="submit['submit_get']" value="submit_get">{{__('member/supplierGroup.index.search.submit')}}</button>
+                                    <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">{{__('member/supplierGroup.index.search.submit')}}</button>
                                 </div>
                             </div>
                         </form>

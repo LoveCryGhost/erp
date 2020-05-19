@@ -5,13 +5,15 @@ namespace App\Observers;
 use App\Handlers\BarcodeHandler;
 use App\Models\SKU;
 use Illuminate\Support\Facades\Auth;
+use function dd;
+use function request;
 
 class SKUObserver extends Observer
 {
 
     public function saving(SKU $sku)
     {
-        if(request()->is_active == 1 or request()->is_active ==true or  $sku->is_active == 1){
+        if(request()->is_active == 1 or request()->is_active === true or request()->is_active == "true" ){
             $sku->is_active = 1;
         }else{
             $sku->is_active = 0;

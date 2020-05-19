@@ -1,6 +1,6 @@
 @extends(config('theme.member.member-app'))
 
-@section('title','產品 - 列表')
+@section('title',__('member/product.title'))
 
 @section('content-header','')
 @section('content')
@@ -8,13 +8,9 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <h3>
-            產品 - 列表
+            {{__('member/product.index.title')}}
         </h3>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Members</a></li>
-            <li class="breadcrumb-item active">Members List</li>
-        </ol>
+       
     </div>
 
     <!-- Main content -->
@@ -27,14 +23,17 @@
                             @include(config('theme.member.btn.index.crud'))
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="itable table">
                                 <thead>
-                                    <tr class="d-none">
-                                        <th>check</th>
-                                        <th>Barcode</th>
-                                        <th>名稱</th>
-                                        <th></th>
-                                        <th>操作</th>
+                                    <tr>
+                                        <th>{{__('default.index.table.no')}}</th>
+                                        <th>{{__('default.index.table.barcode')}}</th>
+                                        <th>{{__('member/product.index.table.productName')}}</th>
+                                        <th>{{__('default.index.table.photo')}}</th>
+                                        <th>{{__('member/product.index.table.price')}}</th>
+                                        <th>{{__('default.index.table.is_active')}}</th>
+                                        <th>{{__('default.index.table.createdBy')}}</th>
+                                        <th>{{__('default.index.table.crud')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,16 +64,13 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <input type="checkbox" class="bt-switch" name="is_active"  value="1" {{$product->is_active===1? "checked": ""}}
-                                                   data-label-width="100%"
-                                                   data-label-text="啟用"
-                                                   data-on-text="On"    data-on-color="primary"
-                                                   data-off-text="Off"  data-off-color="danger"/>
+                                            <input type="checkbox" class="permission_check" name="is_active" id="is_active"
+                                                   {{$product->is_active===1? "checked": ""}} disabled>
+                                            <label for="is_active" class="p-0 m-0"></label>
                                         </td>
                                         <td>
                                             <p class="mb-0">
-                                                <small>修改人 : {{$product->member->name}}</small><br>
-                                                <small>最後更新 : {{$product->updated_at->diffForHumans()}}</small>
+                                                {{$product->member->name}}
                                             </p>
                                         </td>
                                         <td>
@@ -97,13 +93,6 @@
 @section('js')
     @parent
     <script type="text/javascript">
-        $(function(){
-            //Switch
-            active_switch(switch_class='bt-switch', options=[]);
-
-
-        })
-
         function show_product_thumbnails(_this, php_inject) {
             product_thumbnail = php_inject.product_thumbnail;
             thumbnails = $('img.product-thumbnail[data-img-group='+product_thumbnail.p_id+']');
