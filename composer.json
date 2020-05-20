@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "dimsav/laravel-translatable": "8.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.5",
@@ -19,6 +20,7 @@
         "laravel/ui": "^2.0",
         "maatwebsite/excel": "^3.1",
         "mews/captcha": "^3.0",
+        "msurguy/honeypot": "^1.1",
         "predis/predis": "^1.1",
         "rap2hpoutre/laravel-log-viewer": "^1.4",
         "spatie/laravel-backup": "^6.8",

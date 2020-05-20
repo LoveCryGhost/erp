@@ -31,12 +31,10 @@ class ProductsController extends MemberCoreController
         $data = $request->all();
         $toast = $this->productService->store($data);
         return redirect()->route('member.product.index')->with('toast', parent::$toast_store);
-
     }
 
     public function index()
     {
-
         $query = $this->productService->productRepo->builder();
         $this->filters = [
             'p_name' => request()->p_name,
@@ -44,7 +42,7 @@ class ProductsController extends MemberCoreController
             'sku_name' => request()->sku_name
         ];
         $query = $this->index_filters($query, $this->filters);
-        $products = $query->paginate(10);
+        $products = $query->with(['type','productThumbnails','member'])->paginate(10);
         return view(config('theme.member.view').'product.index', compact('products'));
     }
 
@@ -80,7 +78,6 @@ class ProductsController extends MemberCoreController
                 $q->where('sku_name', 'like', '%'.$filters['sku_name'].'%');
             });
         }
-
         return $query;
     }
 

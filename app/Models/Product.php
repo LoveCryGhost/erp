@@ -3,10 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Product extends CoreModel
 {
-
     protected $table = "products";
     protected $primaryKey='p_id';
 

@@ -22,13 +22,11 @@
 <!-- PACE -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/PACE/pace.min.js')}}"></script>
 
-
 <!-- Slimscroll -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
 <!-- FastClick -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/fastclick/lib/fastclick.js')}}"></script>
-
 
 <!-- webticker -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/Web-Ticker-master/jquery.webticker.min.js')}}"></script>
@@ -46,12 +44,8 @@
 <!-- Crypto Admin App -->
 {{--<script src="{{asset('theme/cryptoadmin/js/template.js')}}"></script>--}}
 
-
-
-
 <!-- Crypto Admin for demo purposes -->
 <script src="{{asset('theme/cryptoadmin/js/demo.js')}}"></script>
-
 
 <!-- Form validator JavaScript -->
 <script src="{{asset('theme/cryptoadmin/js/pages/validation.js')}}"></script>
@@ -59,7 +53,7 @@
 
 
 <!-- Sweet-Alert  -->
-<script src="{{asset('theme/cryptoadmin/vendor_components/sweetalert/sweetalert.min.js')}}"></script>
+{{--<script src="{{asset('theme/cryptoadmin/vendor_components/sweetalert/sweetalert.min.js')}}"></script>--}}
 <script src="{{asset('theme/cryptoadmin/vendor_components/sweetalert/jquery.sweet-alert.custom.js')}}"></script>
 
 <script src="{{asset('theme/cryptoadmin/js/pages/statistic.js')}}"></script>
@@ -73,22 +67,25 @@
 <script src="http://www.amcharts.com/lib/3/plugins/export/export.min.js" type="text/javascript"></script>
 <script src="http://www.amcharts.com/lib/3/themes/light.js" type="text/javascript"></script>
 
-w
+
 <!-- InputMask -->
 <!-- Bootstrap touchspin -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js')}}"></script>
+
 <!-- Select2 -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/select2/dist/js/select2.full.js')}}"></script>
 <script src="{{asset('theme/cryptoadmin/vendor_plugins/input-mask/jquery.inputmask.js')}}"></script>
 <script src="{{asset('theme/cryptoadmin/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
 <script src="{{asset('theme/cryptoadmin/vendor_plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+
 <!-- date-range-picker -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/moment/min/moment.min.js')}}"></script>
 <script src="{{asset('theme/cryptoadmin/vendor_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+
 <!-- iCheck 1.0.1 -->
 <script src="{{asset('theme/cryptoadmin/vendor_plugins/iCheck/icheck.min.js')}}"></script>
-
 <script src="{{asset('theme/cryptoadmin/js/pages/advanced-form-element.js')}}"></script>
+
 <!-- bootstrap datepicker -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 
@@ -101,7 +98,8 @@ w
 <!-- SlimScroll -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 
-
+{{--Nestabel--}}
+<script src="{{asset('theme/cryptoadmin/vendor_components/nestable/jquery.nestable.js')}}"></script>
 
 <!-- FastClick -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/fastclick/lib/fastclick.js')}}"></script>

@@ -17,7 +17,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 1
+                'member_id' => 2
             ],
             [
                 'ct_name' => 'Loyang Muffin',
@@ -25,7 +25,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 1
+                'member_id' => 2
             ],
             [
                 'ct_name' => 'Loyang Loaf Pan',
@@ -33,7 +33,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 1
+                'member_id' => 2
             ],
             [
                 'ct_name' => 'Loyang Square Cake pan',
@@ -41,7 +41,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 1
+                'member_id' => 2
             ],
             [
                 'ct_name' => 'Loyang Round Cake',
@@ -49,7 +49,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 1
+                'member_id' => 2
             ],
 
             [
@@ -58,7 +58,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 1
+                'member_id' => 2
             ],
             [
                 'ct_name' => 'Loyang BONGPAS',
@@ -66,7 +66,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 1
+                'member_id' => 2
             ],
             [
                 'ct_name' => 'Loyang Chiffon',
@@ -74,7 +74,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 1
+                'member_id' => 2
             ],
             [
                 'ct_name' => 'loyang tulban',
@@ -82,7 +82,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 1
+                'member_id' => 2
             ],
             [
                 'ct_name' => 'Pizza pan',

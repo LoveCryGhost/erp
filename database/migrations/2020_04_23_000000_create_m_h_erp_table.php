@@ -52,5 +52,7 @@ class CreateMHErpTable extends Migration
     {
         Schema::dropIfExists('mh_shoes_molds');
         Schema::dropIfExists('mh_material_usages');
+        Schema::dropIfExists('mh_fee');
+
     }
 }

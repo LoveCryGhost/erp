@@ -22,43 +22,30 @@
 <!-- PACE -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/PACE/pace.min.js')}}"></script>
 
-
-
-
-
-
-
-
-
 <!-- Slimscroll -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
 <!-- FastClick -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/fastclick/lib/fastclick.js')}}"></script>
 
-
 <!-- webticker -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/Web-Ticker-master/jquery.webticker.min.js')}}"></script>
 
 
 <!-- EChartJS JavaScript -->
-<script src="{{asset('theme/cryptoadmin/vendor_components/echarts-master/dist/echarts-en.min.js')}}"></script>
-<script src="{{asset('theme/cryptoadmin/vendor_components/echarts-liquidfill-master/dist/echarts-liquidfill.min.js')}}"></script>
+{{--<script src="{{asset('theme/cryptoadmin/vendor_components/echarts-master/dist/echarts-en.min.js')}}"></script>--}}
+{{--<script src="{{asset('theme/cryptoadmin/vendor_components/echarts-liquidfill-master/dist/echarts-liquidfill.min.js')}}"></script>--}}
 
 
 <!-- This is data table -->
 {{--<script src="{{asset('theme/cryptoadmin/vendor_components/datatable/datatables.min.js')}}"></script>--}}
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+{{--<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>--}}
 
 <!-- Crypto Admin App -->
-<script src="{{asset('theme/cryptoadmin/js/template.js')}}"></script>
-
-
-
+{{--<script src="{{asset('theme/cryptoadmin/js/template.js')}}"></script>--}}
 
 <!-- Crypto Admin for demo purposes -->
 <script src="{{asset('theme/cryptoadmin/js/demo.js')}}"></script>
-
 
 <!-- Form validator JavaScript -->
 <script src="{{asset('theme/cryptoadmin/js/pages/validation.js')}}"></script>
@@ -74,8 +61,8 @@
 {{--<!--amcharts charts -->--}}
 <script src="http://www.amcharts.com/lib/3/amcharts.js" type="text/javascript"></script>
 <script src="http://www.amcharts.com/lib/3/serial.js" type="text/javascript"></script>
-{{--<script src="http://www.amcharts.com/lib/3/radar.js" type="text/javascript"></script>--}}
-{{--<script src="http://www.amcharts.com/lib/3/pie.js" type="text/javascript"></script>--}}
+<script src="http://www.amcharts.com/lib/3/radar.js" type="text/javascript"></script>
+<script src="http://www.amcharts.com/lib/3/pie.js" type="text/javascript"></script>
 <script src="http://www.amcharts.com/lib/3/plugins/animate/animate.min.js" type="text/javascript"></script>
 <script src="http://www.amcharts.com/lib/3/plugins/export/export.min.js" type="text/javascript"></script>
 <script src="http://www.amcharts.com/lib/3/themes/light.js" type="text/javascript"></script>
@@ -84,18 +71,21 @@
 <!-- InputMask -->
 <!-- Bootstrap touchspin -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js')}}"></script>
+
 <!-- Select2 -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/select2/dist/js/select2.full.js')}}"></script>
 <script src="{{asset('theme/cryptoadmin/vendor_plugins/input-mask/jquery.inputmask.js')}}"></script>
 <script src="{{asset('theme/cryptoadmin/vendor_plugins/input-mask/jquery.inputmask.date.extensions.js')}}"></script>
 <script src="{{asset('theme/cryptoadmin/vendor_plugins/input-mask/jquery.inputmask.extensions.js')}}"></script>
+
 <!-- date-range-picker -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/moment/min/moment.min.js')}}"></script>
 <script src="{{asset('theme/cryptoadmin/vendor_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+
 <!-- iCheck 1.0.1 -->
 <script src="{{asset('theme/cryptoadmin/vendor_plugins/iCheck/icheck.min.js')}}"></script>
-
 <script src="{{asset('theme/cryptoadmin/js/pages/advanced-form-element.js')}}"></script>
+
 <!-- bootstrap datepicker -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 
@@ -113,6 +103,15 @@
 
 <!-- FastClick -->
 <script src="{{asset('theme/cryptoadmin/vendor_components/fastclick/lib/fastclick.js')}}"></script>
+<script src="{{asset('js/images.js')}}"></script>
+
+<script src="{{asset('theme/cryptoadmin/js/pages/amcharts/charts.js')}}" type="text/javascript"></script>
+
+{{--<!-- Crypto Admin App -->--}}
+<script src="{{asset('theme/cryptoadmin/js/template.js')}}"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+{{--<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet">--}}
 
 <script>
 

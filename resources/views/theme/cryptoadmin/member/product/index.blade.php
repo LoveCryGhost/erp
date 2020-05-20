@@ -141,7 +141,10 @@
                 $('#modal-md .modal-body').append(img_html)
             })
         }
+        float_image(className="product-thumbnail", x=60, y=0)
+
     </script>
+
 @endsection
 
 
