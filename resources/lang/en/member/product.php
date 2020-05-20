@@ -4,6 +4,9 @@ return [
     //Title
     'title' => "Product",
 
+    'search.productName' => 'Product Name',
+    'search.SKUName' => 'SKU Name',
+
     'index.title' => 'Product - List',
     'index.table.price' => 'Price',
     'index.table.productName' => 'Product Name',

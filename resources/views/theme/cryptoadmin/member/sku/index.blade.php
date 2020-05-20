@@ -1,6 +1,6 @@
 @extends(config('theme.member.member-app'))
 
-@section('title',__('member/product.title'))
+@section('title',__('member/sku.title'))
 
 @section('content-header','')
 @section('content')
@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <h3>
-            {{__('member/product.index.title')}}
+            {{__('member/sku.index.title')}}
         </h3>
        
     </div>
@@ -31,16 +31,16 @@
                                         </div>
                     
                                         <div class="col-sm-3 form-group">
-                                            <h5>{{__('member/product.search.productName')}}</h5>
+                                            <h5>{{__('member/sku.search.productName')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="p_name" placeholder="{{__('member/product.search.productName')}}" value="{{request()->p_name}}">
+                                                <input class="form-control" type="text" name="p_name" placeholder="{{__('member/sku.search.productName')}}" value="{{request()->p_name}}">
                                             </div>
                                         </div>
     
                                         <div class="col-sm-3 form-group">
-                                            <h5>{{__('member/product.search.SKUName')}}</h5>
+                                            <h5>{{__('member/sku.search.SKUName')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="sku_name" placeholder="{{__('member/product.search.SKUName')}}" value="{{request()->sku_name}}">
+                                                <input class="form-control" type="text" name="sku_name" placeholder="{{__('member/sku.search.SKUName')}}" value="{{request()->sku_name}}">
                                             </div>
                                         </div>
                                     </div>
@@ -58,20 +58,17 @@
                     </div>
                     <div class="box-body">
                         <div class="col-xl-12 col-lg-12 text-right mb-5">
-                            @include(config('theme.member.btn.index.crud'))
                         </div>
                         <div class="table-responsive">
                             <table class="itable table">
                                 <thead>
                                     <tr>
                                         <th>{{__('default.index.table.no')}}</th>
-                                        <th>{{__('default.index.table.barcode')}}</th>
-                                        <th>{{__('member/product.index.table.productName')}}</th>
-                                        <th>{{__('default.index.table.photo')}}</th>
-                                        <th>{{__('member/product.index.table.price')}}</th>
                                         <th>{{__('default.index.table.is_active')}}</th>
-                                        <th>{{__('default.index.table.createdBy')}}</th>
-                                        <th>{{__('default.index.table.crud')}}</th>
+                                        <th>{{__('default.index.table.barcode')}}</th>
+                                        <th>{{__('member/sku.index.table.productName')}}</th>
+                                        <th>{{__('member/sku.index.table.price')}}</th>
+                                        <th>{{__('member/sku.index.table.skuInfo')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,14 +76,15 @@
                                     <tr>
                                         <td class="w-20 text-center">{{$loop->iteration}}</td>
                                         <td>
+                                            <input type="checkbox" class="permission_check" name="is_active" id="is_active"
+                                                   {{$product->is_active===1? "checked": ""}} disabled>
+                                            <label for="is_active" class="p-0 m-0"></label>
+                                        </td>
+                                        <td>
                                             {{$product->type->t_name}}<br>
                                             {{$product->id_code}}</td>
                                         <td class="w-200">
-                                            <p class="mb-0">
-                                                <a href="#"><strong>{{$product->p_name}}</strong></a><br>
-                                            </p>
-                                        </td>
-                                        <td>
+                                            <a href="#">{{$product->p_name}}</a><br>
                                             @foreach($product->productThumbnails as $productThumbnail)
                                                 <img class="product-thumbnail" data-img-group="{{$product->p_id}}"  src="{{asset($productThumbnail->path)}}"
                                                      data-toggle="modal" data-target="#modal-md" onclick="show_product_thumbnails(this,php_inject={{json_encode(['product_thumbnail' => $productThumbnail])}})" />
@@ -101,18 +99,11 @@
                                                 {{$product->m_price}}
                                             @endif
                                         </td>
-                                        <td>
-                                            <input type="checkbox" class="permission_check" name="is_active" id="is_active"
-                                                   {{$product->is_active===1? "checked": ""}} disabled>
-                                            <label for="is_active" class="p-0 m-0"></label>
-                                        </td>
-                                        <td>
-                                            <p class="mb-0">
-                                                {{$product->member->name}}
-                                            </p>
-                                        </td>
-                                        <td>
-                                            @include(config('theme.member.btn.index.table_tr'),['id' => $product->p_id])
+                                       
+                                        <td class="text-left">
+                                            @foreach($product->all_skus as $sku)
+                                                {{$sku->sku_name}} <i class="fa fa-arrow-right"></i> {{$sku->price}}<br>
+                                            @endforeach
                                         </td>
                                     </tr>
                                     @endforeach
@@ -131,16 +122,7 @@
 @section('js')
     @parent
     <script type="text/javascript">
-        function show_product_thumbnails(_this, php_inject) {
-            product_thumbnail = php_inject.product_thumbnail;
-            thumbnails = $('img.product-thumbnail[data-img-group='+product_thumbnail.p_id+']');
-            modal_body =  $('#modal-md .modal-body').html('');
-            thumbnails.each(function () {
-                src = $(this).attr('src');
-                img_html = "<img src="+src+">";
-                $('#modal-md .modal-body').append(img_html)
-            })
-        }
+        float_image(className="product-thumbnail", x=40, y=0)
     </script>
 @endsection
 

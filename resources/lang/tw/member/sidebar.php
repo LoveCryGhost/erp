@@ -14,6 +14,7 @@ return [
     'product.attribute' => "產品屬性",
     'product.type' => "產品型態",
     'product.product' => "產品",
+    'product.sku' => "SKU",
 
     //Shopee
     'shopee.ul' => "Shopee 模組",

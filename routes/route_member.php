@@ -28,6 +28,7 @@ Route::prefix('')->middleware('auth:member')->namespace('Member')->group(functio
             Route::resource('product', 'ProductsController');
             Route::resource('product-sku', 'Product_SKUsController');
             Route::resource('product-sku-supplier', 'Product_SKU_SuppliersController');
+            Route::resource('sku', 'SKUController');
 
             //Crawler
             Route::resource('crawlerTask', 'CrawlerTasksController');

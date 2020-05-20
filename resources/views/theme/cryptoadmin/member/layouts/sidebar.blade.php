@@ -54,6 +54,7 @@
                     <li><a href="{{route('member.attribute.index')}}"><i class="ti-more"></i>{{__('member/sidebar.product.attribute')}}</a></li>
                     <li><a href="{{route('member.type.index')}}"><i class="ti-more"></i>{{__('member/sidebar.product.type')}}</a></li>
                     <li><a href="{{route('member.product.index')}}"><i class="ti-more"></i>{{__('member/sidebar.product.product')}}</a></li>
+                    <li><a href="{{route('member.sku.index')}}"><i class="ti-more"></i>{{__('member/sidebar.product.sku')}}</a></li>
                 </ul>
             </li>
             @endcan

@@ -1,4 +1,12 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);.member-product-index-page .product-thumbnail {
+@import url(https://fonts.googleapis.com/css?family=Nunito);.staff-staffList .staff-list-img {
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  border: grey solid 1px;
+  cursor: pointer;
+}
+
+.member-product-index-page .product-thumbnail {
   width: 50px;
   height: 50px;
   border-radius: 5px;
@@ -75,9 +83,9 @@
   width: 80px;
 }
 
-.staff-staffList .staff-list-img {
-  width: 5px;
-  height: 5px;
+.member-sku-index-page .product-thumbnail {
+  width: 20px;
+  height: 20px;
   border-radius: 5px;
   border: grey solid 1px;
   cursor: pointer;

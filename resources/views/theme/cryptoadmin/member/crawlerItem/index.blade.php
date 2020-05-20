@@ -177,8 +177,6 @@
                 },
             }).bootstrapSwitch('toggleState',true);
             float_image(className="item-image", x=90, y=0)
-        
-        
         });
 
     function show_crawler_item_skus(_this, php_inject) {
@@ -231,7 +229,5 @@
             }
         });
     }
-    
-    
     </script>
 @endsection

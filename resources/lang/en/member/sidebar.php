@@ -13,6 +13,7 @@ return [
     'product.attribute' => "Product Attribute",
     'product.type' => "Product Type",
     'product.product' => "Product",
+    'product.sku' => "SKU",
 
     //Shopee
     'shopee.ul' => "Shopee Module",
