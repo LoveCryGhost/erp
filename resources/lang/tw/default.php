@@ -61,6 +61,7 @@ return [
         'photo' => '照片',
         'image' => '圖片',
         'info' => '訊息',
+        'description' => '描述',
         'crud' => '操作',
         'save' => '儲存'
     ],
@@ -72,6 +73,7 @@ return [
         'photo' => '照片',
         'image' => '圖片',
         'info' => '訊息',
+        'description' => '描述',
         'crud' => '操作',
         'save' => '儲存'
     ],

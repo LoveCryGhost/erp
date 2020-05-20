@@ -238,7 +238,7 @@ var GcalEventSource = /** @class */ (function (_super) {
             singleEvents: true,
             maxResults: 9999
         });
-        if (timezone && timezone !== 'local') {
+        if (timezone && timezone !== 'locale') {
             // when sending timezone names to Google, only accepts underscores, not spaces
             params.timeZone = timezone.replace(' ', '_');
         }

@@ -60,7 +60,7 @@ class CrawlerTaskJob implements ShouldQueue
                         'sold' => $item['sold'] !== null ? $item['sold'] : 0,
                         'historical_sold' => $item['historical_sold'],
                         'domain_name' => $crawlerTask->domain_name,
-                        'local' => $crawlerTask->local,
+                        'locale' => $crawlerTask->local,
                         'member_id' => $member_id,
                         'updated_at' => null
                     ];
@@ -69,7 +69,7 @@ class CrawlerTaskJob implements ShouldQueue
                     $row_shops[] = [
                         'shopid' => $item['shopid'],
                         'shop_location' => "",
-                        'local' => $crawlerTask->local,
+                        'locale' => $crawlerTask->local,
                         'domain_name' => $crawlerTask->domain_name,
                         'member_id' => $member_id
                     ];
@@ -83,7 +83,7 @@ class CrawlerTaskJob implements ShouldQueue
                 $TF = (new MemberCoreRepository())->massUpdate($crawlerItem, $row_items);
 
                 //這次抓到的商品id 還有順序
-                $crawlerItem_ids = CrawlerItem::whereInMultiple(['itemid', 'shopid', 'local'], $value_arr)
+                $crawlerItem_ids = CrawlerItem::whereInMultiple(['itemid', 'shopid', 'locale'], $value_arr)
                     ->pluck('ci_id', 'itemid');
 
                 $insert_item_qty = config('crawler.insert_item_qty');

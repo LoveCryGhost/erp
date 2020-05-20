@@ -331,7 +331,7 @@ h.extend(mixitup.Mixer.prototype,
         self.callActions('beforeInitControls', arguments);
 
         switch (self.config.controls.scope) {
-            case 'local':
+            case 'locale':
                 parent = self.dom.container;
 
                 break;

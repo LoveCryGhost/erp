@@ -8,16 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 
-class Type extends Model
+class Type extends CoreModel
 {
 
+    use Translatable;
     protected $table = "types";
     protected $primaryKey='t_id';
 
     protected $fillable = [
-        'is_active', 't_name', 't_description',
+        'is_active',
     ];
+    public $translatedAttributes = ['t_name', 't_description'];
 
     protected $hidden = [
 

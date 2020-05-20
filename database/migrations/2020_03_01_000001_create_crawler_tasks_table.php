@@ -32,7 +32,7 @@ class CreateCrawlerTasksTable extends Migration
             $table->string('shippingOptions')->nullable();
             $table->string('facet')->nullable();
             $table->string('officialMall')->nullable();
-            $table->string('local')->nullable();
+            $table->string('locale')->nullable();
             $table->text('description')->nullable();
 
             $table->bigInteger('member_id')->default(1)->unsigned();

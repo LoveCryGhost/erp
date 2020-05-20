@@ -47,16 +47,16 @@
 										{{--國家--}}
 										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.country')}}</label>
 										<div class="col-sm-1">
-											<input type="checkbox" class="" name="local[tw]"  id="local_tw" value="tw" {{isset(request()->local['tw'])?  "checked":""}}>
-											<label for="local_tw" class="text-dark m-t-5 ">{{__('member/crawlerItemSearch.index.search.language.tw')}}</label>
+											<input type="checkbox" class="" name="locale[tw]"  id="locale_tw" value="tw" {{isset(request()->locale['tw'])?  "checked":""}}>
+											<label for="locale_tw" class="text-dark m-t-5 ">{{__('member/crawlerItemSearch.index.search.language.tw')}}</label>
 										</div>
 										<div class="col-sm-1">
-											<input type="checkbox" class="permission_check" name="local[id]"  id="local_id" value="id" {{isset(request()->local['id'])?  "checked":""}}>
-											<label for="local_id" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.id')}}</label>
+											<input type="checkbox" class="permission_check" name="locale[id]"  id="locale_id" value="id" {{isset(request()->locale['id'])?  "checked":""}}>
+											<label for="locale_id" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.id')}}</label>
 										</div>
 										<div class="col-sm-1">
-											<input type="checkbox" class="permission_check" name="local[th]"  id="local_th" value="th" {{isset(request()->local['th'])?  "checked":""}}>
-											<label for="local_th" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.th')}}</label>
+											<input type="checkbox" class="permission_check" name="locale[th]"  id="locale_th" value="th" {{isset(request()->locale['th'])?  "checked":""}}>
+											<label for="locale_th" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.th')}}</label>
 										</div>
 									</div>
 									

@@ -17,7 +17,7 @@ class StaffDepartment extends Authenticatable implements MustVerifyEmailContract
 
     protected $fillable = [
         'parent_id', 'sort_order', 'is_active',
-        'id_code', 'name', 'description', 'local'
+        'id_code', 'name', 'description', 'locale'
     ];
 
     public $with =['parent'];

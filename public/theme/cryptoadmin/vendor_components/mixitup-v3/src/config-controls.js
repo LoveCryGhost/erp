@@ -88,28 +88,28 @@ mixitup.ConfigControls = function() {
 
     /**
      * A string dictating the "scope" to use when binding or querying the default controls. The available
-     * values are `'global'` or `'local'`.
+     * values are `'global'` or `'locale'`.
      *
      * When set to `'global'` (default behavior), MixItUp will query the entire document for control buttons
      * to bind, or delegate click events from (see `config.controls.live`).
      *
-     * When set to `'local'`, MixItUp will only query (or bind click events to) its own container element.
+     * When set to `'locale'`, MixItUp will only query (or bind click events to) its own container element.
      * This may be desireable if you require multiple active mixer instances within the same document, with
      * controls that would otherwise intefere with each other if scoped globally.
      *
      * Conversely, if you wish to control multiple instances with a single UI, you would create one
      * set of controls and keep the controls scope of each mixer set to `global`.
      *
-     * @example <caption>Example: Setting 'local' scoped controls</caption>
+     * @example <caption>Example: Setting 'locale' scoped controls</caption>
      * var mixerOne = mixitup(containerOne, {
      *     controls: {
-     *         scope: 'local'
+     *         scope: 'locale'
      *     }
      * });
      *
      * var mixerTwo = mixitup(containerTwo, {
      *     controls: {
-     *         scope: 'local'
+     *         scope: 'locale'
      *     }
      * });
      *
@@ -123,7 +123,7 @@ mixitup.ConfigControls = function() {
      * @default     'global'
      */
 
-    this.scope = 'global'; // enum: ['local' ,'global']
+    this.scope = 'global'; // enum: ['locale' ,'global']
 
     /**
      * A string dictating the type of logic to apply when concatenating the filter selectors of

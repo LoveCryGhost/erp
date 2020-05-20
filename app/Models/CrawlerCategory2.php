@@ -9,7 +9,7 @@ class CrawlerCategory2 extends CoreModel
 {
 
     protected $table = "crawler_categories";
-//    protected $primaryKey = ['catid', 'p_id', 'local'];
+//    protected $primaryKey = ['catid', 'p_id', 'locale'];
     protected $primaryKey = 'catid';
     protected $fillable = [
         'catid',
@@ -17,7 +17,7 @@ class CrawlerCategory2 extends CoreModel
         'ct_name',
         'display_name',
         'image',
-        'local',
+        'locale',
     ];
 
 

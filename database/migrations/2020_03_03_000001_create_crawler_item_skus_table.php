@@ -20,7 +20,7 @@ class CreateCrawlerItemSkusTable extends Migration
             $table->string('modelid');
             $table->primary(['shopid', 'itemid', 'modelid']);
             $table->string('name');
-            $table->string('local')->nullable();
+            $table->string('locale')->nullable();
             $table->integer('sold')->default(0);
             $table->integer('stock')->default(0);
             $table->unsignedBigInteger('price')->default(0);

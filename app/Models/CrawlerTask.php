@@ -20,7 +20,7 @@ class CrawlerTask extends Model
         'ct_name', 'url', 'domain_name',
         'current_page',
         'pages',
-        'local',
+        'locale',
         'category',
         'subcategory',
         'sort_by',

@@ -116,7 +116,7 @@ class CrawlerTaskTableSeeder extends Seeder
             $url = $data['url'];
             $url_params = (new ShopeeHandler())->shopee_url($url);
             $data['url_params'] = $url_params;
-            $data['local'] = $data['url_params']['local'];
+            $data['locale'] = $data['url_params']['locale'];
             $data['domain_name'] = $data['url_params']['domain_name'];
             if(isset( $data['url_params']['gets']['sortBy'])){
                 $data['sort_by'] = $data['url_params']['gets']['sortBy'];
@@ -161,7 +161,7 @@ class CrawlerTaskTableSeeder extends Seeder
             $crawlerTask->url = $data['url'];
             $crawlerTask->domain_name = $data['domain_name'];
             $crawlerTask->pages = $data['pages'];
-            $crawlerTask->local = $data['local'];
+            $crawlerTask->locale = $data['locale'];
             $crawlerTask->category = isset($data['category'])? $data['category']: null;
             $crawlerTask->subcategory = isset($data['subcategory'])? $data['subcategory']: null;
             $crawlerTask->sort_by = isset($data['sort_by'])? $data['sort_by']: null;

@@ -21,7 +21,7 @@ describe('Controls', () => {
 
         const mixer = mixitup(container, {
             controls: {
-                scope: 'local'
+                scope: 'locale'
             }
         }, frag);
 

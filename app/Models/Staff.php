@@ -61,7 +61,7 @@ class Staff extends Authenticatable implements MustVerifyEmailContract
         'level',
 
         //國家
-        'local',
+        'locale',
 
     ];
 

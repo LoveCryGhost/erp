@@ -57,6 +57,13 @@
                                             </div>
     
                                             <div class="form-group">
+                                                <h5>{{__('default.edit.description')}}</h5>
+                                                <div class="controls">
+                                                    <textarea class="form-control" type="text" name="a_description" placeholder="{{__('default.edit.description')}}" >{{$attribute->a_description}}</textarea>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
                                                 <div class="controls">
                                                     <button type="submit" class="btn btn-success form-control">{{__('default.edit.save')}}</button>
                                                 </div>

@@ -75,7 +75,14 @@
                                         <div class="form-group">
                                             <h5>{{__('member/product.edit.productName')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="p_name" placeholder="產品名稱"  value="{{$product->p_name}}">
+                                                <input class="form-control" type="text" name="p_name" placeholder="{{__('member/product.edit.productName')}}"  value="{{$product->p_name}}">
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-group">
+                                            <h5>{{__('member/product.edit.productDescription')}}</h5>
+                                            <div class="controls">
+                                                <textarea class="form-control" type="text" name="p_description" placeholder="{{__('member/product.edit.productDescription')}}">{{$product->p_description}}</textarea>
                                             </div>
                                         </div>
     

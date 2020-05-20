@@ -38,7 +38,7 @@ class CrawlerItemSearchsController extends MemberCoreController
             'price_max' => request()->price_max,
             'sold' => request()->sold, //月銷量
             'historical_sold' => request()->historical_sold, //歷史銷量
-            'local' => request()->local
+            'locale' => request()->locale
 
         ];
         $query = $this->index_filters($query, $this->filters);
@@ -59,7 +59,7 @@ class CrawlerItemSearchsController extends MemberCoreController
                     'price_max' => request()->price_max,
                     'sold' => request()->sold, //月銷量
                     'historical_sold' => request()->historical_sold, //歷史銷量
-                    'local' => request()->local
+                    'locale' => request()->local
                 ]
             ]);
     }
@@ -67,7 +67,7 @@ class CrawlerItemSearchsController extends MemberCoreController
     public function index_filters($query, $filters)
     {
         $query = $this->filter_like($query,'name', $filters['name']);
-        $query = $this->filter_checkbox($query, 'local', $filters['local']);
+        $query = $this->filter_checkbox($query, 'locale', $filters['locale']);
 
         if($filters['sold']>0){
             $query = $query->where('crawler_items.sold' , '>=',  $filters['sold']);

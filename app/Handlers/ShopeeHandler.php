@@ -38,23 +38,23 @@ class ShopeeHandler
         //local
         switch ($shopee_url = $params['domain_name']){
             case "shopee.tw":
-                $params['local'] = 'tw';
+                $params['locale'] = 'tw';
                 break;
 
             case "shopee.co.id":
-                $params['local'] = 'id';
+                $params['locale'] = 'id';
                 break;
 
             case "shopee.co.th":
-                $params['local'] = 'th';
+                $params['locale'] = 'th';
                 break;
 
             case "shopee.com.my":
-                $params['local'] = 'my';
+                $params['locale'] = 'my';
                 break;
 
             default;
-                $params['local'] = null;
+                $params['locale'] = null;
                 break;
         }
 
@@ -137,15 +137,15 @@ class ShopeeHandler
     {
         $sub_domain = current(explode('.', request()->getHost()));
         if($sub_domain=='tw'){
-            $query = $query->where('local', 'tw');
+            $query = $query->where('locale', 'tw');
         }elseif($sub_domain=='id'){
-            $query = $query->where('local', 'id');
+            $query = $query->where('locale', 'id');
         }elseif($sub_domain=='th'){
-            $query = $query->where('local', 'th');
+            $query = $query->where('locale', 'th');
         }elseif($sub_domain=='test' or $sub_domain=='localhost' ){
             $query = $query;
         }else{
-            $query = $query->where('local', 'None');
+            $query = $query->where('locale', 'None');
         }
         return $query;
     }

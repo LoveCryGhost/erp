@@ -72,7 +72,7 @@ class CrawlerCategoryJob implements ShouldQueue
                 'p_id' => 0,
                 'display_name' => $category['display_name'],
                 'image' => $category['image'],
-                'local' => $country_code,
+                'locale' => $country_code,
                 'updated_at' => null
             ];
 
@@ -97,7 +97,7 @@ class CrawlerCategoryJob implements ShouldQueue
             }
             $url_params = $this->shopeeHandler->shopee_url($row_crawlerTask['url']);
             $data['url_params'] = $url_params;
-            $data['local'] = $data['url_params']['local'];
+            $data['locale'] = $data['url_params']['locale'];
             $data['domain_name'] = $data['url_params']['domain_name'];
             if(isset( $data['url_params']['gets']['sortBy'])){
                 $data['sort_by'] = $data['url_params']['gets']['sortBy'];
@@ -138,7 +138,7 @@ class CrawlerCategoryJob implements ShouldQueue
             CrawlerTask::updateOrCreate([
                 'category' => $data['category'],
                 'domain_name' => $data['domain_name'],
-                'local' => $data['url_params']['local'],
+                'locale' => $data['url_params']['locale'],
                 'sort_by' => $data['sort_by']
             ],[
                 'is_active' => 1,

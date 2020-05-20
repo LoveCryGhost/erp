@@ -19,7 +19,7 @@ class CrawlerShop extends Model
         'shopid',
         'username',
         'sold', 'historical_sold', 'shop_location',
-        'domain_name', 'local',
+        'domain_name', 'locale',
     ];
 
     protected $hidden = [

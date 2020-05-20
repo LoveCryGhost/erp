@@ -13,7 +13,7 @@ class CreateCrawlerCategoriesTable extends Migration
             $table->string('p_id')->nullable()->default(0);
             $table->string('display_name')->nullable();
             $table->string('image')->nullable();
-            $table->string('local')->default('tw');
+            $table->string('locale')->default('tw');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

@@ -40,7 +40,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                         'p_id' => $crawlerCategory->catid,
                         'display_name' => null,
                         'image' => null,
-                        'local' => $crawlerCategory->local,
+                        'locale' => $crawlerCategory->local,
                         'updated_at' => Carbon::now()
                     ];
                 }
@@ -70,7 +70,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                 }
                 $url_params = $this->shopeeHandler->shopee_url($row_crawlerTask['url']);
                 $data['url_params'] = $url_params;
-                $data['local'] = $data['url_params']['local'];
+                $data['locale'] = $data['url_params']['locale'];
                 $data['domain_name'] = $data['url_params']['domain_name'];
                 if(isset( $data['url_params']['gets']['sortBy'])){
                     $data['sort_by'] = $data['url_params']['gets']['sortBy'];
@@ -111,7 +111,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                 CrawlerTask::updateOrCreate([
                     'category' => $data['category'],
                     'domain_name' => $data['domain_name'],
-                    'local' => $data['url_params']['local'],
+                    'locale' => $data['url_params']['locale'],
                     'sort_by' => $data['sort_by']
                 ],[
                     'is_active' => 1,
@@ -124,7 +124,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                 $index++;
             }
             DB::table('crawler_categories')
-                ->where(['p_id'=>0, 'local' => $crawlerCategory->local, 'catid'=> $crawlerCategory->catid])
+                ->where(['p_id'=>0, 'locale' => $crawlerCategory->local, 'catid'=> $crawlerCategory->catid])
                 ->update(['updated_at'=> Carbon::now()]);
             dd(123);
         }

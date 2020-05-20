@@ -39,7 +39,7 @@ mycursor = mysql_select(mycursor, sqlStatement);
 crawlerCategories = mycursor.fetchall()
 for crawlerCategory in crawlerCategories:
     # 組合url
-    shopee_url = shopeeSeperator(crawlerCategory['local'])
+    shopee_url = shopeeSeperator(crawlerCategory['locale'])
     url = 'https://'+shopee_url+'/Category-cat.' + str(crawlerCategory['catid'])
     # 爬蟲
     result = requests.get(url)

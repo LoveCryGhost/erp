@@ -32,12 +32,12 @@
                 $crawlerItem_total = [];
                 $crawlerItem_total_updated = [];
                 foreach($countries = ['tw', 'th', 'id'] as $country){
-                    $crawlerCategory_total[$country] = $crawlerCategory->where('local',$country)->count();
-                    $crawlerCategory_total_updated[$country] =  $crawlerCategory->where('local', $country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
-                    $crawlerTask_total[$country] = $crawlerTask->where('local', $country)->count();
-                    $crawlerTask_total_updated[$country] = $crawlerTask->where('local',$country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
-                    $crawlerItem_total[$country] = $crawlerItem->where('local',$country)->count();
-                    $crawlerItem_total_updated[$country] = $crawlerItem->where('local',$country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
+                    $crawlerCategory_total[$country] = $crawlerCategory->where('locale',$country)->count();
+                    $crawlerCategory_total_updated[$country] =  $crawlerCategory->where('locale', $country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
+                    $crawlerTask_total[$country] = $crawlerTask->where('locale', $country)->count();
+                    $crawlerTask_total_updated[$country] = $crawlerTask->where('locale',$country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
+                    $crawlerItem_total[$country] = $crawlerItem->where('locale',$country)->count();
+                    $crawlerItem_total_updated[$country] = $crawlerItem->where('locale',$country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
                 }
                 
             @endphp

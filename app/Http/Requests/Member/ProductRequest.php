@@ -24,7 +24,7 @@ class ProductRequest extends Request
             case 'PATCH':
                 {
                     return [
-                        'p_name' => ['required', 'min:2', Rule::unique('products')->ignore($product->p_id,'p_id')],
+                        'p_name' => ['required', 'min:2', Rule::unique('product_translations')->ignore($product->p_id,'product_p_id')],
                         't_id' => ['required']
                     ];
                 }

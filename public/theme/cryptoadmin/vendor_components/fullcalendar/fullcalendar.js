@@ -2691,7 +2691,7 @@ exports.globalDefaults = {
     weekends: true,
     weekNumbers: false,
     weekNumberTitle: 'W',
-    weekNumberCalculation: 'local',
+    weekNumberCalculation: 'locale',
     // editable: false,
     // nowIndicator: false,
     scrollTime: '06:00:00',
@@ -8487,7 +8487,7 @@ var JsonFeedEventSource = /** @class */ (function (_super) {
         $.extend(params, customRequestParams);
         params[startParam] = start.format();
         params[endParam] = end.format();
-        if (timezone && timezone !== 'local') {
+        if (timezone && timezone !== 'locale') {
             params[timezoneParam] = timezone;
         }
         return params;
@@ -9880,7 +9880,7 @@ var Calendar = /** @class */ (function () {
                 localeData._week = _week;
             }
             if (weekNumberCalculation === 'ISO' ||
-                weekNumberCalculation === 'local' ||
+                weekNumberCalculation === 'locale' ||
                 typeof weekNumberCalculation === 'function') {
                 localeData._fullCalendar_weekCalc = weekNumberCalculation; // moment-ext will know what to do with it
             }
@@ -9900,7 +9900,7 @@ var Calendar = /** @class */ (function () {
             args[_i] = arguments[_i];
         }
         var mom;
-        if (this.opt('timezone') === 'local') {
+        if (this.opt('timezone') === 'locale') {
             mom = moment_ext_1.default.apply(null, args);
             // Force the moment to be local, because momentExt doesn't guarantee it.
             if (mom.hasTime()) {
@@ -9942,7 +9942,7 @@ var Calendar = /** @class */ (function () {
     // Returns a boolean about whether or not the calendar knows how to calculate
     // the timezone offset of arbitrary dates in the current timezone.
     Calendar.prototype.getIsAmbigTimezone = function () {
-        return this.opt('timezone') !== 'local' && this.opt('timezone') !== 'UTC';
+        return this.opt('timezone') !== 'locale' && this.opt('timezone') !== 'UTC';
     };
     // Returns a copy of the given date in the current timezone. Has no effect on dates without times.
     Calendar.prototype.applyTimezone = function (date) {

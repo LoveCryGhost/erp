@@ -14,6 +14,8 @@ return [
     'edit.title' => 'Product - Edit',
     'edit.productType'=> 'Product Type',
     'edit.productName'=> 'Product Name',
+    'edit.productDescription'=> 'Product Description',
+
     'edit.publishAt'=> 'Publish At',
 
 

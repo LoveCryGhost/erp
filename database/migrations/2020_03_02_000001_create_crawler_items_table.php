@@ -22,7 +22,7 @@ class CreateCrawlerItemsTable extends Migration
             $table->string('images')->nullable();
             $table->integer('sold')->default(0);
             $table->integer('historical_sold')->default(0);
-            $table->string('local')->nullable();
+            $table->string('locale')->nullable();
             $table->string('domain_name')->nullable();
             $table->bigInteger('member_id')->unsigned();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
@@ -36,7 +36,7 @@ class CreateCrawlerItemsTable extends Migration
             $table->string('username')->nullable();
             $table->string('shop_location')->nullable();
             $table->string('domain_name')->nullable();
-            $table->string('local')->nullable();
+            $table->string('locale')->nullable();
             $table->bigInteger('member_id')->unsigned();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamps();

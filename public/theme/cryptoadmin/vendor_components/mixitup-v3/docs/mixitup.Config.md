@@ -850,12 +850,12 @@ var mixer = mixitup(containerEl, {
 
 
 A string dictating the "scope" to use when binding or querying the default controls. The available
-values are `'global'` or `'local'`.
+values are `'global'` or `'locale'`.
 
 When set to `'global'` (default behavior), MixItUp will query the entire document for control buttons
 to bind, or delegate click events from (see `config.controls.live`).
 
-When set to `'local'`, MixItUp will only query (or bind click events to) its own container element.
+When set to `'locale'`, MixItUp will only query (or bind click events to) its own container element.
 This may be desireable if you require multiple active mixer instances within the same document, with
 controls that would otherwise intefere with each other if scoped globally.
 
@@ -867,18 +867,18 @@ set of controls and keep the controls scope of each mixer set to `global`.
 |---  | ---
 |`string`| `'global'`
 
-###### Example: Setting 'local' scoped controls
+###### Example: Setting 'locale' scoped controls
 
 ```js
 var mixerOne = mixitup(containerOne, {
     controls: {
-        scope: 'local'
+        scope: 'locale'
     }
 });
 
 var mixerTwo = mixitup(containerTwo, {
     controls: {
-        scope: 'local'
+        scope: 'locale'
     }
 });
 

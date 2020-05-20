@@ -11,6 +11,8 @@ return [
     'edit.title' => '產品 - 編輯',
     'edit.productType'=> '產品型態',
     'edit.productName'=> '產品名稱',
+    'edit.productDescription'=> '產品描述',
+
     'edit.publishAt'=> '發布日期',
 
 

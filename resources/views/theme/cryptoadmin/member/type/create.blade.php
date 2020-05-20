@@ -60,7 +60,14 @@
                                                     <input class="form-control" type="text" name="t_name" placeholder="類型名稱"  value="{{old('t_name')}}">
                                                 </div>
                                             </div>
-
+    
+                                            <div class="form-group">
+                                                <h5>{{__('default.edit.description')}}</h5>
+                                                <div class="controls">
+                                                    <textarea class="form-control" type="text" name="t_description" placeholder="{{__('default.edit.description')}}" >{{old('t_description')}}</textarea>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label"></label>
                                                 <div class="col-sm-10">

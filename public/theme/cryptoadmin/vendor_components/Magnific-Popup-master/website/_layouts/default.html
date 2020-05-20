@@ -18,7 +18,7 @@
 
     <link href="https://plus.google.com/102586375605352607718" rel="publisher" />
 
-    {% if site.url == 'local' %}
+    {% if site.url == 'locale' %}
       <link href="site-assets/site.css?v={{site.mfpversion}}" rel="stylesheet" />
       <link href="dist/magnific-popup.css?v={{site.mfpversion}}" rel="stylesheet" />
     {% else %}
@@ -47,7 +47,7 @@
   {{page.footer}}
 
   {% if page.addjs %}
-    {% if site.url == 'local' %}
+    {% if site.url == 'locale' %}
       <script>
         document.write('<script src=third-party-libs/' +
         ('__proto__' in {} ? 'zepto' : 'jquery') +
@@ -70,7 +70,7 @@
     {% include build-tool.html %}
   {% endif %}
 
-  {% if site.url == 'local' %}
+  {% if site.url == 'locale' %}
     <strong style="display:block; width:100%;text-align:center;">This page is just for tests and should not be used for production!</strong>
   {% endif %}
   </body>

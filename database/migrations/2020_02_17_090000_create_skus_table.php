@@ -12,9 +12,9 @@ class CreateSkusTable extends Migration
             $table->bigIncrements('sku_id');
             $table->string('id_code')->unique()->nullable();
             $table->boolean('is_active')->default(0);
-            $table->string('sku_name');
+            //$table->string('sku_name');
+            //$table->decimal('price',15,1)->default(999999999);
             $table->string('thumbnail')->nullable();
-            $table->decimal('price',15,1)->default(999999999);
             $table->bigInteger('p_id')->unsigned();
             $table->bigInteger('member_id')->unsigned();
             $table->foreign('p_id')->references('p_id')->on('products')->onDelete('cascade');

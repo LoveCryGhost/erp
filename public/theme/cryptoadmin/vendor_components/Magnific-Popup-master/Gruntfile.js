@@ -71,7 +71,7 @@ module.exports = function(grunt) {
         options: {
           src: 'website',
           dest: '_site',
-          url: 'local',
+          url: 'locale',
           raw: jekyllConfig + "url: local"
         }
       },

@@ -22,7 +22,7 @@ describe('Controls', () => {
 
             let mixer = mixitup(container, {
                 controls: {
-                    scope: 'local'
+                    scope: 'locale'
                 }
             });
 
@@ -123,7 +123,7 @@ describe('Controls', () => {
 
             let mixer = mixitup(container, {
                 controls: {
-                    scope: 'local',
+                    scope: 'locale',
                     toggleLogic: 'AND'
                 }
             });
@@ -242,7 +242,7 @@ describe('Controls', () => {
 
                 let mixer = mixitup(container, {
                     controls: {
-                        scope: 'local',
+                        scope: 'locale',
                         toggleDefault: 'none'
                     }
                 });
@@ -277,7 +277,7 @@ describe('Controls', () => {
 
                 let mixer = mixitup(container, {
                     controls: {
-                        scope: 'local',
+                        scope: 'locale',
                         toggleDefault: 'all'
                     }
                 });

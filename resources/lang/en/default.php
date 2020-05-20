@@ -60,8 +60,10 @@ return [
             'photo' => 'Photo',
             'image' => 'Image',
             'info' => 'Info',
+            'description' => 'Descriptiomn',
             'crud' => 'Operation',
             'save' => 'Save'
+
     ],
 
     'create'       => [
@@ -72,6 +74,7 @@ return [
         'photo' => 'Photo',
         'image' => 'Image',
         'info' => 'Info',
+        'description' => 'Descriptiomn',
         'crud' => 'Operation',
         'save' => 'Save'
     ],

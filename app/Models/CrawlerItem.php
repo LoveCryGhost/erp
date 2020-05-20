@@ -15,7 +15,7 @@ class CrawlerItem extends CoreModel
         'is_active',
         'itemid', 'shopid',
         'name',
-        'images', 'sold', 'historical_sold', 'local', 'domain_name'
+        'images', 'sold', 'historical_sold', 'locale', 'domain_name'
     ];
 
 

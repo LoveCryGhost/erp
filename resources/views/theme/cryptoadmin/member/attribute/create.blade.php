@@ -35,7 +35,9 @@
                                             <div class="form-group">
                                                 <h5>{{__('default.create.is_active')}}</h5>
                                                 <div class="controls">
-                                                    <input type="checkbox"  class="permission_check" name="is_active" value="1" id="is_active">
+                                                    <input type="checkbox"  class="permission_check" name="is_active" value="1" id="is_active"
+                                                            {{old('is_active')==1? "checked":""}}
+                                                    >
                                                     <label for="is_active" class="text-dark p-0 m-0"></label>
                                                 </div>
                                             </div>
@@ -43,17 +45,23 @@
                                             <div class="form-group">
                                                 <h5>{{__('default.create.barcode')}}</h5>
                                                 <div class="controls">
-                                                    <input class="form-control" type="text" name="id_code" placeholder="{{__('default.create.autoGenerate')}}" value="" disabled>
+                                                    <input class="form-control" type="text" name="id_code" placeholder="{{__('default.create.autoGenerate')}}"  disabled>
                                                 </div>
                                             </div>
     
                                             <div class="form-group">
                                                 <h5>{{__('member/attribute.create.attributeName')}}</h5>
                                                 <div class="controls">
-                                                    <input class="form-control" type="text" name="a_name" placeholder="{{__('member/attribute.create.attributeName')}}"  value="">
+                                                    <input class="form-control" type="text" name="a_name" placeholder="{{__('member/attribute.create.attributeName')}}"  value="{{old('a_name')}}">
                                                 </div>
                                             </div>
-    
+                                            <div class="form-group">
+                                                <h5>{{__('default.edit.description')}}</h5>
+                                                <div class="controls">
+                                                    <textarea class="form-control" type="text" name="a_description" placeholder="{{__('default.edit.description')}}" >{{old('a_description')}}</textarea>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="form-group">
                                                 <div class="controls">
                                                     <button type="submit" class="btn btn-success form-control">{{__('default.edit.save')}}</button>

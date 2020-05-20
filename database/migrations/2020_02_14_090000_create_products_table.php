@@ -12,8 +12,8 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('t_id');
             $table->string('id_code')->unique()->nullable();
             $table->boolean('is_active')->default(1);
-            $table->string('t_name')->unique();
-            $table->string('t_description')->nullable();
+//            $table->string('t_name')->unique();
+//            $table->string('t_description')->nullable();
             $table->bigInteger('member_id')->unsigned()->nullable();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();
@@ -24,8 +24,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('a_id');
             $table->string('id_code')->unique()->nullable();
             $table->boolean('is_active')->default(1);
-            $table->string('a_name')->unique();
-            $table->string('a_description')->nullable();
+//            $table->string('a_name')->unique();
             $table->bigInteger('member_id')->unsigned()->nullable();
             $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();
@@ -49,7 +48,7 @@ class CreateProductsTable extends Migration
             $table->boolean('is_active')->default(0); //是否販售
             $table->timestamp('publish_at')->nullable();
             $table->bigInteger('t_id')->unsigned()->nullable();
-            $table->string('p_name');
+            //$table->string('p_name');
             $table->decimal('m_price',15,1)->nullable();
             $table->decimal('t_price',15,1)->nullable();
             $table->bigInteger('member_id')->unsigned();

@@ -3,8 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-class Product extends CoreModel
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
+
+class Product extends CoreModel implements TranslatableContract
 {
+    use Translatable;
     protected $table = "products";
     protected $primaryKey='p_id';
 
@@ -12,11 +16,11 @@ class Product extends CoreModel
     protected $fillable = [
         'publish_at',
         't_id',
-        'p_name',
         'c_id', 'p_id',
         'is_active'
     ];
 
+    public $translatedAttributes = ['p_name', 'p_description'];
 
     protected $casts = [
     ];

@@ -13,6 +13,7 @@ class ProductsTableSeeder extends Seeder
 {
     public function run()
     {
+        app()->setLocale('tw');
         //Types
             $types = [
                  '烘培用品', '面膜', '男裝', '女裝', '童裝'
@@ -62,6 +63,7 @@ class ProductsTableSeeder extends Seeder
                 [
                     'is_active' => 1, 'publish_at' => null, 'member_id' => 1,
                     'p_name' => "Pizza 烤盤3", 't_id' => 1,
+                    'p_description' => '1234',
                     'c_ids' => [2],
                     'produuct_thumnail_ids' => ['/images/default/products/pizza_pan_1.jpg', '/images/default/products/pizza_pan_2.jpg'],
                     'skus' => [
@@ -77,6 +79,7 @@ class ProductsTableSeeder extends Seeder
                 ],[
                     'is_active' => 1, 'publish_at' => null, 'member_id' => 1,
                     'p_name' => "吐司烤盤", 't_id' => 1,
+                    'p_description' => '1234',
                     'c_ids' => [2],
                     'produuct_thumnail_ids' => ['/images/default/products/toast_pan_1.jpg', '/images/default/products/toast_pan_2.jpg', '/images/default/products/toast_pan_3.jpg'],
                     'skus' => [
@@ -91,12 +94,14 @@ class ProductsTableSeeder extends Seeder
                 [
                     'is_active' => 1, 'publish_at' => null, 'member_id' => 1,
                     'p_name' => "潑尿酸面膜", 't_id' => 2,
+                    'p_description' => '1234',
                     'c_ids' => [8],
                     'produuct_thumnail_ids' => ['/images/default/products/mask_1.jpg', '/images/default/products/mask_2.jpg', '/images/default/products/mask_3.jpg'],
                     'skus' => []
                 ],[
                     'is_active' => 1, 'publish_at' => null, 'member_id' => 1,
                     'p_name' => "保濕SKU面膜", 't_id' => 2,
+                    'p_description' => '1234',
                     'c_ids' => [10],
                     'produuct_thumnail_ids' => ['/images/default/products/mask_4.jpg'],
                     'skus' => []
@@ -165,6 +170,7 @@ class ProductsTableSeeder extends Seeder
                 [
                     'is_active' => 1, 'publish_at' => null, 'member_id' =>5,
                     'p_name' => "Pizza 烤盤", 't_id' => 1,
+                    'p_description' => '1234',
                     'c_ids' => [2],
                     'produuct_thumnail_ids' => ['/images/default/products/pizza_pan_1.jpg', '/images/default/products/pizza_pan_2.jpg'],
                     'skus' => [
@@ -180,6 +186,7 @@ class ProductsTableSeeder extends Seeder
                 ],[
                     'is_active' => 1, 'publish_at' => null, 'member_id' => 5,
                     'p_name' => "吐司烤盤", 't_id' => 1,
+                    'p_description' => '1234',
                     'c_ids' => [2],
                     'produuct_thumnail_ids' => ['/images/default/products/toast_pan_1.jpg', '/images/default/products/toast_pan_2.jpg', '/images/default/products/toast_pan_3.jpg'],
                     'skus' => [

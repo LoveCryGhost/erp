@@ -111,7 +111,7 @@ describe('mixitup()', () => {
 
         let mixer = mixitup(container, {
             controls: {
-                scope: 'local'
+                scope: 'locale'
             },
             callbacks: {
                 onMixClick: function(state, originalEvent) {
@@ -149,7 +149,7 @@ describe('mixitup()', () => {
 
         let mixer = mixitup(container, {
             controls: {
-                scope: 'local'
+                scope: 'locale'
             },
             callbacks: {
                 onMixClick: () => {

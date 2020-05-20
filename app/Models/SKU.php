@@ -2,19 +2,24 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class SKU extends Model
 {
 
+    use Translatable;
     protected $table = "skus";
     protected $primaryKey='sku_id';
 
     protected $with = ['skuAttributes','skuSuppliers'];
     protected $fillable = [
-        'p_id', 'sku_name', 'thumbnail', 'price', 'is_active'
+        'p_id', 'thumbnail', 'is_active'
     ];
+
+    public $translatedAttributes = ['sku_name', 'price'];
 
     protected $casts = [
 

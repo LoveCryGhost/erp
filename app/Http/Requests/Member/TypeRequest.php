@@ -19,7 +19,7 @@ class TypeRequest extends Request
             case 'POST':
                 {
                     return [
-                        't_name' => ['required', 'min:2', Rule::unique('types')],
+                        't_name' => ['required', 'min:2', Rule::unique('type_translations')],
 
                     ];
                 }
@@ -27,7 +27,7 @@ class TypeRequest extends Request
             case 'PATCH':
                 {
                     return [
-                        't_name' => ['required', 'min:2', Rule::unique('types')->ignore($type->t_id,'t_id')],
+                        't_name' => ['required', 'min:2', Rule::unique('type_translations')->ignore($type->t_id,'type_t_id')],
                     ];
                 }
             case 'GET':

@@ -32,8 +32,8 @@ class CreateStocksTable extends Migration
             $table->bigInteger('last_bid_sell_records')->default(0);
 
             $table->string('type')->default('stock');
-            $table->string('local')->default('tw');
-            $table->primary(['date', 'stock_code','type','local']);
+            $table->string('locale')->default('tw');
+            $table->primary(['date', 'stock_code','type','locale']);
 
             $table->timestamp('updated_at')->useCurrent()->nullable();
             $table->timestamp('created_at');

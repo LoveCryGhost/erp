@@ -25,7 +25,7 @@ class CreateStaffsTable extends Migration
             $table->string('processes');
             $table->string('name')->nullable();
             $table->string('description')->nullable();
-            $table->string('local')->default('zh-cn');
+            $table->string('locale')->default('zh-cn');
             $table->timestamps();
         });
 
@@ -109,7 +109,7 @@ class CreateStaffsTable extends Migration
             $table->string('company2_name')->nullable();
             $table->integer('salary2')->nullable();
 
-            $table->string('local')->nullable();
+            $table->string('locale')->nullable();
             $table->foreign('d_id')->references('d_id')->on('staff_departments')->onDelete('cascade');
             $table->foreign('pic')->references('id')->on('staffs')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();

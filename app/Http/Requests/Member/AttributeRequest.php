@@ -19,7 +19,7 @@ class AttributeRequest extends Request
             case 'POST':
                 {
                     return [
-                        'a_name' => ['required', 'min:2', Rule::unique('attributes')],
+                        'a_name' => ['required', 'min:2', Rule::unique('attribute_translations')],
 
                     ];
                 }
@@ -27,7 +27,7 @@ class AttributeRequest extends Request
             case 'PATCH':
                 {
                     return [
-                        'a_name' => ['required', 'min:2', Rule::unique('attributes')->ignore($attribute->a_id,'a_id')],
+                        'a_name' => ['required', 'min:2', Rule::unique('attribute_translations')->ignore($attribute->a_id,'attribute_a_id')],
                     ];
                 }
             case 'GET':
