@@ -16,7 +16,7 @@ class ProductRequest extends Request
             case 'POST':
                 {
                     return [
-                        'p_name' => ['required', 'min:2', Rule::unique('products')],
+                        'p_name' => ['required', 'min:2', Rule::unique('product_translations')],
                         't_id' => ['required','integer']
                     ];
                 }

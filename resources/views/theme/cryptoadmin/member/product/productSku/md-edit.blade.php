@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <h5>{{__('member/product.productSKU.edit.price')}}</h5>
                     <div class="controls">
-                        <input class="form-control" type="text" name="price" id="price"  placeholder="售價"  value="{{$sku->price}}">
+                        <input class="form-control" type="text" name="price" id="price"  placeholder="{{__('member/product.productSKU.edit.price')}}"  value="{{$sku->price}}">
                     </div>
                 </div>
 

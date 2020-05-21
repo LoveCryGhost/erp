@@ -79,6 +79,12 @@
                                     </div>
     
                                     <div class="form-group">
+                                        <h5>{{__('member/product.edit.productDescription')}}</h5>
+                                        <div class="controls">
+                                            <textarea class="form-control" type="text" name="p_description" placeholder="{{__('member/product.edit.productDescription')}}">{{old('p_description')}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <button type="submit" class="btn btn-success form-control">{{__('member/supplier.edit.save')}}</button>
                                     </div>
                                 </div>

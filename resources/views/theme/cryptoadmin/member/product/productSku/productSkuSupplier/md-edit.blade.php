@@ -1,4 +1,4 @@
-<div class="box box-solid box-inverse box-dark">
+<div class="box box-solid">
     <div class="box-body">
         @include(config('theme.admin.view').'layouts.modal-errors')
         <div class="row">
@@ -19,27 +19,53 @@
             </div>
             <div class="col-10">
                 @include(config('theme.member.view').'layouts.errors')
-                <table class="table table-bordered">
+                <table class="itable">
                     <tbody>
-                        <tr class="m-0"><td>Barcode</td><td>{{$sku->id_code}}</td></tr>
-                        <tr class="m-0"><td>啟用</td>
-                            <td>
-                                <input type="checkbox" class="bt-switch" name="is_active" id="is_active" value="1" {{$sku->is_active==1? "checked":""}}
-                                data-label-width="100%"
-                                       data-label-text="啟用" data-size="min"
-                                       data-on-text="On"    data-on-color="primary"
-                                       data-off-text="Off"  data-off-color="danger"/>
-                            </td>
-                        </tr>
-                        <tr class="m-0"><td>售價</td><td>{{$sku->price}}</td></tr>
-                        <tr class="m-0"><td>SKU名稱</td><td>{{$sku->sku_name}}</td></tr>
+                    <tr class="m-0">
+                        <td>{{__('default.index.table.barcode')}}</td>
+                        <td>{{$sku->id_code}}</td>
+                    </tr>
+                    <tr class="m-0">
+                        <td>{{__('default.index.table.is_active')}}</td>
+                        <td>
+                            <input type="checkbox" class="permission_check" name="is_active" id="is_active"
+                                   {{$sku->is_active===1? "checked": ""}} disabled>
+                            <label for="is_active" class="p-0 m-0"></label>
+                        </td>
+                    </tr>
+                    <tr class="m-0">
+                        <td>{{__('member/product.productSupplier.index.sellPrice')}}</td><td>{{$sku->price}}</td>
+                    </tr>
+                    <tr class="m-0">
+                        <td>{{__('member/product.productSupplier.index.skuName')}}</td><td>{{$sku->sku_name}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <table class="itable table m-b-0">
+                                <thead>
+                                <tr>
+                                    @foreach($sku->product->type->attributes as $attribute)
+                                        <td>{{$attribute->a_name}}</td>
+                                    @endforeach
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    @foreach($sku->skuAttributes as $attribute)
+                                        <td>{{$attribute->a_value}}</td>
+                                    @endforeach
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+        
                     </tbody>
                 </table>
             </div>
             <div class="col-md-12">
-                <div class="form-group row">
-                <label class="col-sm-2 col-form-label">供應商</label>
-                <div class="col-sm-10">
+                <div class="form-group">
+                    <h5>{{__('member/product.productSupplier.edit.supplierName')}}</h5>
                     <select class="select2_item form-control" name="sku_supplier" id="sku_supplier" style="z-index: 9999;">
                         <option value="">Select...</option>
                         @foreach($suppliers as $supplier)
@@ -51,21 +77,18 @@
                         @endforeach
                     </select>
                 </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">進貨價</label>
-                    <div class="col-sm-10">
+    
+                <div class="form-group">
+                    <h5>{{__('member/product.productSupplier.index.purchasePrice')}}</h5>
+                    <div class="controls">
                         <input class="form-control" type="text" name="price" id="price" placeholder="price"
                                value="{{$sku->skuSuppliers()->wherePivot('s_id',$skuSupplier->s_id)->first()->pivot->price}}">
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">URL</label>
-                    <div class="col-sm-10">
+    
+                <div class="form-group">
+                    <h5>{{__('default.index.table.url')}}</h5>
+                    <div class="controls">
                         <input class="form-control" type="text" name="url" id="url" placeholder="url"
                                value="{{$sku->skuSuppliers()->wherePivot('s_id',$skuSupplier->s_id)->first()->pivot->url}}">
                     </div>

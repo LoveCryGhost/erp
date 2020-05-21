@@ -13,8 +13,6 @@ return [
         'email_has_send' => '密碼重置郵件已經發送至您的指定信箱 !'
     ],
 
-
-
     'info' => [
         'home' => '首頁',
         'dashboard' => '控制台',
@@ -22,7 +20,6 @@ return [
         'setting' => '設定',
         'logout' => '登出',
         'login' => '登入',
-
         'join_at' => '加入時間',
         'member_info' => '會員資料'
     ],
@@ -52,12 +49,15 @@ return [
             'info' => '訊息',
             'crud' => '操作',
             'createdBy' => '建立者',
+            'url' => 'Url 連結',
+            'price' => '價格',
             'edit' => '編輯',
             'delete' => '刪除'
         ],
         'lazzyload_more_records' => '加载更多....',
         'lazzyload_no_more_records' => '沒有資料了'
     ],
+
     'edit'       => [
         'is_active' => '啟用',
         'name' => '名稱',
@@ -70,6 +70,7 @@ return [
         'crud' => '操作',
         'save' => '儲存'
     ],
+
     'create'       => [
         'is_active' => '啟用',
         'name' => '名稱',
@@ -92,7 +93,6 @@ return [
         'delete_confirmBtn' => '刪除',
         'delete_cancleBtn' => '取消'
     ],
-
 
     'language' => [
         'en' => '美國',

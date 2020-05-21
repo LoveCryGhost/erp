@@ -18,9 +18,10 @@ return [
 
     'edit.publishAt'=> 'Publish At',
 
-
     'create.title' => 'Product  - Create',
     'create.productName'=> 'Product Name',
+
+
 
     'productSKU.index.title' => 'Product SKU',
     'productSKU.index.table.price' => 'Price',
@@ -33,5 +34,11 @@ return [
     'productSKU.create.title' => 'Product SKU - Edit',
     'productSKU.create.price' => 'Price',
     'productSKU.create.SKUName' => 'SKU Name',
+
+    'productSupplier.index.title' => 'Supplier List',
+    'productSupplier.index.skuName' => 'SKU Name',
+    'productSupplier.index.sellPrice' => 'Sell Price',
+    'productSupplier.index.purchasePrice' => 'Purchase Price',
+    'productSupplier.edit.supplierName' => 'Supplier Name',
 
 ];

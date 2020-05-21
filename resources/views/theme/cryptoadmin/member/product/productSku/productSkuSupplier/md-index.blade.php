@@ -1,7 +1,4 @@
-<div class="box box-solid box-inverse box-dark">
-    <div class="box-header  p-5">
-        <h5 class="box-title m-0">產品SKU - 供應商列表</h5>
-    </div>
+<div class="box box-solid">
     <!-- /.box-header -->
     <div class="box-body">
         <div class="row">
@@ -13,88 +10,110 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <img src="{{$sku->thumbnail? asset($sku->thumbnail) : '/images/default/products/product.jpg'}}" style="width: 100px;">
+            <div class="col-2">
+                <img CLASS="img-350 rounded" src="{{$sku->thumbnail? asset($sku->thumbnail) : '/images/default/products/product.jpg'}}" >
             </div>
-            <div class="col-md-10">
-                <table class="table table-bordered">
+            <div class="col-10">
+                <table class="itable">
                     <tbody>
-                    <tr class="m-0"><td>Barcode</td><td>{{$sku->id_code}}</td></tr>
-                    <tr class="m-0"><td>啟用</td>
-                        <td>
-                            <input type="checkbox" class="bt-switch" name="is_active" id="is_active" value="1" {{$sku->is_active==1? "checked":""}}
-                            data-label-width="100%"
-                                   data-label-text="啟用" data-size="min"
-                                   data-on-text="On"    data-on-color="primary"
-                                   data-off-text="Off"  data-off-color="danger"/>
-                        </td>
-                    </tr>
-                    <tr class="m-0"><td>售價</td><td>{{$sku->price}}</td></tr>
-                    <tr class="m-0"><td>SKU名稱</td><td>{{$sku->sku_name}}</td></tr>
+                        <tr class="m-0">
+                            <td>{{__('default.index.table.barcode')}}</td>
+                            <td>{{$sku->id_code}}</td>
+                        </tr>
+                        <tr class="m-0">
+                            <td>{{__('default.index.table.is_active')}}</td>
+                            <td>
+                                <input type="checkbox" class="permission_check" name="is_active" id="is_active"
+                                       {{$sku->is_active===1? "checked": ""}} disabled>
+                                <label for="is_active" class="p-0 m-0"></label>
+                            </td>
+                        </tr>
+                        <tr class="m-0">
+                            <td>{{__('member/product.productSupplier.index.sellPrice')}}</td><td>{{$sku->price}}</td>
+                        </tr>
+                        <tr class="m-0">
+                            <td>{{__('member/product.productSupplier.index.skuName')}}</td><td>{{$sku->sku_name}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table class="itable table m-b-0">
+                                    <thead>
+                                    <tr>
+                                        @foreach($sku->product->type->attributes as $attribute)
+                                            <td>{{$attribute->a_name}}</td>
+                                        @endforeach
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        @foreach($sku->skuAttributes as $attribute)
+                                            <td>{{$attribute->a_value}}</td>
+                                        @endforeach
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-12">
-                <table class="table table-bordered table-hover" id="tbl-product-sku-supplier">
+                <table class="itable table m-t-10" id="tbl-product-sku-supplier">
                     <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>排序</th>
-                            <th>圖片</th>
-                            <th>名稱</th>
-                            <th>啟用</th>
-                            <th>報價錢</th>
-                            <th>連結</th>
-                            <th>操作</th>
-                        </tr>
+                    <tr>
+                        <th>{{__('default.index.table.no')}}.</th>
+                        <th>{{__('default.index.table.sort_order')}}</th>
+                        <th>{{__('default.index.table.image')}}</th>
+                        <th>{{__('default.index.table.name')}}</th>
+                        <th>{{__('default.index.table.is_active')}}</th>
+                        <th>{{__('member/product.productSupplier.index.purchasePrice')}}</th>
+                        <th>{{__('default.index.table.url')}}</th>
+                        <th>{{__('default.index.table.crud')}}</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @if(count($sku->skuSuppliers)>0)
-                            @foreach($sku->skuSuppliers as $skuSupplier)
-                               <tr data-ss-id="{{$skuSupplier->pivot->ss_id}}">
-                                   <td>
+                    @if(count($sku->skuSuppliers)>0)
+                        @foreach($sku->skuSuppliers as $skuSupplier)
+                            <tr data-ss-id="{{$skuSupplier->pivot->ss_id}}">
+                                <td>
                                         <span class="handle" style="cursor: move;">
                                             <i class="fa fa-ellipsis-v"></i>
                                             <i class="fa fa-ellipsis-v"></i>
                                         </span>
-                                   </td>
-                                   <td>{{$loop->iteration}}</td>
-                                   <td>
-                                       <img src="{{$skuSupplier->name_card? asset($skuSupplier->name_card): "/images/default/products/product.jpg"}}" style="width: 70px;">
-                                   </td>
-                                   <td>
-                                       {{$skuSupplier->s_name}}
-                                       <input type="text" hidden name="sku_suppliers[s_id]" value="{{$skuSupplier->s_id}}">
-                                   </td>
-                                   <td>
-                                       <input type="checkbox" class="bt-switch"  value="1" {{$skuSupplier->is_active==1? "checked":""}}
-                                            data-label-width="100%"
-                                            data-label-text="啟用" data-size="min"
-                                            data-on-text="On"    data-on-color="primary"
-                                            data-off-text="Off"  data-off-color="danger"/>
-                                   </td>
-                                   <td>{{$skuSupplier->pivot->price}}</td>
-                                   <td>
-                                       <a class="btn btn-sm btn-primary" href="{{$skuSupplier->pivot->url}}" target="_blank"><i class="fa fa-link"></i></a>
-                                   </td>
-                                   <td>
-                                       <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-lg"
-                                          onclick="event.preventDefault(); md_product_sku_supplier_edit(this, php_inject={{json_encode(['models' => [ 'sku' => $sku, 'skuSupplier' => $skuSupplier]])}});">
-                                           <i class="fa fa-edit mr-5"></i>編輯
-                                       </a>
-                                   </td>
-                               </tr>
-                            @endforeach
-                        @endif
+                                </td>
+                                <td>{{$loop->iteration}}</td>
+                                <td>
+                                    <img class="img-70 rounded" src="{{$skuSupplier->name_card? asset($skuSupplier->name_card): "/images/default/products/product.jpg"}}">
+                                </td>
+                                <td>
+                                    {{$skuSupplier->s_name}}
+                                    <input type="text" hidden name="sku_suppliers[s_id]" value="{{$skuSupplier->s_id}}">
+                                </td>
+                                <td>
+                                    <input type="checkbox" class="permission_check" name="is_active" id="is_active_{{$skuSupplier->ss_id}}"
+                                           {{$skuSupplier->is_active===1? "checked": ""}} disabled>
+                                    <label for="is_active_{{$skuSupplier->ss_id}}" class="p-0 m-0"></label>
+                                    
+                                </td>
+                                <td>{{$skuSupplier->pivot->price}}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="{{$skuSupplier->pivot->url}}" target="_blank"><i class="fa fa-link"></i></a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-lg"
+                                       onclick="event.preventDefault(); md_product_sku_supplier_edit(this, php_inject={{json_encode(['models' => [ 'sku' => $sku, 'skuSupplier' => $skuSupplier]])}});">
+                                        <i class="fa fa-edit mr-5"></i>{{__('default.index.table.edit')}}
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
-                {{--{{$product->skus(10)->links()}}--}}
             </div>
-        </div>
 
+        </div>
     </div>
 </div>
 

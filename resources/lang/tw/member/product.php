@@ -4,6 +4,9 @@ return [
     //Title
     'title' => "產品",
 
+    'search.productName' => '產品名稱',
+    'search.SKUName' => 'SKU 名稱',
+
     'index.title' => '產品 - 列表',
     'index.table.price' => '售價',
     'index.table.productName' => '產品名稱',
@@ -15,9 +18,10 @@ return [
 
     'edit.publishAt'=> '發布日期',
 
-
     'create.title' => '簡品 - 新增',
     'create.productName'=> '產品名稱',
+
+
 
     'productSKU.index.title' => '產品SKU',
     'productSKU.index.table.price' => '售價',
@@ -30,4 +34,10 @@ return [
     'productSKU.create.title' => '產品SKU - 編輯',
     'productSKU.create.price' => '售價',
     'productSKU.create.SKUName' => 'SKU 名稱',
+
+    'productSupplier.index.title' => '供應商 - 列表',
+    'productSupplier.index.skuName' => 'SKU 名稱',
+    'productSupplier.index.sellPrice' => '售價',
+    'productSupplier.index.purchasePrice' => '採購價',
+    'productSupplier.edit.supplierName' => '供應商名稱',
 ];

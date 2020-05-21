@@ -141,7 +141,7 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    $('#modal-left .modal-title').html('供應商 - 列表');
+                    $('#modal-left .modal-title').html("{{__('member/product.productSupplier.index.title')}}");
                     $('#modal-left .modal-body').html(data.view);
                 },
                 error: function(data) {

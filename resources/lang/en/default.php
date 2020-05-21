@@ -20,7 +20,6 @@ return [
         'setting' => 'Setting',
         'logout' => 'Logout',
         'login' => 'Login',
-
         'join_at' => 'Join At',
         'member_info' => 'Member Info'
     ],
@@ -50,6 +49,7 @@ return [
             'info' => 'Info',
             'crud' => 'Action',
             'createdBy' => 'Created By',
+            'url' => 'Url Link',
             'price' => 'Price',
             'edit' => 'Edit',
             'delete' => 'Del'
@@ -69,7 +69,6 @@ return [
             'description' => 'Descriptiomn',
             'crud' => 'Operation',
             'save' => 'Save'
-
     ],
 
     'create'       => [
@@ -94,6 +93,7 @@ return [
         'delete_confirmBtn' => 'Delete',
         'delete_cancleBtn' => 'Cancel'
     ],
+
     'language' => [
         'en' => 'America',
         'cn' => 'China',
