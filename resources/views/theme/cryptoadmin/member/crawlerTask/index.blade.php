@@ -21,25 +21,35 @@
                         <div class="col">
                             <form class="form-control m-b-0 bg-color-lightblue">
                                 <div class="row">
-                                    <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.barcode')}}</label>
-                                    <div class="col-sm-2">
-                                        <input class="form-control" type="text" name="id_code" placeholder="{{__('member/crawlerTask.index.search.barcode')}}" value="{{request()->id_code}}">
+                                    <div class="col-sm-3 form-group">
+                                        <h5>{{__('member/crawlerTask.index.search.barcode')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="id_code" placeholder="{{__('member/crawlerTask.index.search.barcode')}}" value="{{request()->id_code}}">
+                                        </div>
                                     </div>
-                                    <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.taskName')}}</label>
-                                    <div class="col-sm-2">
-                                        <input class="form-control" type="text" name="ct_name" placeholder="{{__('member/crawlerTask.index.search.taskName')}}" value="{{request()->ct_name}}">
+    
+                                    <div class="col-sm-3 form-group">
+                                        <h5>{{__('member/crawlerTask.index.search.taskName')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="ct_name" placeholder="{{__('member/crawlerTask.index.search.taskName')}}" value="{{request()->ct_name}}">
+                                        </div>
                                     </div>
-                                    <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.domain_name')}}</label>
-                                    <div class="col-sm-2">
-                                        <input class="form-control" type="text" name="domain_name" placeholder="{{__('member/crawlerTask.index.search.domain_name')}}" value="{{request()->domain_name}}">
+    
+                                    <div class="col-sm-3 form-group">
+                                        <h5>{{__('member/crawlerTask.index.search.domain_name')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="domain_name" placeholder="{{__('member/crawlerTask.index.search.domain_name')}}" value="{{request()->domain_name}}">
+                                        </div>
                                     </div>
-                                    <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.description')}}</label>
-                                    <div class="col-sm-2">
-                                        <input class="form-control" type="text" name="description" placeholder="{{__('member/crawlerTask.index.search.description')}}" value="{{request()->description}}">
+    
+                                    <div class="col-sm-3 form-group">
+                                        <h5>{{__('member/crawlerTask.index.search.description')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="description" placeholder="{{__('member/crawlerTask.index.search.description')}}" value="{{request()->description}}">
+                                        </div>
                                     </div>
                                 </div>
                                 
-                    
                                 <div class="row">
                                     <div class="col-6">
                                         <a href="{{route('member.crawlerTask.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/crawlerTask.index.search.reset')}}</a>

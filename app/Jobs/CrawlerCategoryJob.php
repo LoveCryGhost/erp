@@ -42,8 +42,8 @@ class CrawlerCategoryJob implements ShouldQueue
         $this->shopeeHandler = new ShopeeHandler();
         //國家
         $sub_domain = current(explode('.', request()->getHost()));
-        if($sub_domain=='localhost' and $sub_domain == 'test'){
-            $params['pages'] = 2;
+        if($sub_domain=='localhost' or $sub_domain == 'test'){
+            $params['pages'] = 1;
             $params['limit_tasks']=1;
         }else{
             $params['pages'] = 30;
@@ -73,7 +73,8 @@ class CrawlerCategoryJob implements ShouldQueue
                 'display_name' => $category['display_name'],
                 'image' => $category['image'],
                 'locale' => $country_code,
-                'updated_at' => null
+                'updated_at' => null,
+                'created_at' => Carbon::now()
             ];
 
             //https://shopee.co.id/Makanan&Minuman-cat.157?page=0&sortBy=sales

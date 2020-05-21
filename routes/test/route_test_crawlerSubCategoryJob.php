@@ -28,7 +28,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
             ->take(config('crawler.insert_sub_category_qty'))->get();
 
         foreach($crawlerCategories as $crawlerCategory){
-            $url = 'https://'.$coutries[$crawlerCategory->local].'/api/v0/search/api/facet/?fe_categoryids='.$crawlerCategory->catid.'&page_type=search';
+            $url = 'https://'.$coutries[$crawlerCategory->locale].'/api/v0/search/api/facet/?fe_categoryids='.$crawlerCategory->catid.'&page_type=search';
             //'https://shopee.co.id/api/v0/search/api/facet/?fe_categoryids=32&page_type=search';
             $ClientResponse = $this->shopeeHandler->ClientHeader_Shopee($url);
             $json = json_decode($ClientResponse->getBody(), true);
@@ -40,7 +40,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                         'p_id' => $crawlerCategory->catid,
                         'display_name' => null,
                         'image' => null,
-                        'locale' => $crawlerCategory->local,
+                        'locale' => $crawlerCategory->locale,
                         'updated_at' => Carbon::now()
                     ];
                 }
@@ -51,7 +51,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                 $row_crawlerTasks[]=[
                     "is_active" => 1,
                     "ct_name" =>  'SubCategory-cat',
-                    "url" => "https://".$coutries[$crawlerCategory->local]."/SubCategory-cat.".$crawlerCategory->catid.'.'.$sub_category."?sortBy=sales",
+                    "url" => "https://".$coutries[$crawlerCategory->locale]."/SubCategory-cat.".$crawlerCategory->catid.'.'.$sub_category."?sortBy=sales",
                     "pages" => $params['pages'],
                     "description" => "",
                     'display_name' => 'SubCategory-cat'
@@ -124,7 +124,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                 $index++;
             }
             DB::table('crawler_categories')
-                ->where(['p_id'=>0, 'locale' => $crawlerCategory->local, 'catid'=> $crawlerCategory->catid])
+                ->where(['p_id'=>0, 'locale' => $crawlerCategory->locale, 'catid'=> $crawlerCategory->catid])
                 ->update(['updated_at'=> Carbon::now()]);
             dd(123);
         }

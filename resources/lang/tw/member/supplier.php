@@ -3,6 +3,7 @@ return [
     'index.title'       => '供應商 - 列表',
 
     'index.search.barcode' => '條碼',
+    'index.search.supplierName' => '供應商名稱',
     'index.search.supplierGroupName' => '供應商群組名稱',
     'index.search.submit' => '搜尋',
     'index.search.reset' => '重新收尋',
@@ -15,6 +16,7 @@ return [
     'index.table.is_active' => '啟用',
     'index.table.information' => '信息',
     'index.table.action' => '操作',
+    'index.table.contactPerson' => '聯絡人',
     'index.table.pic' => '建立者',
     'index.table.updated_at' => '更新於',
 
@@ -38,6 +40,7 @@ return [
 
     'create.title'       => '供應商 - 新增',
     'create.is_active'       => '啟用',
+    'create.supplierName'       => '供應商名稱',
     'create.supplierGroupName'       => '供應商群組名稱',
     'create.address'       => '公司地址',
     'create.warehouseAddress'       => '倉庫地址',

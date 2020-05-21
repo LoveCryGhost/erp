@@ -6,6 +6,7 @@ use App\Http\Requests\Member\ProductRequest;
 use App\Models\Product;
 use App\Repositories\Member\TypeRepository;
 use App\Services\Member\ProductService;
+use function app;
 use function request;
 
 
@@ -39,7 +40,7 @@ class SKUController extends MemberCoreController
         $query  = $this->filter_like($query,'id_code', $filters['id_code']);
         if(!empty($filters['sku_name'])){
             $query = $query->whereHas('all_skus', function ($q) use($filters) {
-                $q->where('sku_name', 'like', '%'.$filters['sku_name'].'%');
+                $q->whereTranslationLike('sku_name', '%'.$filters['sku_name'].'%', app()->getLocale());
             });
         }
 

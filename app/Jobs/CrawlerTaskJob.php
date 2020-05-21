@@ -60,7 +60,7 @@ class CrawlerTaskJob implements ShouldQueue
                         'sold' => $item['sold'] !== null ? $item['sold'] : 0,
                         'historical_sold' => $item['historical_sold'],
                         'domain_name' => $crawlerTask->domain_name,
-                        'locale' => $crawlerTask->local,
+                        'locale' => $crawlerTask->locale,
                         'member_id' => $member_id,
                         'updated_at' => null
                     ];
@@ -69,12 +69,12 @@ class CrawlerTaskJob implements ShouldQueue
                     $row_shops[] = [
                         'shopid' => $item['shopid'],
                         'shop_location' => "",
-                        'locale' => $crawlerTask->local,
+                        'locale' => $crawlerTask->locale,
                         'domain_name' => $crawlerTask->domain_name,
                         'member_id' => $member_id
                     ];
 
-                    $value_arr[] = [$item['itemid'], $item['shopid'], $crawlerTask->local];
+                    $value_arr[] = [$item['itemid'], $item['shopid'], $crawlerTask->locale];
                     $items_order[]=$item['itemid'];
                 };
 

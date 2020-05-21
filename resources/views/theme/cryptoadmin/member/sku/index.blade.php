@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <a href="{{route('member.product.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/supplierGroup.index.search.reset')}}</a>
+                                            <a href="{{route('member.sku.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/supplierGroup.index.search.reset')}}</a>
                                         </div>
                                         <div class="col-6">
                                             <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">{{__('member/supplierGroup.index.search.submit')}}</button>

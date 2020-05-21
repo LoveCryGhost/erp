@@ -29,7 +29,7 @@
                                                 <div class="box-bodym text-center">
                                                     <div>{{($crawlerTasks->currentPage()-1)*($crawlerTasks->perPage()) + $loop->iteration}}</div><br>
                                                     <a href="#">
-                                                        <img src="https://cf.{{$shopeeUrl[$crawlerTask->crawlerCategory2->local]}}/file/{{url($crawlerTask->crawlerCategory2->image)}}_tn"
+                                                        <img src="https://cf.{{$shopeeUrl[$crawlerTask->crawlerCategory2->locale]}}/file/{{url($crawlerTask->crawlerCategory2->image)}}_tn"
                                                              style="width:80px;"/>
                                                     </a>
                                             

@@ -49,9 +49,6 @@ class ShopeeHandler
                 $params['locale'] = 'th';
                 break;
 
-            case "shopee.com.my":
-                $params['locale'] = 'my';
-                break;
 
             default;
                 $params['locale'] = null;
@@ -142,6 +139,8 @@ class ShopeeHandler
             $query = $query->where('locale', 'id');
         }elseif($sub_domain=='th'){
             $query = $query->where('locale', 'th');
+        }elseif($sub_domain=='my'){
+            $query = $query->where('locale', 'my');
         }elseif($sub_domain=='test' or $sub_domain=='localhost' ){
             $query = $query;
         }else{
@@ -159,10 +158,10 @@ class ShopeeHandler
             $countries['id'] = 'shopee.co.id';
         }elseif($sub_domain=='th'){
             $countries['th'] = 'shopee.co.th';
-        }elseif($sub_domain=='my'){
-            $countries['my'] = 'shopee.my';
         }elseif($sub_domain=='localhost' or $sub_domain == 'test'){
-
+//            $countries['tw'] = 'shopee.tw';
+//            $countries['th'] = 'shopee.co.th';
+            $countries['id'] = 'shopee.co.id';
         }else{
             $countries[] = [];
         }
@@ -176,7 +175,6 @@ class ShopeeHandler
         $shopeeUrl['tw'] = 'shopee.tw';
         $shopeeUrl['th'] = 'shopee.co.th';
         $shopeeUrl['id'] = 'shopee.co.id';
-
         return $shopeeUrl;
 
     }

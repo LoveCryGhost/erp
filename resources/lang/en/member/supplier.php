@@ -3,7 +3,8 @@ return [
     'index.title'       => 'Supplier - List',
 
     'index.search.barcode' => 'Barcode',
-    'index.search.supplierGroupName' => 'Group Name',
+    'index.search.supplierName' => 'Supplier Name',
+    'index.search.supplierGroupName' => 'Supplier Group Name',
     'index.search.submit' => 'Search',
     'index.search.reset' => 'Reset',
 
@@ -15,6 +16,7 @@ return [
     'index.table.is_active' => 'Active',
     'index.table.information' => 'Info',
     'index.table.action' => 'Action',
+    'index.table.contactPerson' => 'Contact Person',
     'index.table.pic' => 'Created By',
     'index.table.updated_at' => 'Updated at',
 
@@ -38,6 +40,7 @@ return [
 
     'create.title'       => 'Supplier - Group Insert',
     'create.is_active'       => 'Active',
+    'create.supplierName'       => 'Supplier Name',
     'create.supplierGroupName'       => 'Group Name',
     'create.address'       => 'Company Address',
     'create.warehouseAddress'       => 'WH Address',

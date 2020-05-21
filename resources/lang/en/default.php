@@ -32,7 +32,13 @@ return [
         'refresh' => 'Refresh',
         'back' => 'Back'
     ],
+
     'index'       => [
+        'search' =>[
+            'contactPerson' => 'Contact Person',
+            'tel' => 'Tel',
+            'phone' => 'Phone'
+        ],
         'table' => [
             'no' => 'No.',
             'sort_order' => 'Sort Order',

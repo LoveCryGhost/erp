@@ -8,6 +8,8 @@ use App\Observers\SupplierContactObserver;
 use App\Services\Member\Supplier_ContactService;
 use App\Services\Member\SupplierGroupService;
 use App\Services\Member\SupplierService;
+use function app;
+use function request;
 
 
 class SuppliersController extends MemberCoreController
@@ -39,7 +41,17 @@ class SuppliersController extends MemberCoreController
 
     public function index()
     {
-        $suppliers = $this->supplierService->index();
+        $query = $this->supplierService->supplierRepo->builder();
+        $this->filters = [
+            's_name' => request()->s_name,
+            'id_code' => request()->id_code,
+            'sg_name' => request()->sg_name,
+            'sc_name' => request()->sc_name,
+            'tel' => request()->tel,
+            'phone' => request()->phone,
+        ];
+        $query = $this->index_filters($query, $this->filters);
+        $suppliers = $query->with(['supplierGroup','all_supplierContacts', 'member'])->paginate(10);
         return view(config('theme.member.view').'supplier.index', compact('suppliers'));
     }
 
@@ -66,4 +78,31 @@ class SuppliersController extends MemberCoreController
         return redirect()->route('member.supplier.index')->with('toast',  parent::$toast_destroy);
     }
 
+    public function index_filters($query, $filters)
+    {
+        $query  = $this->filter_like($query,'s_name', $filters['s_name']);
+        $query  = $this->filter_like($query,'id_code', $filters['id_code']);
+        if(!empty($filters['sg_name'])){
+            $query = $query->whereHas('supplierGroup', function ($q) use($filters) {
+                $q->where('sg_name', 'LIKE', '%'.$filters['sg_name'].'%');
+            });
+        }
+
+        if(!empty($filters['sc_name'])){
+            $query = $query->whereHas('all_supplierContacts', function ($q) use($filters) {
+                $q->where('sc_name', 'LIKE', '%'.$filters['sc_name'].'%');
+            });
+        }
+        if(!empty($filters['tel'])){
+            $query = $query->whereHas('all_supplierContacts', function ($q) use($filters) {
+                $q->where('tel', 'LIKE', '%'.$filters['tel'].'%');
+            });
+        }
+        if(!empty($filters['phone'])){
+            $query = $query->whereHas('all_supplierContacts', function ($q) use($filters) {
+                $q->where('phone', 'LIKE', '%'.$filters['phone'].'%');
+            });
+        }
+        return $query;
+    }
 }

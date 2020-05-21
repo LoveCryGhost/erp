@@ -44,8 +44,10 @@ class CrawlerItemSearchsController extends MemberCoreController
         $query = $this->index_filters($query, $this->filters);
 
         $crawlerItems = $query->paginate(10);
+
         $crawlerItem_total_records = $query->count();
         $crawlerItem_total_updated = $query->whereDate('updated_at','=',Carbon::today())->whereNotNull('updated_at')->count();
+
 
         //$crawlerItem_total_updated/$crawlerItem_total_records
         return view(config('theme.member.view').'crawlerItemSearch.index',
@@ -59,7 +61,7 @@ class CrawlerItemSearchsController extends MemberCoreController
                     'price_max' => request()->price_max,
                     'sold' => request()->sold, //月銷量
                     'historical_sold' => request()->historical_sold, //歷史銷量
-                    'locale' => request()->local
+                    'locale' => request()->locale
                 ]
             ]);
     }

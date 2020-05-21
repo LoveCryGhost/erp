@@ -21,42 +21,43 @@
 								<div class="row">
 								<div class="col-md-12">
 									<div class="row">
-										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.name')}}</label>
-										<div class="col-sm-2">
-											<input class="form-control" type="text" name="name" placeholder="{{__('member/crawlerItemSearch.index.search.name')}}" value="{{request()->name}}">
-										</div>
-										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.price')}}</label>
-										<div class="col-sm-4 form-control">
-											<input class="w-200" style="width: auto;" type="text" name="price_min" placeholder="{{__('member/crawlerItemSearch.index.search.price_min')}}" value="{{request()->price_min}}"> ~
-											<input class="w-200" style="width: auto;" type="text" name="price_max" placeholder="{{__('member/crawlerItemSearch.index.search.price_max')}}" value="{{request()->price_max}}">
+										<div class="col-sm-3 form-group">
+											<h5>{{__('member/crawlerItemSearch.index.search.name')}}</h5>
+											<div class="controls">
+												<input class="form-control" type="text" name="name" placeholder="{{__('member/crawlerItemSearch.index.search.name')}}" value="{{request()->name}}">
+											</div>
 										</div>
 									</div>
 									<div class="row">
 										{{--最低周銷量--}}
-										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.sold')}}</label>
-										<div class="col-sm-2">
-											<input class="form-control"  type="text" name="sold" placeholder="{{__('member/crawlerItemSearch.index.search.sold')}}" value="{{request()->sold}}">
+										<div class="col-sm-3 form-group">
+											<h5>{{__('member/crawlerItemSearch.index.search.sold')}}</h5>
+											<div class="controls">
+												<input class="form-control"  type="text" name="sold" placeholder="{{__('member/crawlerItemSearch.index.search.sold')}}" value="{{request()->sold}}">
+											</div>
 										</div>
 										
 										{{--最低歷史銷量--}}
-										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.historical_sold')}}</label>
-										<div class="col-sm-2">
-											<input class="form-control"  type="text" name="historical_sold" placeholder="{{__('member/crawlerItemSearch.index.search.historical_sold')}}" value="{{request()->historical_sold}}">
+										<div class="col-sm-3 form-group">
+											<h5>{{__('member/crawlerItemSearch.index.search.historical_sold')}}</h5>
+											<div class="controls">
+												<input class="form-control"  type="text" name="historical_sold" placeholder="{{__('member/crawlerItemSearch.index.search.historical_sold')}}" value="{{request()->historical_sold}}">
+											</div>
 										</div>
 										
 										{{--國家--}}
-										<label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.country')}}</label>
-										<div class="col-sm-1">
-											<input type="checkbox" class="" name="locale[tw]"  id="locale_tw" value="tw" {{isset(request()->locale['tw'])?  "checked":""}}>
-											<label for="locale_tw" class="text-dark m-t-5 ">{{__('member/crawlerItemSearch.index.search.language.tw')}}</label>
-										</div>
-										<div class="col-sm-1">
-											<input type="checkbox" class="permission_check" name="locale[id]"  id="locale_id" value="id" {{isset(request()->locale['id'])?  "checked":""}}>
-											<label for="locale_id" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.id')}}</label>
-										</div>
-										<div class="col-sm-1">
-											<input type="checkbox" class="permission_check" name="locale[th]"  id="locale_th" value="th" {{isset(request()->locale['th'])?  "checked":""}}>
-											<label for="locale_th" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.th')}}</label>
+										<div class="col-sm-3 form-group">
+											<h5>{{__('member/crawlerItemSearch.index.search.country')}}</h5>
+											<div class="controls">
+												<input type="checkbox" class="" name="locale[tw]"  id="locale_tw" value="tw" {{isset(request()->locale['tw'])?  "checked":""}}>
+												<label for="locale_tw" class="text-dark m-t-5 ">{{__('member/crawlerItemSearch.index.search.language.tw')}}</label>
+												
+												<input type="checkbox" class="permission_check" name="locale[id]"  id="locale_id" value="id" {{isset(request()->locale['id'])?  "checked":""}}>
+												<label for="locale_id" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.id')}}</label>
+												
+												<input type="checkbox" class="permission_check" name="locale[th]"  id="locale_th" value="th" {{isset(request()->locale['th'])?  "checked":""}}>
+												<label for="locale_th" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.th')}}</label>
+											</div>
 										</div>
 									</div>
 									

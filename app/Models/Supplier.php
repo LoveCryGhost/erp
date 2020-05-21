@@ -34,9 +34,19 @@ class Supplier extends Model
         return $this->belongsTo(Member::class, 'member_id', 'id');
     }
 
+    public function supplierGroup()
+    {
+        return $this->belongsTo(SupplierGroup::class, 'sg_id');
+    }
+
     public function supplierContacts($paginate=0)
     {
         return $this->hasMany(SupplierContact::class, 's_id')->orderBy('sort_order','ASC')->paginate($paginate);
+    }
+
+    public function all_supplierContacts()
+    {
+        return $this->hasMany(SupplierContact::class, 's_id')->orderBy('sort_order','ASC');
     }
 
     public function skus()

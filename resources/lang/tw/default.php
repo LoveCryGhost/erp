@@ -36,6 +36,11 @@ return [
     ],
 
     'index'       => [
+        'search' =>[
+            'contactPerson' => '聯絡人',
+            'tel' => '電話',
+            'phone' => '手機'
+        ],
         'table' => [
             'no' => '編號',
             'sort_order' => '排序',

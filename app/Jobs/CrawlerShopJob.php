@@ -47,7 +47,7 @@ class CrawlerShopJob implements ShouldQueue
                     'username' => $json['data']['account']['username'],
                     'shop_location' => $json['data']['shop_location'],
                     'domain_name' => $crawler_shop->domain_name,
-                    'locale' => $crawler_shop->local,
+                    'locale' => $crawler_shop->locale,
                     'member_id' => $member_id,
                     'updated_at'=>Carbon::now()
                 ];

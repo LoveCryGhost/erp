@@ -61,7 +61,7 @@ class CrawlerItemJob implements ShouldQueue
                         'sold' => $json['item']['sold']==null? 0: $json['item']['sold'],
                         'historical_sold' => $json['item']['historical_sold']==null? 0: $json['item']['historical_sold'],
                         'domain_name' => $crawler_item->domain_name,
-                        'locale' => $crawler_item->local,
+                        'locale' => $crawler_item->locale,
                         'member_id' => $member_id,
                         'updated_at'=> Carbon::now()
                     ];
@@ -138,7 +138,7 @@ class CrawlerItemJob implements ShouldQueue
 
             'sold' => $json['item']['sold'],
             'stock' => $json['item']['stock'],
-            'locale' => $crawler_item->local,
+            'locale' => $crawler_item->locale,
         ];
         $row_item_mode_details[] = [
             'shopid' => $json['item']['shopid'],

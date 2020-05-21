@@ -23,32 +23,31 @@
                 <div class="box-header">
                     <div class="row">
                         <div class="col">
-                            <form class="form-control m-b-0">
-                            
-                            <div class="row">
-                                <div class="col-sm-3 form-group">
-                                    <h5>Barcode</h5>
-                                    <div class="controls">
-                                        <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">
+                            <form class="form-control m-b-0 bg-color-lightblue">
+                                <div class="row">
+                                    <div class="col-sm-3 form-group">
+                                        <h5>Barcode</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">
+                                        </div>
+                                    </div>
+        
+                                    <div class="col-sm-3 form-group">
+                                        <h5>{{__('member/supplierGroup.index.search.supplierGroupName')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="sg_name" placeholder="{{__('member/supplierGroup.index.search.supplierGroupName')}}" value="{{request()->sg_name}}">
+                                        </div>
                                     </div>
                                 </div>
-    
-                                <div class="col-sm-3 form-group">
-                                    <h5>{{__('member/supplierGroup.index.search.supplierGroupName')}}</h5>
-                                    <div class="controls">
-                                        <input class="form-control" type="text" name="sg_name" placeholder="{{__('member/supplierGroup.index.search.supplierGroupName')}}" value="{{request()->sg_name}}">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="{{route('member.supplierGroup.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/supplierGroup.index.search.reset')}}</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">{{__('member/supplierGroup.index.search.submit')}}</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <a href="{{route('member.supplierGroup.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/supplierGroup.index.search.reset')}}</a>
-                                </div>
-                                <div class="col-6">
-                                    <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">{{__('member/supplierGroup.index.search.submit')}}</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
                         </div>
                     </div>
                 </div>
