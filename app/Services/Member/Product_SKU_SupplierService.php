@@ -44,7 +44,7 @@ class Product_SKU_SupplierService extends MemberCoreService implements MemberSer
     {
         $skuSupplier= $model;
         $sku = $this->skuRepo->getById($data['sku_id']);
-        //$skuSupplierPivot = $sku->skuSuppliers()->wherePivot('s_id',$skuSupplier->s_id)->first();
+//        $skuSupplierPivot = $sku->skuSuppliers()->wherePivot('s_id',$skuSupplier->s_id)->first();
         return  $sku->skuSuppliers()->updateExistingPivot(
             $skuSupplier->s_id , [
                     'sku_id' => $data['sku_id'],
