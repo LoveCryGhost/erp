@@ -42,7 +42,6 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>
-    
                                 @can('member.reportSKU.crawlerItemAanalysis')
                                     @php
                                         $qty = $crawlerItemSKU->sku_count();
@@ -50,7 +49,7 @@
                                     <a class="pointer"
                                        data-toggle="modal" data-target="#modal-right"
                                        onclick="crawler_item_sku_click(this, php_inject={{json_encode([
-                                                //'ct_i_id' => $data['ct_i_id'],
+                                                'ct_i_id' => isset($data['ct_i_id'])? $data['ct_i_id']:0,
                                                 'itemid' => $crawlerItemSKU->itemid,
                                                 'shopid' => $crawlerItemSKU->shopid,
                                                 'modelid' => $crawlerItemSKU->modelid])}})">

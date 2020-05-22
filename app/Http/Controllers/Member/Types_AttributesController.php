@@ -7,6 +7,7 @@ use App\Models\Attribute;
 use App\Services\Member\AttributeService;
 use App\Services\Member\Type_AttributeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class Types_AttributesController extends MemberCoreController
@@ -23,7 +24,9 @@ class Types_AttributesController extends MemberCoreController
     public function create(Request $request)
     {
 
-        $attributes = $this->type_attributeService->attributeRepo->builder()->all();
+        $attributes = $this->type_attributeService->attributeRepo->builder()
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->get();
         $view = view(config('theme.member.view').'type.attribute.md-create', compact('attributes'))->render();
         return [
             'errors' => '',

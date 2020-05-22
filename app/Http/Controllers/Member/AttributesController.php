@@ -36,7 +36,8 @@ class AttributesController extends MemberCoreController
 
     public function index()
     {
-        $attributes = $this->attributeService->index();
+        $query = $this->attributeService->attributeRepo->builder();
+        $attributes = $query->where('member_id', Auth::guard('member')->user()->id)->paginate(10);
         return view(config('theme.member.view').'attribute.index', compact('attributes'));
     }
 

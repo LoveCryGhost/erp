@@ -6,6 +6,7 @@ use App\Http\Requests\Member\ProductRequest;
 use App\Models\Product;
 use App\Repositories\Member\TypeRepository;
 use App\Services\Member\ProductService;
+use Illuminate\Support\Facades\Auth;
 use function app;
 use function request;
 
@@ -29,7 +30,9 @@ class SKUController extends MemberCoreController
             'sku_name' => request()->sku_name
         ];
         $query = $this->index_filters($query, $this->filters);
-        $products = $query->with(['type','all_skus', 'productThumbnails'])->paginate(10);
+        $products = $query->with(['type','all_skus', 'productThumbnails'])
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->paginate(10);
         return view(config('theme.member.view').'sku.index', compact('products'));
     }
 

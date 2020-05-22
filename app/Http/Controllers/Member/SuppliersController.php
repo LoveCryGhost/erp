@@ -8,6 +8,7 @@ use App\Observers\SupplierContactObserver;
 use App\Services\Member\Supplier_ContactService;
 use App\Services\Member\SupplierGroupService;
 use App\Services\Member\SupplierService;
+use Illuminate\Support\Facades\Auth;
 use function app;
 use function request;
 
@@ -27,7 +28,9 @@ class SuppliersController extends MemberCoreController
 
     public function create()
     {
-        $supplierGroups= $this->supplierGroupService->supplierGroupRepo->builder()->all();
+        $supplierGroups= $this->supplierGroupService->supplierGroupRepo->builder()
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->get();
         return view(config('theme.member.view').'supplier.create', compact('supplierGroups'));
     }
 
@@ -51,14 +54,18 @@ class SuppliersController extends MemberCoreController
             'phone' => request()->phone,
         ];
         $query = $this->index_filters($query, $this->filters);
-        $suppliers = $query->with(['supplierGroup','all_supplierContacts', 'member'])->paginate(10);
+        $suppliers = $query->with(['supplierGroup','all_supplierContacts', 'member'])
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->paginate(10);
         return view(config('theme.member.view').'supplier.index', compact('suppliers'));
     }
 
     public function edit(Supplier $supplier)
     {
         $this->authorize('update', $supplier);
-        $supplierGroups= $this->supplierGroupService->supplierGroupRepo->builder()->all();
+        $supplierGroups= $this->supplierGroupService->supplierGroupRepo->builder()
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->get();
         return view(config('theme.member.view').'supplier.edit', compact('supplier','supplierGroups'));
     }
 

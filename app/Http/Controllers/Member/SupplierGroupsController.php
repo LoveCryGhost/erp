@@ -7,6 +7,7 @@ use App\Http\Requests\Member\SupplierGroupRequest;
 use App\Models\SupplierGroup;
 use App\Services\Member\SupplierGroupService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use function request;
 
 
@@ -43,7 +44,9 @@ class SupplierGroupsController extends MemberCoreController
             'id_code' => request()->id_code,
         ];
         $query = $this->supplierGroupService->index_filters($query, $this->filters);
-        $supplierGroups = $query->paginate(10);
+        $supplierGroups = $query
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->paginate(10);
         return view(config('theme.member.view').'supplierGroup.index', [
                 'supplierGroups'=> $supplierGroups,
                 'filters' => $this->filters

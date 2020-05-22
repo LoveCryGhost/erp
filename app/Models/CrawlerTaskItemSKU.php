@@ -46,21 +46,12 @@ class CrawlerTaskItemSKU extends Model
         return $query;
     }
 
-
     public function NDaysSales($ndays = 30)
     {
         $CrawlerItemSKUs = $this->crawlerItemSKUDetails($ndays)->get();
         $first_day_sale =  $CrawlerItemSKUs->first()->sold;
         $last_day_sale =  $CrawlerItemSKUs->last()->sold;
         return $last_day_sale - $first_day_sale;
-
     }
 
-//    public function crawlerItemSKU()
-//    {
-//        return $this->belongsTo(CrawlerItemSKU::class)
-//            ->where('itemid', $this->itemid)
-//            ->where('shopid', $this->shopid)
-//            ->where('modelid', $this->modelid);
-//    }
 }

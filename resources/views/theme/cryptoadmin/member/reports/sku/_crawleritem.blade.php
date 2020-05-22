@@ -27,23 +27,22 @@
                                             <th>{{__('default.index.table.no')}}</th>
                                             <th>{{__('default.index.table.image')}}</th>
                                             <th>{{__('default.index.table.name')}}</th>
-                                            <th>{{__('member/product.productSupplier.index.sellPrice')}}</th>
-                                            <th>{{__('member/product.productSupplier.index.purchasePrice')}}</th>
-                                            <th>{{__('member/reports/skuCrawleritem.profitAnalysis')}}</th>
+                                            <th>{{__('default.index.table.price')}}</th>
                                             <th>{{__('default.create.info')}}</th>
                                             <th>{{__('default.index.table.crud')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php $index=1;@endphp
-                                        @foreach($skus as $sku)
+                                        @foreach($products as $product)
+                                            @foreach($product->all_skus as $sku)
                                             <tr>
                                                 <td>{{$index++}}</td>
                                                 <td><img class="item-image img-60 rounded" src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" /></td>
                                                 <td>
                                                     <span>
-                                                        {{$sku->product->p_name}}<br>
-                                                    <span class="font-size-12">{{$sku->product->id_code}}</span><br>
+                                                        {{$product->p_name}}<br>
+                                                    <span class="font-size-12">{{$product->id_code}}</span><br>
                                                     </span>
                                                     <span class="text-blue">
                                                         {{$sku->sku_name}}<br>
@@ -52,14 +51,6 @@
                                                 </td>
                                                 <td>{{$sku->price}}</td>
                                                 <td>
-                                                    @php
-                                                        $sku_pivot_supplier = $sku->skuSuppliers()->wherePivot('is_active',1)->first();
-                                                    @endphp
-                                                    @if($sku_pivot_supplier)
-                                                        {{$sku_pivot_supplier->pivot->sku_id}}<br>
-                                                        {{$sku_pivot_supplier->pivot->price}}
-                                                    @endif
-                                                <td class="text-left">
                                                     @php
                                                         $daySales7_total = 0;
                                                         $daySales30_total = 0;
@@ -89,17 +80,18 @@
                                                     <span class="btn btn-primary btn-lg" onclick="purchase_order_cart_item_add(this, php_inject={{json_encode(['sku_id' => $sku->sku_id])}});"><i class="fa fa-plus"></i></span>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         @endforeach
                                     </tbody>
                                 </table>
                                 {{--点击加载下一页的按钮--}}
                                 <div class="text-center">
                                     {{--判断到最后一页就终止, 否则 jscroll 又会从第一页开始一直循环加载--}}
-                                    @if( $skus->currentPage() == $skus->lastPage())
+                                    @if( $products->currentPage() == $products->lastPage())
                                         <span class="text-center text-muted">{{__('default.index.lazzyload_no_more_records')}}</span>
                                     @else
                                         {{-- 这里调用 paginator 对象的 nextPageUrl() 方法, 以获得下一页的路由 --}}
-                                        <a class="jscroll-next btn btn-outline-secondary btn-block rounded-pill" href="{{ $skus->appends($filters)->nextPageUrl() }}">
+                                        <a class="jscroll-next btn btn-outline-secondary btn-block rounded-pill" href="{{ $products->appends($filters)->nextPageUrl() }}">
                                             {{__('default.index.lazzyload_more_records')}}
                                         </a>
                                     @endif
@@ -129,7 +121,7 @@
                 nextSelector: 'a.jscroll-next:last',
                 contentSelector: '.infinite-scroll',
                 callback:function() {
-                    float_image(className="item-image", x=70, y=-10)
+                    float_image(className="item-image", x=90, y=-10)
                 }
             });
         });

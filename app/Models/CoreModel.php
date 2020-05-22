@@ -26,6 +26,4 @@ class CoreModel extends Model
             '('.implode(', ' ,$columns).') in ('.implode(', ', $values ).')'
         );
     }
-
-
 }

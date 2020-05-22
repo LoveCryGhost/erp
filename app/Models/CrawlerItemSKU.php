@@ -98,6 +98,7 @@ class CrawlerItemSKU extends Model
             'modelid' => $this->modelid
         ])->pluck('ct_i_id');
 
+        //dd( $this->itemid, $this->shopid,$this->modelid);
         $qty = CrawlerTask::where('member_id', Auth::guard('member')->user()->id)
                             ->join('ctasks_items', function($join) use($ct_i_ids)
                             {
