@@ -21,8 +21,12 @@ class CreateSkuSupplierTable extends Migration
             $table->bigInteger('s_id')->unsigned();
             $table->decimal('price',15,1)->unsigned()->default(999999999);
             $table->string('url')->nullable();
-//            $table->foreign('s_id')->references('s_id')->on('suppliers')->onDelete('cascade');
+
+            //為了翻譯使用
+            $table->unique(['sku_id', 's_id']);
             $table->foreign('sku_id')->references('sku_id')->on('skus')->onDelete('cascade');
+//            $table->foreign('s_id')->references('s_id')->on('suppliers')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -41,7 +41,8 @@ class SKU extends Model
     public function skuSuppliers()
     {
         return $this->belongsToMany(Supplier::class, 'skus_suppliers','sku_id','s_id')
-            ->withPivot(['ss_id', 'is_active', 'sort_order', 'price', 'url', 's_id'])
+            ->using(SKUSupplier::class)
+            ->withPivot(['ss_id', 'is_active', 'sort_order', 'url', 's_id'])
             ->withTimestamps();
     }
 

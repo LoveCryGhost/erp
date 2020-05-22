@@ -50,6 +50,15 @@ class CreateTranslationTable extends Migration
             $table->unique(['s_k_u_sku_id','locale']);
             $table->foreign('s_k_u_sku_id')->references('sku_id')->on('skus')->onDelete('cascade');
         });
+
+        Schema::create('sku_supplier_translations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->bigInteger('skus_suppliers_id')->unsigned();
+            $table->decimal('price',15,1)->default(999999999);
+            $table->string('locale')->index();
+            $table->unique(['skus_suppliers_id','locale']);
+            $table->foreign('skus_suppliers_id')->references('ss_id')->on('skus_suppliers')->onDelete('cascade');
+        });
     }
 
 
@@ -59,5 +68,6 @@ class CreateTranslationTable extends Migration
         Schema::dropIfExists('attribute_translations');
         Schema::dropIfExists('product_translations');
         Schema::dropIfExists('sku_translations');
+        Schema::dropIfExists('sku_supplier_translations');
     }
 }

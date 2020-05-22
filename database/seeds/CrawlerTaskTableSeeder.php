@@ -19,95 +19,95 @@ class CrawlerTaskTableSeeder extends Seeder
                 'description' => "",
                 'member_id' => 2
             ],
-            [
-                'ct_name' => 'Loyang Muffin',
-                'url' => 'https://shopee.co.id/search?keyword=Loyang Muffin&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 2
-            ],
-            [
-                'ct_name' => 'Loyang Loaf Pan',
-                'url' => 'https://shopee.co.id/search?keyword=Loyang Loaf Pan&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 2
-            ],
-            [
-                'ct_name' => 'Loyang Square Cake pan',
-                'url' => 'https://shopee.co.id/search?keyword=Loyang Square Cake pan&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 2
-            ],
-            [
-                'ct_name' => 'Loyang Round Cake',
-                'url' => 'https://shopee.co.id/search?keyword=Loyang Round Cake&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 2
-            ],
-
-            [
-                'ct_name' => 'SPRING FORM',
-                'url' => 'https://shopee.co.id/search?keyword=SPRING FORM&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 2
-            ],
-            [
-                'ct_name' => 'Loyang BONGPAS',
-                'url' => 'https://shopee.co.id/search?keyword=Loyang BONGPAS&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 2
-            ],
-            [
-                'ct_name' => 'Loyang Chiffon',
-                'url' => 'https://shopee.co.id/search?keyword=Loyang Chiffon&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 2
-            ],
-            [
-                'ct_name' => 'loyang tulban',
-                'url' => 'https://shopee.co.id/search?keyword=loyang tulban&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 2
-            ],
-            [
-                'ct_name' => 'Pizza pan',
-                'url' => 'https://shopee.co.id/search?keyword=Pizza pan&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 5
-            ],
-            [
-                'ct_name' => 'Loyang Muffin',
-                'url' => 'https://shopee.co.id/search?keyword=Loyang Muffin&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 5
-            ],
-            [
-                'ct_name' => 'Loyang Loaf Pan',
-                'url' => 'https://shopee.co.id/search?keyword=Loyang Loaf Pan&sortBy=sales',
-                'pages' => "6",
-                "sort_by" => "sales",
-                'description' => "",
-                'member_id' => 5
-            ],
+//            [
+//                'ct_name' => 'Loyang Muffin',
+//                'url' => 'https://shopee.co.id/search?keyword=Loyang Muffin&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 2
+//            ],
+//            [
+//                'ct_name' => 'Loyang Loaf Pan',
+//                'url' => 'https://shopee.co.id/search?keyword=Loyang Loaf Pan&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 2
+//            ],
+//            [
+//                'ct_name' => 'Loyang Square Cake pan',
+//                'url' => 'https://shopee.co.id/search?keyword=Loyang Square Cake pan&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 2
+//            ],
+//            [
+//                'ct_name' => 'Loyang Round Cake',
+//                'url' => 'https://shopee.co.id/search?keyword=Loyang Round Cake&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 2
+//            ],
+//
+//            [
+//                'ct_name' => 'SPRING FORM',
+//                'url' => 'https://shopee.co.id/search?keyword=SPRING FORM&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 2
+//            ],
+//            [
+//                'ct_name' => 'Loyang BONGPAS',
+//                'url' => 'https://shopee.co.id/search?keyword=Loyang BONGPAS&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 2
+//            ],
+//            [
+//                'ct_name' => 'Loyang Chiffon',
+//                'url' => 'https://shopee.co.id/search?keyword=Loyang Chiffon&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 2
+//            ],
+//            [
+//                'ct_name' => 'loyang tulban',
+//                'url' => 'https://shopee.co.id/search?keyword=loyang tulban&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 2
+//            ],
+//            [
+//                'ct_name' => 'Pizza pan',
+//                'url' => 'https://shopee.co.id/search?keyword=Pizza pan&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 5
+//            ],
+//            [
+//                'ct_name' => 'Loyang Muffin',
+//                'url' => 'https://shopee.co.id/search?keyword=Loyang Muffin&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 5
+//            ],
+//            [
+//                'ct_name' => 'Loyang Loaf Pan',
+//                'url' => 'https://shopee.co.id/search?keyword=Loyang Loaf Pan&sortBy=sales',
+//                'pages' => "6",
+//                "sort_by" => "sales",
+//                'description' => "",
+//                'member_id' => 5
+//            ],
 
 
         ];
