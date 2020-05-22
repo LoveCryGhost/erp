@@ -55,9 +55,11 @@ class CreateTranslationTable extends Migration
             $table->increments('id');
             $table->bigInteger('sku_id')->unsigned();
             $table->decimal('price',15,1)->default(999999999);
+
             $table->string('locale')->index();
             $table->unique(['sku_id','locale']);
             $table->foreign('sku_id')->references('ss_id')->on('skus_suppliers')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
