@@ -11,6 +11,8 @@ return [
     'index.table.price' => 'Price',
     'index.table.productName' => 'Product Name',
 
+
+
     'edit.title' => 'Product - Edit',
     'edit.productType'=> 'Product Type',
     'edit.productName'=> 'Product Name',
@@ -38,7 +40,9 @@ return [
     'productSupplier.index.title' => 'Supplier List',
     'productSupplier.index.skuName' => 'SKU Name',
     'productSupplier.index.sellPrice' => 'Sell Price',
-    'productSupplier.index.purchasePrice' => 'Purchase Price',
+    'productSupplier.index.purchasePrice' => 'Purchase Price<br>(pcs)',
+    'productSupplier.index.shippingCost' => 'Shipping Cost<br>(pcs)',
+    'productSupplier.index.profitPercentage' => 'Profit %',
     'productSupplier.edit.supplierName' => 'Supplier Name',
 
 ];

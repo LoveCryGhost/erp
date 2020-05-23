@@ -30,6 +30,12 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
     Route::get('/console',function (){
         $sub_domain = current(explode('.', request()->getHost()));
     });
+
+    Route::get('/subDomain',function (){
+        $sub_domain = current(explode('.', request()->getHost()));
+        dd($sub_domain);
+    });
+
     Route::get('/translation_create',function (){
         $sku = SKU::find(1);
 

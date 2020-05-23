@@ -28,9 +28,10 @@
                                             <th>{{__('default.index.table.image')}}</th>
                                             <th>{{__('default.index.table.name')}}</th>
                                             <th>{{__('member/product.productSupplier.index.sellPrice')}}</th>
-                                            <th>{{__('member/product.productSupplier.index.purchasePrice')}}</th>
+                                            <th>{!! __('member/product.productSupplier.index.purchasePrice')!!}</th>
+                                            <th>{!! __('member/product.productSupplier.index.shippingCost')!!}</th>
+                                            <th>{!! __('member/product.productSupplier.index.profitPercentage')!!}</th>
                                             <th>{{__('member/reports/skuCrawleritem.profitAnalysis')}}</th>
-                                            <th>{{__('default.create.info')}}</th>
                                             <th>{{__('default.index.table.crud')}}</th>
                                         </tr>
                                     </thead>
@@ -51,15 +52,29 @@
                                                 </span>
                                                 </td>
                                                 <td>{{$sku->price}}</td>
+                                                
+                                                {{--採購單價--}}
                                                 <td>
                                                     @php
                                                         $sku_pivot_supplier = $sku->skuSuppliers()->wherePivot('is_active',1)->first();
                                                     @endphp
                                                     @if($sku_pivot_supplier)
-                                                        {{$sku_pivot_supplier->pivot->sku_id}}<br>
                                                         {{$sku_pivot_supplier->pivot->price}}
                                                     @endif
-                                                <td class="text-left">
+                                                </td>
+                                                
+                                                {{--運費--}}
+                                                <td>{{$shippingCost=11}}</td>
+    
+                                                {{--利潤 %--}}
+                                                <td>
+                                                    @php $profit_per_unit = $sku->price - $sku_pivot_supplier->pivot->price - $shippingCost ; @endphp
+                                                    @if($sku->price>0)
+                                                        {{number_format($profit_per_unit/$sku->price*100, 1, ".", ",")}} %
+                                                    @endif
+                                                </td>
+                                                {{--訊息--}}
+                                                <td class="text-left" style="vertical-align: text-top">
                                                     @php
                                                         $daySales7_total = 0;
                                                         $daySales30_total = 0;
@@ -75,15 +90,24 @@
                                                             }
                                                         }
                                                     @endphp
-                                                    週銷量:
-                                                    {{$daySales7_total}}<br>
-                                                    月銷量:
-                                                    {{$daySales30_total}}<br>
-                                                    總銷量:
-                                                    {{$nDays_total}}<br>
-                                                    賣家數量:
-                                                    {{$sku->crawlerTaskItemSKU->count()}}
+                                                    {{__('member/reports/skuCrawleritem.index.table.weeklySellQty')}}: {{$daySales7_total}} --
+                                                    {{number_format($profit_per_unit,0,"",",")}} x {{$daySales7_total}} = {{number_format($profit_per_unit*$daySales7_total,0,"",",")}}
+                                                    <br>
+                                                    
+                                                    {{__('member/reports/skuCrawleritem.index.table.monthlySellQty')}}: {{$daySales30_total}} --
+                                                    {{number_format($profit_per_unit,0,"",",")}} x {{$daySales30_total}} = {{number_format($profit_per_unit*$daySales30_total,0,"",",")}}
+                                                    <br>
+                                                    
+                                                    {{__('member/reports/skuCrawleritem.index.table.totalSellQty')}}: {{$nDays_total}} --
+                                                    {{number_format($profit_per_unit,0,"",",")}} x {{$nDays_total}} = {{number_format($profit_per_unit*$nDays_total,0,"",",")}}
+                                                    <br>
+                                                    
+                                                    
+                                                    {{__('member/reports/skuCrawleritem.index.table.sellerQty')}}: {{$sku->crawlerTaskItemSKU->count()}}
                                                 </td>
+                                                
+                                               
+    
                                                 <td>
                                                     <input type="text" name="amount" id="amount">
                                                     <span class="btn btn-primary btn-lg" onclick="purchase_order_cart_item_add(this, php_inject={{json_encode(['sku_id' => $sku->sku_id])}});"><i class="fa fa-plus"></i></span>

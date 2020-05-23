@@ -11,6 +11,8 @@ return [
     'index.table.price' => '售價',
     'index.table.productName' => '產品名稱',
 
+
+
     'edit.title' => '產品 - 編輯',
     'edit.productType'=> '產品型態',
     'edit.productName'=> '產品名稱',
@@ -38,6 +40,10 @@ return [
     'productSupplier.index.title' => '供應商 - 列表',
     'productSupplier.index.skuName' => 'SKU 名稱',
     'productSupplier.index.sellPrice' => '售價',
-    'productSupplier.index.purchasePrice' => '採購價',
+    'productSupplier.index.purchasePrice' => '採購價<br>(pcs)',
+    'productSupplier.index.shippingCost' => '運費<br>(pcs)',
+    'productSupplier.index.profitPercentage' => '利潤 %',
+
+
     'productSupplier.edit.supplierName' => '供應商名稱',
 ];
