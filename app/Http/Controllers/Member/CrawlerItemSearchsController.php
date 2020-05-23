@@ -73,15 +73,33 @@ class CrawlerItemSearchsController extends MemberCoreController
         $query = $this->filter_like($query,'name', $filters['name']);
         $query = $this->filter_checkbox($query, 'locale', $filters['locale']);
 
-        if($filters['sold_min']>=0 and $filters['sold_max']>0 and $filters['sold_min'] < $filters['sold_max']){
+        if($filters['sold_min']>0 or $filters['sold_max']>0){
             if($filters['sold_min']==null){
                 $filters['sold_min']=0;
             }
+            if($filters['sold_max']==null){
+                $filters['sold_max']=0;
+            }
+            if($filters['sold_min'] > $filters['sold_max']){
+                $max = $filters['sold_min'];
+                $min = $filters['sold_max'];
+                request()['sold_min']= $min;
+                request()['sold_max']= $max;
+            }
             $query = $query->whereBetween('crawler_items.sold' ,  [ $filters['sold_min'],$filters['sold_max']]);
         }
-        if($filters['historical_sold_min']>=0 and $filters['historical_sold_max']>0 and $filters['historical_sold_min'] < $filters['historical_sold_max']){
+        if($filters['historical_sold_min']>0 or $filters['historical_sold_max']>0){
             if($filters['historical_sold_min']==null){
                 $filters['historical_sold_min']=0;
+            }
+            if($filters['historical_sold_max']==null){
+                $filters['historical_sold_max']=0;
+            }
+            if($filters['historical_sold_min'] > $filters['historical_sold_max']){
+                $max = $filters['historical_sold_min'];
+                $min = $filters['historical_sold_max'];
+                request()['historical_sold_min']= $min;
+                request()['historical_sold_max']= $max;
             }
             $query = $query->whereBetween('historical_sold', [ $filters['historical_sold_min'],  $filters['historical_sold_max']]);
         }
