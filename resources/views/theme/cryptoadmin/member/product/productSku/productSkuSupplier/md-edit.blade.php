@@ -79,6 +79,17 @@
                 </div>
     
                 <div class="form-group">
+                    <h5>{{__('default.edit.is_active')}}</h5>
+                    <div class="controls">
+                        <input type="checkbox"  class="permission_check" name="is_active" value="1" id="is_active_sku_supplier_pivot"
+                                {{$sku->skuSuppliers()->wherePivot('s_id',$skuSupplier->s_id)->first()->pivot->is_active==1? "checked":""}} >
+                        <label for="is_active_sku_supplier_pivot" class="text-dark p-0 m-0"></label>
+                    </div>
+                </div>
+                
+               
+                
+                <div class="form-group">
                     <h5>{{__('member/product.productSupplier.index.purchasePrice')}}</h5>
                     <div class="controls">
                         <input class="form-control" type="text" name="price" id="price" placeholder="price"
@@ -106,7 +117,7 @@
         //排序表格
         active_table_sortable(table_id="tbl-product-sku-supplier", eq_order_index=1, options={});
         //Switch
-        active_switch(switch_class='bt-switch', options=[]);
+        //active_switch(switch_class='bt-switch', options=[]);
 
         //檢查是否有重複的Attribute & 並將其設定成Disable
         $('#tbl-product-sku-supplier tbody tr').each(function () {
@@ -127,6 +138,7 @@
 
         var formData = new FormData();
         formData.append('_method', 'put');
+        formData.append('is_active', $('#is_active_sku_supplier_pivot').is(":checked"));
         formData.append('s_id', s_id);
         formData.append('sku_id', php_inject.models.sku.sku_id);
         formData.append('url', $('#url').val());

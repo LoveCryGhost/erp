@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\ProductThumbnail;
 use App\Models\SKU;
 use App\Models\SKUAttribute;
+use App\Models\SKUSupplier;
 use App\Models\Type;
 use Illuminate\Database\Seeder;
 
@@ -159,9 +160,24 @@ class ProductsTableSeeder extends Seeder
                         //SKU Supplier
                         $sku_suppliers =[
                             1 => ['price'=>523, 'url' => "http://www.google.com"],
-                            2 => ['price'=>521, 'url' => "http://www.baidu.cn"]
                         ];
-                        $SKU->skuSuppliers()->sync($sku_suppliers);
+                        //$SKU->skuSuppliers()->sync($sku_suppliers);
+                        foreach ($sku_suppliers as $s_id => $sku_supplier){
+                            $a = $SKU->skuSuppliers()->attach([
+                                $s_id => [
+                                    'is_active' => 1,
+                                    'random'=> rand(1,999999999999999)
+                                ]
+                            ]);
+                            $skuSupplier = SKUSupplier::latest()->first();
+
+                            $SKU->skuSuppliers()->updateExistingPivot(
+                                $s_id , [
+                                'is_active' => 1,
+                                'price' => rand(1,9),
+                                'random' => rand(1,999999999999999)
+                            ]);
+                        }
                     }
                 }
             }
@@ -238,10 +254,27 @@ class ProductsTableSeeder extends Seeder
 
                         //SKU Supplier
                         $sku_suppliers =[
-                            1 => ['price'=>123, 'url' => "http://www.google.com"],
-                            2 => ['price'=>321, 'url' => "http://www.baidu.cn"]
+                            2 => ['price'=>123, 'url' => "http://www.google.com"],
                         ];
-                        $SKU->skuSuppliers()->sync($sku_suppliers);
+                        //$SKU->skuSuppliers()->sync($sku_suppliers);
+                        foreach ($sku_suppliers as $s_id => $sku_supplier){
+
+                            $a =$SKU->skuSuppliers()->attach([
+                                $s_id => [
+                                    'is_active' => 1,
+                                    'price' => rand(1,9),
+                                    'random'=> rand(1,999999999999999)
+                                ]
+                            ]);
+
+                            $skuSupplier = SKUSupplier::latest()->first();
+                            $SKU->skuSuppliers()->updateExistingPivot(
+                                $s_id , [
+                                'is_active' => 1,
+                                'price' => rand(1,9),
+                                'random' => rand(1,999999999999999)
+                            ]);
+                        }
                     }
                 }
             }

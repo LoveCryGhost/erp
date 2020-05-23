@@ -75,6 +75,14 @@
                 </div>
     
                 <div class="form-group">
+                    <h5>{{__('default.edit.is_active')}}</h5>
+                    <div class="controls">
+                        <input type="checkbox"  class="permission_check" name="is_active" value="1" id="is_active_sku_supplier_pivot">
+                        <label for="is_active_sku_supplier_pivot" class="text-dark p-0 m-0"></label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
                     <h5>{{__('member/product.productSupplier.index.purchasePrice')}}</h5>
                     <div class="controls">
                         <input class="form-control" type="text" name="price" id="price" placeholder="price"
@@ -102,7 +110,7 @@
         //排序表格
         active_table_sortable(table_id="tbl-product-sku-supplier", eq_order_index=1, options={});
         //Switch
-        active_switch(switch_class='bt-switch', options=[]);
+        //active_switch(switch_class='bt-switch', options=[]);
 
         //檢查是否有重複的Attribute & 並將其設定成Disable
         $('#tbl-product-sku-supplier tbody tr').each(function () {
@@ -122,6 +130,7 @@
 
         var formData = new FormData();
         formData.append('s_id', s_id);
+        formData.append('is_active', $('#is_active_sku_supplier_pivot').is(":checked"));
         formData.append('sku_id', php_inject.models.sku.sku_id);
         formData.append('url', $('#url').val());
         formData.append('price', $('#price').val());
@@ -163,11 +172,8 @@
                 if (sku_supplier.is_active === 1) {
                     switch_btn_checked = "checked";
                 }
-                switch_btn = '<input type="checkbox" class="bt-switch" name="is_active"  value="1" ' + switch_btn_checked +
-                    '                                                   data-label-width="100%"' +
-                    '                                                   data-label-text="啟用"' +
-                    '                                                   data-on-text="On"    data-on-color="primary"' +
-                    '                                                   data-off-text="Off"  data-off-color="danger"/>';
+                switch_btn = '<input type="checkbox"  class="permission_check" name="is_active" value="1" id="is_active_sku_supplier_pivot" '+switch_btn_checked+' disabled>' +
+                        '                        <label for="is_active_sku_supplier_pivot" class="text-dark p-0 m-0"></label>';
 
                 price = sku_supplier.pivot.price;
                 url = '<a class="btn btn-sm btn-primary" href="' + sku_supplier.pivot.url + '" target="_blank"><i class="fa fa-link"></i></a>';

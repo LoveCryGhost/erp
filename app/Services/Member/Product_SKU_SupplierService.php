@@ -5,9 +5,11 @@ namespace App\Services\Member;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\Request;
 use App\Models\SKUAttribute;
+use App\Models\SKUSupplier;
 use App\Repositories\Member\ProductRepository;
 use App\Repositories\Member\SKURepository;
 use App\Repositories\Member\SupplierRepository;
+use function rand;
 
 class Product_SKU_SupplierService extends MemberCoreService implements MemberServiceInterface
 {
@@ -30,27 +32,54 @@ class Product_SKU_SupplierService extends MemberCoreService implements MemberSer
     public function store($data)
     {
         $sku = $this->skuRepo->getById($data['sku_id']);
-        return  $sku->skuSuppliers()->attach([
+
+        if($data['is_active']=="true"){
+            $data['is_active']=1;
+        }else{
+            $data['is_active']=0;
+        }
+        $a = $sku->skuSuppliers()->attach([
             "" => [
+                'is_active' => $data['is_active'],
                 'sku_id' => $data['sku_id'],
                 's_id' => $data['s_id'],
                 'price' => $data['price'],
-                'url' => $data['url']
+                'url' => $data['url'],
+                'random' => rand(1,999999999999999)
             ]
         ]);
+
+        $skuSupplier = SKUSupplier::latest()->first();
+        $sku->skuSuppliers()->updateExistingPivot(
+            $skuSupplier , [
+            'is_active' => $data['is_active'],
+            'sku_id' => $data['sku_id'],
+            's_id' => $data['s_id'],
+            'price' => $data['price'],
+            'url' => $data['url'],
+            'random' => rand(1,999999999999999)
+        ]);
+
+        return  [];
     }
 
     public function update($model, $data)
     {
         $skuSupplier= $model;
         $sku = $this->skuRepo->getById($data['sku_id']);
-//        $skuSupplierPivot = $sku->skuSuppliers()->wherePivot('s_id',$skuSupplier->s_id)->first();
+        if($data['is_active']=="true"){
+            $data['is_active']=1;
+        }else{
+            $data['is_active']=0;
+        }
         return  $sku->skuSuppliers()->updateExistingPivot(
             $skuSupplier->s_id , [
+                    'is_active' => $data['is_active'],
                     'sku_id' => $data['sku_id'],
                     's_id' => $data['s_id'],
                     'price' => $data['price'],
-                    'url' => $data['url']
+                    'url' => $data['url'],
+                    'random' => rand(1,999999999999999)
                 ]);
     }
 
