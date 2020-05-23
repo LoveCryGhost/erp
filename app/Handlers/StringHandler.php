@@ -73,7 +73,6 @@ class StringHandler
             $params['domain_name'] = $url_paths;
         }
 
-
         return $params;
     }
 

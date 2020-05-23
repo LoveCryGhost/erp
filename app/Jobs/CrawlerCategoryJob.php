@@ -45,9 +45,9 @@ class CrawlerCategoryJob implements ShouldQueue
         $sub_domain = explode('-', $sub_domain)[0];
         if($sub_domain=='localhost' or $sub_domain == 'test'){
             $params['pages'] = 1;
-            $params['limit_tasks']=1;
+            $params['limit_tasks']=100;
         }else{
-            $params['pages'] = 10;
+            $params['pages'] = 5;
             $params['limit_tasks']=1000;
         }
 
@@ -87,6 +87,14 @@ class CrawlerCategoryJob implements ShouldQueue
                 "description" => "",
                 'display_name' => $category['display_name']
             ];
+            $row_crawlerTasks[]=[
+                "is_active" => 1,
+                "ct_name" =>  $category['display_name'],
+                "url" => "https://".$country."/".$category['display_name']."-cat.".$category['catid']."?sortBy=sales&locations=-2",
+                "pages" => $params['pages'],
+                "description" => "",
+                'display_name' => $category['display_name']
+            ];
         }
         //Update CrawlerCategories
         $crawlerCategory = new CrawlerCategory();
@@ -122,7 +130,10 @@ class CrawlerCategoryJob implements ShouldQueue
 
             if(isset( $data['url_params']['gets']['locations'])){
                 $data['locations'] = $data['url_params']['gets']['locations'];
+            }else{
+                $data['locations'] = NULL;
             }
+
             if(isset( $data['url_params']['gets']['ratingFilter'])){
                 $data['ratingFilter'] = $data['url_params']['gets']['ratingFilter'];
             }
@@ -141,14 +152,16 @@ class CrawlerCategoryJob implements ShouldQueue
                 'category' => $data['category'],
                 'domain_name' => $data['domain_name'],
                 'locale' => $data['url_params']['locale'],
-                'sort_by' => $data['sort_by']
+                'sort_by' => $data['sort_by'],
+                'locations' => $data['locations']
             ],[
                 'is_active' => 1,
                 'ct_name' => 'Cat. - '.$row_crawlerTask['display_name'],
                 'website' => $data['url_params']['website'],
                 'url' => $data['url_params']['url'],
                 'member_id' => 1, //default 1
-                'pages' => $row_crawlerTask['pages']
+                'pages' => $row_crawlerTask['pages'],
+
             ]);
 
             $index++;
