@@ -42,11 +42,12 @@ class CrawlerCategoryJob implements ShouldQueue
         $this->shopeeHandler = new ShopeeHandler();
         //國家
         $sub_domain = current(explode('.', request()->getHost()));
+        $sub_domain = explode('-', $sub_domain)[0];
         if($sub_domain=='localhost' or $sub_domain == 'test'){
             $params['pages'] = 1;
             $params['limit_tasks']=1;
         }else{
-            $params['pages'] = 30;
+            $params['pages'] = 10;
             $params['limit_tasks']=1000;
         }
 
