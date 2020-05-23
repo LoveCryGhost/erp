@@ -83,7 +83,7 @@ class CrawlerItemSearchsController extends MemberCoreController
             if($filters['historical_sold_min']==null){
                 $filters['historical_sold_min']=0;
             }
-            $query = $query->where('historical_sold', [ $filters['historical_sold_max'],  $filters['historical_sold_max']]);
+            $query = $query->where('historical_sold', [ $filters['historical_sold_min'],  $filters['historical_sold_max']]);
         }
         return $query;
     }
