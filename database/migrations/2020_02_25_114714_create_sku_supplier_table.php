@@ -21,7 +21,7 @@ class CreateSkuSupplierTable extends Migration
             $table->bigInteger('s_id')->unsigned();
 //            $table->decimal('price',15,1)->unsigned()->default(999999999);
             $table->string('url')->nullable();
-            $table->bigInteger('random')->default(99999999999);
+            $table->bigInteger('random')->default(999999999999999);
 
             //為了翻譯使用
             $table->unique(['sku_id', 's_id']);

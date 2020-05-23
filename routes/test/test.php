@@ -5,6 +5,7 @@ use App\Jobs\CrawlerItemJob;
 use App\Models\CrawlerItem;
 use App\Models\Shoes\ShoesDB;
 use App\Models\SKU;
+use App\Models\SKUSupplier;
 use App\Models\Supplier;
 use App\Repositories\Member\MemberCoreRepository;
 use Carbon\Carbon;
@@ -30,18 +31,21 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         $sub_domain = current(explode('.', request()->getHost()));
     });
     Route::get('/translation_create',function (){
-        $sku = SKU::find(2);
+        $sku = SKU::find(1);
 
-        $sku->skuSuppliers()->attach([
-            "" => [
-                'sku_id' => $sku->sku_id,
-                's_id' => 3,
-                'price' => 444,
-                'url' => "xyz",
-                'random' => rand(1,99999999999999),
+        $a = $sku->skuSuppliers()->attach([
+            3 => [
+                'price' => rand(1,9),
+                'random'=> rand(1,999999999999999)
             ]
         ]);
 
+        $skuSupplier = SKUSupplier::latest()->first();
+        $sku->skuSuppliers()->updateExistingPivot(
+            $skuSupplier , [
+            'price' => rand(1,9),
+            'random' => rand(1,999999999999999)
+        ]);
     });
 
     Route::get('/translation_update',function (){
@@ -52,9 +56,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         $sku->skuSuppliers()->updateExistingPivot(
             $skuSupplier , [
             'price' => rand(1,9),
-            'sort_order' => rand(10,99),
-            'created_at' => \Illuminate\Support\Carbon::now(),
-            'updated_at' => \Illuminate\Support\Carbon::now()
+            'random' => rand(1,999999999999999)
         ]);
 
     });
