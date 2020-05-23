@@ -33,15 +33,19 @@
 										<div class="col-sm-3 form-group">
 											<h5>{{__('member/crawlerItemSearch.index.search.sold')}}</h5>
 											<div class="controls">
-												<input class="form-control"  type="text" name="sold" placeholder="{{__('member/crawlerItemSearch.index.search.sold')}}" value="{{request()->sold}}">
+												<input class="iform-control w-110" type="text" name="sold_min" placeholder="{{__('default.index.search.min')}}" value="{{request()->sold_min}}">
+												~
+												<input class="iform-control w-110"  type="text" name="sold_max" placeholder="{{__('default.index.search.max')}}" value="{{request()->sold_max}}">
 											</div>
 										</div>
 										
-										{{--最低歷史銷量--}}
+										{{--歷史銷量--}}
 										<div class="col-sm-3 form-group">
 											<h5>{{__('member/crawlerItemSearch.index.search.historical_sold')}}</h5>
 											<div class="controls">
-												<input class="form-control"  type="text" name="historical_sold" placeholder="{{__('member/crawlerItemSearch.index.search.historical_sold')}}" value="{{request()->historical_sold}}">
+												<input class="iform-control w-110" type="text" name="historical_sold_min" placeholder="{{__('default.index.search.min')}}" value="{{request()->historical_sold_min}}">
+												~
+												<input class="iform-control w-110"  type="text" name="historical_sold_max" placeholder="{{__('default.index.search.max')}}" value="{{request()->historical_sold_max}}">
 											</div>
 										</div>
 										

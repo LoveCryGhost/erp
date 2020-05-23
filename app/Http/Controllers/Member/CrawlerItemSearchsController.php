@@ -36,8 +36,10 @@ class CrawlerItemSearchsController extends MemberCoreController
             'name' => request()->name,
             'price_min' => request()->price_min,
             'price_max' => request()->price_max,
-            'sold' => request()->sold, //月銷量
-            'historical_sold' => request()->historical_sold, //歷史銷量
+            'sold_min' => request()->sold_min, //月銷量
+            'sold_max' => request()->sold_max, //月銷量
+            'historical_sold_min' => request()->historical_sold_min, //歷史銷量
+            'historical_sold_max' => request()->historical_sold_max, //歷史銷量
             'locale' => request()->locale
 
         ];
@@ -71,11 +73,17 @@ class CrawlerItemSearchsController extends MemberCoreController
         $query = $this->filter_like($query,'name', $filters['name']);
         $query = $this->filter_checkbox($query, 'locale', $filters['locale']);
 
-        if($filters['sold']>0){
-            $query = $query->where('crawler_items.sold' , '>=',  $filters['sold']);
+        if($filters['sold_min']>=0 and $filters['sold_max']>0 and $filters['sold_min'] < $filters['sold_max']){
+            if($filters['sold_min']==null){
+                $filters['sold_min']=0;
+            }
+            $query = $query->whereBetween('crawler_items.sold' ,  [ $filters['sold_min'],$filters['sold_max']]);
         }
-        if($filters['historical_sold']>0){
-            $query = $query->where('historical_sold' , '>=',  $filters['historical_sold']);
+        if($filters['historical_sold_min']>=0 and $filters['historical_sold_max']>0 and $filters['historical_sold_min'] < $filters['historical_sold_max']){
+            if($filters['historical_sold_min']==null){
+                $filters['historical_sold_min']=0;
+            }
+            $query = $query->where('historical_sold', [ $filters['historical_sold_max'],  $filters['historical_sold_max']]);
         }
         return $query;
     }
