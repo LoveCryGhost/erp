@@ -157,11 +157,11 @@ class ProductsTableSeeder extends Seeder
                         }
 
                         //SKU Supplier
-                        $sku_supplier =[
+                        $sku_suppliers =[
                             1 => ['price'=>523, 'url' => "http://www.google.com"],
                             2 => ['price'=>521, 'url' => "http://www.baidu.cn"]
                         ];
-                        $SKU->skuSuppliers()->sync($sku_supplier);
+                        $SKU->skuSuppliers()->sync($sku_suppliers);
                     }
                 }
             }
@@ -237,11 +237,11 @@ class ProductsTableSeeder extends Seeder
                         }
 
                         //SKU Supplier
-                        $sku_supplier =[
+                        $sku_suppliers =[
                             1 => ['price'=>123, 'url' => "http://www.google.com"],
                             2 => ['price'=>321, 'url' => "http://www.baidu.cn"]
                         ];
-                        $SKU->skuSuppliers()->sync($sku_supplier);
+                        $SKU->skuSuppliers()->sync($sku_suppliers);
                     }
                 }
             }
