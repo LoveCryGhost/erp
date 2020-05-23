@@ -152,6 +152,7 @@ class ShopeeHandler
     public function crawlerSeperator_coutnry()
     {
         $sub_domain = current(explode('.', request()->getHost()));
+        $sub_domain = explode('-', $sub_domain)[0];
         if($sub_domain=='tw'){
             $countries['tw'] = 'shopee.tw';
         }elseif($sub_domain=='id'){

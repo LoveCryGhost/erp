@@ -33,7 +33,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
 
     Route::get('/subDomain',function (){
         $sub_domain = current(explode('.', request()->getHost()));
-        dd($sub_domain);
+        dd($sub_domain, explode('-', $sub_domain)[0]);
     });
 
     Route::get('/translation_create',function (){
