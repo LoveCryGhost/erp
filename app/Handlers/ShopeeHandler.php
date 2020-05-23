@@ -166,7 +166,7 @@ class ShopeeHandler
         }else{
             $countries[] = [];
         }
-
+        dd($countries);
         return $countries;
 
     }
