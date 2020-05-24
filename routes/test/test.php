@@ -20,6 +20,7 @@ include('test_mh_erp.php');
 include('route_test_crawlerTaskJob.php');
 include('route_test_crawlerCategoryJob.php');
 include('route_test_crawlerSubCategoryJob.php');
+include('route_test_mysql.php');
 
 
 
