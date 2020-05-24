@@ -85,12 +85,13 @@ class Controller extends BaseController
 
         // min ~ max
         }elseif($min > 0 and $max > 0 ){
+
             if ($min < $max){
-                $query = $query->whereBetween('crawler_items.sold' ,  [$min,$max]);
+                $query = $query->whereBetween($column_name ,  [$min,$max]);
             }else{
                 request()['sold_min']= $max;
                 request()['sold_max']= $min;
-                $query = $query->whereBetween('crawler_items.sold' ,  [$max,$min]);
+                $query = $query->whereBetween($column_name ,  [$max,$min]);
             }
         }
 
