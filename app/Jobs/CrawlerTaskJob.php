@@ -50,7 +50,8 @@ class CrawlerTaskJob implements ShouldQueue
                 $ClientResponse = $this->shopeeHandler->ClientHeader_Shopee($url);
                 $json = json_decode($ClientResponse->getBody(), true);
 
-                $member_id = Auth::guard('member')->check() ? Auth::guard('member')->user()->id : '1';
+                //$member_id = Auth::guard('member')->check() ? Auth::guard('member')->user()->id : '1';
+                $member_id = $crawlerTask->member_id;
                 foreach ($json['items'] as $item) {
 
                     //商品資訊

@@ -32,7 +32,8 @@ class CrawlerTask extends Model
         'shippingOptions',
         'wholesale',
         'officialMall',
-        'description'
+        'description',
+        'member_id'
     ];
 
     protected $hidden = [
