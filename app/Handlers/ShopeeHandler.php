@@ -154,6 +154,9 @@ class ShopeeHandler
     {
         $sub_domain = current(explode('.', request()->getHost()));
         $sub_domain = explode('-', $sub_domain)[0];
+        if($sub_domain=='localhost' or $sub_domain == 'test'){
+            $sub_domain='id';
+        }
 
         if($sub_domain=='tw'){
             $countries['tw'] = 'shopee.tw';

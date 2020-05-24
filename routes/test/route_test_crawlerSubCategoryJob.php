@@ -8,125 +8,71 @@ use App\Models\CrawlerTask;
 use DB;
 Route::prefix('test') ->middleware('auth:admin')->group(function(){
     Route::get('crawlerSubCategoryJob',function () {
-        //組合Url連結組合
         $this->shopeeHandler = new ShopeeHandler();
-
         //國家
         $sub_domain = current(explode('.', request()->getHost()));
-        if($sub_domain=='localhost' or$sub_domain == 'test'){
+        $sub_domain = explode('-', $sub_domain)[0];
+
+        if($sub_domain=='localhost' or $sub_domain == 'test'){
             $params['pages'] = 1;
-            $params['limit_tasks']=1;
+            $params['limit_tasks']=6;
+            $sub_domain='id';
         }else{
-            $params['pages'] = 20;
+            $params['pages'] = 5;
             $params['limit_tasks']=1000;
         }
 
+        //找出要update的 CrawlerCategory
+        $crawlerCategory = CrawlerCategory::where('p_id',0)
+            ->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')
+            ->where('locale', $sub_domain) //國家
+            ->first();
 
-        $sub_domain = current(explode('.', request()->getHost()));
-        $coutries = $this->shopeeHandler->crawlerSeperator_coutnry();
-        $crawlerCategories = DB::table('crawler_categories')->where('p_id',0)->orWhereNull('updated_at')
-            ->take(config('crawler.insert_sub_category_qty'))->get();
+        if($crawlerCategory){
+            $countries = $this->shopeeHandler->crawlerSeperator_coutnry();
+            foreach ($countries as $country_code => $country){
+                //https://shopee.co.id/api/v0/search/api/facet/?match_id=157&page_type=search
+                $url = 'https://'.$country.'/api/v0/search/api/facet/?match_id='.$crawlerCategory->catid.'&page_type=search';
+                //$this->crawler_subCatergory($country_code, $country, $url, $params);
 
-        foreach($crawlerCategories as $crawlerCategory){
-            $url = 'https://'.$coutries[$crawlerCategory->locale].'/api/v0/search/api/facet/?fe_categoryids='.$crawlerCategory->catid.'&page_type=search';
-            //'https://shopee.co.id/api/v0/search/api/facet/?fe_categoryids=32&page_type=search';
-            $ClientResponse = $this->shopeeHandler->ClientHeader_Shopee($url);
-            $json = json_decode($ClientResponse->getBody(), true);
-            //dd($catid, $url, $json['facets']);
+                //Category url
+                //先找主Category 資料
+                $ClientResponse = $this->shopeeHandler->ClientHeader_Shopee($url);
+                $json = json_decode($ClientResponse->getBody(), true);
 
-                foreach($json['facets'][0]['category']['parent_category_name']['child_catids'] as $sub_category){
+                //寫入資料庫
+                foreach ($json['facets'][0]['category']['parent_category_name']['child_catids'] as $subCategory_id){
+                    $p_id = $json['facets'][0]['category']['parent_category_name']['catid'];
+                    $display_name = "subCategory";
                     $row_categories[]=[
-                        'catid' => $sub_category,
-                        'p_id' => $crawlerCategory->catid,
-                        'display_name' => null,
-                        'image' => null,
-                        'locale' => $crawlerCategory->locale,
-                        'updated_at' => Carbon::now()
+                        'catid' => $subCategory_id,
+                        'p_id' => $p_id,
+                        'display_name' => $display_name,
+                        'image' => "",
+                        'locale' => $country_code,
+                        'updated_at' =>  Carbon::now(),
+                        'created_at' => Carbon::now()
+                    ];
+
+                    //https://shopee.co.id/Makanan&Minuman-cat.157?page=0&sortBy=sales
+                    $row_crawlerTasks[]=[
+                        "is_active" => 1,
+                        "ct_name" =>  $display_name,
+                        "url" => "https://".$country."/".$display_name."-cat.".$p_id.".".$subCategory_id."?sortBy=sales",
+                        "pages" => $params['pages'],
+                        "description" => "",
+                        'display_name' => $display_name
+                    ];
+                    $row_crawlerTasks[]=[
+                        "is_active" => 1,
+                        "ct_name" =>  $display_name,
+                        "url" => "https://".$country."/".$display_name."-cat.".$p_id.".".$subCategory_id."?sortBy=sales&locations=-2",
+                        "pages" => $params['pages'],
+                        "description" => "",
+                        'display_name' => $display_name
                     ];
                 }
-
-
-
-                //https://shopee.co.id/Makanan&Minuman-cat.157?page=0&sortBy=sales
-                $row_crawlerTasks[]=[
-                    "is_active" => 1,
-                    "ct_name" =>  'SubCategory-cat',
-                    "url" => "https://".$coutries[$crawlerCategory->locale]."/SubCategory-cat.".$crawlerCategory->catid.'.'.$sub_category."?sortBy=sales",
-                    "pages" => $params['pages'],
-                    "description" => "",
-                    'display_name' => 'SubCategory-cat'
-                ];
-
-            dd($json['facets'], $row_categories);
-            //Update CrawlerCategories
-            $TF = (new MemberCoreRepository())->massUpdate( new CrawlerCategory(), $row_categories);
-
-
-            //建立CrawlerTask
-            $index=0;
-            foreach($row_crawlerTasks as $row_crawlerTask){
-                if($index >= $params['limit_tasks']){
-                    break;
-                }
-                $url_params = $this->shopeeHandler->shopee_url($row_crawlerTask['url']);
-                $data['url_params'] = $url_params;
-                $data['locale'] = $data['url_params']['locale'];
-                $data['domain_name'] = $data['url_params']['domain_name'];
-                if(isset( $data['url_params']['gets']['sortBy'])){
-                    $data['sort_by'] = $data['url_params']['gets']['sortBy'];
-                }else{
-                    $data['sort_by'] = 'relevancy';
-                }
-                if(isset( $data['url_params']['gets']['category'])){
-                    $data['category'] = $data['url_params']['gets']['category'];
-                }
-                if(isset( $data['url_params']['gets']['subcategory'])){
-                    $data['subcategory'] = $data['url_params']['gets']['subcategory'];
-                }
-                if(isset( $data['url_params']['gets']['keyword'])){
-                    $data['keyword'] = $data['url_params']['gets']['keyword'];
-                }
-
-                if(isset( $data['url_params']['gets']['order'])){
-                    $data['order'] = $data['url_params']['gets']['order'];
-                }
-
-                if(isset( $data['url_params']['gets']['locations'])){
-                    $data['locations'] = $data['url_params']['gets']['locations'];
-                }
-                if(isset( $data['url_params']['gets']['ratingFilter'])){
-                    $data['ratingFilter'] = $data['url_params']['gets']['ratingFilter'];
-                }
-                if(isset( $data['url_params']['gets']['facet'])){
-                    $data['facet'] = $data['url_params']['gets']['facet'];
-                }
-                if(isset( $data['url_params']['gets']['shippingOptions'])){
-                    $data['shippingOptions'] = $data['url_params']['gets']['shippingOptions'];
-                }
-                if(isset( $data['url_params']['gets']['officialMall'])){
-                    $data['officialMall'] = $data['url_params']['gets']['officialMall'];
-                }
-
-                //新增爬蟲任務
-                CrawlerTask::updateOrCreate([
-                    'category' => $data['category'],
-                    'domain_name' => $data['domain_name'],
-                    'locale' => $data['url_params']['locale'],
-                    'sort_by' => $data['sort_by']
-                ],[
-                    'is_active' => 1,
-                    'ct_name' => 'Cat. - '.$row_crawlerTask['display_name'],
-                    'website' => $data['url_params']['website'],
-                    'url' => $data['url_params']['url'],
-                    'member_id' => 1, //default 1
-                    'pages' => $row_crawlerTask['pages']
-                ]);
-                $index++;
             }
-            DB::table('crawler_categories')
-                ->where(['p_id'=>0, 'locale' => $crawlerCategory->locale, 'catid'=> $crawlerCategory->catid])
-                ->update(['updated_at'=> Carbon::now()]);
-            dd(123);
         }
 
 

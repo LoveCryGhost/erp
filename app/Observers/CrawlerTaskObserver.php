@@ -24,6 +24,7 @@ class CrawlerTaskObserver extends Observer
         if(Auth::guard('member')->user()!=null) {
             $crawlerTask->member_id = Auth::guard('member')->user()->id;
         }
+
         $crawlerTask->timestamps = false;
         $crawlerTask->created_at = now();
     }

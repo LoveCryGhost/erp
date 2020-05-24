@@ -34,7 +34,7 @@
                                             {{__('member/crawlerItem.index.search.pages')}}：{{$crawlerTask->pages}}<br>
                                         </div>
                                         <div class="col-md-3">
-                                            {{__('member/crawlerItem.index.search.url')}}：<a href="{{$crawlerTask->url}}" class="btn btn-sm btn-primary" target="_blank">{{__('member/crawlerItem.index.search.show_task_in_shopee')}}</a><br>
+                                            {{__('member/crawlerItem.index.search.url')}}：<a href="https://{{$crawlerTask->url}}" class="btn btn-sm btn-primary" target="_blank">{{__('member/crawlerItem.index.search.show_task_in_shopee')}}</a><br>
                                             {{__('member/crawlerItem.index.search.created_by')}}：{{$crawlerTask->member->name}}
                                         </div>
                                         <div class="col-md-3">
