@@ -25,7 +25,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         $skus = DB::table('skus')
                         ->select('skus.sku_id', 'skus.id_code as sku_code', 'skus.p_id')
                         ->where('skus.sku_id',1)
-                        ->leftJoin('sku_translations', function($join)
+                    ->leftJoin('sku_translations', function($join)
                         {
                             $join->on('sku_translations.s_k_u_sku_id', '=', 'skus.sku_id' )
                                 ->where('sku_translations.locale',app()->getLocale());
@@ -55,7 +55,37 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
 
                     ->join('supplier_groups', 'supplier_groups.sg_id', '=', 'suppliers.sg_id')
                         ->addSelect('supplier_groups.sg_name')
+
+                    //綁定sku crawlerItems
+                    ->leftJoin('psku_cskus', function($join){
+                        $join->on('psku_cskus.sku_id', '=', 'skus.sku_id');
+                    })
+
+                    //找crawlerItem - SKU
+                    ->leftJoin('citem_skus', function($join){
+                        $join->on('psku_cskus.itemid', '=', 'citem_skus.itemid')
+                            ->on('psku_cskus.shopid', '=', 'citem_skus.shopid')
+                            ->on('psku_cskus.modelid', '=', 'citem_skus.modelid');
+                    })
+                        ->addSelect('citem_skus.sold as monthly_sold') //個別
+
+                    ->leftJoin('crawler_items', function($join){
+                        $join->on('crawler_items.ci_id', '=', 'citem_skus.ci_id');
+                    })
+                        ->addSelect('crawler_items.historical_sold')//個別
+
+                    //利潤 其中 11為運費
+                    ->addSelect(DB::raw("(sku_translations.price - sku_supplier_translations.price - 11) as profit"))
+
+                    //群組
+//                    ->groupBy(['sku_id', 'sku_code','p_id','sell_price',
+//                                'p_code','m_price','t_price','sku_supplier_url',
+//                                'sku_supplier_purchase_price','sku_supplier_locale','s_name', 'sg_name'])
+//                    ->addSelect(DB::raw("SUM(citem_skus.sold) as total_monthly_sold"))
+//                    ->addSelect(DB::raw("SUM(crawler_items.historical_sold) as total_historical_sold"))
+//                    ->addSelect(DB::raw("count(citem_skus.sold) as total_seller"))
                     ->get();
+
         dd($skus);
     });
 });
