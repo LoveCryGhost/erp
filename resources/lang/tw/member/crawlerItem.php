@@ -87,7 +87,7 @@ return [
     'sku_detail.table.stock' =>  '庫存',
     'sku_detail.sale_qty' =>  '銷售數量',
 
-    'sku_detail.table.weekly_sale' =>  '周銷量',
+    'sku_detail.table.weekly_sale' =>  '週銷量',
     'sku_detail.table.monthly_sale' =>  '月銷量',
     'sku_detail.table.historic_sale' =>  '歷史銷量',
     'sku_detail.table.historic_sale_percentage' =>  '歷史銷量(%)',
