@@ -75,7 +75,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                         ->addSelect('crawler_items.historical_sold')//個別
 
                     //利潤 其中 11為運費
-                    ->addSelect(DB::raw("(sku_translations.price - sku_supplier_translations.price - 11) as profit"))
+                    ->addSelect(DB::raw("(sku_translations.price - sku_supplier_translations.price - 11) as profit "))
 
                     //群組
 //                    ->groupBy(['sku_id', 'sku_code','p_id','sell_price',
