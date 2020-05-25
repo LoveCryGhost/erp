@@ -102,11 +102,8 @@
                                                     {{number_format($profit_per_unit,0,"",",")}} x {{$nDays_total}} = {{number_format($profit_per_unit*$nDays_total,0,"",",")}}
                                                     <br>
                                                     
-                                                    
                                                     {{__('member/reports/skuCrawleritem.index.table.sellerQty')}}: {{$sku->crawlerTaskItemSKU->count()}}
                                                 </td>
-                                                
-                                               
     
                                                 <td>
                                                     <input type="text" name="amount" id="amount">

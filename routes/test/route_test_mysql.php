@@ -7,6 +7,7 @@ use App\Models\Shoes\ShoesModel;
 use App\Models\Shoes\ShoesOrder;
 use App\Models\Shoes\ShoesSupplier;
 use App\Models\SKU;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -23,8 +24,8 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
 
         //用DB::table('skus') 與 SKU 是有差別的
         $skus = DB::table('skus')
-                        ->select('skus.sku_id', 'skus.id_code as sku_code', 'skus.p_id')
-                        ->where('skus.sku_id',1)
+                        ->select('skus.sku_id as sku_id', 'skus.id_code as sku_code', 'skus.p_id')
+//                        ->where('skus.sku_id',1)
                     ->leftJoin('sku_translations', function($join)
                         {
                             $join->on('sku_translations.s_k_u_sku_id', '=', 'skus.sku_id' )
@@ -77,13 +78,25 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                     //利潤 其中 11為運費
                     ->addSelect(DB::raw("(sku_translations.price - sku_supplier_translations.price - 11) as profit "))
 
+//                    ->leftJoin('citem_sku_details', function($join){
+//                        $join->on('citem_sku_details.itemid', '=', 'citem_skus.itemid')
+//                            ->on('citem_sku_details.shopid', '=', 'citem_skus.shopid')
+//                            ->on('citem_sku_details.modelid', '=', 'citem_skus.modelid')
+//                            ->whereDate('citem_sku_details.created_at', '>=',Carbon::today()->subDays(6))
+//                            ->latest();
+//
+////                            ->whereRaw('answers.id IN (select MAX(a2.id) from answers as a2 join users as u2 on u2.id = a2.user_id group by u2.id)');
+//                    })
+                        //->addSelect('citem_sku_details.created_at as citem_sku_details_created_at')//個別
+                        //->addSelect(DB::raw("SUM(citem_sku_details.sold) as total_monthly_sold"))
+
                     //群組
-//                    ->groupBy(['sku_id', 'sku_code','p_id','sell_price',
-//                                'p_code','m_price','t_price','sku_supplier_url',
-//                                'sku_supplier_purchase_price','sku_supplier_locale','s_name', 'sg_name'])
-//                    ->addSelect(DB::raw("SUM(citem_skus.sold) as total_monthly_sold"))
-//                    ->addSelect(DB::raw("SUM(crawler_items.historical_sold) as total_historical_sold"))
-//                    ->addSelect(DB::raw("count(citem_skus.sold) as total_seller"))
+                    ->groupBy(['sku_id', 'sku_code','p_id','sell_price',
+                                'p_code','m_price','t_price','sku_supplier_url',
+                                'sku_supplier_purchase_price','sku_supplier_locale','s_name', 'sg_name'])
+                    ->addSelect(DB::raw("SUM(citem_skus.sold) as total_monthly_sold"))
+                    ->addSelect(DB::raw("SUM(crawler_items.historical_sold) as total_historical_sold"))
+                    ->addSelect(DB::raw("count(citem_skus.sold) as total_seller"))
                     ->get();
 
         dd($skus);
