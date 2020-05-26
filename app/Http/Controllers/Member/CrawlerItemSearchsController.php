@@ -25,7 +25,6 @@ class CrawlerItemSearchsController extends MemberCoreController
             'destroy',
             'show'];
         $this->coreMiddleware('CrawlerItemSearchsController',$guard='member', $route="crawlerItemSearch", $actions);
-
     }
 
     public function index()
