@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTranslationTable extends Migration
 {
-
     public function up()
     {
         Schema::create('type_translations', function (Blueprint $table) {
@@ -34,28 +33,29 @@ class CreateTranslationTable extends Migration
             $table->bigInteger('product_p_id')->unsigned();
             $table->string('p_name');
             $table->string('p_description')->nullable();
-
+            $table->decimal('tax_percentage',10,1)->default(999999999);
+            $table->string('custom_code')->nullable();
             $table->string('locale')->index();
             $table->unique(['product_p_id','locale']);
             $table->foreign('product_p_id')->references('p_id')->on('products')->onDelete('cascade');
         });
+
 
         Schema::create('sku_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('s_k_u_sku_id')->unsigned();
             $table->string('sku_name');
             $table->decimal('price',15,1)->default(999999999);
-
             $table->string('locale')->index();
             $table->unique(['s_k_u_sku_id','locale']);
             $table->foreign('s_k_u_sku_id')->references('sku_id')->on('skus')->onDelete('cascade');
         });
 
+
         Schema::create('sku_supplier_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('sku_id')->unsigned();
             $table->decimal('price',15,1)->default(999999999);
-
             $table->string('locale')->index();
             $table->unique(['sku_id','locale']);
             $table->foreign('sku_id')->references('ss_id')->on('skus_suppliers')->onDelete('cascade');

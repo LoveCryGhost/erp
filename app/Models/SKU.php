@@ -16,7 +16,16 @@ class SKU extends Model
 
     protected $with = ['skuAttributes','skuSuppliers'];
     protected $fillable = [
-        'p_id', 'thumbnail', 'is_active'
+        'p_id', 'thumbnail', 'is_active',
+        'length_pcs',
+        'width_pcs',
+        'height_pcs',
+        'weight_pcs',
+        'length_box',
+        'width_box',
+        'height_box',
+        'weight_box',
+        'pcs_per_box',
     ];
 
     public $translatedAttributes = ['sku_name', 'price'];

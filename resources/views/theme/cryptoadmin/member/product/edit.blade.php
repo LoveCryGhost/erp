@@ -80,6 +80,19 @@
                                         </div>
     
                                         <div class="form-group">
+                                            <h5>{{__('member/product.edit.tax_percentage')}}</h5>
+                                            <div class="controls">
+                                                <input class="form-control" type="text" name="tax_percentage" placeholder="{{__('member/product.edit.tax_percentage')}}"  value="{{$product->tax_percentage}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <h5>{{__('member/product.edit.custom_code')}}</h5>
+                                            <div class="controls">
+                                                <input class="form-control" type="text" name="custom_code" placeholder="{{__('member/product.edit.custom_code')}}"  value="{{$product->custom_code}}">
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-group">
                                             <h5>{{__('member/product.edit.productDescription')}}</h5>
                                             <div class="controls">
                                                 <textarea class="form-control" type="text" name="p_description" placeholder="{{__('member/product.edit.productDescription')}}">{{$product->p_description}}</textarea>

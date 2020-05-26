@@ -20,7 +20,7 @@ class Product extends CoreModel implements TranslatableContract
         'is_active'
     ];
 
-    public $translatedAttributes = ['p_name', 'p_description'];
+    public $translatedAttributes = ['p_name', 'p_description', 'tax_percentage', 'custom_code'];
 
     protected $casts = [
     ];

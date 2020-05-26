@@ -86,7 +86,7 @@
                                                 <a href="#"><strong>{{$product->p_name}}</strong></a><br>
                                             </p>
                                         </td>
-                                        <td>
+                                        <td class="text-left">
                                             @foreach($product->productThumbnails as $productThumbnail)
                                                 <img class="product-thumbnail" data-img-group="{{$product->p_id}}"  src="{{asset($productThumbnail->path)}}"
                                                      data-toggle="modal" data-target="#modal-md" onclick="show_product_thumbnails(this,php_inject={{json_encode(['product_thumbnail' => $productThumbnail])}})" />

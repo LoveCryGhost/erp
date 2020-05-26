@@ -31,26 +31,8 @@
                 <div class="form-group">
                     <h5>{{__('member/product.productSKU.edit.SKUName')}}</h5>
                     <div class="controls">
-                        <input class="form-control" type="text" name="sku_name" id="sku_name" placeholder="sku_name"  value="{{$sku->sku_name}}">
+                        <input class="form-control" type="text" name="sku_name" id="sku_name" placeholder="{{__('member/product.productSKU.edit.SKUName')}}"  value="{{$sku->sku_name}}">
                     </div>
-                </div>
-    
-             
-                @foreach($sku->skuAttributes as $skuAttribute)
-        
-                    <div class="form-group">
-                        <h5>{{$skuAttribute->attribute->a_name}}</h5>
-                        <div class="controls">
-                            <input class="form-control attributes" type="text" name="sku_attributes[{{$skuAttribute->a_id}}]" placeholder=""  value="{{$skuAttribute->a_value}}">
-                        </div>
-                    </div>
-                @endforeach
-    
-                <div class="form-group">
-                    <a href="#" class="btn btn-success form-control"
-                       onclick="event.preventDefault();
-                               md_product_sku_update(this, php_inject={{json_encode([ 'models' => ['sku' => $sku]])}});">
-                        <i class="fa fa-save"></i> {{__('default.edit.save')}}</a>
                 </div>
             </div>
             <div class="col-2">
@@ -61,6 +43,111 @@
                             <img id="sku_thumbnail_img" class="rounded img-fluid mx-auto d-block max-w-150" style="cursor: pointer;" src="{{$sku->thumbnail? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" width="200px">
                         </label>
                     </div>
+                </div>
+            </div>
+    
+            <div class="col-12">
+                <div class="box-body p-0">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"> <a class="nav-link active"  data-toggle="tab" href="#attributes" role="tab" aria-selected="false"><span><i class="fa fa-paw mr-15"></i>{{__('member/product.productSKU.create.attribute')}}</span></a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#dimenssion" role="tab" aria-selected="false"><span><i class="fa fa-cube mr-15"></i>{{__('member/product.productSKU.create.dimenssion')}}</span></a> </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content tabcontent-border">
+                        <div class="tab-pane active" id="attributes" role="tabpanel">
+                            <div class="p-15">
+                                @foreach($sku->skuAttributes as $skuAttribute)
+        
+                                    <div class="form-group">
+                                        <h5>{{$skuAttribute->attribute->a_name}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control attributes" type="text" name="sku_attributes[{{$skuAttribute->a_id}}]" placeholder=""  value="{{$skuAttribute->a_value}}">
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="dimenssion" role="tabpanel">
+                            <div class="row p-10">
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.productSKU.create.length_pcs')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="length_pcs" id="length_pcs"  placeholder="{{__('member/product.productSKU.create.length_pcs')}}"  value="{{$sku->length_pcs}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.productSKU.create.length_pcs')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="length_box" id="length_box"  placeholder="{{__('member/product.productSKU.create.length_box')}}"  value="{{$sku->length_box}}">
+                                        </div>
+                            
+                                    </div>
+                        
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.productSKU.create.width_pcs')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="width_pcs" id="width_pcs"  placeholder="{{__('member/product.productSKU.create.width_pcs')}}"  value="{{$sku->width_pcs}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.productSKU.create.width_box')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="width_box" id="width_box"  placeholder="{{__('member/product.productSKU.create.width_box')}}"  value="{{$sku->width_box}}">
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.productSKU.create.height_pcs')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="height_pcs" id="height_pcs"  placeholder="{{__('member/product.productSKU.create.height_pcs')}}"  value="{{$sku->height_pcs}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.productSKU.create.height_box')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="height_box" id="height_box"  placeholder="{{__('member/product.productSKU.create.height_box')}}"  value="{{$sku->height_box}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.productSKU.create.weight_pcs')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="weight_pcs" id="weight_pcs"  placeholder="{{__('member/product.productSKU.create.weight_pcs')}}"  value="{{$sku->weight_pcs}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.productSKU.create.weight_box')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="weight_box" id="weight_box"  placeholder="{{__('member/product.productSKU.create.weight_box')}}"  value="{{$sku->weight_box}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.productSKU.create.pcs_per_box')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="pcs_per_box" id="pcs_per_box"  placeholder="{{__('member/product.productSKU.create.pcs_per_box')}}"  value="{{$sku->pcs_per_box}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <a href="#" class="btn btn-success form-control"
+                       onclick="event.preventDefault();
+                               md_product_sku_update(this, php_inject={{json_encode([ 'models' => ['sku' => $sku]])}});">
+                        <i class="fa fa-save"></i> {{__('default.edit.save')}}</a>
                 </div>
             </div>
         </div>
@@ -80,6 +167,17 @@
         formData.append('thumbnail', $('#sku_thumbnail')[0].files[0]);
         formData.append('is_active', $('#is_active_{{$sku->id_coode}}').prop('checked'));
         formData.append('sku_name', $('#sku_name').val());
+        
+        formData.append('length_pcs', $('#length_pcs').val());
+        formData.append('width_pcs', $('#width_pcs').val());
+        formData.append('height_pcs', $('#height_pcs').val());
+        formData.append('weight_pcs', $('#weight_pcs').val());
+        formData.append('pcs_per_box', $('#pcs_per_box').val());
+        formData.append('length_box', $('#length_box').val());
+        formData.append('width_box', $('#width_box').val());
+        formData.append('height_box', $('#height_box').val());
+        formData.append('weight_box', $('#weight_box').val());
+        
         //數性值
         $(".attributes").each(function(){
             //取得元素
