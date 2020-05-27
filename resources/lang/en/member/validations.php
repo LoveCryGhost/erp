@@ -1,8 +1,8 @@
 <?php
 return [
 
-    'required' => 'Can Not Be Empty',
-    'numeri' => 'Should be Number Format',
+    'required' => ' Can Not Be Empty',
+    'numeri' => ' Should be Number Format',
 
 
 

@@ -1,8 +1,8 @@
 <?php
 return [
 
-    'required' => '不能為空',
-    'numeri' => '必須為數字格式',
+    'required' => ' 不能為空',
+    'numeri' => ' 必須為數字格式',
 
 
 
