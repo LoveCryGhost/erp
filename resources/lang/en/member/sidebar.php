@@ -14,6 +14,8 @@ return [
     'product.type' => "Product Type",
     'product.product' => "Product",
     'product.sku' => "SKU",
+    'product.plusSku' => "Product + SKU",
+    'sku.plusSupplier' => "SKU + Supplier",
 
     //Shopee
     'shopee.ul' => "Shopee Module",

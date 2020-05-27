@@ -15,6 +15,8 @@ return [
     'product.type' => "產品型態",
     'product.product' => "產品",
     'product.sku' => "SKU",
+    'product.plusSku' => "產品 + SKU",
+    'sku.plusSupplier' => "SKU + 供應商",
 
     //Shopee
     'shopee.ul' => "Shopee 模組",

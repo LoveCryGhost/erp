@@ -47,6 +47,11 @@ Route::prefix('')->middleware('auth:member')->namespace('Member')->group(functio
             //PurchaseOrderCartItem
             Route::post('purchaseOrderCartItem_add', 'PurchaseOrderCartItemsController@add')->name('purchaseOrderCartItem.add');
             Route::get('purchaseOrderCartItem_index', 'PurchaseOrderCartItemsController@index')->name('purchaseOrderCartItem.index');
+
+
+            //快速
+            Route::resource('productPlusSKU', 'ProductPlusSKUController');
+            Route::resource('skuPlusSupplier', 'SkuPlusSupplierController');
         });
 
         //Member - Report
