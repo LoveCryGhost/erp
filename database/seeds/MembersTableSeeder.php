@@ -66,6 +66,12 @@ class MembersTableSeeder extends Seeder
         $member->save();
 
         $member = Member::find(6);
+        $member->name = 'Andy';
+        $member->email = 'andy@app.com';
+        $member->avatar = '';
+        $member->save();
+
+        $member = Member::find(7);
         $member->name = 'risca';
         $member->email = 'risca@app.com';
         $member->avatar = '';
