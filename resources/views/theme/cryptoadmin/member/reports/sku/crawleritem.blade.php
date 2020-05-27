@@ -41,7 +41,7 @@
                                         <tr>
                                             @php
                                                 //運費
-													$cbm_price = $sku->skuSuppliers()->wherePivot('is_active',1)->first()->supplierGroup->cbm_price;
+													$cbm_price = 0;//$sku->skuSuppliers()->wherePivot('is_active',1)->first()->supplierGroup->cbm_price;
 													$volume_pcs = $sku->length_pcs * $sku->width_pcs * $sku->heigth_pcs ;
 													$shippingCost=($volume_pcs/1000000)*$cbm_price;
 													
