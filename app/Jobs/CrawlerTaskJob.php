@@ -83,29 +83,29 @@ class CrawlerTaskJob implements ShouldQueue
                     //批量儲存Item
                     $crawlerItem = new CrawlerItem();
                     $TF = (new MemberCoreRepository())->massUpdate($crawlerItem, $row_items);
+
+                    //這次抓到的商品id 還有順序
+                    $crawlerItem_ids = CrawlerItem::whereInMultiple(['itemid', 'shopid', 'locale'], $value_arr)
+                        ->pluck('ci_id', 'itemid');
+
+                    $insert_item_qty = config('crawler.insert_item_qty');
+                    $index=$crawlerTask->current_page*$insert_item_qty + 1;
+                    foreach ($items_order as $itemid){
+                        $sync_ids[$crawlerItem_ids[$itemid]]= ['sort_order'=>$index++];
+                    }
+
+                    //Sync刪除並更新
+                    if($crawlerTask->current_page == 0) {
+                        $crawlerTask->crawlerItems()->sync($sync_ids);
+                    }else{
+                        $crawlerTask->crawlerItems()->syncwithoutdetaching($sync_ids);
+                    }
+
+                    //批量儲存Shop
+                    $crawlerShop = new CrawlerShop();
+                    $TF = (new MemberCoreRepository())->massUpdate($crawlerShop, $row_shops);
                 }
 
-
-                //這次抓到的商品id 還有順序
-                $crawlerItem_ids = CrawlerItem::whereInMultiple(['itemid', 'shopid', 'locale'], $value_arr)
-                    ->pluck('ci_id', 'itemid');
-
-                $insert_item_qty = config('crawler.insert_item_qty');
-                $index=$crawlerTask->current_page*$insert_item_qty + 1;
-                foreach ($items_order as $itemid){
-                    $sync_ids[$crawlerItem_ids[$itemid]]= ['sort_order'=>$index++];
-                }
-
-                //Sync刪除並更新
-                if($crawlerTask->current_page == 0) {
-                    $crawlerTask->crawlerItems()->sync($sync_ids);
-                }else{
-                    $crawlerTask->crawlerItems()->syncwithoutdetaching($sync_ids);
-                }
-
-                //批量儲存Shop
-                $crawlerShop = new CrawlerShop();
-                $TF = (new MemberCoreRepository())->massUpdate($crawlerShop, $row_shops);
             }
 
             $crawlerTask->current_page++;
