@@ -40,6 +40,8 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$sku->sku_name}}<br>
                                         {{$sku->id_code}}
+                                        <input text="type" hidden name="product_skus[ids][]"  value="{{$sku->sku_id}}">
+                                        <input text="type" hidden name="product_skus[id_code][]"  value="{{$sku->id_code}}">
                                     </td>
                                     <td>
                                         <img src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" class="product-sku-thumbnail"

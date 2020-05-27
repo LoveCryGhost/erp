@@ -16,6 +16,7 @@ class SKU extends Model
 
     protected $with = ['skuAttributes','skuSuppliers'];
     protected $fillable = [
+        'sort_order',
         'p_id', 'thumbnail', 'is_active',
         'length_pcs',
         'width_pcs',

@@ -10,6 +10,7 @@ class CreateSkusTable extends Migration
     {
         Schema::create('skus', function (Blueprint $table) {
             $table->bigIncrements('sku_id');
+            $table->integer('sort_order')->nullable()->default(0);
             $table->string('id_code')->unique()->nullable();
             $table->boolean('is_active')->default(0);
             $table->string('thumbnail')->nullable();

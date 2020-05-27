@@ -73,6 +73,7 @@ class SuppliersController extends MemberCoreController
     {
         $this->authorize('update', $supplier);
         $data = $request->all();
+
         $TF = $this->supplierService->update($supplier, $data);
         return redirect()->route('member.supplier.index')->with('toast',  parent::$toast_update);
     }

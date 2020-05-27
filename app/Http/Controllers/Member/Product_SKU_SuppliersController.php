@@ -93,6 +93,7 @@ class Product_SKU_SuppliersController extends MemberCoreController
         $data = $request->all();
         $skuSupplier = $product_sku_supplier;
         $TF = $this->product_SKU_SupplierService->update($skuSupplier, $data);
+
         $sku = $this->product_SKU_SupplierService->skuRepo->getById($data['sku_id']);
         return [
             'errors' => '',

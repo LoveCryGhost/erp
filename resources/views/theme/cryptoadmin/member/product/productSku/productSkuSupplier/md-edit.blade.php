@@ -90,7 +90,7 @@
                
                 
                 <div class="form-group">
-                    <h5>{{__('member/product.productSupplier.index.purchasePrice')}}</h5>
+                    <h5>{!! __('member/product.productSupplier.index.purchasePrice') !!}</h5>
                     <div class="controls">
                         <input class="form-control" type="text" name="price" id="price" placeholder="price"
                                value="{{$sku->skuSuppliers()->wherePivot('s_id',$skuSupplier->s_id)->first()->pivot->price}}">

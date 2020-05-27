@@ -44,7 +44,8 @@ class Product extends CoreModel implements TranslatableContract
     }
 
     public function skus($paginate=0){
-          return $this->hasMany(SKU::class, 'p_id','p_id')->paginate($paginate);
+          return $this->hasMany(SKU::class, 'p_id','p_id')
+              ->orderBy('sort_order','ASC')->paginate($paginate);
     }
 
     public function all_skus(){

@@ -34,7 +34,7 @@
                         </td>
                     </tr>
                     <tr class="m-0">
-                        <td>{{__('member/product.productSupplier.index.sellPrice')}}</td><td>{{$sku->price}}</td>
+                        <td>{!! __('member/product.productSupplier.index.sellPrice')!!}</td><td>{{$sku->price}}</td>
                     </tr>
                     <tr class="m-0">
                         <td>{{__('member/product.productSupplier.index.skuName')}}</td><td>{{$sku->sku_name}}</td>
