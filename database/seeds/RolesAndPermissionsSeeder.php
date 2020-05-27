@@ -164,6 +164,7 @@ class RolesAndPermissionsSeeder extends Seeder
                 'guest' => '訪客',
                 'supperMember' => '超級會員',
                 'member' => '會員',
+                'ERP' => 'ERP',
                 'crawlerTask' => '爬蟲任務',
                 'crawlerTaskAnalysis' => '爬蟲任務分析',
             ];
@@ -177,24 +178,31 @@ class RolesAndPermissionsSeeder extends Seeder
         $this->mass_assign_permission($role, $guard='member', $route='crawlerItem', $permissions=['*' ,'crud']);
         $this->mass_assign_permission($role, $guard='member', $route='crawlerItemSearch', $permissions=['*' ,'crud']);
 
+        $role = Role::where('guard_name','member')->where('name', 'ERP')->first();
+        $this->mass_assign_permission($role, $guard='member', $route='supplier', $permissions=['*' ,'crud']);
+        $this->mass_assign_permission($role, $guard='member', $route='supplierGroup', $permissions=['*' ,'crud']);
+        $this->mass_assign_permission($role, $guard='member', $route='type', $permissions=['*' ,'crud']);
+        $this->mass_assign_permission($role, $guard='member', $route='product', $permissions=['*' ,'crud']);
+        $this->mass_assign_permission($role, $guard='member', $route='reportSKU', $permissions=['crawlerItemAanalysis']);
+
         //User 綁定 Role
         $member = Member::find(1);
-        $member->assignRole('supperMember');
+        $member->assignRole('supperMember', 'ERP');
 
         $member = Member::find(2);
-        $member->assignRole('crawlerTask');
+        $member->assignRole(['crawlerTask', 'ERP']);
 
         $member = Member::find(3);
-        $member->assignRole('crawlerTask');
+        $member->assignRole('crawlerTask', 'ERP');
 
         $member = Member::find(4);
-        $member->assignRole('crawlerTask');
+        $member->assignRole('crawlerTask', 'ERP');
 
         $member = Member::find(5);
-        $member->assignRole('crawlerTask');
+        $member->assignRole('crawlerTask', 'ERP');
         
         $member = Member::find(6);
-        $member->assignRole('crawlerTask');
+        $member->assignRole('crawlerTask', 'ERP');
 
     }
 

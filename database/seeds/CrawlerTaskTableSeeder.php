@@ -25,7 +25,7 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 6
+                'member_id' => 1
             ],
 //            [
 //                'ct_name' => 'Loyang Loaf Pan',

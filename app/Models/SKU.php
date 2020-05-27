@@ -58,13 +58,15 @@ class SKU extends Model
     public function crawlerTaskItemSKU()
     {
         //須去除重複值
-        return $this->hasMany(CrawlerTaskItemSKU::class, 'sku_id')
-            ->join('ctasks_items', function ($join) {
-                $join->on('ctasks_items.ct_i_id', '=', 'psku_cskus.ct_i_id');
-            })
-            ->join('crawler_tasks', function ($join) {
-                $join->on('crawler_tasks.ct_id', '=', 'ctasks_items.ct_id')
-                    ->where('crawler_tasks.member_id', Auth::guard('member')->user()->id);
-            });
+        return $this->hasMany(CrawlerTaskItemSKU::class, 'sku_id')->groupBy(['itemid','shopid', 'modelid']);
+
+//            ->leftJoin('ctasks_items', function ($join) {
+//                $join->on('ctasks_items.ct_i_id', '=', 'psku_cskus.ct_i_id');
+//            })
+
+//            ->leftJoin('crawler_tasks', function ($join) {
+//                $join->on('crawler_tasks.ct_id', '=', 'ctasks_items.ct_id')
+//                    ->where('crawler_tasks.member_id', Auth::guard('member')->user()->id);
+//            });
     }
 }

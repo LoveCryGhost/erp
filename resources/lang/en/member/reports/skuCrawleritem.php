@@ -3,7 +3,7 @@ return [
 
     //Title
     'title' => "SKU Crawler Item Analysis",
-    'profitAnalysis' => "利潤分析",
+    'profitAnalysis' => "Profit Analysis",
 
 
     'index.search.sellPrice' => 'Sell Price',

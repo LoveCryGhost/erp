@@ -31,9 +31,6 @@
                                             <span class="pull-left">{{__('default.index.table.price')}}</span>
                                             <span class="pull-right">{!! __('member/product.productSupplier.index.profitPercentage')!!}</span>
                                         </th>
-{{--                                        <th>{{__('member/product.productSupplier.index.sellPrice')}}</th>--}}
-{{--                                        <th>{!! __('member/product.productSupplier.index.purchasePrice')!!}</th>--}}
-{{--                                        <th>{!! __('member/product.productSupplier.index.shippingCost')!!}</th>--}}
                                         <th>{{__('member/reports/skuCrawleritem.profitAnalysis')}}</th>
                                         <th>{{__('default.index.table.crud')}}</th>
                                     </tr>
@@ -59,6 +56,8 @@
                                                     $daySales7_total = 0;
 													$daySales30_total = 0;
 													$nDays_total = 0;
+												//
+												$proffit_per_unit_class="";
                                             @endphp
                                             <td>{{$index++}}</td>
                                             <td class="text-left" style="vertical-align: text-top">
@@ -111,7 +110,6 @@
                                             {{--訊息--}}
                                             <td class="text-left" style="vertical-align: text-top">
                                                 @php
-                                                
 													foreach($sku->crawlerTaskItemSKU as $crawlerTaskItemSKU){
 														if($crawlerTaskItemSKU->crawlerItemSKUDetails(1)->count()>0){
 															$daySales7 = $crawlerTaskItemSKU->nDaysSales(7);
@@ -123,25 +121,23 @@
 														}
 													}
                                                 @endphp
+                                                {{__('member/reports/skuCrawleritem.index.table.sellerQty')}}: {{$sku->crawlerTaskItemSKU->count()}}<br>
                                                 {{__('member/reports/skuCrawleritem.index.table.weeklySellQty')}}:
                                                 <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit,0,"",",")}} </span> x {{$daySales7_total}} = {{number_format($profit_per_unit*$daySales7_total,0,"",",")}}
                                                 <br>
                                                 
                                                 {{__('member/reports/skuCrawleritem.index.table.monthlySellQty')}}:
-                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit,0,"",",")}} </span> x {{$daySales30_total}} = {{number_format($profit_per_unit*$daySales30_total,0,"",",")}}
-                                                <br>
+                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit,0,"",",")}} </span> x {{$daySales30_total}} = {{number_format($profit_per_unit*$daySales30_total,0,"",",")}}<br>
                                                 
                                                 {{__('member/reports/skuCrawleritem.index.table.totalSellQty')}}:
-                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit,0,"",",")}} </span> x {{$nDays_total}} = {{number_format($profit_per_unit*$nDays_total,0,"",",")}}
-                                                <br>
+                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit,0,"",",")}} </span> x {{$nDays_total}} = <br>
                                                 
-                                                {{__('member/reports/skuCrawleritem.index.table.sellerQty')}}: {{$sku->crawlerTaskItemSKU->count()}}
+                                                <div class="pull-right"><u><b><span class="{{$proffit_per_unit_class}}">{{number_format($profit_per_unit*$nDays_total,0,"",",")}}</span></b></u></div>
                                             </td>
                                             
                                             <td>
                                                 <input class="w-100" type="text" name="amount" id="amount">
                                                 <span class="btn btn-primary btn-sm" onclick="purchase_order_cart_item_add(this, php_inject={{json_encode(['sku_id' => $sku->sku_id])}});"><i class="fa fa-plus"></i></span>
-                                                
                                             </td>
                                         </tr>
                                     @endforeach
