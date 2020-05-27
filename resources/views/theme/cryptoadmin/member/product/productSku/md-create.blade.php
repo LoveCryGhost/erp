@@ -242,7 +242,14 @@
                     '                                                onclick="event.preventDefault();' +
                     '                                                md_product_sku_supplier_index(this, php_inject=models_product);">' +
                     '                                        <i class="fa fa-plus mr-5">供應商</i></a>';
-                html='<tr data-md-id="'+data.models.sku.sku_id+'"><td>'+cursor_move+'</td><td>'+switch_btn+'</td><td>'+sku_name+'</td><td>'+sku_thumbnial+'</td><td>'+switch_btn+'</td>'+attr+'<td>'+price+'</td><td>'+crud_btn+'</td></tr>';
+                
+                
+                html='<tr data-md-id="'+data.models.sku.sku_id+'"><td>'+cursor_move+'</td><td>'+switch_btn+'</td>'+
+                        '<td>'+sku_name+'<br>'+data.models.sku.id_code+
+                            '<input text="type" hidden="" name="product_skus[ids][]" value="'+data.models.sku.sku_id+'">'+
+                            '<input text="type" hidden="" name="product_skus[id_code][]" value="'+data.models.sku.id_code+'">'+
+                        '</td>'+
+                        '<td>'+sku_thumbnial+'</td><td>'+switch_btn+'</td>'+attr+'<td>'+price+'</td><td>'+crud_btn+'</td></tr>';
                 $('#tbl-product-sku tbody').append(html);
 
                 //Table重新排序

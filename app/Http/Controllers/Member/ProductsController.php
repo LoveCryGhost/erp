@@ -73,7 +73,7 @@ class ProductsController extends MemberCoreController
         foreach ($data['product_skus']['ids'] as $sort_order => $product_sku){
             $rows[] =  [
                 'sku_id' => $data['product_skus']['ids'][$sort_order],
-                'p_id' =>1,
+                'p_id' => $product->p_id,
                 'sort_order' => $sort_order,
                 'id_code' => $data['product_skus']['id_code'][$sort_order],
                 'member_id' => Auth::guard('member')->user()->id,

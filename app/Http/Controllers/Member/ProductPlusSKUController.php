@@ -7,6 +7,7 @@ use App\Models\Attribute;
 use App\Models\CrawlerItem;
 use App\Models\Product;
 use App\Models\SKU;
+use App\Models\SKUAttributeTranslation;
 use App\Models\SkuTranslation;
 use App\Repositories\Member\MemberCoreRepository;
 use App\Services\Member\AttributeService;
@@ -17,6 +18,7 @@ use function compact;
 use function config;
 use function dd;
 use function redirect;
+use function request;
 use function view;
 
 
@@ -48,9 +50,13 @@ class ProductPlusSKUController extends MemberCoreController
         $data = request()->all();
 
         $sort_order=0;
-        foreach ($data['sku_name'] as $sku_id => $row){
+        foreach ($data['sku_id'] as $sku_id => $row){
+            if($sku_id==0){
+                continue;
+            }
+
             $row_items[] = [
-                'sku_id' => $sku_id,
+                'sku_id' => isset($data['sku_id'][$sku_id])? $data['sku_id'][$sku_id]:null,
                 'sort_order' => $sort_order,
                 'is_active' => isset($data['is_active'][$sku_id])? "1":"" ,
 
@@ -74,6 +80,18 @@ class ProductPlusSKUController extends MemberCoreController
                 'locale' => app()->getLocale(),
             ];
 
+            foreach ($data['sku_attributes'] as $sa_id => $a_value){
+                if($sa_id==0){
+                    continue;
+                }
+                $row_item_sku_attribute_translations[] = [
+                    's_k_u_attribute_sa_id' => $sa_id,
+                    'a_value' => $a_value,
+                    'locale' => app()->getLocale(),
+                ];
+            }
+
+            dd($data,$row_items, $row_item_translations, $row_item_sku_attribute_translations);
             $sort_order++;
         }
 
@@ -85,6 +103,13 @@ class ProductPlusSKUController extends MemberCoreController
         $skuTranslationModel = new SkuTranslation();
         $TF = (new MemberCoreRepository())->massUpdate($skuTranslationModel, $row_item_translations);
 
-        return redirect()->route('member.productPlusSKU.index')->with('toast',  parent::$toast_update);
+        $skuAttributeTranslationModel = new SKUAttributeTranslation();
+        $TF = (new MemberCoreRepository())->massUpdate($skuAttributeTranslationModel, $row_item_sku_attribute_translations);
+
+        if(request()->submit=="index"){
+            return redirect()->route('member.productPlusSKU.index')->with('toast',  parent::$toast_update);
+        }else{
+            return redirect()->route('member.productPlusSKU.edit', ['productPlusSKU'=>$product->p_id,'collapse'=>1])->with('toast',  parent::$toast_update);
+        }
     }
 }

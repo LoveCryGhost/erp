@@ -88,7 +88,7 @@
                                         </td>
                                         <td>{{$product->member->name}}</td>
                                         <td>
-                                            <a class="btn btn-success" href="{{route('member.productPlusSKU.edit',['productPlusSKU'=> $product->p_id, 'collapse'=>1])}}" ><i class="fa fa-plus"></i> Add SKU</a>
+                                            <a class="btn btn-success" href="{{route('member.productPlusSKU.edit',['productPlusSKU'=> $product->p_id, 'collapse'=>1])}}" ><i class="fa fa-pencil"></i> Edit SKU</a>
                                         </td>
                                     </tr>
                                     @endforeach

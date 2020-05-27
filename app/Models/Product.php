@@ -49,7 +49,8 @@ class Product extends CoreModel implements TranslatableContract
     }
 
     public function all_skus(){
-        return $this->hasMany(SKU::class, 'p_id','p_id');
+        return $this->hasMany(SKU::class, 'p_id','p_id')
+            ->orderBy('sort_order','ASC');
     }
 
 
