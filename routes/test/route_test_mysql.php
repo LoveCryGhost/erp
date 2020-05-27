@@ -25,6 +25,12 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         //用DB::table('skus') 與 SKU 是有差別的
         $skus = DB::table('skus')
                         ->select('skus.sku_id as sku_id', 'skus.id_code as sku_code', 'skus.p_id')
+                        ->addSelect('skus.length_pcs', 'skus.width_pcs', 'skus.heigth_pcs')
+                        ->addSelect(DB::raw(" (skus.length_pcs * skus.width_pcs * skus.heigth_pcs) as volume_pcs"), 'skus.weight_pcs')
+                        ->addSelect('skus.length_box', 'skus.width_box', 'skus.heigth_box')
+                        ->addSelect(DB::raw(" (skus.length_box * skus.width_box * skus.heigth_box) as volume_box"), 'skus.weight_box')
+                        ->addSelect('skus.pcs_per_box')
+
 //                        ->where('skus.sku_id',1)
                     ->leftJoin('sku_translations', function($join)
                         {
@@ -36,6 +42,10 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                     ->join('products', 'products.p_id', '=', 'skus.p_id')
                         ->where('products.member_id', Auth::guard('member')->user()->id)
                         ->addSelect('products.id_code as p_code', 'products.m_price', 'products.t_price')
+
+                    ->join('product_translations', 'products.p_id', '=', 'product_translations.product_p_id')
+                        ->addSelect('product_translations.p_name' ,'product_translations.tax_percentage', 'product_translations.custom_code')
+
 
                     ->leftJoin('skus_suppliers', function($join)
                     {
@@ -54,8 +64,12 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                     ->join('suppliers', 'suppliers.s_id', '=', 'skus_suppliers.s_id')
                         ->addSelect('suppliers.s_name')
 
-                    ->join('supplier_groups', 'supplier_groups.sg_id', '=', 'suppliers.sg_id')
-                        ->addSelect('supplier_groups.sg_name')
+                    ->leftJoin('supplier_groups', 'supplier_groups.sg_id', '=', 'suppliers.sg_id')
+                    ->leftJoin('supplier_group_translations', function($join){
+                        $join->on('supplier_group_translations.supplier_group_sg_id', '=', 'supplier_groups.sg_id' )
+                            ->where('sku_supplier_translations.locale', app()->getLocale());
+                    })
+                        ->addSelect('supplier_group_translations.sg_name' , 'supplier_group_translations.cbm_price' , 'supplier_group_translations.kg_price')
 
                     //綁定sku crawlerItems
                     ->leftJoin('psku_cskus', function($join){
@@ -75,28 +89,25 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                     })
                         ->addSelect('crawler_items.historical_sold')//個別
 
-                    //利潤 其中 11為運費
-                    ->addSelect(DB::raw("(sku_translations.price - sku_supplier_translations.price - 11) as profit "))
 
-//                    ->leftJoin('citem_sku_details', function($join){
-//                        $join->on('citem_sku_details.itemid', '=', 'citem_skus.itemid')
-//                            ->on('citem_sku_details.shopid', '=', 'citem_skus.shopid')
-//                            ->on('citem_sku_details.modelid', '=', 'citem_skus.modelid')
-//                            ->whereDate('citem_sku_details.created_at', '>=',Carbon::today()->subDays(6))
-//                            ->latest();
-//
-////                            ->whereRaw('answers.id IN (select MAX(a2.id) from answers as a2 join users as u2 on u2.id = a2.user_id group by u2.id)');
-//                    })
-                        //->addSelect('citem_sku_details.created_at as citem_sku_details_created_at')//個別
-                        //->addSelect(DB::raw("SUM(citem_sku_details.sold) as total_monthly_sold"))
+                    //每 pcs CBM x CMB單價
+                    ->addSelect(DB::raw(" (skus.length_pcs * skus.width_pcs * skus.heigth_pcs) * supplier_group_translations.cbm_price  as shipping_cost "))
+
+                    //每 pcs Kg x Kg單價
+                    ->addSelect(DB::raw(" (skus.weight_pcs) * supplier_group_translations.kg_price as freight_cost "))
+
+                    // 利潤 = 售價 - 採購價 - 運費
+                    ->addSelect(DB::raw("(sku_translations.price - sku_supplier_translations.price - 11) as profit "))
 
                     //群組
                     ->groupBy(['sku_id', 'sku_code','p_id','sell_price',
                                 'p_code','m_price','t_price','sku_supplier_url',
-                                'sku_supplier_purchase_price','sku_supplier_locale','s_name', 'sg_name'])
+                                'sku_supplier_purchase_price','sku_supplier_locale','s_name'])
+
                     ->addSelect(DB::raw("SUM(citem_skus.sold) as total_monthly_sold"))
                     ->addSelect(DB::raw("SUM(crawler_items.historical_sold) as total_historical_sold"))
                     ->addSelect(DB::raw("count(citem_skus.sold) as total_seller"))
+
                     ->get();
 
         dd($skus);

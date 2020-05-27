@@ -37,14 +37,14 @@ return [
 
     'productSKU.edit.length_pcs' => 'L/pcs',
     'productSKU.edit.width_pcs' => 'W/pcs',
-    'productSKU.edit.height_pcs' => 'H/pcs',
+    'productSKU.edit.heigth_pcs' => 'H/pcs',
     'productSKU.edit.weight_pcs' => 'Kg/pcs',
 
     'productSKU.edit.pcs_per_box' => 'pcs/box',
 
     'productSKU.edit.length_box' => 'L/Box',
     'productSKU.edit.width_box' => 'W/Box',
-    'productSKU.edit.height_box' => 'H/Box',
+    'productSKU.edit.heigth_box' => 'H/Box',
     'productSKU.edit.weight_box' => 'Kg/Box',
 
 
@@ -56,14 +56,14 @@ return [
 
     'productSKU.create.length_pcs' => 'L/pcs',
     'productSKU.create.width_pcs' => 'W/pcs',
-    'productSKU.create.height_pcs' => 'H/pcs',
+    'productSKU.create.heigth_pcs' => 'H/pcs',
     'productSKU.create.weight_pcs' => 'Kg/pcs',
 
     'productSKU.create.pcs_per_box' => 'pcs/box',
 
     'productSKU.create.length_box' => 'L/Box',
     'productSKU.create.width_box' => 'W/Box',
-    'productSKU.create.height_box' => 'H/Box',
+    'productSKU.create.heigth_box' => 'H/Box',
     'productSKU.create.weight_box' => 'Kg/Box',
 
 

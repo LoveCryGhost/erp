@@ -19,11 +19,11 @@ class SKU extends Model
         'p_id', 'thumbnail', 'is_active',
         'length_pcs',
         'width_pcs',
-        'height_pcs',
+        'heigth_pcs',
         'weight_pcs',
         'length_box',
         'width_box',
-        'height_box',
+        'heigth_box',
         'weight_box',
         'pcs_per_box',
     ];

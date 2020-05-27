@@ -46,6 +46,7 @@ return [
             'barcode' => 'Barcode',
             'is_active' => 'Active',
             'name' => 'Name',
+            'dimenssion' => 'LxWxH',
             'photo' => 'Photo',
             'image' => 'Image',
             'info' => 'Info',

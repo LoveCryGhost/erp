@@ -19,7 +19,9 @@ class SupplierGroupRequest extends Request
             case 'POST':
                 {
                     return [
-                        'sg_name' => ['required', 'min:2', Rule::unique('supplier_groups')],
+                        'sg_name' => ['required', 'min:2', Rule::unique('supplier_group_translations')],
+                        'cbm_price' => ['numeric'],
+                        'kg_price' => ['numeric']
 
                     ];
                 }
@@ -27,7 +29,7 @@ class SupplierGroupRequest extends Request
             case 'PATCH':
                 {
                     return [
-                        'sg_name' => ['required', 'min:2', Rule::unique('supplier_groups')->ignore($supplierGroup->sg_id,'sg_id')],
+                        'sg_name' => ['required', 'min:2', Rule::unique('supplier_group_translations')->ignore($supplierGroup->sg_id,'supplier_group_sg_id')],
                     ];
                 }
             case 'GET':
@@ -46,6 +48,8 @@ class SupplierGroupRequest extends Request
             'sg_name.min' => '供應商群組名稱不能少於2個字元',
             'sg_name.required' => '供應商群組名稱不能為空',
             'sg_name.unique' => '供應商群組名稱不能重複',
+            'cbm_price.numeric' => '運費 CBM 需為數自格式',
+            'kg_price.numeric' => '運費 Kg 需為數自格式',
         ];
     }
 }

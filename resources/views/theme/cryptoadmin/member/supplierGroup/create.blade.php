@@ -35,7 +35,7 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.is_active')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.is_active')}}</h5>
                                             <div class="controls">
                                                 <input type="checkbox"  class="permission_check" name="is_active" value="1" id="is_active">
                                                 <label for="is_active" class="text-dark p-0 m-0"></label>
@@ -43,80 +43,96 @@
                                         </div>
         
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.barcode')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.barcode')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text"  placeholder="{{__('member/supplierGroup.edit.barcode')}}" disabled value="{{__('member/supplierGroup.edit.autoGenerate')}}">
+                                                <input class="form-control" type="text"  placeholder="{{__('member/supplierGroup.create.barcode')}}" disabled value="{{__('member/supplierGroup.create.autoGenerate')}}">
                                             </div>
                                         </div>
         
         
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.supplierGroupName')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.supplierGroupName')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="sg_name" placeholder="{{__('member/supplierGroup.edit.supplierGroupName')}}"  value="">
+                                                <input class="form-control" type="text" name="sg_name" placeholder="{{__('member/supplierGroup.create.supplierGroupName')}}"  value="">
                                             </div>
                                         </div>
         
                                         {{--地址--}}
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.address')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.address')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="add_company" placeholder="{{__('member/supplierGroup.edit.address')}}"  value="">
+                                                <input class="form-control" type="text" name="add_company" placeholder="{{__('member/supplierGroup.create.address')}}"  value="">
                                             </div>
                                         </div>
         
                                         {{--倉庫--}}
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.warehouseAddress')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.warehouseAddress')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="wh_company" placeholder="{{__('member/supplierGroup.edit.warehouseAddress')}}"  value="">
+                                                <input class="form-control" type="text" name="wh_company" placeholder="{{__('member/supplierGroup.create.warehouseAddress')}}"  value="">
                                             </div>
                                         </div>
         
         
                                         {{--電話--}}
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.tel')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.tel')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="tel" placeholder="{{__('member/supplierGroup.edit.warehouseAddress')}}"  value="">
+                                                <input class="form-control" type="text" name="tel" placeholder="{{__('member/supplierGroup.create.warehouseAddress')}}"  value="">
                                             </div>
                                         </div>
         
                                         {{--手機--}}
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.phone')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.phone')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="phone" placeholder="{{__('member/supplierGroup.edit.phone')}}"  value="">
+                                                <input class="form-control" type="text" name="phone" placeholder="{{__('member/supplierGroup.create.phone')}}"  value="">
                                             </div>
                                         </div>
         
                                         {{--統編--}}
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.company_id')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.company_id')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="company_id" placeholder="{{__('member/supplierGroup.edit.company_id')}}"  value="">
+                                                <input class="form-control" type="text" name="company_id" placeholder="{{__('member/supplierGroup.create.company_id')}}"  value="">
                                             </div>
                                         </div>
         
                                         {{--公司網址--}}
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.website')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.website')}}</h5>
                                             <div class="controls">
-                                                <input class="form-control" type="text" name="website" placeholder="{{__('member/supplierGroup.edit.website')}}"  value="">
+                                                <input class="form-control" type="text" name="website" placeholder="{{__('member/supplierGroup.create.website')}}"  value="">
                                             </div>
                                         </div>
-        
+    
+    
+                                        <div class="form-group row">
+                                            <div class="col-6">
+                                                <h5>{{__('member/supplierGroup.create.cbm_price')}}</h5>
+                                                <div class="controls">
+                                                    <input class="form-control" type="text" name="cbm_price" placeholder="{{__('member/supplierGroup.create.cbm_price')}}"  value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h5>{{__('member/supplierGroup.create.kg_price')}}</h5>
+                                                <div class="controls">
+                                                    <input class="form-control" type="text" name="kg_price" placeholder="{{__('member/supplierGroup.create.kg_price')}}"  value="">
+                                                </div>
+                                            </div>
+                                        </div>
+    
                                         {{--公司簡介--}}
                                         <div class="form-group">
-                                            <h5>{{__('member/supplierGroup.edit.introduction')}}</h5>
+                                            <h5>{{__('member/supplierGroup.create.introduction')}}</h5>
                                             <div class="controls">
-                                                <textarea class="form-control" type="text" name="introduction" placeholder="{{__('member/supplierGroup.edit.introduction')}}" ></textarea>
+                                                <textarea class="form-control" type="text" name="introduction" placeholder="{{__('member/supplierGroup.create.introduction')}}" ></textarea>
                                             </div>
                                         </div>
         
                                         <div class="form-group">
                                             <div class="controls">
-                                                <button type="submit" class="btn btn-success form-control">{{__('member/supplierGroup.edit.save')}}</button>
+                                                <button type="submit" class="btn btn-success form-control">{{__('member/supplierGroup.create.save')}}</button>
                                             </div>
                                         </div>
                                     </div>

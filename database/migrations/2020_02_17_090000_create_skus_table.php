@@ -18,13 +18,13 @@ class CreateSkusTable extends Migration
             //長寬高重量_pcs
             $table->decimal('length_pcs',10,1)->nullable()->default(999999);
             $table->decimal('width_pcs',10,1)->nullable()->default(999999);
-            $table->decimal('height_pcs',10,1)->nullable()->default(999999);
+            $table->decimal('heigth_pcs',10,1)->nullable()->default(999999);
             $table->decimal('weight_pcs',10,1)->nullable()->default(999999);
 
             //長寬高重量_box
             $table->decimal('length_box',10,1)->nullable()->default(999999);
             $table->decimal('width_box',10,1)->nullable()->default(999999);
-            $table->decimal('height_box',10,1)->nullable()->default(999999);
+            $table->decimal('heigth_box',10,1)->nullable()->default(999999);
             $table->decimal('weight_box',10,1)->nullable()->default(999999);
             $table->integer('pcs_per_box')->nullable()->default(999999);
 

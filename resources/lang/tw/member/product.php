@@ -37,14 +37,14 @@ return [
 
     'productSKU.edit.length_pcs' => '長/pcs',
     'productSKU.edit.width_pcs' => '寬/pcs',
-    'productSKU.edit.height_pcs' => '高/pcs',
+    'productSKU.edit.heigth_pcs' => '高/pcs',
     'productSKU.edit.weight_pcs' => 'Kg/pcs',
 
     'productSKU.edit.pcs_per_box' => 'pcs/箱',
 
     'productSKU.edit.length_box' => '長/箱',
     'productSKU.edit.width_box' => '寬/箱',
-    'productSKU.edit.height_box' => '高/箱',
+    'productSKU.edit.heigth_box' => '高/箱',
     'productSKU.edit.weight_box' => 'Kg/箱',
 
 
@@ -56,14 +56,14 @@ return [
 
     'productSKU.create.length_pcs' => '長/pcs',
     'productSKU.create.width_pcs' => '寬/pcs',
-    'productSKU.create.height_pcs' => '高/pcs',
+    'productSKU.create.heigth_pcs' => '高/pcs',
     'productSKU.create.weight_pcs' => 'Kg/pcs',
 
     'productSKU.create.pcs_per_box' => 'pcs/箱',
 
     'productSKU.create.length_box' => '長/箱',
     'productSKU.create.width_box' => '寬/箱',
-    'productSKU.create.height_box' => '高/箱',
+    'productSKU.create.heigth_box' => '高/箱',
     'productSKU.create.weight_box' => 'Kg/箱',
 
 

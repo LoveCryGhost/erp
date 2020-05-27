@@ -8,6 +8,27 @@ class CreateTranslationTable extends Migration
 {
     public function up()
     {
+        Schema::create('supplier_group_translations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->bigInteger('supplier_group_sg_id')->unsigned();
+            $table->string('sg_name');
+            $table->string('name_card')->nullable();
+            $table->string('add_company')->nullable();
+            $table->string('wh_company')->nullable();
+            $table->string('tel')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('company_id')->nullable(); //統編
+            $table->string('website')->nullable();
+            $table->text('introduction')->nullable();
+
+            $table->decimal('cbm_price',10,1)->nullable()->default(999999999);
+            $table->decimal('kg_price',10,1)->nullable()->default(999999999);
+
+            $table->string('locale')->index();
+            $table->unique(['supplier_group_sg_id','locale']);
+            $table->foreign('supplier_group_sg_id')->references('sg_id')->on('supplier_groups')->onDelete('cascade');
+        });
+
         Schema::create('type_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('type_t_id')->unsigned();
@@ -66,6 +87,7 @@ class CreateTranslationTable extends Migration
 
     public function down()
     {
+        Schema::dropIfExists('supplier_group_translations');
         Schema::dropIfExists('type_translations');
         Schema::dropIfExists('attribute_translations');
         Schema::dropIfExists('product_translations');

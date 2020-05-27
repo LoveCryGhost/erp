@@ -112,6 +112,21 @@
                                                 <input class="form-control" type="text" name="website" placeholder="{{__('member/supplierGroup.edit.website')}}"  value="{{$supplierGroup->website}}">
                                             </div>
                                         </div>
+    
+                                        <div class="form-group row">
+                                            <div class="col-6">
+                                                <h5>{{__('member/supplierGroup.edit.cbm_price')}}</h5>
+                                                <div class="controls">
+                                                    <input class="form-control" type="text" name="cbm_price" placeholder="{{__('member/supplierGroup.edit.cbm_price')}}"  value="{{$supplierGroup->cbm_price}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h5>{{__('member/supplierGroup.edit.kg_price')}}</h5>
+                                                <div class="controls">
+                                                    <input class="form-control" type="text" name="kg_price" placeholder="{{__('member/supplierGroup.edit.kg_price')}}"  value="{{$supplierGroup->kg_price}}">
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         {{--公司簡介--}}
                                         <div class="form-group">

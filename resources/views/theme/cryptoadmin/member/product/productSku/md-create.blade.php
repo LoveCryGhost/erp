@@ -99,15 +99,15 @@
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <h5>{{__('member/product.productSKU.create.height_pcs')}}</h5>
+                                        <h5>{{__('member/product.productSKU.create.heigth_pcs')}}</h5>
                                         <div class="controls">
-                                            <input class="form-control" type="text" name="height_pcs" id="height_pcs"  placeholder="{{__('member/product.productSKU.create.height_pcs')}}"  value="0">
+                                            <input class="form-control" type="text" name="heigth_pcs" id="heigth_pcs"  placeholder="{{__('member/product.productSKU.create.heigth_pcs')}}"  value="0">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <h5>{{__('member/product.productSKU.create.height_box')}}</h5>
+                                        <h5>{{__('member/product.productSKU.create.heigth_box')}}</h5>
                                         <div class="controls">
-                                            <input class="form-control" type="text" name="height_box" id="height_box"  placeholder="{{__('member/product.productSKU.create.height_box')}}"  value="0">
+                                            <input class="form-control" type="text" name="heigth_box" id="heigth_box"  placeholder="{{__('member/product.productSKU.create.heigth_box')}}"  value="0">
                                         </div>
                                     </div>
                                 </div>
@@ -167,12 +167,12 @@
         
         formData.append('length_pcs', $('#length_pcs').val());
         formData.append('width_pcs', $('#width_pcs').val());
-        formData.append('height_pcs', $('#height_pcs').val());
+        formData.append('heigth_pcs', $('#heigth_pcs').val());
         formData.append('weight_pcs', $('#weight_pcs').val());
         formData.append('pcs_per_box', $('#pcs_per_box').val());
         formData.append('length_box', $('#length_box').val());
         formData.append('width_box', $('#width_box').val());
-        formData.append('height_box', $('#height_box').val());
+        formData.append('heigth_box', $('#heigth_box').val());
         formData.append('weight_box', $('#weight_box').val());
 
         //數性值

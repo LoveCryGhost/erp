@@ -17,98 +17,95 @@
             <div class="row">
                 <div class="col-12">
                     <div class="box">
-                        <div class="box-header with-border">
+                        <div class="box-header">
+                            <div class="row">
+                                <div class="col">
+                                    <form class="form-control m-b-0  bg-color-lightblue">
+                                        <div class="row">
+                                            <div class="col-sm-3 form-group">
+                                                <h5>{{__('member/reports/skuCrawleritem.index.search.sellPrice')}}</h5>
+                                                <div class="controls">
+                                                    <input class="iform-control w-110" type="text" name="sku_translations_price_min" placeholder="{{__('default.index.search.min')}}" value="{{request()->sku_translations_price_min}}">
+                                                    ~
+                                                    <input class="iform-control w-110"  type="text" name="sku_translations_price_max" placeholder="{{__('default.index.search.max')}}" value="{{request()->sku_translations_price_max}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 form-group">
+                                                <h5>{{__('member/reports/skuCrawleritem.index.search.profit')}}</h5>
+                                                <div class="controls">
+                                                    <input class="iform-control" type="text" name="profit" placeholder="{{__('member/reports/skuCrawleritem.index.search.profit')}}" value="{{request()->profit}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 form-group">
+                                                <h5>{{__('member/reports/skuCrawleritem.index.search.totalSeller')}}</h5>
+                                                <div class="controls">
+                                                    <input class="iform-control" type="text" name="totalSeller" placeholder="{{__('member/reports/skuCrawleritem.index.search.totalSeller')}}" value="{{request()->totalSeller}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 form-group">
+                                                <h5>{{__('member/reports/skuCrawleritem.index.search.monthlyProfit')}}</h5>
+                                                <div class="controls">
+                                                    <input class="iform-control" type="text" name="monthlyProfit" placeholder="{{__('member/reports/skuCrawleritem.index.search.monthlyProfit')}}" value="{{request()->monthlyProfit}}">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <a href="{{route('member.reportSKU.crawlerItemAanalysis')}}" class="form-control btn btn-sm btn-primary">{{__('member/supplierGroup.index.search.reset')}}</a>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">{{__('member/supplierGroup.index.search.submit')}}</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="box-body">
+                        <div class="box-body div_overflow-x">
                             <div class="infinite-scroll">
                                 <table class="itable table">
                                     <thead>
                                         <tr>
                                             <th>{{__('default.index.table.no')}}</th>
-                                            <th>{{__('default.index.table.image')}}</th>
                                             <th>{{__('default.index.table.name')}}</th>
-                                            <th>{{__('member/product.productSupplier.index.sellPrice')}}</th>
-                                            <th>{!! __('member/product.productSupplier.index.purchasePrice')!!}</th>
-                                            <th>{!! __('member/product.productSupplier.index.shippingCost')!!}</th>
-                                            <th>{!! __('member/product.productSupplier.index.profitPercentage')!!}</th>
-                                            <th>{{__('member/reports/skuCrawleritem.profitAnalysis')}}</th>
-                                            <th>{{__('default.index.table.crud')}}</th>
+                                            <th>
+                                                {{__('member/reports/skuCrawleritem.index.table.skuName')}}<br>
+                                                {{__('default.index.table.dimenssion')}}
+                                            </th>
+                                            <th>{{__('member/reports/skuCrawleritem.index.search.sellPrice')}}</th>
+                                            <th>{!!__('member/reports/skuCrawleritem.index.table.purchasePrice')!!}</th>
+                                            <th>{!!__('member/reports/skuCrawleritem.index.table.shippingCost') !!}</th>
+                                            <th>{{__('member/reports/skuCrawleritem.index.table.profit')}}</th>
+                                            <th>{{__('member/reports/skuCrawleritem.index.table.profitAnalysis')}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php $index=1;@endphp
                                         @foreach($skus as $sku)
                                             <tr>
-                                                <td>{{$index++}}</td>
-                                                <td><img class="item-image img-60 rounded" src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" /></td>
                                                 <td>
-                                                    <span>
-                                                        {{$sku->product->p_name}}<br>
-                                                    <span class="font-size-12">{{$sku->product->id_code}}</span><br>
-                                                    </span>
-                                                    <span class="text-blue">
-                                                        {{$sku->sku_name}}<br>
-                                                    <span class="font-size-12">{{$sku->id_code}}</span>
-                                                </span>
+                                                    {{($skus->currentPage()-1)*($skus->perPage()) + $loop->iteration}}<br>
                                                 </td>
-                                                <td>{{$sku->price}}</td>
+                                                <td class="text-left">
+                                                    {{$sku->p_name}}<br>
+                                                    <img class="item-image img-30 rounded" src="{{$sku->p_img_path!==null? asset($sku->p_img_path):asset('images/default/products/product.jpg')}}" />
+                                                </td>
+                                                <td class="text-left">
+                                                    {{$sku->sku_name}}
+                                                    {{$sku->length_pcs}}x{{$sku->width_pcs}}x{{$sku->heigth_pcs}}<br>
+                                                    <small>({{$sku->volume_pcs}})</small>
+                                                </td>
+                                                <td>{{$sku->sell_price}}</td>
                                                 
-                                                {{--採購單價--}}
-                                                <td>
-                                                    @php
-                                                        $sku_pivot_supplier = $sku->skuSuppliers()->wherePivot('is_active',1)->first();
-                                                    @endphp
-                                                    @if($sku_pivot_supplier)
-                                                        {{$sku_pivot_supplier->pivot->price}}
-                                                    @endif
+                                                <td>{{$sku->sku_supplier_purchase_price}}</td>
+                                                <td>{{$sku->shipping_cost}}</td>
+                                                <td>{{$sku->profit}} %</td>
+                                                <td class="text-left">{{__('member/reports/skuCrawleritem.index.table.monthlySellQty')}}: {{$sku->total_monthly_sold}}<br>
+                                                    {{__('member/reports/skuCrawleritem.index.table.totalSellQty')}}: {{$sku->total_historical_sold}}<br>
+                                                    {{__('member/reports/skuCrawleritem.index.table.sellerQty')}}: {{$sku->total_seller}}
                                                 </td>
                                                 
-                                                {{--運費--}}
-                                                <td>{{$shippingCost=11}}</td>
-    
-                                                {{--利潤 %--}}
-                                                <td>
-                                                    @php $profit_per_unit = $sku->price - $sku_pivot_supplier->pivot->price - $shippingCost ; @endphp
-                                                    @if($sku->price>0)
-                                                        {{number_format($profit_per_unit/$sku->price*100, 1, ".", ",")}} %
-                                                    @endif
-                                                </td>
-                                                {{--訊息--}}
-                                                <td class="text-left" style="vertical-align: text-top">
-                                                    @php
-                                                        $daySales7_total = 0;
-                                                        $daySales30_total = 0;
-                                                        $nDays_total = 0;
-                                                        foreach($sku->crawlerTaskItemSKU as $crawlerTaskItemSKU){
-                                                            if($crawlerTaskItemSKU->crawlerItemSKUDetails(1)->count()>0){
-                                                                $daySales7 = $crawlerTaskItemSKU->nDaysSales(7);
-                                                                $daySales7_total+= $daySales7;
-                                                                
-                                                                $daySales30 = $crawlerTaskItemSKU->nDaysSales(30);
-                                                                $nDays_total+=$crawlerTaskItemSKU->crawlerItemSKUDetails(1)->first()->sold;
-                                                                $daySales30_total+= $daySales30;
-                                                            }
-                                                        }
-                                                    @endphp
-                                                    {{__('member/reports/skuCrawleritem.index.table.weeklySellQty')}}: {{$daySales7_total}} --
-                                                    {{number_format($profit_per_unit,0,"",",")}} x {{$daySales7_total}} = {{number_format($profit_per_unit*$daySales7_total,0,"",",")}}
-                                                    <br>
-                                                    
-                                                    {{__('member/reports/skuCrawleritem.index.table.monthlySellQty')}}: {{$daySales30_total}} --
-                                                    {{number_format($profit_per_unit,0,"",",")}} x {{$daySales30_total}} = {{number_format($profit_per_unit*$daySales30_total,0,"",",")}}
-                                                    <br>
-                                                    
-                                                    {{__('member/reports/skuCrawleritem.index.table.totalSellQty')}}: {{$nDays_total}} --
-                                                    {{number_format($profit_per_unit,0,"",",")}} x {{$nDays_total}} = {{number_format($profit_per_unit*$nDays_total,0,"",",")}}
-                                                    <br>
-                                                    
-                                                    {{__('member/reports/skuCrawleritem.index.table.sellerQty')}}: {{$sku->crawlerTaskItemSKU->count()}}
-                                                </td>
-    
-                                                <td>
-                                                    <input type="text" name="amount" id="amount">
-                                                    <span class="btn btn-primary btn-lg" onclick="purchase_order_cart_item_add(this, php_inject={{json_encode(['sku_id' => $sku->sku_id])}});"><i class="fa fa-plus"></i></span>
-                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -155,45 +152,4 @@
             });
         });
     </script>
-    <script>
-    function purchase_order_cart_item_add(_this, php_inject){
-        $.ajaxSetup(active_ajax_header());
-        var formData = new FormData();
-        formData.append('sku_id', php_inject.sku_id);
-        formData.append('amount', $(_this).siblings('#amount').val());
-        $.ajax({
-            type: 'post',
-            url: '{{route('member.purchaseOrderCartItem.add')}}',
-            data: formData,
-            crossDomain: true,
-            contentType: false,
-            processData: false,
-            success: function(data) {
-                alert('加入成功');
-            },
-            error: function(error) {
-                // if (error.response.status === 401) {
-                //
-                //     // http 状态码为 401 代表用户未登陆
-                //     swal('请先登录', '', 'error');
-                //
-                // } else if (error.response.status === 422) {
-                //
-                //     // http 状态码为 422 代表用户输入校验失败
-                //     var html = '<div>';
-                //     _.each(error.response.data.errors, function (errors) {
-                //         _.each(errors, function (error) {
-                //             html += error+'<br>';
-                //         })
-                //     });
-                //     html += '</div>';
-                //     swal({content: $(html)[0], icon: 'error'})
-                // } else {
-                //     // 其他情况应该是系统挂了
-                //     swal('系统错误', '', 'error');
-                // }
-            }
-        });
-    }
-</script>
 @endsection
