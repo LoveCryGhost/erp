@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <h5>{{__('member/product.productSKU.create.length_pcs')}}</h5>
+                                        <h5>{{__('member/product.productSKU.create.length_box')}}</h5>
                                         <div class="controls">
                                             <input class="form-control" type="text" name="length_box" id="length_box"  placeholder="{{__('member/product.productSKU.create.length_box')}}"  value="0">
                                         </div>
