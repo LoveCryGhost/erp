@@ -46,7 +46,7 @@ class SupplierGroupRequest extends Request
         return [
 
             'sg_name.min' => '供應商群組名稱不能少於2個字元',
-            'sg_name.required' => '供應商群組名稱不能為空',
+            'sg_name.required' => __('member/validations.supplierGroupName').__('member/validations.required'),
             'sg_name.unique' => '供應商群組名稱不能重複',
             'cbm_price.numeric' => '運費 CBM 需為數自格式',
             'kg_price.numeric' => '運費 Kg 需為數自格式',
