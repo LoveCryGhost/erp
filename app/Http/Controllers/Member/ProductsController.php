@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Requests\Member\ProductRequest;
 use App\Models\Product;
+use App\Models\SKU;
 use App\Repositories\Member\TypeRepository;
 use App\Services\Member\ProductService;
 use Illuminate\Support\Facades\Auth;
 use function app;
+use function dd;
 use function request;
 
 
@@ -64,6 +66,23 @@ class ProductsController extends MemberCoreController
         $this->authorize('update', $product);
         $data = $request->all();
         $toast = $this->productService->update($product, $data);
+
+        //調整sku順序
+        $skuModel = new SKU();
+        $rows = [];
+        foreach ($data['product_skus']['ids'] as $sort_order => $product_sku){
+            $rows[] =  [
+                'sku_id' => $data['product_skus']['ids'][$sort_order],
+                'p_id' =>1,
+                'sort_order' => $sort_order,
+                'id_code' => $data['product_skus']['id_code'][$sort_order],
+                'member_id' => Auth::guard('member')->user()->id,
+            ];
+        }
+        $this->productService->productRepo->massUpdate($skuModel, $rows);
+
+        unset($data['product_skus']);
+
         return redirect()->route('member.product.index')->with('toast',  parent::$toast_update);
     }
 

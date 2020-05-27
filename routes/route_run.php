@@ -4,6 +4,7 @@ use App\Imports\MHMoldImport;
 use App\Jobs\CrawlerCategoryJob;
 use App\Jobs\CrawlerItemJob;
 use App\Jobs\CrawlerShopJob;
+use App\Jobs\CrawlerSubCategoryJob;
 use App\Jobs\CrawlerTaskJob;
 use App\Models\Shoes\ShoesDB;
 use Carbon\Carbon;
@@ -17,6 +18,11 @@ Route::prefix('run') ->middleware('auth:admin')->group(function(){
         dispatch((new CrawlerCategoryJob())->onQueue('high'));
         return redirect()->back();
     })->name('member.run.crawlerCategoryJob');
+
+    Route::get('crawlerSubCategoryJob',function () {
+        dispatch((new CrawlerSubCategoryJob())->onQueue('high'));
+        return redirect()->back();
+    })->name('member.run.crawlerSubCategoryJob');
 
     Route::get('crawlerTaskJob',function () {
         dispatch((new CrawlerTaskJob())->onQueue('default'));

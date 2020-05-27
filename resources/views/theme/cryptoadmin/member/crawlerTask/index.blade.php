@@ -48,6 +48,12 @@
                                             <input class="form-control" type="text" name="description" placeholder="{{__('member/crawlerTask.index.search.description')}}" value="{{request()->description}}">
                                         </div>
                                     </div>
+                                    <div class="col-sm-3 form-group">
+                                        <h5>{{__('member/crawlerTask.index.search.location')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="locations" placeholder="{{__('member/crawlerTask.index.search.location')}}" value="{{request()->locations}}">
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div class="row">
@@ -119,14 +125,13 @@
                                         <td class="w-20 text-center">{{($crawlerTasks->currentPage()-1)*($crawlerTasks->perPage()) + $loop->iteration}}</td>
                                         <td>{{$crawlerTask->id_code}}</td>
                                         <td class="w-200">
-                                            <p class="mb-0">
                                                 <a href="#"><strong>{{$crawlerTask->ct_name}} ({{$crawlerTask->crawlerItems->count()}})</strong></a><br>
-                                            </p>
                                         </td>
                                         <td class="text-left">
-                                            {{__('member/crawlerTask.index.table.pages')}}：{{$crawlerTask->pages}}<br>
-                                            {{__('member/crawlerTask.index.table.domain')}}：{{$crawlerTask->domain_name}}<br>
-                                            {{__('member/crawlerTask.index.table.sortBy')}}：{{$crawlerTask->sort_by}}
+                                            <small>{{__('member/crawlerTask.index.table.pages')}}：{{$crawlerTask->pages}}</small><br>
+                                            <small>{{__('member/crawlerTask.index.table.domain')}}：{{$crawlerTask->domain_name}}</small><br>
+                                            <small>{{__('member/crawlerTask.index.table.sortBy')}}：{{$crawlerTask->sort_by}}</small><br>
+                                            <small>{{__('member/crawlerTask.index.table.location')}}：{{$crawlerTask->locations}}</small>
                     
                                         </td>
                                         <td>

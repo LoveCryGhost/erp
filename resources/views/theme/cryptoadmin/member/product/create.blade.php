@@ -77,6 +77,18 @@
                                             <input class="form-control" type="text" name="p_name" placeholder="{{__('member/product.create.productName')}}"  value="{{old('p_name')}}">
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.edit.tax_percentage')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="tax_percentage" placeholder="{{__('member/product.edit.tax_percentage')}}"  value="{{old('tax_percentage')}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5>{{__('member/product.edit.custom_code')}}</h5>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" name="custom_code" placeholder="{{__('member/product.edit.custom_code')}}"  value="{{old('custom_code')}}">
+                                        </div>
+                                    </div>
     
                                     <div class="form-group">
                                         <h5>{{__('member/product.edit.productDescription')}}</h5>

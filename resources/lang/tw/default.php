@@ -44,6 +44,7 @@ return [
             'barcode' => '條碼',
             'is_active' => '啟用',
             'name' => '名稱',
+            'dimenssion' => '長x寬x高',
             'photo' => '照片',
             'image' => '圖片',
             'info' => '訊息',

@@ -30,6 +30,8 @@ return [
     'edit.phone'       => '手機',
     'edit.company_id'       => '統編',
     'edit.website'       => '公司地址',
+    'edit.cbm_price'       => '每 CBM 運費',
+    'edit.kg_price'       => '每 Kg 運費',
     'edit.introduction'       => '簡介',
     'edit.save'       => '儲存',
 
@@ -42,6 +44,9 @@ return [
     'create.phone'       => '手機',
     'create.company_id'       => '統編',
     'create.website'       => '公司地址',
+    'create.cbm_price'       => '每 CBM 運費',
+    'create.kg_price'       => '每 Kg 運費',
+    
     'create.introduction'       => '簡介',
     'create.save'       => '儲存',
 

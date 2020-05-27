@@ -20,6 +20,7 @@ include('test_mh_erp.php');
 include('route_test_crawlerTaskJob.php');
 include('route_test_crawlerCategoryJob.php');
 include('route_test_crawlerSubCategoryJob.php');
+include('route_test_mysql.php');
 
 
 
@@ -33,7 +34,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
 
     Route::get('/subDomain',function (){
         $sub_domain = current(explode('.', request()->getHost()));
-        dd($sub_domain);
+        dd($sub_domain, explode('-', $sub_domain)[0]);
     });
 
     Route::get('/translation_create',function (){

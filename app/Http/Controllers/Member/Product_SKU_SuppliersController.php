@@ -6,6 +6,7 @@ use App\Http\Requests\Member\Product_SKU_SupplierRequest;
 use App\Models\Supplier;
 use App\Services\Member\Product_SKU_SupplierService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Product_SKU_SuppliersController extends MemberCoreController
 {
@@ -42,7 +43,9 @@ class Product_SKU_SuppliersController extends MemberCoreController
     {
         $data = $request->all();
         $sku = $this->product_SKU_SupplierService->skuRepo->getById($data['sku_id']);
-        $suppliers = $this->product_SKU_SupplierService->supplierRepo->builder()->get();
+        $suppliers = $this->product_SKU_SupplierService->supplierRepo->builder()
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->get();
         $view = view(config('theme.member.view').'product.productSku.productSkuSupplier.md-create', compact('sku', 'suppliers'))->render();
         return [
             'errors' => '',
@@ -64,7 +67,9 @@ class Product_SKU_SuppliersController extends MemberCoreController
         $data = $request->all();
         $sku = $this->product_SKU_SupplierService->skuRepo->getById($data['sku_id']);
         $skuSupplier = $product_sku_supplier;
-        $suppliers = $this->product_SKU_SupplierService->supplierRepo->builder()->get();
+        $suppliers = $this->product_SKU_SupplierService->supplierRepo->builder()
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->get();
 
         $view = view(config('theme.member.view').'product.productSku.productSkuSupplier.md-edit',compact('sku', 'skuSupplier', 'suppliers'))->render();
 
@@ -88,6 +93,7 @@ class Product_SKU_SuppliersController extends MemberCoreController
         $data = $request->all();
         $skuSupplier = $product_sku_supplier;
         $TF = $this->product_SKU_SupplierService->update($skuSupplier, $data);
+
         $sku = $this->product_SKU_SupplierService->skuRepo->getById($data['sku_id']);
         return [
             'errors' => '',

@@ -17,16 +17,16 @@ class CrawlerTaskTableSeeder extends Seeder
                 'pages' => "6",
                 "sort_by" => "sales",
                 'description' => "",
-                'member_id' => 2
+                'member_id' => 6
             ],
-//            [
-//                'ct_name' => 'Loyang Muffin',
-//                'url' => 'https://shopee.co.id/search?keyword=Loyang Muffin&sortBy=sales',
-//                'pages' => "6",
-//                "sort_by" => "sales",
-//                'description' => "",
-//                'member_id' => 2
-//            ],
+            [
+                'ct_name' => 'Loyang Muffin',
+                'url' => 'https://shopee.co.id/search?keyword=Loyang Muffin&sortBy=sales',
+                'pages' => "6",
+                "sort_by" => "sales",
+                'description' => "",
+                'member_id' => 6
+            ],
 //            [
 //                'ct_name' => 'Loyang Loaf Pan',
 //                'url' => 'https://shopee.co.id/search?keyword=Loyang Loaf Pan&sortBy=sales',

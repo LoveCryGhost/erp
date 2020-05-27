@@ -14,6 +14,7 @@ class CrawlerItemSKUDetail extends Model
 
     protected $table = "citem_sku_details";
     public $incrementing = false;
+    
     public $primaryKey=null;
     //protected $primaryKey=['shopid', 'itemid', 'modelid'];
 

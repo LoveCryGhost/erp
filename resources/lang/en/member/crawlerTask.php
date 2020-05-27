@@ -8,6 +8,7 @@ return [
     'index.search.taskName' => 'Task Name',
     'index.search.domain_name' => 'Domain',
     'index.search.description' => 'Description',
+    'index.search.location' => 'Location',
     'index.search.submit' => 'Save',
     'index.search.reset' => 'Reset',
     'index.search.reload_task' => 'Do You Want to Crawler All ?',
@@ -27,6 +28,7 @@ return [
     'index.table.pages' => 'Pages',
     'index.table.domain' => 'Domain',
     'index.table.sortBy' => 'Sort By',
+    'index.table.location' => 'Location',
 
     'index.table.edit' => 'Edit',
     'index.table.delete' => 'Del',

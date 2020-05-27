@@ -42,6 +42,7 @@ class CrawlerTasksController extends MemberCoreController
             'description' => request()->description,
             'domain_name' => request()->domain_name,
             'id_code' => request()->id_code,
+            'locations' => request()->locations,
         ];
 
         $query = $this->index_filters($query, $this->filters);
@@ -105,6 +106,7 @@ class CrawlerTasksController extends MemberCoreController
         $query  = $this->filter_like($query,'ct_name', $filters['ct_name']);
         $query  = $this->filter_like($query,'description', $filters['description']);
         $query  = $this->filter_like($query,'domain_name', $filters['domain_name']);
+        $query  = $this->filter_like($query,'locations', $filters['locations']);
         $query  = $this->filter_like($query,'id_code', $filters['id_code']);
 
       return $query;

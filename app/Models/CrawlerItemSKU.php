@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;;
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Support\Facades\Auth;
 use function request;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +43,7 @@ class CrawlerItemSKU extends Model
         $query = $this->hasMany(CrawlerItemSKUDetail::class, 'modelid', 'modelid')
             ->where('shopid', $this->shopid)
             ->where('itemid', $this->itemid)
-            ->orderBy('created_at', 'ASC');
+            ->orderBy('created_at', 'DESC');
 
         if($records!=0){
             $query = $query->take($records);
@@ -58,7 +58,7 @@ class CrawlerItemSKU extends Model
         $CrawlerItemSKUs = $this->crawlerItemSKUDetails($ndays)->get();
         $first_day_sale =  $CrawlerItemSKUs->first()->sold;
         $last_day_sale =  $CrawlerItemSKUs->last()->sold;
-        return $last_day_sale - $first_day_sale;
+        return  $first_day_sale - $last_day_sale;
 
     }
 

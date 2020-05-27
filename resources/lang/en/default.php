@@ -36,7 +36,9 @@ return [
         'search' =>[
             'contactPerson' => 'Contact Person',
             'tel' => 'Tel',
-            'phone' => 'Phone'
+            'phone' => 'Phone',
+            'min' => 'min',
+            'max' => 'max'
         ],
         'table' => [
             'no' => 'No.',
@@ -44,6 +46,7 @@ return [
             'barcode' => 'Barcode',
             'is_active' => 'Active',
             'name' => 'Name',
+            'dimenssion' => 'LxWxH',
             'photo' => 'Photo',
             'image' => 'Image',
             'info' => 'Info',

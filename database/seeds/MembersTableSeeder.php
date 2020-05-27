@@ -41,32 +41,39 @@ class MembersTableSeeder extends Seeder
         $member->save();
 
         $member = Member::find(2);
-        $member->name = 'cris';
-        $member->email = 'cris@app.com';
+        $member->name = 'Category';
+        $member->email = 'category@app.com';
         $member->avatar = '';
         $member->save();
 
         $member = Member::find(3);
-        $member->name = 'kenny';
-        $member->email = 'kenny@app.com';
+        $member->name = 'SubCategory';
+        $member->email = 'subCategory@app.com';
+
         $member->avatar = '';
         $member->save();
 
         $member = Member::find(4);
-        $member->name = 'risca';
-        $member->email = 'risca@app.com';
+        $member->name = 'CategoryOutside';
+        $member->email = 'categoryOutside@app.com';
         $member->avatar = '';
         $member->save();
 
         $member = Member::find(5);
-        $member->name = 'member1';
-        $member->email = 'member1@app.com';
+        $member->name = 'SubCategoryOutside';
+        $member->email = 'subCategoryOutside@app.com';
         $member->avatar = '';
         $member->save();
 
         $member = Member::find(6);
-        $member->name = 'Fiora';
-        $member->email = 'fiora@app.com';
+        $member->name = 'Andy';
+        $member->email = 'andy@app.com';
+        $member->avatar = '';
+        $member->save();
+
+        $member = Member::find(7);
+        $member->name = 'risca';
+        $member->email = 'risca@app.com';
         $member->avatar = '';
         $member->save();
 

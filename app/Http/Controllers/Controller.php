@@ -6,7 +6,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use function dd;
 use function explode;
+use function request;
 use function trim;
 
 class Controller extends BaseController
@@ -63,5 +65,38 @@ class Controller extends BaseController
         });
         return $query;
     }
+
+    public function filter_priceBetween($query, $column_name , $arr_min_max)
+    {
+        $min = $arr_min_max[0];
+        $max = $arr_min_max[1];
+
+        //null & null
+        if($min == null and $max == null){
+            $query;
+
+        //null ~ Max
+        }elseif($min == null and $max > 0 ){
+            $query = $query->where($column_name , '<', $max);
+
+        //min ~ null
+        }elseif($min > 0 and $max == null ){
+            $query = $query->where($column_name , '>', $min);
+
+        // min ~ max
+        }elseif($min > 0 and $max > 0 ){
+
+            if ($min < $max){
+                $query = $query->whereBetween($column_name ,  [$min,$max]);
+            }else{
+                request()['sold_min']= $max;
+                request()['sold_max']= $min;
+                $query = $query->whereBetween($column_name ,  [$max,$min]);
+            }
+        }
+
+        return $query;
+    }
+
 
 }

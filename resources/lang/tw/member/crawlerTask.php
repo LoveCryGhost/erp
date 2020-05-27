@@ -8,6 +8,7 @@ return [
     'index.search.taskName' => '任務名稱',
     'index.search.domain_name' => '網域',
     'index.search.description' => '描述',
+    'index.search.location' => '地區',
     'index.search.submit' => '搜尋',
     'index.search.reset' => '重新搜尋',
     'index.search.reload_task' => '確認全部要重新爬蟲?',
@@ -27,6 +28,7 @@ return [
     'index.table.pages' => '頁數',
     'index.table.domain' => '網域',
     'index.table.sortBy' => '搜尋方式',
+    'index.table.location' => '地區',
 
     'index.table.edit' => '編輯',
     'index.table.delete' => '刪除',

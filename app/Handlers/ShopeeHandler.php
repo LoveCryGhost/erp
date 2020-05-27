@@ -133,6 +133,7 @@ class ShopeeHandler
     public function crawlerSeperator($query)
     {
         $sub_domain = current(explode('.', request()->getHost()));
+        $sub_domain = explode('-', $sub_domain)[0];
         if($sub_domain=='tw'){
             $query = $query->where('locale', 'tw');
         }elseif($sub_domain=='id'){
@@ -152,6 +153,11 @@ class ShopeeHandler
     public function crawlerSeperator_coutnry()
     {
         $sub_domain = current(explode('.', request()->getHost()));
+        $sub_domain = explode('-', $sub_domain)[0];
+        if($sub_domain=='localhost' or $sub_domain == 'test'){
+            $sub_domain='id';
+        }
+
         if($sub_domain=='tw'){
             $countries['tw'] = 'shopee.tw';
         }elseif($sub_domain=='id'){
@@ -159,13 +165,10 @@ class ShopeeHandler
         }elseif($sub_domain=='th'){
             $countries['th'] = 'shopee.co.th';
         }elseif($sub_domain=='localhost' or $sub_domain == 'test'){
-//            $countries['tw'] = 'shopee.tw';
-//            $countries['th'] = 'shopee.co.th';
             $countries['id'] = 'shopee.co.id';
         }else{
             $countries[] = [];
         }
-
         return $countries;
 
     }

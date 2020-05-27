@@ -16,7 +16,17 @@ class SKU extends Model
 
     protected $with = ['skuAttributes','skuSuppliers'];
     protected $fillable = [
-        'p_id', 'thumbnail', 'is_active'
+        'sort_order',
+        'p_id', 'thumbnail', 'is_active',
+        'length_pcs',
+        'width_pcs',
+        'heigth_pcs',
+        'weight_pcs',
+        'length_box',
+        'width_box',
+        'heigth_box',
+        'weight_box',
+        'pcs_per_box',
     ];
 
     public $translatedAttributes = ['sku_name', 'price'];
@@ -49,13 +59,15 @@ class SKU extends Model
     public function crawlerTaskItemSKU()
     {
         //須去除重複值
-        return $this->hasMany(CrawlerTaskItemSKU::class, 'sku_id')
-            ->join('ctasks_items', function ($join) {
-                $join->on('ctasks_items.ct_i_id', '=', 'psku_cskus.ct_i_id');
-            })
-            ->join('crawler_tasks', function ($join) {
-                $join->on('crawler_tasks.ct_id', '=', 'ctasks_items.ct_id')
-                    ->where('crawler_tasks.member_id', Auth::guard('member')->user()->id);
-            });
+        return $this->hasMany(CrawlerTaskItemSKU::class, 'sku_id')->groupBy(['itemid','shopid', 'modelid']);
+
+//            ->leftJoin('ctasks_items', function ($join) {
+//                $join->on('ctasks_items.ct_i_id', '=', 'psku_cskus.ct_i_id');
+//            })
+
+//            ->leftJoin('crawler_tasks', function ($join) {
+//                $join->on('crawler_tasks.ct_id', '=', 'ctasks_items.ct_id')
+//                    ->where('crawler_tasks.member_id', Auth::guard('member')->user()->id);
+//            });
     }
 }

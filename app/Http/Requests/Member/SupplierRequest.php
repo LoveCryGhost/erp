@@ -6,6 +6,7 @@ namespace App\Http\Requests\Member;
 
 use App\Http\Requests\Request;
 use Illuminate\Validation\Rule;
+use function __;
 
 class SupplierRequest extends Request
 {
@@ -46,9 +47,9 @@ class SupplierRequest extends Request
         return [
 
             's_name.min' => '供應商名稱不能少於2個字元',
-            's_name.required' => '供應商名稱不能為空',
+            's_name.required' => __('member/validations.supplierName').__('member/validations.required'),
             's_name.unique' => '供應商名稱不能重複',
-            'sg_id.required' => '供應商群組不能為空',
+            'sg_id.required' => __('member/validations.supplierGroupName').__('member/validations.required'),
         ];
     }
 }

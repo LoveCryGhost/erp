@@ -33,11 +33,15 @@ return [
     'edit.phone'       => 'Phone',
     'edit.company_id'       => 'Company Address',
     'edit.website'       => 'Website',
+    'edit.cbm_price'       => 'Shipping Cost Per CBM',
+    'edit.kg_price'       => 'Shipping Cost Per Kg',
     'edit.introduction'       => 'Introduction',
     'edit.save'       => 'Save',
 
     'create.title'       => 'Supplier - Group Insert',
     'create.is_active'       => 'Active',
+    'create.barcode' => 'Barcode',
+    'create.autoGenerate' => 'Auto Generate',
     'create.supplierGroupName'       => 'Group Name',
     'create.address'       => 'Company Address',
     'create.warehouseAddress'       => 'WH Address',
@@ -45,6 +49,9 @@ return [
     'create.phone'       => 'Phone',
     'create.company_id'       => 'Company Address',
     'create.website'       => 'Website',
+    'create.cbm_price'       => 'Shipping Cost Per CBM',
+    'create.kg_price'       => 'Shipping Cost Per Kg',
+    
     'create.introduction'       => 'Introduction',
     'create.save'       => 'Save',
 
