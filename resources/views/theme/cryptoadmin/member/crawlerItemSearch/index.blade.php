@@ -1,14 +1,15 @@
 @extends(config('theme.member.member-app'))
 
-@section('title','CrawlerSearch')
+@section('title', __('member/reports/skuCrawleritem.title'))
 
 @section('content')
 	<div class="container-full">
 		<!-- Content Header (Page header) -->
 		<div class="content-header">
 			<h3>
-				{{__('member/crawlerItemSearch.index.title')}}
+				{{__('member/reports/skuCrawleritem.title')}}
 			</h3>
+		
 		</div>
 		
 		<!-- Main content -->
@@ -16,160 +17,120 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="box">
-						<div class="box-header">
-							<form class="form-control m-b-0 bg-color-lightblue">
-								<div class="row">
-								<div class="col-md-12">
-									<div class="row">
-										<div class="col-sm-3 form-group">
-											<h5>{{__('member/crawlerItemSearch.index.search.name')}}</h5>
-											<div class="controls">
-												<input class="form-control" type="text" name="name" placeholder="{{__('member/crawlerItemSearch.index.search.name')}}" value="{{request()->name}}">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										{{--最低周銷量--}}
-										<div class="col-sm-3 form-group">
-											<h5>{{__('member/crawlerItemSearch.index.search.sold')}}</h5>
-											<div class="controls">
-												<input class="iform-control w-110" type="text" name="sold_min" placeholder="{{__('default.index.search.min')}}" value="{{request()->sold_min}}">
-												~
-												<input class="iform-control w-110"  type="text" name="sold_max" placeholder="{{__('default.index.search.max')}}" value="{{request()->sold_max}}">
-											</div>
-										</div>
-										
-										{{--歷史銷量--}}
-										<div class="col-sm-3 form-group">
-											<h5>{{__('member/crawlerItemSearch.index.search.historical_sold')}}</h5>
-											<div class="controls">
-												<input class="iform-control w-110" type="text" name="historical_sold_min" placeholder="{{__('default.index.search.min')}}" value="{{request()->historical_sold_min}}">
-												~
-												<input class="iform-control w-110"  type="text" name="historical_sold_max" placeholder="{{__('default.index.search.max')}}" value="{{request()->historical_sold_max}}">
-											</div>
-										</div>
-										
-										{{--國家--}}
-										<div class="col-sm-3 form-group">
-											<h5>{{__('member/crawlerItemSearch.index.search.country')}}</h5>
-											<div class="controls">
-												<input type="checkbox" class="" name="locale[tw]"  id="locale_tw" value="tw" {{isset(request()->locale['tw'])?  "checked":""}}>
-												<label for="locale_tw" class="text-dark m-t-5 ">{{__('member/crawlerItemSearch.index.search.language.tw')}}</label>
-												
-												<input type="checkbox" class="permission_check" name="locale[id]"  id="locale_id" value="id" {{isset(request()->locale['id'])?  "checked":""}}>
-												<label for="locale_id" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.id')}}</label>
-												
-												<input type="checkbox" class="permission_check" name="locale[th]"  id="locale_th" value="th" {{isset(request()->locale['th'])?  "checked":""}}>
-												<label for="locale_th" class="text-dark m-t-5">{{__('member/crawlerItemSearch.index.search.language.th')}}</label>
-											</div>
-										</div>
-									</div>
-									
-									<div class="row">
-										<div class="col-6">
-											<a href="{{route('member.crawlerItemSearch.index')}}" class="form-control btn btn-sm btn-primary">{{__('member/crawlerItemSearch.index.search.reset')}}</a>
-										</div>
-										<div class="col-6">
-											<button type="submit" class="form-control btn btn-sm btn-primary" name="submit['submit_get']" value="submit_get">{{__('member/crawlerItemSearch.index.search.submit')}}</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							</form>
+						<div class="box-header with-border">
 						</div>
 						<div class="box-body">
-							<div class="table-responsive">
-								<div class="pull-right"> {{number_format($crawlerItem_total_updated,0, "", ",")}} / {{number_format($crawlerItem_total_records,0, "", ",")}}
-									{{__('member/crawlerItemSearch.index.search.records')}}
-									@if($crawlerItem_total_records>0)
-										({{number_format(($crawlerItem_total_updated/$crawlerItem_total_records)*100, 1,".",",")}} %)
-									@endif
-								</div>
-								<div class="infinite-scroll">
-									<table class="itable table" >
-										<thead>
-											<tr>
-												<th>No</th>
-												<th>{{__('member/crawlerItemSearch.index.table.image')}}</th>
-												<th width="40%">{{__('member/crawlerItemSearch.index.table.productName')}}</th>
-												<th>{{__('member/crawlerItemSearch.index.table.price_min')}}</th>
-												<th>{{__('member/crawlerItemSearch.index.table.price_max')}}</th>
-												<th>{{__('member/crawlerItemSearch.index.table.sales')}}</th>
-												<th>{{__('member/crawlerItemSearch.index.table.sku')}}</th>
-											</tr>
-										</thead>
+							<div class="infinite-scroll">
+								<table class="itable table">
+									<thead>
+									<tr>
+										<th>{{__('default.index.table.no')}}</th>
+										<th>{{__('default.index.table.image')}}</th>
+										<th>{{__('default.index.table.name')}}</th>
+										<th>{{__('member/product.productSupplier.index.sellPrice')}}</th>
+										<th>{!! __('member/product.productSupplier.index.purchasePrice')!!}</th>
+										<th>{!! __('member/product.productSupplier.index.shippingCost')!!}</th>
+										<th>{!! __('member/product.productSupplier.index.profitPercentage')!!}</th>
+										<th>{{__('member/reports/skuCrawleritem.profitAnalysis')}}</th>
+										<th>{{__('default.index.table.crud')}}</th>
+									</tr>
+									</thead>
 									<tbody>
-										@foreach($crawlerItems as $crawlerItem)
+									@php $index=1;@endphp
+									@foreach($skus as $sku)
 										<tr>
-											<td>{{($crawlerItems->currentPage()-1)*($crawlerItems->perPage()) + $loop->iteration}}</td>
+											<td>{{$index++}}</td>
+											<td><img class="item-image img-60 rounded" src="{{$sku->thumbnail!==null? asset($sku->thumbnail):asset('images/default/products/product.jpg')}}" /></td>
 											<td>
-												@if($crawlerItem->images==null)
-													<img src="{{asset('images/default/avatars/avatar.jpg')}}" class="item-image"><br>
-												@else
-													<img src="https://cf.{{$crawlerItem->domain_name}}/file/{{$crawlerItem->images}}_tn" class="item-image"><br>
+                                                    <span>
+                                                        {{$sku->product->p_name}}<br>
+                                                    <span class="font-size-12">{{$sku->product->id_code}}</span><br>
+                                                    </span>
+												<span class="text-blue">
+                                                        {{$sku->sku_name}}<br>
+                                                    <span class="font-size-12">{{$sku->id_code}}</span>
+                                                </span>
+											</td>
+											<td>{{$sku->price}}</td>
+											
+											{{--採購單價--}}
+											<td>
+												@php
+													$sku_pivot_supplier = $sku->skuSuppliers()->wherePivot('is_active',1)->first();
+												@endphp
+												@if($sku_pivot_supplier)
+													{{$sku_pivot_supplier->pivot->price}}
 												@endif
 											</td>
-											<td class="text-left">
-												
-												{{--標註提醒--}}
+											
+											{{--運費--}}
+											<td>{{$shippingCost=11}}</td>
+											
+											{{--利潤 %--}}
+											<td>
+												@php $profit_per_unit = $sku->price - $sku_pivot_supplier->pivot->price - $shippingCost ; @endphp
+												@if($sku->price>0)
+													{{number_format($profit_per_unit/$sku->price*100, 1, ".", ",")}} %
+												@endif
+											</td>
+											{{--訊息--}}
+											<td class="text-left" style="vertical-align: text-top">
 												@php
-													$inputs = explode(',', request()->name);
-													$name = $crawlerItem->name;
-													foreach($inputs as $input){
-												     	$input= trim($input);
-												     	if($input!=""){
-															$name = str_ireplace($input, "<span class='text-red'><u><b>".$input.'</b></u></span>',$name);
+													$daySales7_total = 0;
+													$daySales30_total = 0;
+													$nDays_total = 0;
+													foreach($sku->crawlerTaskItemSKU as $crawlerTaskItemSKU){
+														if($crawlerTaskItemSKU->crawlerItemSKUDetails(1)->count()>0){
+															$daySales7 = $crawlerTaskItemSKU->nDaysSales(7);
+															$daySales7_total+= $daySales7;
+															
+															$daySales30 = $crawlerTaskItemSKU->nDaysSales(30);
+															$nDays_total+=$crawlerTaskItemSKU->crawlerItemSKUDetails(1)->first()->sold;
+															$daySales30_total+= $daySales30;
 														}
 													}
 												@endphp
-												{!! $name!!}<br>
+												{{__('member/reports/skuCrawleritem.index.table.weeklySellQty')}}: {{$daySales7_total}} --
+												{{number_format($profit_per_unit,0,"",",")}} x {{$daySales7_total}} = {{number_format($profit_per_unit*$daySales7_total,0,"",",")}}
+												<br>
 												
-												<a class="btn btn-sm btn-info" target="_blank"
-												   href="https://{{$crawlerItem->domain_name}}/{{$crawlerItem->name==null? "waiting-upload-data":$crawlerItem->name}}-i.{{$crawlerItem->shopid}}.{{$crawlerItem->itemid}}" >
-													<i class="fa fa-external-link"></i> {{$crawlerItem->itemid}}</a>
-												<a class="btn btn-sm btn-info" target="_blank"
-												   href="https://{{$crawlerItem->domain_name}}/shop/{{$crawlerItem->shopid}}" >
-													<i class="fa fa-shopping-bag"></i> {{$crawlerItem->crawlerShop? $crawlerItem->crawlerShop->username:""}}</a>
-											</td>
-											<td>{{number_format($crawlerItem->crawlerItemSKUs->min('price')/10, 0,".",",")}}</td>
-											<td>{{number_format($crawlerItem->crawlerItemSKUs->max('price')/10, 0,".",",")}}</td>
-											<td class="text-left">
-												{{__('member/crawlerItemSearch.index.table.information.monthly_sale')}} : {{number_format($crawlerItem->sold,0,".",",")}}<br>
-												{{__('member/crawlerItemSearch.index.table.information.historic_sale')}} : {{number_format($crawlerItem->historical_sold,0,".",",")}}<br>
-												{{__('member/crawlerItemSearch.index.table.updated_at')}} : {{$crawlerItem->updated_at!=null? $crawlerItem->updated_at->diffForHumans() : ""}}<br>
+												{{__('member/reports/skuCrawleritem.index.table.monthlySellQty')}}: {{$daySales30_total}} --
+												{{number_format($profit_per_unit,0,"",",")}} x {{$daySales30_total}} = {{number_format($profit_per_unit*$daySales30_total,0,"",",")}}
+												<br>
+												
+												{{__('member/reports/skuCrawleritem.index.table.totalSellQty')}}: {{$nDays_total}} --
+												{{number_format($profit_per_unit,0,"",",")}} x {{$nDays_total}} = {{number_format($profit_per_unit*$nDays_total,0,"",",")}}
+												<br>
+												
+												{{__('member/reports/skuCrawleritem.index.table.sellerQty')}}: {{$sku->crawlerTaskItemSKU->count()}}
 											</td>
 											
 											<td>
-												<a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-left"
-												   onclick="show_crawler_item_skus(this, php_inject={{json_encode(['models' => ['crawlerItem' => $crawlerItem]])}})"> {{__('member/crawlerItemSearch.index.table.skuDetailBtn')}}</a>
+												<input type="text" name="amount" id="amount">
+												<span class="btn btn-primary btn-lg" onclick="purchase_order_cart_item_add(this, php_inject={{json_encode(['sku_id' => $sku->sku_id])}});"><i class="fa fa-plus"></i></span>
 											</td>
 										</tr>
-										@endforeach
+									@endforeach
 									</tbody>
 								</table>
-									{{--点击加载下一页的按钮--}}
-									<div class="text-center">
-										{{--判断到最后一页就终止, 否则 jscroll 又会从第一页开始一直循环加载--}}
-										@if( $crawlerItems->currentPage() == $crawlerItems->lastPage())
-											<span class="text-center text-muted">{{__('default.index.lazzyload_no_more_records')}}</span>
-										@else
-											{{-- 这里调用 paginator 对象的 nextPageUrl() 方法, 以获得下一页的路由 --}}
-											<a class="jscroll-next btn btn-outline-secondary btn-block rounded-pill" href="{{ $crawlerItems->appends($filters)->nextPageUrl() }}">
-												{{__('default.index.lazzyload_more_records')}}
-											</a>
-										@endif
-									</div>
+								{{--点击加载下一页的按钮--}}
+								<div class="text-center">
+									{{--判断到最后一页就终止, 否则 jscroll 又会从第一页开始一直循环加载--}}
+									@if( $skus->currentPage() == $skus->lastPage())
+										<span class="text-center text-muted">{{__('default.index.lazzyload_no_more_records')}}</span>
+									@else
+										{{-- 这里调用 paginator 对象的 nextPageUrl() 方法, 以获得下一页的路由 --}}
+										<a class="jscroll-next btn btn-outline-secondary btn-block rounded-pill" href="{{ $skus->appends($filters)->nextPageUrl() }}">
+											{{__('default.index.lazzyload_more_records')}}
+										</a>
+									@endif
 								</div>
 							</div>
 						</div>
-						<!-- /.box-body -->
 					</div>
-					<!-- /.box -->
 				</div>
 			</div>
 		</section>
-		<!-- /.content -->
-	
 	</div>
 @stop
 
@@ -182,41 +143,57 @@
                 // 当滚动到底部时,自动加载下一页
                 autoTrigger: true,
                 // 限制自动加载, 仅限前两页, 后面就要用户点击才加载
-                autoTriggerUntil: 1,
+                autoTriggerUntil: 10,
                 // 设置加载下一页缓冲时的图片
                 loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
-	            //设置距离底部多远时开始加载下一页
-                padding: 0,
+                padding: 10,
                 nextSelector: 'a.jscroll-next:last',
                 contentSelector: '.infinite-scroll',
                 callback:function() {
-                    float_image(className="item-image", x=90, y=-10)
+                    float_image(className="item-image", x=70, y=-10)
                 }
             });
         });
-
-        function show_crawler_item_skus(_this, php_inject) {
+	</script>
+	<script>
+        function purchase_order_cart_item_add(_this, php_inject){
             $.ajaxSetup(active_ajax_header());
+            var formData = new FormData();
+            formData.append('sku_id', php_inject.sku_id);
+            formData.append('amount', $(_this).siblings('#amount').val());
             $.ajax({
-                type: 'get',
-                url: '{{route('member.crawlerItem-crawlerItemSku.index')}}?ci_id='+php_inject.models.crawlerItem.ci_id,
-                data: '',
-                async: true,
+                type: 'post',
+                url: '{{route('member.purchaseOrderCartItem.add')}}',
+                data: formData,
                 crossDomain: true,
                 contentType: false,
                 processData: false,
                 success: function(data) {
-                    $('#modal-left .modal-title').html('{{__('member/crawlerItem.sku_detail.title')}}');
-                    $('#modal-left .modal-body').html(data.view)
+                    alert('加入成功');
                 },
-                error: function(data) {
+                error: function(error) {
+                    // if (error.response.status === 401) {
+                    //
+                    //     // http 状态码为 401 代表用户未登陆
+                    //     swal('请先登录', '', 'error');
+                    //
+                    // } else if (error.response.status === 422) {
+                    //
+                    //     // http 状态码为 422 代表用户输入校验失败
+                    //     var html = '<div>';
+                    //     _.each(error.response.data.errors, function (errors) {
+                    //         _.each(errors, function (error) {
+                    //             html += error+'<br>';
+                    //         })
+                    //     });
+                    //     html += '</div>';
+                    //     swal({content: $(html)[0], icon: 'error'})
+                    // } else {
+                    //     // 其他情况应该是系统挂了
+                    //     swal('系统错误', '', 'error');
+                    // }
                 }
             });
         }
 	</script>
-	
 @endsection
-
-
-
-

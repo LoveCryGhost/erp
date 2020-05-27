@@ -78,7 +78,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <h5>{{__('member/product.productSKU.create.length_pcs')}}</h5>
+                                        <h5>{{__('member/product.productSKU.create.length_box')}}</h5>
                                         <div class="controls">
                                             <input class="form-control" type="text" name="length_box" id="length_box"  placeholder="{{__('member/product.productSKU.create.length_box')}}"  value="{{$sku->length_box}}">
                                         </div>
@@ -109,7 +109,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <h5>{{__('member/product.productSKU.create.height_box')}}</h5>
+                                        <h5>{{__('member/product.productSKU.create.heigth_box')}}</h5>
                                         <div class="controls">
                                             <input class="form-control" type="text" name="heigth_box" id="heigth_box"  placeholder="{{__('member/product.productSKU.create.heigth_box')}}"  value="{{$sku->heigth_box}}">
                                         </div>

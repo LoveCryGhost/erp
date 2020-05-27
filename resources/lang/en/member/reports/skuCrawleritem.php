@@ -22,7 +22,7 @@ return [
     'index.table.weeklySellQty' => 'W-Qty',
     'index.table.monthlySellQty' => 'M-Qty',
     'index.table.totalSellQty' => 'T-Qty',
-    'index.table.sellerQty' => 'S-Qty',
+    'index.table.sellerQty' => 'Sellers',
 
 
 ];
