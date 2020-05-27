@@ -62,7 +62,7 @@ class MemberReportSkuAnalysisService extends MemberCoreService
                     ->addSelect('sku_supplier_translations.price as sku_supplier_purchase_price',
                         'sku_supplier_translations.locale as sku_supplier_locale',)
 
-                    ->join('suppliers', 'suppliers.s_id', '=', 'skus_suppliers.s_id')
+                    ->leftJoin('suppliers', 'suppliers.s_id', '=', 'skus_suppliers.s_id')
                     ->addSelect('suppliers.s_name')
 
                     ->leftJoin('supplier_groups', 'supplier_groups.sg_id', '=', 'suppliers.sg_id')
@@ -107,7 +107,7 @@ class MemberReportSkuAnalysisService extends MemberCoreService
 
                     ->addSelect(DB::raw("SUM(citem_skus.sold) as total_monthly_sold"))
                     ->addSelect(DB::raw("SUM(crawler_items.historical_sold) as total_historical_sold"))
-                    ->addSelect(DB::raw("count(citem_skus.sold) as total_seller"));
+                    ->addSelect(DB::raw("COUNT(citem_skus.sold) as total_seller"));
         return $query ;
     }
 

@@ -54,7 +54,7 @@ class CreateTranslationTable extends Migration
             $table->bigInteger('product_p_id')->unsigned();
             $table->string('p_name');
             $table->string('p_description')->nullable();
-            $table->decimal('tax_percentage',10,1)->default(999999999);
+            $table->decimal('tax_percentage',10,1)->nullable()->default(999999999);
             $table->string('custom_code')->nullable();
             $table->string('locale')->index();
             $table->unique(['product_p_id','locale']);

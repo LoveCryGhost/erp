@@ -38,7 +38,9 @@ class ReportSKUController extends MemberCoreController
             'monthlyProfit' => request()->monthlyProfit,
         ];
         $query = $this->index_filters($query, $this->filters);
+        dd($query->get());
         $skus = $query->paginate(10);
+
         return $view = view(config('theme.member.view').'reports.sku.crawleritem',[
             'skus' => $skus,
             'filters' => $this->filters]);
