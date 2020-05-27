@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Member;
 
 
 use App\Http\Controllers\Controller;
+use function __;
 
 class MemberCoreController extends Controller
 {
 
     public  static $toast_update = [
-        "heading" => "更新成功",
+        "heading" => ('default.toast.update_success'),
         "text" =>  '',
         "position" => "top-right",
         "loaderBg" => "#ff6849",
@@ -19,7 +20,7 @@ class MemberCoreController extends Controller
     ];
 
     public static $toast_store = [
-        "heading" => "新增成功",
+        "heading" => ('default.toast.create_success'),
         "text" =>  '',
         "position" => "top-right",
         "loaderBg" => "#ff6849",
@@ -29,7 +30,7 @@ class MemberCoreController extends Controller
     ];
 
     public static $toast_destroy = [
-        "heading" => "刪除成功",
+        "heading" => ('default.toast.delete_success'),
         "text" =>  '',
         "position" => "top-right",
         "loaderBg" => "#ff6849",

@@ -103,4 +103,10 @@ return [
         'th' => '泰國',
         'vn' => '越南',
     ],
+
+    'toast' =>[
+        'update_success' => '更新成功',
+        'create_success' => '新增成功',
+        'delete_success' => '刪除成功',
+    ]
 ];
