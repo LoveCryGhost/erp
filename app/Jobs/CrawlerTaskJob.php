@@ -134,7 +134,7 @@ class CrawlerTaskJob implements ShouldQueue
             $query->whereDate('updated_at','<>',Carbon::today())
                 ->orWhereNull('updated_at')
                 ->orWhereRaw('current_page < pages');
-        });
+        })->orderBy('member_id', 'DESC');
         $query = $this->shopeeHandler->crawlerSeperator($query);
         $crawlerTask = $query->first();
         return $crawlerTask;
