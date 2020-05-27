@@ -79,9 +79,12 @@ class CrawlerTaskJob implements ShouldQueue
                     $items_order[]=$item['itemid'];
                 };
 
-                //批量儲存Item
-                $crawlerItem = new CrawlerItem();
-                $TF = (new MemberCoreRepository())->massUpdate($crawlerItem, $row_items);
+                if(isset($row_items)){
+                    //批量儲存Item
+                    $crawlerItem = new CrawlerItem();
+                    $TF = (new MemberCoreRepository())->massUpdate($crawlerItem, $row_items);
+                }
+
 
                 //這次抓到的商品id 還有順序
                 $crawlerItem_ids = CrawlerItem::whereInMultiple(['itemid', 'shopid', 'locale'], $value_arr)
