@@ -49,7 +49,7 @@ Route::prefix('')->middleware('auth:member')->namespace('Member')->group(functio
             Route::get('purchaseOrderCartItem_index', 'PurchaseOrderCartItemsController@index')->name('purchaseOrderCartItem.index');
 
 
-            //快速
+            //ERPHelper
             Route::resource('productPlusSKU', 'ProductPlusSKUController');
             Route::resource('skuPlusSupplier', 'SkuPlusSupplierController');
         });

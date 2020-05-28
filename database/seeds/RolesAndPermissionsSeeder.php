@@ -155,6 +155,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'crawlerItem' => ['*' ,'crud'],
             'reportSKU' => ['crawlerItemAanalysis'],
             'crawlerItemSearch' => ['*' ,'crud'],
+            'productPlusSKU' => ['*', 'crud']
 
         ];
         $this->mass_create_permission($guard="member", $routes_actions);
@@ -165,7 +166,8 @@ class RolesAndPermissionsSeeder extends Seeder
                 'supperMember' => '超級會員',
                 'member' => '會員',
                 'ERP' => 'ERP',
-                'crawlerTask' => '爬蟲任務',
+                'ERPHelpler' => 'ERP助手',
+                'CrawlerShopee' => 'Shopee爬蟲',
                 'crawlerTaskAnalysis' => '爬蟲任務分析',
             ];
         $this->mass_create_role('member',$create_roles);
@@ -173,11 +175,13 @@ class RolesAndPermissionsSeeder extends Seeder
         $role = Role::where('guard_name','member')->where('name', 'supperMember')->first();
         $role->givePermissionTo(Permission::where('guard_name', 'member')->get());
 
-        $role = Role::where('guard_name','member')->where('name', 'crawlerTask')->first();
+        //CrawlerShopee Role
+        $role = Role::where('guard_name','member')->where('name', 'CrawlerShopee')->first();
         $this->mass_assign_permission($role, $guard='member', $route='crawlerTask', $permissions=['*' ,'crud']);
         $this->mass_assign_permission($role, $guard='member', $route='crawlerItem', $permissions=['*' ,'crud']);
         $this->mass_assign_permission($role, $guard='member', $route='crawlerItemSearch', $permissions=['*' ,'crud']);
 
+        //ERP Role
         $role = Role::where('guard_name','member')->where('name', 'ERP')->first();
         $this->mass_assign_permission($role, $guard='member', $route='supplier', $permissions=['*' ,'crud']);
         $this->mass_assign_permission($role, $guard='member', $route='supplierGroup', $permissions=['*' ,'crud']);
@@ -185,24 +189,37 @@ class RolesAndPermissionsSeeder extends Seeder
         $this->mass_assign_permission($role, $guard='member', $route='product', $permissions=['*' ,'crud']);
         $this->mass_assign_permission($role, $guard='member', $route='reportSKU', $permissions=['crawlerItemAanalysis']);
 
+        //ERPHelpler Role
+        $role = Role::where('guard_name','member')->where('name', 'ERPHelpler')->first();
+        $this->mass_assign_permission($role, $guard='member', $route='productPlusSKU', $permissions=['*' ,'crud']);
+
         //User 綁定 Role
+        //SuperAdmin
         $member = Member::find(1);
-        $member->assignRole('supperMember', 'ERP');
+        $member->assignRole('supperMember', 'ERP', 'ERPHelpler');
 
         $member = Member::find(2);
-        $member->assignRole(['crawlerTask', 'ERP']);
+        $member->assignRole(['CrawlerShopee', 'ERP', 'ERPHelpler']);
 
         $member = Member::find(3);
-        $member->assignRole('crawlerTask', 'ERP');
+        $member->assignRole('CrawlerShopee', 'ERP', 'ERPHelpler');
 
         $member = Member::find(4);
-        $member->assignRole('crawlerTask', 'ERP');
+        $member->assignRole('CrawlerShopee', 'ERP');
 
         $member = Member::find(5);
-        $member->assignRole('crawlerTask', 'ERP');
+        $member->assignRole('CrawlerShopee', 'ERP');
         
         $member = Member::find(6);
-        $member->assignRole('crawlerTask', 'ERP');
+        $member->assignRole('CrawlerShopee', 'ERP', 'ERPHelpler');
+
+        //Andy
+        $member = Member::find(6);
+        $member->assignRole('CrawlerShopee', 'ERP', 'ERPHelpler');
+
+        //Risca
+        $member = Member::find(7);
+        $member->assignRole('CrawlerShopee', 'ERP');
 
     }
 

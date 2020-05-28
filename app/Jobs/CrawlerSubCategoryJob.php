@@ -49,7 +49,7 @@ class CrawlerSubCategoryJob implements ShouldQueue
             $params['limit_tasks']=6;
             $sub_domain='id';
         }else{
-            $params['pages'] = 5;
+            $params['pages'] = 10;
             $params['limit_tasks']=1000;
         }
 
@@ -100,7 +100,7 @@ class CrawlerSubCategoryJob implements ShouldQueue
                 'display_name' => $display_name,
                 'image' => "",
                 'locale' => $country_code,
-                'updated_at' =>  Carbon::now(),
+                'updated_at' => null,
                 'created_at' => Carbon::now()
             ];
 

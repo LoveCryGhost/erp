@@ -28,6 +28,14 @@ class ProductPlusSKUController extends MemberCoreController
 
     public function __construct()
     {
+        $actions = [
+            '*',
+            'index',
+            'show', 'edit','update',
+            'create', 'store',
+            'destroy',
+            'show'];
+        $this->coreMiddleware('ProductPlusSKUController',$guard='member', $route="productPlusSKU", $actions);
     }
 
     public function index()

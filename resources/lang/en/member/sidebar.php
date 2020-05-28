@@ -13,9 +13,10 @@ return [
     'product.attribute' => "Product Attribute",
     'product.type' => "Product Type",
     'product.product' => "Product",
-    'product.sku' => "SKU",
-    'product.plusSku' => "Product + SKU",
-    'sku.plusSupplier' => "SKU + Supplier",
+    'erpHelper.ul' => "ERP - Helper",
+    'erpHelper.product.sku' => "SKU",
+    'erpHelper.productPlusSku' => "Product + SKU",
+    'erpHelper.skuPlusSupplier' => "SKU + Supplier",
 
     //Shopee
     'shopee.ul' => "Shopee Module",

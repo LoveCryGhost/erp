@@ -47,7 +47,7 @@ class CrawlerCategoryJob implements ShouldQueue
             $params['pages'] = 1;
             $params['limit_tasks']=6;
         }else{
-            $params['pages'] = 10;
+            $params['pages'] = 20;
             $params['limit_tasks']=1000;
         }
 

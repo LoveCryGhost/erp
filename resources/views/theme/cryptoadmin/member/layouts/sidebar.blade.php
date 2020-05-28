@@ -54,12 +54,26 @@
                     <li><a href="{{route('member.attribute.index')}}"><i class="ti-more"></i>{{__('member/sidebar.product.attribute')}}</a></li>
                     <li><a href="{{route('member.type.index')}}"><i class="ti-more"></i>{{__('member/sidebar.product.type')}}</a></li>
                     <li><a href="{{route('member.product.index')}}"><i class="ti-more"></i>{{__('member/sidebar.product.product')}}</a></li>
-                    <li><a href="{{route('member.productPlusSKU.index',['collapse'=>1])}}"><i class="ti-more"></i>{{__('member/sidebar.product.plusSku')}}</a></li>
-{{--                    <li><a href="{{route('member.skuPlusSupplier.index',['collapse'=>1])}}"><i class="ti-more"></i>{{__('member/sidebar.sku.plusSupplier')}}</a></li>--}}
-                    <li><a href="{{route('member.sku.index')}}"><i class="ti-more"></i>{{__('member/sidebar.product.sku')}}</a></li>
                 </ul>
             </li>
             @endcan
+    
+            @can('member.productPlusSKU.index')
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-money"></i>
+                        <span>{{__('member/sidebar.erpHelper.ul')}}</span>
+                        <span class="pull-right-container">
+                  <i class="fa fa-angle-right pull-right"></i>
+                </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('member.productPlusSKU.index',['collapse'=>1])}}"><i class="ti-more"></i>{{__('member/sidebar.erpHelper.productPlusSku')}}</a></li>
+                        <li><a href="{{route('member.skuPlusSupplier.index',['collapse'=>1])}}"><i class="ti-more"></i>{{__('member/sidebar.erpHelper.skuPlusSupplier')}}</a></li>
+                        <li><a href="{{route('member.sku.index')}}"><i class="ti-more"></i>{{__('member/sidebar.erpHelper.product.sku')}}</a></li>
+                    </ul>
+                </li>
+            @endhasanyrole
 
             @can('member.crawlerTask.index')
             <li class="treeview">
@@ -92,7 +106,7 @@
                 </li>
             @endcan
 
-                @can('member.reportSKU.crawlerItemAanalysis')
+            @can('member.reportSKU.crawlerItemAanalysis')
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-table"></i>
@@ -105,7 +119,7 @@
                             <li><a href="{{route('member.tools.compound_interest')}}"><i class="ti-more"></i>{{__('member/sidebar.tools.compoundInterest')}}</a></li>
                         </ul>
                     </li>
-                @endcan
+            @endcan
 
         </ul>
     </section>

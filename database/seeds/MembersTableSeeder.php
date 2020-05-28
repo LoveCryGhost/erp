@@ -72,7 +72,7 @@ class MembersTableSeeder extends Seeder
         $member->save();
 
         $member = Member::find(7);
-        $member->name = 'risca';
+        $member->name = 'Risca';
         $member->email = 'risca@app.com';
         $member->avatar = '';
         $member->save();

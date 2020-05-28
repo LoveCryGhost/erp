@@ -14,9 +14,10 @@ return [
     'product.attribute' => "產品屬性",
     'product.type' => "產品型態",
     'product.product' => "產品",
-    'product.sku' => "SKU",
-    'product.plusSku' => "產品 + SKU",
-    'sku.plusSupplier' => "SKU + 供應商",
+    'erpHelper.ul' => "ERP - 助手",
+    'erpHelper.productPlusSku' => "產品 + SKU",
+    'erpHelper.skuPlusSupplier' => "SKU + 供應商",
+    'erpHelper.product.sku' => "SKU",
 
     //Shopee
     'shopee.ul' => "Shopee 模組",
