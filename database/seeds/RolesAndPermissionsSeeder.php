@@ -155,7 +155,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'crawlerItem' => ['*' ,'crud'],
             'reportSKU' => ['crawlerItemAanalysis'],
             'crawlerItemSearch' => ['*' ,'crud'],
-            'productPlusSKU' => ['*', 'crud']
+            'productPlusSKU' => ['*', 'crud'],
+            'skuPlusSupplier' => ['*', 'crud'],
 
         ];
         $this->mass_create_permission($guard="member", $routes_actions);
@@ -192,6 +193,7 @@ class RolesAndPermissionsSeeder extends Seeder
         //ERPHelpler Role
         $role = Role::where('guard_name','member')->where('name', 'ERPHelpler')->first();
         $this->mass_assign_permission($role, $guard='member', $route='productPlusSKU', $permissions=['*' ,'crud']);
+        $this->mass_assign_permission($role, $guard='member', $route='skuPlusSupplier', $permissions=['*' ,'crud']);
 
         //User 綁定 Role
         //SuperAdmin

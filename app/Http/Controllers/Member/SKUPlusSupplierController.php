@@ -25,7 +25,7 @@ use function request;
 use function view;
 
 
-class ProductPlusSKUController extends MemberCoreController
+class SKUPlusSupplierController extends MemberCoreController
 {
 
     public function __construct(SKUService $skuService)
@@ -37,15 +37,17 @@ class ProductPlusSKUController extends MemberCoreController
             'create', 'store',
             'destroy',
             'show'];
-        $this->coreMiddleware('ProductPlusSKUController',$guard='member', $route="productPlusSKU", $actions);
+        $this->coreMiddleware('SKUPlusSupplierController',$guard='member', $route="skuPlusSupplier", $actions);
         $this->skuService = $skuService;
     }
 
     public function index()
     {
-        $products = Product::with(['member'])
-            ->where('member_id', Auth::guard('member')->user()->id)->paginate(5);
-        return view(config('theme.member.view').'productPlusSKU.index', compact('products'));
+        $skus = $this->skuService->skuRepo->builder()
+                    ->with(['product','member'])
+                    ->where('member_id', Auth::guard('member')->user()->id)
+                    ->paginate(5);
+        return view(config('theme.member.view').'skuPlusSupplier.index', compact('skus'));
     }
 
     public function edit(Product $productPlusSKU)

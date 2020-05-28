@@ -67,7 +67,7 @@
                         <th>{{__('default.index.table.image')}}</th>
                         <th>{{__('default.index.table.name')}}</th>
                         <th>{{__('default.index.table.is_active')}}</th>
-                        <th>{{__('member/product.productSupplier.index.purchasePrice')}}</th>
+                        <th>{!!__('member/product.productSupplier.index.purchasePrice')!!}</th>
                         <th>{{__('default.index.table.url')}}</th>
                         <th>{{__('default.index.table.crud')}}</th>
                     </tr>
@@ -91,11 +91,9 @@
                                     <input type="text" hidden name="sku_suppliers[s_id]" value="{{$skuSupplier->s_id}}">
                                 </td>
                                 <td>
-                                    
                                     <input type="checkbox" class="permission_check" name="is_active" id="is_active_{{$skuSupplier->ss_id}}"
-                                           {{$skuSupplier->pivot->is_active==1? "checked": ""}} disabled>
+                                       {{$skuSupplier->pivot->is_active==1? "checked": ""}} disabled >
                                     <label for="is_active_{{$skuSupplier->ss_id}}" class="p-0 m-0"></label>
-                                    
                                 </td>
                                 <td>{{$skuSupplier->pivot->price}}</td>
                                 <td>

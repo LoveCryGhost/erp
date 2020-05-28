@@ -229,14 +229,14 @@ class ProductsTableSeeder extends Seeder
                     'c_ids' => [2],
                     'produuct_thumnail_ids' => ['/images/default/products/pizza_pan_1.jpg', '/images/default/products/pizza_pan_2.jpg'],
                     'skus' => [
-                        [5, 'Pizza 5-7"烤盤', 211, 'sku_attributes' =>[ 4=>'黑色', 5=>'鐵氟龍', 6=>'7"', 7=>'DD4']], //6 = member_id
-                        [5, 'Pizza 5-8"烤盤', 212, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
-                        [5, 'Pizza 5-9"烤盤', 213, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
-                        [5, 'Pizza 5-10"烤盤', 214, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
-                        [5, 'Pizza 5-11"烤盤', 215, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
-                        [5, 'Pizza 5-12"烤盤', 216, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
-                        [5, 'Pizza 5-13"烤盤', 217, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
-                        [5, 'Pizza 5-14"烤盤', 218, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
+                        [6, 'Pizza 5-7"烤盤', 211, 'sku_attributes' =>[ 4=>'黑色', 5=>'鐵氟龍', 6=>'7"', 7=>'DD4']], //6 = member_id
+                        [6, 'Pizza 5-8"烤盤', 212, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
+                        [6, 'Pizza 5-9"烤盤', 213, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
+                        [6, 'Pizza 5-10"烤盤', 214, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
+                        [6, 'Pizza 5-11"烤盤', 215, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
+                        [6, 'Pizza 5-12"烤盤', 216, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
+                        [6, 'Pizza 5-13"烤盤', 217, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
+                        [6, 'Pizza 5-14"烤盤', 218, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
                     ]
                 ],[
                     'is_active' => 1, 'publish_at' => null, 'member_id' => 6,
@@ -245,8 +245,8 @@ class ProductsTableSeeder extends Seeder
                     'c_ids' => [2],
                     'produuct_thumnail_ids' => ['/images/default/products/toast_pan_1.jpg', '/images/default/products/toast_pan_2.jpg', '/images/default/products/toast_pan_3.jpg'],
                     'skus' => [
-                        [5, '花嘴 1', 221, 'sku_attributes' =>[4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']], //6 = member_id
-                        [5, '花嘴 2', 222, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
+                        [6, '花嘴 1', 221, 'sku_attributes' =>[4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']], //6 = member_id
+                        [6, '花嘴 2', 222, 'sku_attributes' =>[ 4=>'AA1', 5=>'BB2', 6=>'CC3', 7=> 'DD4']],
                     ]
                 ]
             ];
