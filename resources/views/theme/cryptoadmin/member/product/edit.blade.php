@@ -55,7 +55,7 @@
                                         <div class="form-group">
                                             <h5>{{__('member/product.edit.productType')}}</h5>
                                             <div class="controls">
-                                                <select class="select2_item form-control" name="t_id" required data-validation-required-message="必填欄位">
+                                                <select class="select2_item form-control" name="t_id" required data-validation-required-message="必填欄位" {{$product->all_skus->count()>0? "disabled":""}}>
                                                 {{--預設值--}}
                                                 <option value="">Select...</option>
                                                 @foreach($types as $type)

@@ -2,7 +2,7 @@
 return [
 
     //Title
-    'title' => "product Plus SKU",
+    'title' => "Product Plus SKU",
     'edit.productName' => "product Name",
     'edit.productBarcode' => "product Barcode",
 

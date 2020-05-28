@@ -13,7 +13,7 @@ class CreateSkuAttributesTable extends Migration
             $table->BigIncrements('sa_id');
             $table->bigInteger('sku_id')->unsigned();
             $table->bigInteger('a_id')->unsigned();
-            $table->string('a_value')->nullable();
+//            $table->string('a_value')->nullable();
             $table->foreign('a_id')->references('a_id')->on('attributes')->onDelete('cascade');
             $table->foreign('sku_id')->references('sku_id')->on('skus')->onDelete('cascade');
 

@@ -64,7 +64,7 @@
                                             <th>Weight(Kg) / box</th>
                                             <th>pcs / box</th>
                                         </tr>
-                                        <tr stylex="display: none;">
+                                        <tr style="display:none;">
                                             <td>
                                                 <span class="handle" style="cursor: move;">
                                                     <i class="fa fa-ellipsis-v"></i>
@@ -74,7 +74,7 @@
                                             <td>Order</td>
                                             <td>
                                                 <a class="btn btn-success" onclick="copy_sku(this,php_inject={{json_encode([ 'models'=> ['product' => $product]])}})" ><i class="fa fa-copy"></i></a>
-                                                <input type="text"  name="sku_id[]" value=""></td>
+                                                <input type="text" hidden name="sku_id[]" value=""></td>
                                             <td>
                                                 <input type="checkbox" class="permission_check" name="is_active[]" id="is_active_{{rand(999,999999)}}"}} >
                                                 <label for="is_active_{{rand(999,999999)}}" class="p-0 m-0"></label></td>
@@ -85,7 +85,10 @@
                                             {{--屬性--}}
                                             {{--屬性--}}
                                             @foreach($product->type->attributes as $attribute)
-                                                <td><input type="text" name="sku_attributes[]" value=""></td>
+                                                <td>
+                                                    <input type="text" name="sku_attributes[]" value="">
+                                                    <input type="text" hidden name="sku_attributes_a_id[]" value="{{$attribute->a_id}}">
+                                                </td>
                                             @endforeach
                                             <td><input type="text" name="length_pcs[]" value=""></td>
                                             <td><input type="text" name="width_pcs[]" value=""></td>
@@ -111,31 +114,34 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>
                                                 <a class="btn btn-success" onclick="copy_sku(this,php_inject={{json_encode([ 'models'=> ['product' => $product]])}})" ><i class="fa fa-copy"></i></a>
-                                                <input type="text" name="sku_id[]" value="{{$sku->sku_id}}">
+                                                <input type="text" hidden name="sku_id[]" value="{{$sku->sku_id}}">
                                             </td>
                                             <td>
-                                                <input type="checkbox" class="permission_check" name="is_active[{{$sku->sku_id}}]" id="is_active_{{$sku->sku_id}}"
+                                                <input type="checkbox" class="permission_check" name="is_active[]" id="is_active_{{$sku->sku_id}}"
                                                        {{$sku->is_active===1? "checked": ""}} >
                                                 <label for="is_active_{{$sku->sku_id}}" class="p-0 m-0"></label>
                                                 
                                             </td>
                                             <td>
-                                                <input class="w-400" type="text" name="sku_name[{{$sku->sku_id}}]" value="{{$sku->sku_name}}">
+                                                <input class="w-400" type="text" name="sku_name[]" value="{{$sku->sku_name}}">
                                             </td>
-                                            <td><input type="text" name="price[{{$sku->sku_id}}]" value="{{$sku->price}}"></td>
+                                            <td><input type="text" name="price[]" value="{{$sku->price}}"></td>
                                             {{--屬性--}}
                                             @foreach($sku->skuAttributes as $attribute)
-                                                <td><input type="text" name="sku_attributes[{{$attribute->sa_id}}]" value="{{$attribute->a_value}}"></td>
+                                                <td>
+                                                    <input type="text" name="sku_attributes[]" value="{{$attribute->a_value}}">
+                                                    <input type="text" hidden name="sku_attributes_a_id[]" value="{{$attribute->a_id}}">
+                                                </td>
                                             @endforeach
-                                            <td><input type="text" name="length_pcs[{{$sku->sku_id}}]" value="{{$sku->length_pcs}}"></td>
-                                            <td><input type="text" name="width_pcs[{{$sku->sku_id}}]" value="{{$sku->width_pcs}}"></td>
-                                            <td><input type="text" name="heigth_pcs[{{$sku->sku_id}}]" value="{{$sku->heigth_pcs}}"></td>
-                                            <td><input type="text" name="weight_pcs[{{$sku->sku_id}}]" value="{{$sku->weight_pcs}}"></td>
-                                            <td><input type="text" name="length_box[{{$sku->sku_id}}]" value="{{$sku->length_box}}"></td>
-                                            <td><input type="text" name="width_box[{{$sku->sku_id}}]" value="{{$sku->width_box}}"></td>
-                                            <td><input type="text" name="heigth_box[{{$sku->sku_id}}]" value="{{$sku->heigth_box}}"></td>
-                                            <td><input type="text" name="weight_box[{{$sku->sku_id}}]" value="{{$sku->weight_box}}"></td>
-                                            <td><input type="text" name="pcs_per_box[{{$sku->sku_id}}]" value="{{$sku->pcs_per_box}}"></td>
+                                            <td><input type="text" name="length_pcs[]" value="{{$sku->length_pcs}}"></td>
+                                            <td><input type="text" name="width_pcs[]" value="{{$sku->width_pcs}}"></td>
+                                            <td><input type="text" name="heigth_pcs[]" value="{{$sku->heigth_pcs}}"></td>
+                                            <td><input type="text" name="weight_pcs[]" value="{{$sku->weight_pcs}}"></td>
+                                            <td><input type="text" name="length_box[]" value="{{$sku->length_box}}"></td>
+                                            <td><input type="text" name="width_box[]" value="{{$sku->width_box}}"></td>
+                                            <td><input type="text" name="heigth_box[]" value="{{$sku->heigth_box}}"></td>
+                                            <td><input type="text" name="weight_box[]" value="{{$sku->weight_box}}"></td>
+                                            <td><input type="text" name="pcs_per_box[]" value="{{$sku->pcs_per_box}}"></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -183,10 +189,12 @@
         }
         
         function reset_crontrol_item(cleanValue=true) {
-            $('#productPlusSKU tbody tr:last td').each(function(){
-                controlItem = $(this).find('input');
+            $('#productPlusSKU tbody tr:last').show();
+            $('#productPlusSKU tbody tr:last td input').each(function(){
+                controlItem = $(this);
     
                 //input text
+                $('#productPlusSKU tbody tr:last td input').eq(0).val("");
                 if(cleanValue==true && controlItem.attr('text')=="text"){
                     controlItem.val("")
                     
