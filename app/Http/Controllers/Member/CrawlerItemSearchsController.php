@@ -45,7 +45,7 @@ class CrawlerItemSearchsController extends MemberCoreController
         ];
         $query = $this->index_filters($query, $this->filters);
 
-        $crawlerItems = $query->paginate(10);
+        $crawlerItems = $query->paginate(50);
 
         $crawlerItem_total_records = $query->count();
         $crawlerItem_total_updated = $query->whereDate('updated_at','=',Carbon::today())->whereNotNull('updated_at')->count();

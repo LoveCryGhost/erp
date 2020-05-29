@@ -39,18 +39,19 @@
                     $crawlerItem_total[$country] = $crawlerItem->where('locale',$country)->count();
                     $crawlerItem_total_updated[$country] = $crawlerItem->where('locale',$country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
                 }
-                
             @endphp
             <div class="pull-left">
                 <table class="itable fontsize-1 m-0 p-0  font-size-1">
+                    
                     <thead>
                         <tr>
                             <th>國家</th>
-                            <th>Category</th>
+                            <th>Categories / SubCategories</th>
                             <th>Task</th>
                             <th>Item</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
                         @if(current(explode('.', request()->getHost())) == "test")
                             @foreach($countries as $country)
@@ -101,10 +102,10 @@
                                 </tr>
                             @endforeach
                         @endif
-                       
                     </tbody>
                 </table>
             </div>
+            
             <div class="pull-left">
                 <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal-fill">
                     全1
