@@ -1,7 +1,6 @@
 <?php
 
 use App\Handlers\ShopeeHandler;
-use App\Jobs\CrawlerItemJob;
 use App\Models\CrawlerItem;
 use App\Models\Shoes\ShoesDB;
 use App\Models\SKU;

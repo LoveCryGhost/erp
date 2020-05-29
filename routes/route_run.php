@@ -2,7 +2,8 @@
 
 use App\Imports\MHMoldImport;
 use App\Jobs\CrawlerCategoryJob;
-use App\Jobs\CrawlerItemJob;
+use App\Jobs\CrawlerItemFromCategoryJob;
+use App\Jobs\CrawlerItemFromMemberJob;
 use App\Jobs\CrawlerShopJob;
 use App\Jobs\CrawlerSubCategoryJob;
 use App\Jobs\CrawlerTaskJob;
@@ -29,10 +30,15 @@ Route::prefix('run') ->middleware('auth:admin')->group(function(){
         return redirect()->back();
     })->name('member.run.crawlerTaskJob');
 
-    Route::get('crawlerItemJob',function () {
-        dispatch((new CrawlerItemJob())->onQueue('low'));
+    Route::get('crawlerItemFromMemberJob',function () {
+        dispatch((new CrawlerItemFromMemberJob())->onQueue('low'));
         return redirect()->back();
-    })->name('member.run.crawlerItemJob');
+    })->name('member.run.crawlerItemFromMemberJob');
+
+    Route::get('crawlerItCategoryMemberJob',function () {
+        dispatch((new CrawlerItemFromCategoryJob())->onQueue('low'));
+        return redirect()->back();
+    })->name('member.run.crawlerItemFromCategoryJob');
 
     Route::get('crawlerShopJob',function () {
         dispatch((new CrawlerShopJob())->onQueue('low'));

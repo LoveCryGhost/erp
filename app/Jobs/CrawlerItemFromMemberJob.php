@@ -38,11 +38,15 @@ class CrawlerItemFromMemberJob implements ShouldQueue
         $member_id = Auth::guard('member')->check()?  Auth::guard('member')->user()->id: '1';
 
 
-        $query = CrawlerTask::where('member_id','>', '5')
-            ->with(['crawlerItems'])
-            ->where(function ($query) {
-                $query->whereDate('crawlerItems.updated_at','<>',Carbon::today())->orWhereNull('updated_at');
-            })->take(config('crawler.update_item_qty'));
+        $query = CrawlerItem::where(function ($query) {
+                        $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+                    })
+                    ->with(['crawlerTask' => function ($q) {
+                        $q->where('member_id','>', 5);
+
+                    }])
+
+                    ->take(config('crawler.update_item_qty'));
 
 //        $query = CrawlerItem::where(function ($query) {
 //            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');

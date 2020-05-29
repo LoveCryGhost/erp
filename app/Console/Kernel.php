@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
         //\App\Console\Commands\AddUsersCron::class,
         \App\Console\Commands\CrawlerCategoryCron::class,
         \App\Console\Commands\CrawlerCleanCron::class,
-        \App\Console\Commands\CrawlerFirstTimeUpdateItemAndShopCron::class,
+        \App\Console\Commands\CrawlerFirstTimeUpdateItemAndShopCronFromCategory::class,
+        \App\Console\Commands\CrawlerFirstTimeUpdateItemAndShopCronFromMember::class,
         \App\Console\Commands\CrawlerTaskCron::class,
         \App\Console\Commands\MHShoesMaterialControlCron::class
 

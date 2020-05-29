@@ -1,10 +1,10 @@
 <?php
 
 use App\Handlers\ShopeeHandler;
-use App\Jobs\CrawlerItemJob;
+use App\Jobs\CrawlerItemFromCategoryJob;
+use App\Jobs\CrawlerItemFromMemberJob;
 use App\Jobs\CrawlerShopJob;
 use App\Jobs\CrawlerTaskJob;
-use App\Models\CrawlerItem;
 use App\Models\CrawlerShop;
 use App\Models\CrawlerTask;
 use App\Repositories\Member\MemberCoreRepository;
@@ -82,7 +82,8 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
             $TF = (new MemberCoreRepository())->massUpdate($crawlerShop, $row_shops);
 
             dispatch((new CrawlerTaskJob())->onQueue('high'));
-            dispatch((new CrawlerItemJob())->onQueue('low'));
+            dispatch((new CrawlerItemFromMemberJob())->onQueue('high'));
+            dispatch((new CrawlerItemFromCategoryJob())->onQueue('default'));
             dispatch((new CrawlerShopJob())->onQueue('low'));
         }
         $crawlerTask->updated_at = Carbon::now();

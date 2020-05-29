@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\CrawlerItemJob;
+use App\Jobs\CrawlerItemFromCategoryJob;
 use App\Jobs\CrawlerShopJob;
 use Illuminate\Console\Command;
 
@@ -23,6 +23,6 @@ class CrawlerFirstTimeUpdateItemAndShopCronFromCategory extends Command
     public function handle()
     {
         dispatch((new CrawlerItemFromCategoryJob())->onQueue('default'));
-        dispatch((new CrawlerShopFromCategoryJob())->onQueue('default'));
+        dispatch((new CrawlerShopJob())->onQueue('default'));
     }
 }
