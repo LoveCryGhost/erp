@@ -59,7 +59,7 @@ class CrawlerCategoryJob implements ShouldQueue
         }
 
         dispatch((new CrawlerSubCategoryJob())->onQueue('instant'));
-        dispatch((new CrawlerTaskJob())->onQueue('high'));
+        dispatch((new CrawlerTaskJob())->onQueue('instant'));
         return redirect()->back();
     }
 

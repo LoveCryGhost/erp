@@ -14,7 +14,7 @@ class CrawlerTaskCron extends Command
     protected $signature = 'command:crawler_task';
 
 
-    protected $description = 'Command crawler_first_time_update_shop';
+    protected $description = 'Command crawlrt_task';
 
 
     public function __construct()
@@ -26,6 +26,6 @@ class CrawlerTaskCron extends Command
     //EveryMintu
     public function handle()
     {
-        dispatch((new CrawlerTaskJob())->onQueue('high'));
+        dispatch((new CrawlerTaskJob())->onQueue('instant'));
     }
 }

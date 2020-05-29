@@ -9,6 +9,6 @@ return [
         'insert_sub_category_qty' => 5,
 
         //一次爬幾筆
-        'update_item_qty' => 5,
-        'update_shop_qty' => 5,
+        'update_item_qty' => 10,
+        'update_shop_qty' => 10,
 ];

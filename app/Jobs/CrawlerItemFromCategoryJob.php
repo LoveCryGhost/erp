@@ -19,7 +19,7 @@ use function current;
 use function explode;
 use function request;
 
-class CrawlerItemJob implements ShouldQueue
+class CrawlerItemFromCategoryJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -87,7 +87,7 @@ class CrawlerItemJob implements ShouldQueue
             }
 
             //重新指派任務
-            dispatch((new CrawlerItemJob())->onQueue('low'));
+            dispatch((new CrawlerItemFromCategoryJob())->onQueue('default'));
         }
     }
 
