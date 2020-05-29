@@ -45,17 +45,22 @@ class CrawlerCategoryJob implements ShouldQueue
         $sub_domain = explode('-', $sub_domain)[0];
         if($sub_domain=='localhost' or $sub_domain == 'test'){
             $params['pages'] = 1;
-            $params['limit_tasks']=6;
+            $params['limit_tasks']=1000;
         }else{
             $params['pages'] = 20;
             $params['limit_tasks']=1000;
         }
 
         $countries = $this->shopeeHandler->crawlerSeperator_coutnry();
+        //若有問題。重新 php run schedule:run
         foreach ($countries as $country_code => $country){
             $url = 'https://'.$country.'/api/v2/category_list/get';
             $this->crawler_catergory($country_code, $country, $url, $params);
         }
+
+        dispatch((new CrawlerSubCategoryJob())->onQueue('instant'));
+        dispatch((new CrawlerTaskJob())->onQueue('high'));
+        return redirect()->back();
     }
 
     public function crawler_catergory($country_code, $country, $url, $params=[])
@@ -166,7 +171,6 @@ class CrawlerCategoryJob implements ShouldQueue
             $index++;
         }
 
-        dispatch((new CrawlerTaskJob())->onQueue('default'));
-        return redirect()->back();
+
     }
 }

@@ -114,7 +114,7 @@ class CrawlerTaskJob implements ShouldQueue
             }
             $crawlerTask->save();
 
-            dispatch((new CrawlerTaskJob())->onQueue('default'));
+            dispatch((new CrawlerTaskJob())->onQueue('high'));
         }
     }
 

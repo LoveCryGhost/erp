@@ -23,6 +23,6 @@ class CrawlerCategoryCron extends Command
     //EveryMintu
     public function handle()
     {
-        dispatch((new CrawlerCategoryJob())->onQueue('high'));
+        dispatch((new CrawlerCategoryJob())->onQueue('instant'));
     }
 }

@@ -46,7 +46,7 @@ class CrawlerSubCategoryJob implements ShouldQueue
 
         if($sub_domain=='localhost' or $sub_domain == 'test'){
             $params['pages'] = 1;
-            $params['limit_tasks']=6;
+            $params['limit_tasks']=1000;
             $sub_domain='id';
         }else{
             $params['pages'] = 10;
@@ -55,11 +55,14 @@ class CrawlerSubCategoryJob implements ShouldQueue
 
 
         //找出要update的 CrawlerCategory
-        $crawlerCategory = CrawlerCategory::where('p_id',0)
-            ->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')
+        $crawlerCategory = CrawlerCategory::where('p_id', '=' ,0)
+            ->where(function($query)
+            {
+                $query->whereDate('updated_at','<>', Carbon::today())
+                    ->orWhereNull('updated_at');
+            })
             ->where('locale', $sub_domain) //國家
             ->first();
-
         if($crawlerCategory){
             $countries = $this->shopeeHandler->crawlerSeperator_coutnry();
 
@@ -68,11 +71,14 @@ class CrawlerSubCategoryJob implements ShouldQueue
                 $url = 'https://'.$country.'/api/v0/search/api/facet/?match_id='.$crawlerCategory->catid.'&page_type=search';
                 $this->crawler_subCatergory($country_code, $country, $url, $params);
             }
-        }
 
-        DB::table('crawler_categories')
-            ->where(['p_id'=>0, 'locale' => $sub_domain, 'catid'=> $crawlerCategory->catid])
-            ->update(['updated_at'=> Carbon::now()]);
+            DB::table('crawler_categories')
+                ->where(['p_id'=>0, 'locale' => $sub_domain, 'catid'=> $crawlerCategory->catid])
+                ->update(['updated_at'=> Carbon::now()]);
+
+            dispatch((new CrawlerSubCategoryJob())->onQueue('instant'));
+        }
+        return redirect()->back();
     }
 
     public function crawler_subCatergory($country_code, $country, $url, $params=[])
@@ -193,8 +199,5 @@ class CrawlerSubCategoryJob implements ShouldQueue
 
             $index++;
         }
-
-        dispatch((new CrawlerSubCategoryJob())->onQueue('high'));
-        return redirect()->back();
     }
 }

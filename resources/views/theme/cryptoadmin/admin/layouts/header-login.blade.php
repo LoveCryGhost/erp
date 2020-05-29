@@ -21,7 +21,7 @@
             </a>
     
             @php
-                $countries = ['tw', 'th', 'id'];
+                $countries = ['id', 'id-01'];
                 $crawlerCategory =  new App\Models\CrawlerCategory();
                 $crawlerTask =  new App\Models\CrawlerTask();
                 $crawlerItem =  new App\Models\CrawlerItem();
@@ -31,7 +31,7 @@
                 $crawlerTask_total_updated = [];
                 $crawlerItem_total = [];
                 $crawlerItem_total_updated = [];
-                foreach($countries = ['tw', 'th', 'id'] as $country){
+                foreach($countries = ['id', 'id-01'] as $country){
                     $crawlerCategory_total[$country] = $crawlerCategory->where('locale',$country)->count();
                     $crawlerCategory_total_updated[$country] =  $crawlerCategory->where('locale', $country)->whereDate('updated_at','=',(new Carbon\Carbon())->today())->whereNotNull('updated_at')->count();
                     $crawlerTask_total[$country] = $crawlerTask->where('locale', $country)->count();
