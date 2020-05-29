@@ -155,6 +155,7 @@ class CrawlerCategoryJob implements ShouldQueue
             //新增爬蟲任務
             CrawlerTask::updateOrCreate([
                 'category' => $data['category'],
+                'subcategory' => null,
                 'domain_name' => $data['domain_name'],
                 'locale' => $data['url_params']['locale'],
                 'sort_by' => $data['sort_by'],
