@@ -23,6 +23,6 @@ class CrawlerFirstTimeUpdateItemAndShopCronFromCategory extends Command
     public function handle()
     {
         dispatch((new CrawlerItemFromCategoryJob())->onQueue('default'));
-        dispatch((new CrawlerShopJob())->onQueue('default'));
+        dispatch((new CrawlerShopJob())->onQueue('low'));
     }
 }
