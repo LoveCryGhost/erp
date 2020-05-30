@@ -85,7 +85,6 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
 
         $query_updated = number_format($query_updated,0,'',',');
 
-        $query_updated = number_format($query_updated,0,'',',');
         $query_total = number_format($query_total,0,'',',');
 
 
@@ -109,7 +108,6 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
 
         $query_updated = number_format($query_updated,0,'',',');
 
-        $query_updated = number_format($query_updated,0,'',',');
         $query_total = number_format($query_total,0,'',',');
 
 
