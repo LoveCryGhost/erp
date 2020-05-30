@@ -40,7 +40,7 @@ class CrawlerItemFromMemberJob implements ShouldQueue
 
         $query = CrawlerItem::whereHas('crawlerTask', function ($query) {
             $query->where('member_id', '>', 5)
-                ->orderBy('member_id', 'DESC');
+                ->orderBy(['member_id'=> 'ASC', 'ct_id' => 'ASC']);
             ;
             })
             ->where(function ($query) {
