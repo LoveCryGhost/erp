@@ -43,8 +43,8 @@ class CrawlerItemFromMemberJob implements ShouldQueue
             })
             ->where(function ($query) {
                 $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
-            })->orderBy('crawlerTask.member_id', 'ASC')
-            ->orderBy('crawlerTask.ct_id', 'ASC')
+            })->orderBy('crawler_tasks.member_id', 'ASC')
+            ->orderBy('crawler_tasks.ct_id', 'ASC')
 
             ->take(config('crawler.update_item_qty'));
 
