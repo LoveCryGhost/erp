@@ -2,6 +2,7 @@
 
 use App\Handlers\ShopeeHandler;
 use App\Models\CrawlerItem;
+use App\Models\CrawlerTask;
 use App\Models\Shoes\ShoesDB;
 use App\Models\SKU;
 use App\Models\SKUSupplier;
@@ -68,30 +69,23 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
     });
 
     Route::get('/MemberCrawlerItemCount',function (){
-        $query = CrawlerItem::where(function ($query) {
-            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
-        })
-            ->with(['crawlerTask' => function ($q) {
-                $q->where('member_id','>', 5);
-            }])
-            //->take(config('crawler.update_item_qty'))
-        ;
-        $query = $query->orderBy('member_id', 'DESC')->get();
-        dd('會員所建立的 MemberCrawlerItem 數量 : '.$query->count());
+        $query = CrawlerItem::whereHas('crawlerTask', function ($query) {
+            $query->where('member_id', '>', 5)
+                ->orderBy('member_id', 'DESC');
+                ;
+        })->count();
+
+        dd('員所建立的 MemberCrawlerItem 數量 : '.$query);
     });
 
     Route::get('/CategoryCrawlerItemCount',function (){
-        $query = CrawlerItem::where(function ($query) {
-            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
-        })
-            ->with(['crawlerTask' => function ($q) {
-                $q->where('member_id','<=', 5);
-            }])
-            //->take(config('crawler.update_item_qty'))
-        ;
-        $query = $query->orderBy('member_id', 'DESC')->get();
+        $query = CrawlerItem::whereHas('crawlerTask', function ($query) {
+            $query->where('member_id', '<=', 5)
+                ->orderBy('member_id', 'ASC');
+            ;
+        })->count();
 
-        dd('非員所建立的 CategoryCrawlerItem 數量 : '.$query->count());
+        dd('非員所建立的 CategoryCrawlerItem 數量 : '.$query);
     });
 
 
