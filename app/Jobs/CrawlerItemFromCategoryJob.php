@@ -37,11 +37,11 @@ class CrawlerItemFromCategoryJob implements ShouldQueue
         $member_id = Auth::guard('member')->check()?  Auth::guard('member')->user()->id: '1';
 
         $query = CrawlerItem::whereHas('crawlerTask', function ($query) {
-            $query->where('member_id', '<=', 5)
-                ->orderBy('member_id', 'ASC')
-                ->orderBy('ct_id', 'ASC');
+            $query->where('member_id', '<=', 5);
         })->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')
-            ->take(config('crawler.update_item_qty'));
+            ->take(config('crawler.update_item_qty'))
+            ->orderBy('crawlerTask.member_id', 'ASC')
+            ->orderBy('crawlerTask.ct_id', 'ASC');
 
         $query = $this->shopeeHandler->crawlerSeperator($query);
         $crawler_items = $query->get();
