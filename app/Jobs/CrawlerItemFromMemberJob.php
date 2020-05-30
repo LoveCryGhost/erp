@@ -43,9 +43,7 @@ class CrawlerItemFromMemberJob implements ShouldQueue
                     })
                     ->with(['crawlerTask' => function ($q) {
                         $q->where('member_id','>', 5);
-
                     }])
-
                     ->take(config('crawler.update_item_qty'));
 
 //        $query = CrawlerItem::where(function ($query) {

@@ -67,5 +67,32 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
 
     });
 
+    Route::get('/MemberCrawlerItemCount',function (){
+        $query = CrawlerItem::where(function ($query) {
+            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+        })
+            ->with(['crawlerTask' => function ($q) {
+                $q->where('member_id','>', 5);
+            }])
+            ->take(config('crawler.update_item_qty'));
+        $query = $query->orderBy('member_id', 'DESC')->get();
+        dd('會員所建立的 MemberCrawlerItem 數量 : '.$query->count())
+    });
+
+    Route::get('/CategoryCrawlerItemCount',function (){
+        $query = CrawlerItem::where(function ($query) {
+            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+        })
+            ->with(['crawlerTask' => function ($q) {
+                $q->where('member_id','<=', 5);
+            }])
+            ->take(config('crawler.update_item_qty'));
+        $query = $query->orderBy('member_id', 'DESC')->get();
+
+        dd('非員所建立的 CategoryCrawlerItem 數量 : '.$query->count())
+    });
+
+
+
 });
 
