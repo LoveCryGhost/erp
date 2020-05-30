@@ -42,7 +42,11 @@ class CrawlerItemFromMemberJob implements ShouldQueue
             $query->where('member_id', '>', 5)
                 ->orderBy('member_id', 'DESC');
             ;
-            })->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')
+            })
+            ->where(function ($query) {
+                $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+            })
+
             ->take(config('crawler.update_item_qty'));
 
         $query = $this->shopeeHandler->crawlerSeperator($query);

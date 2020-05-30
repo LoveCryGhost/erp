@@ -72,12 +72,24 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         $query = CrawlerItem::whereHas('crawlerTask', function ($query) {
             $query->where('member_id', '>', 5)
                 ->orderBy('member_id', 'DESC');
-                ;
-        })
-            ->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')
-            ->count();
+        });
 
-        dd('員所建立的 MemberCrawlerItem 之未更新數量 : '.$query);
+        $query_total =  $query->count();
+
+        $query_none_updated = $query->where(function ($query) {
+            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+        })->count();
+
+        $query_updated =  $query_total - $query_none_updated;
+        $query_updated_percentage = number_format(($query_updated/$query_total)*100, 1, ".","");
+
+        $query_updated = number_format($query_updated,0,'',',');
+
+        $query_updated = number_format($query_updated,0,'',',');
+        $query_total = number_format($query_total,0,'',',');
+
+
+        dd('員所建立的 MemberCrawlerItem 數量 (已更新/總數) : '. ($query_updated).'/'.$query_total. ' ( '.$query_updated_percentage.'%)');
     });
 
     Route::get('/CategoryCrawlerItemCount',function (){
@@ -85,10 +97,23 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
             $query->where('member_id', '<=', 5)
                 ->orderBy('member_id', 'ASC');
             ;
-        })->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')
-            ->count();
+        });
+        $query_total =  $query->count();
 
-        dd('非員所建立的 CategoryCrawlerItem 之未更新數量 : '.$query);
+        $query_none_updated = $query->where(function ($query) {
+            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+        })->count();
+
+        $query_updated =  $query_total - $query_none_updated;
+        $query_updated_percentage = number_format(($query_updated/$query_total)*100, 1, ".","");
+
+        $query_updated = number_format($query_updated,0,'',',');
+
+        $query_updated = number_format($query_updated,0,'',',');
+        $query_total = number_format($query_total,0,'',',');
+
+
+        dd('非員所建立的 CategoryCrawlerItem 數量 (已更新/總數) : '. ($query_updated).'/'.$query_total. ' ( '.$query_updated_percentage.'%)');
     });
 
 
