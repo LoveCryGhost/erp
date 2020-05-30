@@ -70,6 +70,7 @@
                                 <div class="media-heading item-div pull-up">
                                     <div class="row">
                                         <div class="col-md-1">
+                                            {{$crawlerItem->ci_id}}<br>
                                             [{{($crawlerItems->currentPage()-1)*($crawlerItems->perPage()) + $loop->iteration}}]<br>
                                             <div class="font-size-40 text-right">{{$crawlerItem->pivot->sort_order}}</div>
                                         </div>

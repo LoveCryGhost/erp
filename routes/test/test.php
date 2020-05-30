@@ -114,6 +114,19 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         dd('非員所建立的 CategoryCrawlerItem 數量 (已更新/總數) : '. ($query_updated).'/'.$query_total. ' ( '.$query_updated_percentage.'%)');
     });
 
+    Route::get('/crawlerItemOrder',function (){
+        $query = CrawlerItem::whereHas('crawlerTask', function ($query) {
+            $query->where('member_id', '>', 5)
+                ->orderBy('member_id', 'ASC');
+
+        })->where(function ($query) {
+            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+        })->orderBy('ci_id', 'ASC');
+
+        $cralwerItem = $query->first();
+        dd($cralwerItem->ci_id);
+    });
+
 
 
 });
