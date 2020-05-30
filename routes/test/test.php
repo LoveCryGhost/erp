@@ -73,9 +73,11 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
             $query->where('member_id', '>', 5)
                 ->orderBy('member_id', 'DESC');
                 ;
-        })->count();
+        })
+            ->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')
+            ->count();
 
-        dd('員所建立的 MemberCrawlerItem 數量 : '.$query);
+        dd('員所建立的 MemberCrawlerItem 之未更新數量 : '.$query);
     });
 
     Route::get('/CategoryCrawlerItemCount',function (){
@@ -83,9 +85,10 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
             $query->where('member_id', '<=', 5)
                 ->orderBy('member_id', 'ASC');
             ;
-        })->count();
+        })->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at')
+            ->count();
 
-        dd('非員所建立的 CategoryCrawlerItem 數量 : '.$query);
+        dd('非員所建立的 CategoryCrawlerItem 之未更新數量 : '.$query);
     });
 
 

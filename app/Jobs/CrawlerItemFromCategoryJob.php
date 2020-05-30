@@ -35,7 +35,7 @@ class CrawlerItemFromCategoryJob implements ShouldQueue
     {
 
         $member_id = Auth::guard('member')->check()?  Auth::guard('member')->user()->id: '1';
-        
+
         $query = CrawlerItem::whereHas('crawlerTask', function ($query) {
             $query->where('member_id', '<=', 5)
                 ->orderBy('member_id', 'ASC');
