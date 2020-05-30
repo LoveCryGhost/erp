@@ -129,6 +129,21 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         }
     });
 
+    Route::get('/crawlerItemCategoryOrder',function (){
+        $query = CrawlerItem::whereHas('crawlerTask', function ($query) {
+            $query->where('member_id', '<=', 5)
+                ->orderBy('member_id', 'ASC');
+
+        })->where(function ($query) {
+            $query->whereDate('updated_at','<>',Carbon::today())->orWhereNull('updated_at');
+        })->orderBy('ci_id', 'ASC');
+
+        $cralwerItem = $query->first();
+        if($cralwerItem){
+            dd($cralwerItem->ci_id);
+        }
+    });
+
 
 
 });
