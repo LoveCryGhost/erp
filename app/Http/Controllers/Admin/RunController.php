@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\CrawlerSubCategoryJob;
+use App\Jobs\TaskItemToMemberJob;
 use App\Models\CrawlerTask;
 use App\Models\Member;
 use App\Repositories\Member\CrawlerTaskRepository;
+use function redirect;
 
 class RunController extends AdminCoreController
 {
@@ -53,6 +55,7 @@ class RunController extends AdminCoreController
     public function taskItemToMember()
     {
         dispatch((new TaskItemToMemberJob())->onQueue('instant'));
+        return redirect()->back();
     }
 
 }

@@ -91,6 +91,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('admin.run.taskToMember')}}"><i class="ti-more"></i>TaskToMember</a></li>
+                    <li><a href="{{route('admin.run.taskItemToMember')}}"><i class="ti-more"></i>TaskItemToMember</a></li>
                 </ul>
             </li>
         </ul>
