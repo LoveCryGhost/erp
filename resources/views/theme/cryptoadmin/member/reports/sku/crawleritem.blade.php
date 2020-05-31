@@ -138,16 +138,16 @@
                                                 @endphp
                                                 {{__('member/reports/skuCrawleritem.index.table.sellerQty')}}: {{$sku->crawlerTaskItemSKU->count()}}<br>
                                                 {{__('member/reports/skuCrawleritem.index.table.weeklySellQty')}}:
-                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit,0,"",",")}} </span> x {{$daySales7_total}} = {{number_format($profit_per_unit*$daySales7_total,0,"",",")}}
+                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit_pcs,0,"",",")}} </span> x {{$daySales7_total}} = {{number_format($profit_per_unit_pcs*$daySales7_total,0,"",",")}}
                                                 <br>
                                                 
                                                 {{__('member/reports/skuCrawleritem.index.table.monthlySellQty')}}:
-                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit,0,"",",")}} </span> x {{$daySales30_total}} = {{number_format($profit_per_unit*$daySales30_total,0,"",",")}}<br>
+                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit_pcs,0,"",",")}} </span> x {{$daySales30_total}} = {{number_format($profit_per_unit_pcs*$daySales30_total,0,"",",")}}<br>
                                                 
                                                 {{__('member/reports/skuCrawleritem.index.table.totalSellQty')}}:
-                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit,0,"",",")}} </span> x {{$nDays_total}} = <br>
+                                                <span class="{{$proffit_per_unit_class}}"> {{number_format($profit_per_unit_pcs,0,"",",")}} </span> x {{$nDays_total}} = <br>
                                                 
-                                                <div class="pull-right"><u><b><span class="{{$proffit_per_unit_class}}">{{number_format($profit_per_unit*$nDays_total,0,"",",")}}</span></b></u></div>
+                                                <div class="pull-right"><u><b><span class="{{$proffit_per_unit_class}}">{{number_format($profit_per_unit_pcs*$nDays_total,0,"",",")}}</span></b></u></div>
                                             </td>
                                             
                                             <td>
