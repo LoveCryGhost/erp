@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('command:crawler_first_time_update_item_and_shop_fromMember')->everyMinute()->withoutOverlapping();
         $schedule->command('command:crawler_task')->everyMinute();
         //$schedule->command('command:crawler_category')->dailyAt("03:00")->withoutOverlapping();
-        $schedule->command('command:crawler_clean')->dailyAt(06);
+        $schedule->command('command:crawler_clean')->everyTenMinutes();
         $schedule->command('command:mh_shoes_material_control')->everyMinute()->withoutOverlapping();
     }
 

@@ -41,6 +41,9 @@ class CrawlerTaskJob implements ShouldQueue
 
         $crawlerTask = $this->crawlerTask();
         if($crawlerTask) {
+            //先不給爬蟲
+            $crawlerTask->is_crawler=0;
+            $crawlerTask->save();
             $crawlerTask = $this->handle_page($crawlerTask);
 
             //組合Url連結組合
@@ -113,9 +116,10 @@ class CrawlerTaskJob implements ShouldQueue
             if($crawlerTask->current_page == $crawlerTask->pages){
                 $crawlerTask->updated_at = Carbon::now();
             }
+            $crawlerTask->is_crawler = 1;
             $crawlerTask->save();
 
-            dispatch((new CrawlerTaskJob())->onQueue('high'));
+            dispatch((new CrawlerTaskJob())->onQueue('instant'));
         }
     }
 
@@ -123,7 +127,7 @@ class CrawlerTaskJob implements ShouldQueue
     {
         //當兩者相同，表示需要重新開始
         if($crawlerTask->current_page == $crawlerTask->pages){
-            $crawlerTask->current_page=1;
+            $crawlerTask->current_page=0;
         }
         return $crawlerTask;
     }
@@ -134,13 +138,18 @@ class CrawlerTaskJob implements ShouldQueue
     */
     public function crawlerTask()
     {
+
         $query = CrawlerTask::where(function ($query) {
             $query->whereDate('updated_at','<>',Carbon::today())
-                ->orWhereNull('updated_at')
-                ->orWhereRaw('current_page < pages');
-        })->orderBy('member_id', 'DESC');
+                ->orWhereNull('updated_at');
+
+        })->orWhereRaw('current_page < pages')
+            ->where('is_crawler', 1)
+            ->orderBy('member_id', 'DESC');
+
         $query = $this->shopeeHandler->crawlerSeperator($query);
         $crawlerTask = $query->first();
         return $crawlerTask;
     }
 }
+
