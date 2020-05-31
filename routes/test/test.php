@@ -175,7 +175,6 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                         'sort_order' => $crawlerItem->pivot->sort_order
                     ];
             }
-            dd(count($sync_ids), $crawlerTask);
             if (count($sync_ids) > 0) {
                 $crawlerTask->crawlerItems()->sync($sync_ids);
             }

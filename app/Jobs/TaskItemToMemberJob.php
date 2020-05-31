@@ -60,6 +60,7 @@ class TaskItemToMemberJob implements ShouldQueue
                 ];
             }
             if (count($sync_ids) > 0) {
+                $crawlerTask->crawlerItems()->detach();
                 $crawlerTask->crawlerItems()->sync($sync_ids);
             }
             $crawlerTask->updated_at = Carbon::now();
