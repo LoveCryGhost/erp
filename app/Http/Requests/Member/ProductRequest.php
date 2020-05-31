@@ -25,7 +25,7 @@ class ProductRequest extends Request
                 {
                     return [
                         'p_name' => ['required', 'min:2', Rule::unique('product_translations')->ignore($product->p_id,'product_p_id')],
-                        't_id' => ['required']
+                        //'t_id' => ['required']
                     ];
                 }
             case 'GET':

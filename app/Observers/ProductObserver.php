@@ -17,6 +17,7 @@ class ProductObserver extends Observer
         }else{
             $product->is_active = 0;
         }
+
         //判別是否為admin建立
         if(Auth::guard('member')->user()!=null) {
             $product->member_id = Auth::guard('member')->user()->id;
