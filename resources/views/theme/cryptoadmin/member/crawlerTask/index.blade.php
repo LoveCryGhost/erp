@@ -188,7 +188,7 @@
                                                 </button>
                                             </form>
                                             <a class="btn btn-primary btn-sm" target="_blank"
-                                               href="{{route('member.crawlerItem.index',['crawlerTask' => $crawlerTask->ct_id, 'is_active' =>  $crawlerTask->is_active])}}">
+                                               href="{{route('member.crawlerItem.index',['crawlerTask' => $crawlerTask->ct_id, 'is_active' =>  1])}}">
                                                 <i class="fa fa-external-link"></i> {{__('member/crawlerTask.index.table.show_items')}}</a>
                                         </td>
                                     </tr>
