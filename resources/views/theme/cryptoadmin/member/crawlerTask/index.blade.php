@@ -124,8 +124,9 @@
                                     <i class="fa fa-refresh"></i>
                                 </button>
                             </form>
-                            <span>Total Tasks: {{$total_tasks}}</span>
+                           
                         @endif
+                        <span>Total Tasks: {{$total_tasks}}</span>
                     </div>
                     <div class="table-responsive">
                         <div class="infinite-scroll">
