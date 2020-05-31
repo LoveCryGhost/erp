@@ -10,14 +10,20 @@ use App\Models\CrawlerTask;
 use App\Models\Member;
 use App\Repositories\Member\CrawlerTaskRepository;
 use function dispatch;
+use function ini_set;
 use function redirect;
 
 class RunController extends AdminCoreController
 {
 
-    public function taskToMember()
+    public function __construct()
     {
         ini_set('memory_limit', -1);
+    }
+    
+    public function taskToMember()
+    {
+
         //將Task 拷貝到Member
         $Tasks_member_ids = ['2','3','4','5'];
         //$Tasks_member_ids = ['2','3'];
