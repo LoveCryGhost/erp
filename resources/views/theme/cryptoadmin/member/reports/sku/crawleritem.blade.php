@@ -92,7 +92,7 @@
                                                     - {{number_format($sku_pivot_supplier->pivot->price,0,"",",")}}<br>
                                                 @endif
                                                     - {{number_format($shippingCost_byPcs,0,"",",")}}<br>
-                                                ----------------<br>
+                                                -------------<br>
                                                 {{number_format($profit_per_unit_pcs,0,"",",")}}<br>
                                                 @if($cost>0)
                                                     <span class="{{$profit_per_unit_pcs>0? $proffit_per_unit_class="text-green":$proffit_per_unit_class="text-red"}}">
@@ -111,7 +111,7 @@
                                                         - {{number_format($sku_pivot_supplier->pivot->price,0,"",",")}}<br>
                                                     @endif
                                                     - {{number_format($shippingCost_byBox,0,"",",")}}<br>
-                                                    ----------------<br>
+                                                    -------------<br>
                                                     {{number_format($profit_per_unit_box,0,"",",")}}<br>
                                                     @if($cost>0)
                                                         <span class="{{$profit_per_unit_box>0? $proffit_per_unit_class="text-green":$proffit_per_unit_class="text-red"}}">
