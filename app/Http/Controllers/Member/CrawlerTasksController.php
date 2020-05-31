@@ -51,7 +51,7 @@ class CrawlerTasksController extends MemberCoreController
 //        dd($this->filters);
         $query = $this->index_filters($query, $this->filters);
         $total_tasks = $query->count();
-        $crawlerTasks = $query->paginate(50);
+        $crawlerTasks = $query->paginate(20);
         return view(config('theme.member.view').'crawlerTask.index', [
                 'crawlerTasks' => $crawlerTasks,
                 'filters' => $this->filters,
