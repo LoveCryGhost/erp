@@ -8,16 +8,9 @@ use App\Jobs\CrawlerSubCategoryJob;
 use App\Models\CrawlerTask;
 use App\Models\Member;
 use App\Repositories\Member\CrawlerTaskRepository;
-use function count;
-use function dispatch;
-use function ini_set;
 
-class RunController extends Controller
+class RunController extends CoreController
 {
-    public function __construct()
-    {
-        ini_set('memory_limit', -1);
-    }
 
     public function taskToMember()
     {

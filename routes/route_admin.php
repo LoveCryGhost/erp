@@ -40,9 +40,10 @@ Route::prefix('')->namespace('Admin')->group(function(){
         //Crawler
             Route::resource('adminCrawlerTask', 'AdminCrawlerTasksController'); //RolePermission
             Route::resource('adminCrawlerItem', 'AdminCrawlerItemsController'); //RolePermission
+
+        //Run
             Route::get('runTaskToMember', 'RunController@taskToMember')->name('run.taskToMember'); //RolePermission
             Route::get('runTaskItemToMember', 'RunController@taskItemToMember')->name('run.taskItemToMember'); //RolePermission
-        //Run
 
     });
     Route::resource('admin', 'AdminsController'); //RolePermission
