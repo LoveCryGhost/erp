@@ -100,6 +100,7 @@ class CrawlerTasksController extends MemberCoreController
     {
         //CrawlerTask
         $crawlerTasks = CrawlerTask::where('member_id', Auth::guard('member')->user()->id)
+            ->where('is_active', 1)
             ->update(['updated_at'=>null]);
 
         //CrawlerItem 在 Job  中更新
