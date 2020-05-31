@@ -53,7 +53,7 @@
 
 
 <!-- Sweet-Alert  -->
-{{--<script src="{{asset('theme/cryptoadmin/vendor_components/sweetalert/sweetalert.min.js')}}"></script>--}}
+<script src="{{asset('theme/cryptoadmin/vendor_components/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('theme/cryptoadmin/vendor_components/sweetalert/jquery.sweet-alert.custom.js')}}"></script>
 
 <script src="{{asset('theme/cryptoadmin/js/pages/statistic.js')}}"></script>

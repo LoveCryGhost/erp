@@ -53,6 +53,7 @@ class SKU extends Model
         return $this->belongsToMany(Supplier::class, 'skus_suppliers','sku_id','s_id')
             ->using(SKUSupplier::class)
             ->withPivot(['ss_id', 'is_active', 'sort_order', 'url', 's_id', 'random', 'created_at', 'updated_at'])
+            ->orderBy('sort_order','ASC')
             ->withTimestamps();
     }
 

@@ -74,7 +74,7 @@
                                                     <th>Product Link</th>
                                                     <th>Purchase Price</th>
                                                 </tr>
-                                                <tr stylex="display:none;">
+                                                <tr style="display:none;">
                                                     <td class="w-100">
                                                         <span class="handle" style="cursor: move;">
                                                             <i class="fa fa-ellipsis-v"></i>
@@ -86,10 +86,15 @@
                                                     </td>
                                                     <td>
                                                         <a class="btn btn-success" onclick="copy_supplier(this,php_inject={{json_encode([ 'models'=> ['sku' => $sku_editable]])}})" ><i class="fa fa-copy"></i></a>
+                                                        <a class="btn btn-danger" onclick="delete_supplier(this,php_inject={{json_encode([ 'models'=> ['sku' => $sku_editable]])}})" ><i class="fa fa-trash"></i></a>
                                                         <input type="text" hidden name="ss_id[]" value="">
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="s_id[]" value="">
+                                                        <select class="form-control" name="s_id[]" id="s_id[]">
+                                                            @foreach($suppliers as $supplier_collect)
+                                                                <option value="{{$supplier_collect->s_id}}"  data-md-id="{{$supplier_collect->s_id}}">{{$supplier_collect->id_code}} - {{$supplier_collect->s_name}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </td>
                                                     <td>
                                                     
@@ -111,15 +116,22 @@
                                                             <i class="fa fa-ellipsis-v"></i>
                                                       </span>
                                                     </td>
-                                                    <td>{{$loop->iteration}}<br>ss_id[{{$supplier->pivot->ss_id}}]</td>
+                                                    <td>{{$loop->iteration}}</td>
                                                     <td>
                                                         <a class="btn btn-success" onclick="copy_supplier(this,php_inject={{json_encode([ 'models'=> ['sku' => $sku_editable]])}})" ><i class="fa fa-copy"></i></a>
+                                                        <a class="btn btn-danger" onclick="delete_supplier(this,php_inject={{json_encode([ 'models'=> ['sku' => $sku_editable]])}})" ><i class="fa fa-trash"></i></a>
                                                         <input type="text" hidden name="ss_id[]" value="{{$supplier->pivot->ss_id}}">
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="s_id[]" value="{{$supplier->s_id}}">
-                                                        {{$supplier->s_name}}<br>
-                                                        {{$supplier->id_code}}
+                                                        <select class="form-control" name="s_id[]" id="s_id[]">
+                                                            @foreach($suppliers as $supplier_collect)
+                                                                @if($supplier->s_id == $supplier_collect->s_id)
+                                                                    <option value="{{$supplier_collect->s_id}}" selected  data-md-id="{{$supplier_collect->s_id}}">{{$supplier_collect->id_code}} - {{$supplier_collect->s_name}} -- (Selected)</option>
+                                                                @else
+                                                                    <option value="{{$supplier_collect->s_id}}" data-md-id="{{$supplier_collect->s_id}}" >{{$supplier_collect->id_code}} - {{$supplier_collect->s_name}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
                                                     </td>
                                                     <td>
                                                         {{$supplier->tel}}<br>
@@ -158,6 +170,7 @@
     @parent
     <script type="text/javascript">
         $(function(){
+            active_select2(select2_class="select2_item", options={});
             //排序表格
             active_table_sortable(table_id="skuPlusSupplier", eq_order_index=1, options={});
         })
@@ -190,20 +203,62 @@
                 //input text
                 $('#skuPlusSupplier tbody tr:last td input').eq(0).val("");
                 if(cleanValue==true && controlItem.attr('text')=="text"){
-                    controlItem.val("")
-                    alert(1);
+                    controlItem.val("");
+                    
                 //input checkbox
                 }else if(cleanValue==true && controlItem.attr('text')=="checkbox"){
                     controlItem.prop('checked', false);
-                    alert(2);
                 }
     
+                if(controlItem.attr('name')=="ss_id[]"){
+                    controlItem.attr('value',null);
+                }
+                
                 _name = controlItem.attr('name');
                 if(_name!=undefined) {
                     _name_arr = _name.split('[');
                     $(this).find('input').attr('name', _name_arr[0] + "[]");
                 }
             })
+        }
+        
+        function delete_supplier(_this,  php_inject) {
+            sku = php_inject.models.sku;
+            _btn_delete = $(_this);
+            controlItem = $(_this).siblings('input');
+            
+            //先檢查是否已經儲存到MySQL
+            // yes-執行controller / no - 執行jquery
+            if(controlItem.val()==null || controlItem.val()==""){
+                $(_this).parents('tr').remove();
+                active_table_tr_reorder_nth(table_id="skuPlusSupplier", eq_order_index=1, options={});
+                
+            }else{
+                swal(swal_delete_info(), function(){
+                    swal("{{__('default.swal.delete_success')}}", "{{__('default.swal.delete_success')}}", "success");
+    
+                    $.ajaxSetup(active_ajax_header());
+                    var formData = new FormData();
+                    formData.append('_method', 'DELETE');
+                    $.ajax({
+                        type: 'post',
+                        url: '{{route('member.skuPlusSupplier.index')}}/'+ controlItem.val(),
+                        data: formData,
+                        async: true,
+                        crossDomain: true,
+                        contentType: false,
+                        processData: false,
+                        success: function(data) {
+                            console.log(data.request)
+                            $(_this).parents('tr').remove();
+                        },
+                        error: function(data) {
+                        }
+                    });
+                });
+               
+            }
+            
         }
         
     </script>

@@ -12,6 +12,7 @@ use App\Models\SKUAttributeTranslation;
 use App\Models\SKUSupplier;
 use App\Models\SKUSupplierTranslation;
 use App\Models\SkuTranslation;
+use App\Models\Supplier;
 use App\Repositories\Member\MemberCoreRepository;
 use App\Services\Member\AttributeService;
 use App\Services\Member\SKUService;
@@ -56,12 +57,15 @@ class SKUPlusSupplierController extends MemberCoreController
     public function edit(SKU $skuPlusSupplier)
     {
         $sku = $skuPlusSupplier;
+        $suppliers = Supplier::where('member_id', Auth::guard('member')->user()->id)
+            ->get();
         $product = Product::where('member_id', Auth::guard('member')->user()->id)
             ->with(['all_skus'])
             ->find($sku->product->p_id);
         return view(config('theme.member.view').'skuPlusSupplier.edit', [
             'product' => $product,
-            'sku_editable' => $sku
+            'suppliers' => $suppliers,
+            'sku_editable' => $sku,
         ]);
     }
 
@@ -83,10 +87,10 @@ class SKUPlusSupplierController extends MemberCoreController
             //$sku->skuSuppliers()->syncWithoutDetaching($sync_ids);
 
             $SKUSupplier = SKUSupplier::updateOrCreate([
-                'ss_id' => $ss_id,
-            ],[
+                //'ss_id' => $ss_id,
                 's_id' => $data['s_id'][$key],
                 'sku_id' => $sku->sku_id,
+            ],[
                 'sort_order' => $sort_order,
                 'url' => $data['url'][$key],
                 'random' => random_int(1,999999999),
@@ -115,5 +119,19 @@ class SKUPlusSupplierController extends MemberCoreController
         }else{
             return redirect()->route('member.skuPlusSupplier.edit', ['skuPlusSupplier' => $sku->sku_id,'collapse'=>1])->with('toast',  parent::$toast_update);
         }
+    }
+
+    public function destroy(SKUSupplier $skuPlusSupplier)
+    {
+        $skuSupplier = $skuPlusSupplier;
+        $skuSupplier->delete();
+        return [
+            'errors' => '',
+            'models'=> [
+            ],
+            'request' => request()->all(),
+            'view' => '',
+            'options'=>[]
+        ];
     }
 }
