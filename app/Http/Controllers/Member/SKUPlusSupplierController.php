@@ -115,7 +115,8 @@ class SKUPlusSupplierController extends MemberCoreController
         }
 
         if(request()->submit=="index"){
-            return redirect()->route('member.skuPlusSupplier.index')->with('toast',  parent::$toast_update);
+            return redirect()->route('member.skuPlusSupplier.edit', ['skuPlusSupplier' => $sku->sku_id,'collapse'=>1])->with('toast',  parent::$toast_update);
+            //return redirect()->route('member.skuPlusSupplier.index')->with('toast',  parent::$toast_update);
         }else{
             return redirect()->route('member.skuPlusSupplier.edit', ['skuPlusSupplier' => $sku->sku_id,'collapse'=>1])->with('toast',  parent::$toast_update);
         }
