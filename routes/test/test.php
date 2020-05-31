@@ -153,7 +153,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         })->where('is_active', 0);
         $crawlerTask = $query->first();
 
-        $crawlerTask = $crawlerTask->find('1048');
+        $crawlerTask = CrawlerTask::find('1048');
         $categoryTask = CrawlerTask::whereIn('member_id',[2,3,4,5])
             ->where('is_active' , 1)
             ->where('category' , $crawlerTask->category)
