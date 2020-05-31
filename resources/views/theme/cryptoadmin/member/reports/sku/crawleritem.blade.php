@@ -96,7 +96,7 @@
                                                 {{number_format($profit_per_unit_pcs,0,"",",")}}<br>
                                                 @if($cost_pcs>0)
                                                     <span class="{{$profit_per_unit_pcs>0? $proffit_per_unit_class="text-green":$proffit_per_unit_class="text-red"}}">
-                                                    {{number_format($profit_per_unit_pcs/$cost*100, 1, ".", ",")}} %
+                                                    {{number_format($profit_per_unit_pcs/$cost_pcs*100, 1, ".", ",")}} %
                                                     </span>
                                                 @endif
                                                 </div>
@@ -115,7 +115,7 @@
                                                     {{number_format($profit_per_unit_box,0,"",",")}}<br>
                                                     @if($cost_box>0)
                                                         <span class="{{$profit_per_unit_box>0? $proffit_per_unit_class="text-green":$proffit_per_unit_class="text-red"}}">
-                                                    {{number_format($profit_per_unit_box/$cost*100, 1, ".", ",")}} %
+                                                    {{number_format($profit_per_unit_box/$cost_box*100, 1, ".", ",")}} %
                                                     </span>
                                                     @endif
                                                 
