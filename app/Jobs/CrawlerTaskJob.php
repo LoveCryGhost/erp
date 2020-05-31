@@ -100,6 +100,7 @@ class CrawlerTaskJob implements ShouldQueue
 
                     //Sync刪除並更新
                     if($crawlerTask->current_page == 0) {
+                        
                         $crawlerTask->crawlerItems()->sync($sync_ids);
                     }else{
                         $crawlerTask->crawlerItems()->syncwithoutdetaching($sync_ids);
