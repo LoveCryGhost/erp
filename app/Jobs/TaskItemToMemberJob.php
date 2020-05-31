@@ -16,6 +16,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use function config;
+use function count;
 use function current;
 use function dd;
 use function dispatch;
@@ -40,7 +41,7 @@ class TaskItemToMemberJob implements ShouldQueue
         $crawlerTask = $this->crawlerTask();
 
         $categoryTask = CrawlerTask::whereIn('member_id',[2,3,4,5])
-            ->where('is_active' , 0)
+            ->where('is_active' , 1)
             ->where('category' , $crawlerTask->category)
             ->where('subcategory' , $crawlerTask->subcategory)
             ->where('domain_name' , $crawlerTask->domain_name)
@@ -49,26 +50,25 @@ class TaskItemToMemberJob implements ShouldQueue
             ->where('sort_by',$crawlerTask->sort_by)
             ->where('locations' , $crawlerTask->locations)
             ->where('url' , $crawlerTask->url)
-            ->where('website', $crawlerTask->website)
             ->first();
 
 
         if($categoryTask) {
-            foreach ($categoryTask->crawlerItems as $crawlerItem){
+            $sync_ids=[];
+            foreach ($categoryTask->crawlerItems as $crawlerItem) {
                 //商品資訊
                 $sync_ids[$crawlerItem->pivot->ci_id] = [
                     'sort_order' => $crawlerItem->pivot->sort_order
                 ];
             }
-            if(count($sync_ids)>0) {
+            if (count($sync_ids) > 0) {
                 $crawlerTask->crawlerItems()->sync($sync_ids);
             }
-
             $crawlerTask->updated_at = Carbon::now();
             $crawlerTask->save();
-
             dispatch((new TaskItemToMemberJob())->onQueue('instant'));
-        }
+
+        };
     }
 
     /*
