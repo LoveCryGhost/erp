@@ -122,6 +122,9 @@ class ProductPlusSKUController extends MemberCoreController
                     'is_active' => 1
                 ];
             }
+
+            $skuModel = new SKU();
+            $TF = (new MemberCoreRepository())->massUpdate($skuModel, $row_is_active);
         }
 
 
@@ -129,8 +132,7 @@ class ProductPlusSKUController extends MemberCoreController
         $skuTranslationModel = new SkuTranslation();
         $TF = (new MemberCoreRepository())->massUpdate($skuTranslationModel, $row_item_translations);
 
-        $skuModel = new SKU();
-        $TF = (new MemberCoreRepository())->massUpdate($skuModel, $row_is_active);
+
 
         if(request()->submit=="index"){
             return redirect()->route('member.productPlusSKU.index')->with('toast',  parent::$toast_update);
