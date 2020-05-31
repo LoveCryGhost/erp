@@ -55,12 +55,19 @@ class RunController extends AdminCoreController
 
     public function taskItemToMemberRefresh()
     {
+        $crawlerTasks = CrawlerTask::whereIn('member_id', [6,7,8])->where('is_active',0)->get();
+
+        foreach ($crawlerTasks as $crawlerTask){
+            $crawlerTask->crawlerItems()->detach();
+        }
+
         $crawlerTasks = CrawlerTask::whereIn('member_id', [6,7,8])->where('is_active',0)->update(
             [
                 'updated_at' => null,
                 'is_crawler' => 1
             ]
         );
+
         return redirect()->back();
     }
 

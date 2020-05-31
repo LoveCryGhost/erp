@@ -153,7 +153,6 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
         })->where('is_active', 0);
         $crawlerTask = $query->first();
 
-        $crawlerTask = CrawlerTask::find('1048');
         $categoryTask = CrawlerTask::whereIn('member_id',[2,3,4,5])
             ->where('is_active' , 1)
             ->where('category' , $crawlerTask->category)
@@ -175,6 +174,7 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
                         'sort_order' => $crawlerItem->pivot->sort_order
                     ];
             }
+
             if (count($sync_ids) > 0) {
                 $crawlerTask->crawlerItems()->sync($sync_ids);
             }
