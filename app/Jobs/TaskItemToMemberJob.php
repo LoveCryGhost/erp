@@ -35,9 +35,7 @@ class TaskItemToMemberJob implements ShouldQueue
     }
 
     public function handle()
-
     {
-
         $crawlerTask = $this->crawlerTask();
 
         $categoryTask = CrawlerTask::whereIn('member_id',[2,3,4,5])
@@ -65,9 +63,9 @@ class TaskItemToMemberJob implements ShouldQueue
                 $crawlerTask->crawlerItems()->sync($sync_ids);
             }
             $crawlerTask->updated_at = Carbon::now();
+            $crawlerTask->is_crawler = 1;
             $crawlerTask->save();
             dispatch((new TaskItemToMemberJob())->onQueue('instant'));
-
         };
     }
 
@@ -81,8 +79,13 @@ class TaskItemToMemberJob implements ShouldQueue
             $query->whereDate('updated_at','<>',Carbon::today())
                 ->orWhereNull('updated_at');
 
-        })->where('is_active', 0);
+        })->where('is_crawler',1)
+            ->where('is_active', 0);
+
         $crawlerTask = $query->first();
+
+        $crawlerTask->is_crawler=0;
+        $crawlerTask->save();
         return $crawlerTask;
     }
 }

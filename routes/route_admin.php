@@ -44,6 +44,8 @@ Route::prefix('')->namespace('Admin')->group(function(){
         //Run
             Route::get('runTaskToMember', 'RunController@taskToMember')->name('run.taskToMember'); //RolePermission
             Route::get('runTaskItemToMember', 'RunController@taskItemToMember')->name('run.taskItemToMember'); //RolePermission
+            Route::get('taskItemToMemberRefresh', 'RunController@taskItemToMemberRefresh')->name('run.taskItemToMemberRefresh'); //RolePermission
+
 
     });
     Route::resource('admin', 'AdminsController'); //RolePermission

@@ -9,6 +9,7 @@ use App\Jobs\TaskItemToMemberJob;
 use App\Models\CrawlerTask;
 use App\Models\Member;
 use App\Repositories\Member\CrawlerTaskRepository;
+use function dispatch;
 use function redirect;
 
 class RunController extends AdminCoreController
@@ -50,6 +51,17 @@ class RunController extends AdminCoreController
                     ]);
             }
         }
+    }
+
+    public function taskItemToMemberRefresh()
+    {
+        $crawlerTasks = CrawlerTask::whereIn('member_id', [6,7,8])->update(
+            [
+                'updated_at' => null,
+                'is_crawler' => 1
+            ]
+        );
+        return redirect()->back();
     }
 
     public function taskItemToMember()
