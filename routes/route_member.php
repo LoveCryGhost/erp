@@ -51,7 +51,7 @@ Route::prefix('')->middleware('auth:member')->namespace('Member')->group(functio
 
             //ERPHelper
             Route::resource('productPlusSKU', 'ProductPlusSKUController');
-            Route::resource('skuPlusSupplier', 'SkuPlusSupplierController');
+            Route::resource('skuPlusSupplier', 'SKUPlusSupplierController');
         });
 
         //Member - Report
