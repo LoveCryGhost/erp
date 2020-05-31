@@ -9,7 +9,7 @@ use App\Models\CrawlerTask;
 use App\Models\Member;
 use App\Repositories\Member\CrawlerTaskRepository;
 
-class RunController extends CoreController
+class RunController extends AdminCoreController
 {
 
     public function taskToMember()
