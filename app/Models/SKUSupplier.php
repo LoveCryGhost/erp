@@ -16,7 +16,7 @@ class SKUSupplier extends Pivot implements TranslatableContract
     public $timestamps = true;
     protected $primaryKey='ss_id';
     protected $fillable = [
-        'ss_id', 'is_active', 'sort_order', 'url', 's_id', 'random'
+        'ss_id', 'is_active', 'sort_order', 'sku_id', 'url', 's_id', 'random'
     ];
 
     public $translatedAttributes = ['price'];

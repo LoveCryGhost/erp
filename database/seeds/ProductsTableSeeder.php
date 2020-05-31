@@ -293,7 +293,7 @@ class ProductsTableSeeder extends Seeder
 
                         //SKU Supplier
                         $sku_suppliers =[
-                            2 => ['price'=>123, 'url' => "http://www.google.com"],
+                            3 => ['price'=>123, 'url' => "http://www.google.com"],
                         ];
                         //$SKU->skuSuppliers()->sync($sku_suppliers);
                         foreach ($sku_suppliers as $s_id => $sku_supplier){

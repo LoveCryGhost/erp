@@ -8,6 +8,6 @@ class SKUSupplierTranslation extends Model
 {
     protected $table = "sku_supplier_translations";
     public $timestamps = true;
-    protected $fillable = [ 'price'];
+    protected $fillable = [ 'sku_id', 'price', 'locale'];
 
 }

@@ -20,7 +20,7 @@ class SupplierObserver extends Observer
         //判別是否為member建立
         if(Auth::guard('member')->user()!=null) {
             $supplier->member_id = Auth::guard('member')->user()->id;
-        }else{
+        }elseif($supplier->member_id==null){
             $supplier->member_id=1;
         }
     }

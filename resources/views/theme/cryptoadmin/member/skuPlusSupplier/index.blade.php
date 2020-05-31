@@ -1,6 +1,6 @@
 @extends(config('theme.member.member-app'))
 
-@section('title',__('member/product.title'))
+@section('title', 'SKU List')
 
 @section('content-header','')
 @section('content')
@@ -8,7 +8,7 @@
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <h3>
-                {{__('member/product.index.title')}}
+                SKU List
             </h3>
         
         </div>
@@ -23,26 +23,26 @@
                                 <div class="col">
                                     <form class="form-control m-b-0  bg-color-lightblue">
                                         <div class="row">
-                                            <div class="col-sm-3 form-group">
-                                                <h5>{{__('default.index.table.barcode')}}</h5>
-                                                <div class="controls">
-                                                    <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-sm-3 form-group">
-                                                <h5>{{__('member/product.search.productName')}}</h5>
-                                                <div class="controls">
-                                                    <input class="form-control" type="text" name="p_name" placeholder="{{__('member/product.search.productName')}}" value="{{request()->p_name}}">
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-sm-3 form-group">
-                                                <h5>{{__('member/product.search.SKUName')}}</h5>
-                                                <div class="controls">
-                                                    <input class="form-control" type="text" name="sku_name" placeholder="{{__('member/product.search.SKUName')}}" value="{{request()->sku_name}}">
-                                                </div>
-                                            </div>
+{{--                                            <div class="col-sm-3 form-group">--}}
+{{--                                                <h5>{{__('default.index.table.barcode')}}</h5>--}}
+{{--                                                <div class="controls">--}}
+{{--                                                    <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            --}}
+{{--                                            <div class="col-sm-3 form-group">--}}
+{{--                                                <h5>{{__('member/product.search.productName')}}</h5>--}}
+{{--                                                <div class="controls">--}}
+{{--                                                    <input class="form-control" type="text" name="p_name" placeholder="{{__('member/product.search.productName')}}" value="{{request()->p_name}}">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            --}}
+{{--                                            <div class="col-sm-3 form-group">--}}
+{{--                                                <h5>{{__('member/product.search.SKUName')}}</h5>--}}
+{{--                                                <div class="controls">--}}
+{{--                                                    <input class="form-control" type="text" name="sku_name" placeholder="{{__('member/product.search.SKUName')}}" value="{{request()->sku_name}}">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
@@ -77,7 +77,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>
-                                                {{$sku->s_name}}<br>
+                                                {{$sku->sku_name}}<br>
                                                 <small>{{$sku->id_code}}</small>
                                             </td>
                                             <td>照片</td>

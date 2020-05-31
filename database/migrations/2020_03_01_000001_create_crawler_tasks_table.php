@@ -33,6 +33,7 @@ class CreateCrawlerTasksTable extends Migration
             $table->string('facet')->nullable();
             $table->string('officialMall')->nullable();
             $table->string('locale')->nullable();
+            $table->boolean('is_crawler')->default(1);
             $table->text('description')->nullable();
 
             $table->bigInteger('member_id')->default(1)->unsigned();

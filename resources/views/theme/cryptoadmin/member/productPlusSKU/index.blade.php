@@ -23,26 +23,26 @@
                             <div class="col">
                                 <form class="form-control m-b-0  bg-color-lightblue">
                                     <div class="row">
-                                        <div class="col-sm-3 form-group">
-                                            <h5>{{__('default.index.table.barcode')}}</h5>
-                                            <div class="controls">
-                                                <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">
-                                            </div>
-                                        </div>
-                    
-                                        <div class="col-sm-3 form-group">
-                                            <h5>{{__('member/product.search.productName')}}</h5>
-                                            <div class="controls">
-                                                <input class="form-control" type="text" name="p_name" placeholder="{{__('member/product.search.productName')}}" value="{{request()->p_name}}">
-                                            </div>
-                                        </div>
-    
-                                        <div class="col-sm-3 form-group">
-                                            <h5>{{__('member/product.search.SKUName')}}</h5>
-                                            <div class="controls">
-                                                <input class="form-control" type="text" name="sku_name" placeholder="{{__('member/product.search.SKUName')}}" value="{{request()->sku_name}}">
-                                            </div>
-                                        </div>
+{{--                                        <div class="col-sm-3 form-group">--}}
+{{--                                            <h5>{{__('default.index.table.barcode')}}</h5>--}}
+{{--                                            <div class="controls">--}}
+{{--                                                <input class="form-control" type="text" name="id_code" placeholder="Barcode" value="{{request()->id_code}}">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                    --}}
+{{--                                        <div class="col-sm-3 form-group">--}}
+{{--                                            <h5>{{__('member/product.search.productName')}}</h5>--}}
+{{--                                            <div class="controls">--}}
+{{--                                                <input class="form-control" type="text" name="p_name" placeholder="{{__('member/product.search.productName')}}" value="{{request()->p_name}}">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--    --}}
+{{--                                        <div class="col-sm-3 form-group">--}}
+{{--                                            <h5>{{__('member/product.search.SKUName')}}</h5>--}}
+{{--                                            <div class="controls">--}}
+{{--                                                <input class="form-control" type="text" name="sku_name" placeholder="{{__('member/product.search.SKUName')}}" value="{{request()->sku_name}}">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
@@ -89,6 +89,7 @@
                                         <td>{{$product->member->name}}</td>
                                         <td>
                                             <a class="btn btn-success" href="{{route('member.productPlusSKU.edit',['productPlusSKU'=> $product->p_id, 'collapse'=>1])}}" ><i class="fa fa-pencil"></i> Edit SKU</a>
+                                            <a class="btn btn-success" href="{{route('member.skuPlusSupplier.edit',['skuPlusSupplier'=> $product->all_skus->first()->sku_id, 'collapse'=>1])}}" ><i class="fa fa-pencil"></i> Edit Supplier</a>
                                         </td>
                                     </tr>
                                     @endforeach

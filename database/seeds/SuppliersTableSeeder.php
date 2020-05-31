@@ -13,10 +13,16 @@ class SuppliersTableSeeder extends Seeder
         $supplier_groups = [
             [
                 "sg_name" => "貨運行-1",
+                'member_id' => 1,
             ],[
                 "sg_name" => "貨運行-2",
+                'member_id' => 1,
             ],[
                 "sg_name" => "貨運行-3",
+                'member_id' => 6,
+            ],[
+                "sg_name" => "貨運行-4",
+                'member_id' => 6,
             ]
         ];
 
@@ -26,6 +32,7 @@ class SuppliersTableSeeder extends Seeder
                 'id_code' => (new BarcodeHandler())->barcode_generation(config('barcode.supplierGroup'), $index++),
                 'is_active' => 0,
                 'sg_name' => $supplier_group['sg_name'],
+                'member_id' => $supplier_group['member_id'],
             ]);
         }
 
@@ -34,12 +41,19 @@ class SuppliersTableSeeder extends Seeder
         $suppliers = [
             [
                 "s_name" => "供應商-1",
+                'member_id' => 1,
                 'supplier_contacts' => ['黃某某1','李某某1'],
             ],[
                 "s_name" => "供應商-2",
+                'member_id' => 1,
                 'supplier_contacts' => ['黃某某2','李某某2'],
             ],[
                 "s_name" => "供應商-3",
+                'member_id' => 6,
+                'supplier_contacts' => ['黃某某3','李某某3'],
+            ],[
+                "s_name" => "供應商-4",
+                'member_id' => 6,
                 'supplier_contacts' => ['黃某某3','李某某3'],
             ]
         ];
@@ -49,10 +63,11 @@ class SuppliersTableSeeder extends Seeder
             $supplier_contacts = $supplier['supplier_contacts'];
             unset($supplier['supplier_contacts']);
             $Supplier =Supplier::create([
-                'sg_id' => rand(1,3),
+                'sg_id' => 3,
                 'id_code' => (new BarcodeHandler())->barcode_generation(config('barcode.supplierGroup'), $index++),
                 'is_active' => 1,
                 's_name' => $supplier['s_name'],
+                'member_id' => $supplier['member_id'],
             ]);
 
             foreach ($supplier_contacts as $supplier_contact){
@@ -61,8 +76,6 @@ class SuppliersTableSeeder extends Seeder
                 $supplierContact->sc_name = $supplier_contact;
                 $supplierContact->save();
             }
-
-
         }
     }
 }

@@ -44,7 +44,7 @@ class ProductPlusSKUController extends MemberCoreController
     public function index()
     {
         $products = Product::with(['member'])
-            ->where('member_id', Auth::guard('member')->user()->id)->paginate(5);
+            ->where('member_id', Auth::guard('member')->user()->id)->paginate(20);
         return view(config('theme.member.view').'productPlusSKU.index', compact('products'));
     }
 

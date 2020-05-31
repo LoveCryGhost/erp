@@ -167,6 +167,7 @@ class CrawlerCategoryJob implements ShouldQueue
                 'url' => $data['url_params']['url'],
                 'member_id' =>  $data['locations']==-2?  4:2,
                 'pages' => $row_crawlerTask['pages'],
+                'is_crawler' => 1
             ]);
 
             $index++;

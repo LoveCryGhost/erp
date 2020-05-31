@@ -75,13 +75,17 @@
                                             <td>
                                                 <a class="btn btn-success" onclick="copy_sku(this,php_inject={{json_encode([ 'models'=> ['product' => $product]])}})" ><i class="fa fa-copy"></i></a>
                                                 <input type="text" hidden name="sku_id[]" value=""></td>
+                                            
                                             <td>
                                                 <input type="checkbox" class="permission_check" name="is_active[]" id="is_active_{{rand(999,999999)}}" disabled >
                                                 <label for="is_active_{{rand(999,999999)}}" class="p-0 m-0"></label></td>
+                                            
                                             <td>
                                                 <input class="w-400" type="text" name="sku_name[]" value=""></td>
+                                            
                                             <td>
                                                 <input type="text" name="price[]" value=""></td>
+                                            
                                             {{--屬性--}}
                                             {{--屬性--}}
                                             @foreach($product->type->attributes as $attribute)

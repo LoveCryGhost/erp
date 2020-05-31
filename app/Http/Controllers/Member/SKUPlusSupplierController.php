@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Models\SKU;
 use App\Models\SKUAttribute;
 use App\Models\SKUAttributeTranslation;
+use App\Models\SKUSupplier;
+use App\Models\SKUSupplierTranslation;
 use App\Models\SkuTranslation;
 use App\Repositories\Member\MemberCoreRepository;
 use App\Services\Member\AttributeService;
@@ -20,6 +22,7 @@ use function compact;
 use function config;
 use function dd;
 use function is_array;
+use function random_int;
 use function redirect;
 use function request;
 use function view;
@@ -46,96 +49,71 @@ class SKUPlusSupplierController extends MemberCoreController
         $skus = $this->skuService->skuRepo->builder()
                     ->with(['product','member'])
                     ->where('member_id', Auth::guard('member')->user()->id)
-                    ->paginate(5);
+                    ->paginate(20);
         return view(config('theme.member.view').'skuPlusSupplier.index', compact('skus'));
     }
 
-    public function edit(Product $productPlusSKU)
+    public function edit(SKU $skuPlusSupplier)
     {
-        $product = $productPlusSKU;
-        $product = Product::with(['type', 'type.attributes', 'all_skus'])
-            ->without(['all_skus.skuAttributes','all_skus.skuSuppliers'])
-            ->where('member_id', Auth::guard('member')->user()->id)
-            ->find($product->p_id);
-        return view(config('theme.member.view').'productPlusSKU.edit', compact('product'));
+        $sku = $skuPlusSupplier;
+        $product = Product::where('member_id', Auth::guard('member')->user()->id)
+            ->with(['all_skus'])
+            ->find($sku->product->p_id);
+        return view(config('theme.member.view').'skuPlusSupplier.edit', [
+            'product' => $product,
+            'sku_editable' => $sku
+        ]);
     }
 
-    public function update(Product $productPlusSKU)
+    public function update(SKU $skuPlusSupplier)
     {
-        $product = $productPlusSKU;
+        $sku = $skuPlusSupplier;
         $data = request()->all();
 
         $sort_order=0;
-
-        foreach ($data['sku_id'] as $key => $sku_id){
+        foreach ($data['ss_id'] as $key => $ss_id){
             if($key==0){
                 continue;
             }
 
-            $sku = $this->skuService->skuRepo->builder();
-            $sku = $sku->updateOrCreate([
-                    'sku_id' => $sku_id,
-                ],[
-                    'sort_order' => $sort_order,
-                    'is_active' => isset($data['is_active'][$key])? "1":"" ,
-                    'length_pcs' => $data['length_pcs'][$key],
-                    'width_pcs' => $data['width_pcs'][$key],
-                    'heigth_pcs' => $data['heigth_pcs'][$key],
-                    'weight_pcs' => $data['weight_pcs'][$key],
-                    'length_box' => $data['length_box'][$key],
-                    'width_box' => $data['width_box'][$key],
-                    'heigth_box' => $data['heigth_box'][$key],
-                    'weight_box' => $data['weight_box'][$key],
-                    'pcs_per_box' => $data['pcs_per_box'][$key],
-                    'p_id' => $product->p_id,
-                    'member_id' => Auth::guard('member')->user()->id,
-                ]);
+            //儲存 sku-supplier
+            $sync_ids[$ss_id]= [
 
-            $row_item_translations[] = [
-                's_k_u_sku_id' => $sku->sku_id,
-                'sku_name' => $data['sku_name'][$key],
-                'price' => $data['price'][$key],
-                'locale' => app()->getLocale(),
             ];
-            $attributes_count = $product->type->attributes->count();
-            $start= $key * $attributes_count;
-            for($i=$start; $i<=($key+1)*$attributes_count-1; $i++){
-                $ii[]=[$i];
-                $SKUAttribute = SKUAttribute::updateOrCreate([
-                    'sku_id' => $sku->sku_id,
-                    'a_id' => $data['sku_attributes_a_id'][$i],
-                ],[
-                    'a_value' => $data['sku_attributes'][$i],
-                ]);
+            //$sku->skuSuppliers()->syncWithoutDetaching($sync_ids);
 
-                SKUAttributeTranslation::updateOrCreate([
-                    's_k_u_attribute_sa_id' => $SKUAttribute->sa_id
-                ],[
-                    'a_value' => $data['sku_attributes'][$i],
-                ]);
-            }
+            $SKUSupplier = SKUSupplier::updateOrCreate([
+                'ss_id' => $ss_id,
+            ],[
+                's_id' => $data['s_id'][$key],
+                'sku_id' => $sku->sku_id,
+                'sort_order' => $sort_order,
+                'url' => $data['url'][$key],
+                'random' => random_int(1,999999999),
+            ]);
+
+            SKUSupplierTranslation::updateOrCreate([
+                'sku_id' => $SKUSupplier->ss_id
+            ],[
+                'price'=> $data['price'][$key],
+                'locale' => app()->getLocale()
+            ]);
+
             $sort_order++;
         }
 
-        foreach ($data['is_active'] as $key => $sku_id){
-            $row_is_active[] = [
-                'sku_id' => $sku_id,
-                'is_active' => 1
-            ];
+        if(isset($data['is_active'])) {
+            foreach ($data['is_active'] as $key => $sku_id) {
+                $SKUSupplier = SKUSupplier::find($sku_id);
+                $SKUSupplier->is_active = 1;
+                $SKUSupplier->save();
+            }
         }
 
-
-        //批量儲存SKU
-        $skuTranslationModel = new SkuTranslation();
-        $TF = (new MemberCoreRepository())->massUpdate($skuTranslationModel, $row_item_translations);
-
-        $skuModel = new SKU();
-        $TF = (new MemberCoreRepository())->massUpdate($skuModel, $row_is_active);
-
         if(request()->submit=="index"){
-            return redirect()->route('member.productPlusSKU.index')->with('toast',  parent::$toast_update);
+            return redirect()->route('member.skuPlusSupplier.index')->with('toast',  parent::$toast_update);
         }else{
-            return redirect()->route('member.productPlusSKU.edit', ['productPlusSKU'=>$product->p_id,'collapse'=>1])->with('toast',  parent::$toast_update);
+            return redirect()->route('member.skuPlusSupplier.edit', ['skuPlusSupplier' => $sku->sku_id,'collapse'=>1])->with('toast',  parent::$toast_update);
         }
     }
 }
