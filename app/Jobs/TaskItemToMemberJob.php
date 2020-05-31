@@ -34,16 +34,30 @@ class TaskItemToMemberJob implements ShouldQueue
     }
 
     public function handle()
+
     {
 
         $crawlerTask = $this->crawlerTask();
-        if($crawlerTask) {
-            foreach ($crawlerTask->crawlerItems as $crawlerItem){
+
+        $categoryTask = CrawlerTask::whereIn('member_id',[2,3,4,5])
+            ->where('is_active' , 0)
+            ->where('category' , $crawlerTask->category)
+            ->where('subcategory' , $crawlerTask->subcategory)
+            ->where('domain_name' , $crawlerTask->domain_name)
+            ->where('ct_name' , $crawlerTask->ct_name)
+            ->where('locale' , $crawlerTask->locale)
+            ->where('sort_by',$crawlerTask->sort_by)
+            ->where('locations' , $crawlerTask->locations)
+            ->where('url' , $crawlerTask->url)
+            ->where('website', $crawlerTask->website)
+            ->first();
+
+
+        if($categoryTask) {
+            foreach ($categoryTask->crawlerItems as $crawlerItem){
                 //商品資訊
-                $sync_ids[] = [
-                    $crawlerItem->pivot->ci_id  => [
-                        'sort_order' => $crawlerItem->pivot->sort_order
-                    ]
+                $sync_ids[$crawlerItem->pivot->ci_id] = [
+                    'sort_order' => $crawlerItem->pivot->sort_order
                 ];
             }
             if(count($sync_ids)>0) {
@@ -56,7 +70,6 @@ class TaskItemToMemberJob implements ShouldQueue
             dispatch((new TaskItemToMemberJob())->onQueue('instant'));
         }
     }
-
 
     /*
      * 更新Task
