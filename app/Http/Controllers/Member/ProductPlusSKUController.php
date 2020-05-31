@@ -115,11 +115,13 @@ class ProductPlusSKUController extends MemberCoreController
             $sort_order++;
         }
 
-        foreach ($data['is_active'] as $key => $sku_id){
-            $row_is_active[] = [
-                'sku_id' => $sku_id,
-                'is_active' => 1
-            ];
+        if(isset($data['is_active'])){
+            foreach ($data['is_active'] as $key => $sku_id){
+                $row_is_active[] = [
+                    'sku_id' => $sku_id,
+                    'is_active' => 1
+                ];
+            }
         }
 
 
