@@ -129,7 +129,7 @@
                     </div>
                 </form>
                 {{--更改密碼--}}
-                <form method="post" action="{{route('admin.adminMember.updatePassword', ['member'=>$member->id])}}" >
+                <form method="post" action="{{route('admin.adminMember.updatePassword', ['adminMember'=>$member->id])}}" >
                     @csrf
                     @method('put')
                     <div class="row">
