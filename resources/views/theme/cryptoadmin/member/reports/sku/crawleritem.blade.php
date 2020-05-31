@@ -43,15 +43,21 @@
                                                 //運費
 													$cbm_price = $sku->skuSuppliers()->wherePivot('is_active',1)->first()->supplierGroup->cbm_price;
 													$volume_pcs = $sku->length_pcs * $sku->width_pcs * $sku->heigth_pcs ;
-													$shippingCost=($volume_pcs/1000000)*$cbm_price;
+													$shippingCost_byPcs=($volume_pcs/1000000)*$cbm_price;
+													
+													$volume_box = $sku->length_box * $sku->width_box * $sku->heigth_box ;
+													$shippingCost_byBox = ($volume_box/1000000/$sku->pcs_per_box)*$cbm_price;
 													
                                                 //採購單價
                                                     $sku_pivot_supplier = $sku->skuSuppliers()->wherePivot('is_active',1)->first();
                                                     
                                                 //成本 = 採購 + 運費
-                                                    $cost  = $sku_pivot_supplier->pivot->price + $shippingCost;
+                                                    $cost_pcs  = $sku_pivot_supplier->pivot->price + $shippingCost_byPcs;
+                                                    $cost_box = $sku_pivot_supplier->pivot->price + $shippingCost_byBox;
                                                 //利潤
-                                                    $profit_per_unit = $sku->price - $cost ;
+                                                    $profit_per_unit_pcs = $sku->price - $cost_pcs ;
+                                                    
+                                                    $profit_per_unit_box = $sku->price - $cost_box ;
                                                     
                                                     $daySales7_total = 0;
 													$daySales30_total = 0;
@@ -85,25 +91,34 @@
                                                 @if($sku_pivot_supplier)
                                                     - {{number_format($sku_pivot_supplier->pivot->price,0,"",",")}}<br>
                                                 @endif
-                                                
-                                               
-                                                    - {{number_format($shippingCost,0,"",",")}}<br>
-                                               
-    
-                                                
+                                                    - {{number_format($shippingCost_byPcs,0,"",",")}}<br>
                                                 ----------------<br>
-                                                {{number_format($profit_per_unit,0,"",",")}}
-                                                {{--cbm--}}
+                                                {{number_format($profit_per_unit_pcs,0,"",",")}}<br>
+                                                @if($cost>0)
+                                                    <span class="{{$profit_per_unit_pcs>0? $proffit_per_unit_class="text-green":$proffit_per_unit_class="text-red"}}">
+                                                    {{number_format($profit_per_unit_pcs/$cost*100, 1, ".", ",")}} %
+                                                    </span>
+                                                @endif
                                                 </div>
     
                                                 {{--利潤 %--}}
                                                 <div class="pull-right">
-                                                   
+                                                    {{--售價--}}
+                                                    {{number_format($sku->price,0,"",",")}}<br>
+    
+    
+                                                    @if($sku_pivot_supplier)
+                                                        - {{number_format($sku_pivot_supplier->pivot->price,0,"",",")}}<br>
+                                                    @endif
+                                                    - {{number_format($shippingCost_byBox,0,"",",")}}<br>
+                                                    ----------------<br>
+                                                    {{number_format($profit_per_unit_box,0,"",",")}}<br>
                                                     @if($cost>0)
-                                                        <span class="{{$profit_per_unit>0? $proffit_per_unit_class="text-green":$proffit_per_unit_class="text-red"}}">
-                                                        {{number_format($profit_per_unit/$cost*100, 1, ".", ",")}} %
+                                                        <span class="{{$profit_per_unit_box>0? $proffit_per_unit_class="text-green":$proffit_per_unit_class="text-red"}}">
+                                                    {{number_format($profit_per_unit_box/$cost*100, 1, ".", ",")}} %
                                                     </span>
                                                     @endif
+                                                
                                                 </div>
                                             </td>
                                             
