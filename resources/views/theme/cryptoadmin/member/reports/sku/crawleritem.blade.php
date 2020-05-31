@@ -76,8 +76,11 @@
                                                     {{$sku->sku_name}}<br>
                                                     <span class="font-size-12">{{$sku->id_code}}</span><br>
                                                     {{$sku->length_pcs}}x{{$sku->width_pcs}}x{{$sku->heigth_pcs}}
-                                                
                                                      = ({{number_format($volume_pcs,0,"",",")}})<br>
+    
+                                                    {{$sku->length_box}}x{{$sku->width_box}}x{{$sku->heigth_box}}
+                                                    = ({{number_format($volume_box,0,"",",")}})<br>
+                                                
                                                     ({{number_format($cbm_price,0,"",",")}}/CBM)
                                             </td>
                                             
