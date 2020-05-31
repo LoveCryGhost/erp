@@ -20,7 +20,6 @@ use function current;
 use function dd;
 use function dispatch;
 use function explode;
-use function json_decode;
 use function request;
 
 class CrawlerTaskJob implements ShouldQueue
@@ -113,9 +112,10 @@ class CrawlerTaskJob implements ShouldQueue
             if($crawlerTask->current_page == $crawlerTask->pages){
                 $crawlerTask->updated_at = Carbon::now();
             }
+            $crawlerTask->is_crawler = 1;
             $crawlerTask->save();
 
-            dispatch((new CrawlerTaskJob())->onQueue('high'));
+            dispatch((new CrawlerTaskJob())->onQueue('instant'));
         }
     }
 
@@ -136,11 +136,15 @@ class CrawlerTaskJob implements ShouldQueue
     {
         $query = CrawlerTask::where(function ($query) {
             $query->whereDate('updated_at','<>',Carbon::today())
-                ->orWhereNull('updated_at')
-                ->orWhereRaw('current_page < pages');
-        })->orderBy('member_id', 'DESC');
+                ->orWhereNull('updated_at');
+
+        })->orWhereRaw('current_page < pages')
+            ->where('is_crawler', 1)
+            ->orderBy('member_id', 'DESC');
+
         $query = $this->shopeeHandler->crawlerSeperator($query);
         $crawlerTask = $query->first();
         return $crawlerTask;
     }
 }
+
