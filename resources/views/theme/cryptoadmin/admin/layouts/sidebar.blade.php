@@ -79,6 +79,20 @@
                     <li><a href="{{route('admin.adminCrawlerItem.index')}}"><i class="ti-more"></i>CrawlerItem</a></li>
                 </ul>
             </li>
+    
+            {{--DB --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-database"></i>
+                    <span>Run</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('admin.run.taskToMember')}}"><i class="ti-more"></i>TaskToMember</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
 </aside>

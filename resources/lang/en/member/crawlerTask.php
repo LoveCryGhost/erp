@@ -19,7 +19,7 @@ return [
     'index.table.taskName' => 'Task Name',
     'index.table.domain_name' => 'Domain',
     'index.table.description' => 'Description',
-    'index.table.is_active' => 'Active',
+    'index.table.is_active' => 'Track',
     'index.table.information' => 'Info',
     'index.table.action' => 'Action',
     'index.table.created_by' => 'Created By',

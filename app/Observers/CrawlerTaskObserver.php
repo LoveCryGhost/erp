@@ -14,14 +14,14 @@ class CrawlerTaskObserver extends Observer
 
     public function saving(CrawlerTask $crawlerTask)
     {
-        if(request()->is_active === "1" or request()->is_active === 1 or request()->is_active === true or $crawlerTask->is_active==1 ){
-            $crawlerTask->is_active = 1;
-        }else{
-            $crawlerTask->is_active = 0;
-        }
+//        if(request()->is_active === "1" or request()->is_active === 1 or request()->is_active === true or $crawlerTask->is_active==1 ){
+//            $crawlerTask->is_active = 1;
+//        }else{
+//            $crawlerTask->is_active = 0;
+//        }
 
         //判別是否為admin建立
-        if(Auth::guard('member')->user()!=null) {
+        if(Auth::guard('member')->user()!=null and $crawlerTask->member_id==null) {
             $crawlerTask->member_id = Auth::guard('member')->user()->id;
         }
 

@@ -223,6 +223,10 @@ class RolesAndPermissionsSeeder extends Seeder
         $member = Member::find(7);
         $member->assignRole('CrawlerShopee', 'ERP');
 
+        //Risca
+        $member = Member::find(8);
+        $member->assignRole('CrawlerShopee', 'ERP');
+
     }
 
     public function StaffRoleAndPermission()

@@ -145,6 +145,7 @@ class CrawlerTaskJob implements ShouldQueue
 
         })->orWhereRaw('current_page < pages')
             ->where('is_crawler', 1)
+            ->where('is_active', 1)
             ->orderBy('member_id', 'DESC');
 
         $query = $this->shopeeHandler->crawlerSeperator($query);

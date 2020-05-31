@@ -35,7 +35,7 @@ class CrawlerTasksController extends MemberCoreController
     {
         $query = $this->crawlerTaskService->crawlertaskRepo->builder()
             ->where('member_id', Auth::guard('member')->user()->id)
-            ->with(['crawlerItems']);
+            ->with(['crawlerItems','member']);
 
         $this->filters = [
             'ct_name' => request()->ct_name,
@@ -43,13 +43,19 @@ class CrawlerTasksController extends MemberCoreController
             'domain_name' => request()->domain_name,
             'id_code' => request()->id_code,
             'locations' => request()->locations,
+            'locale' => request()->locale,
+            'createdBy' => request()->createdBy,
+
         ];
 
+//        dd($this->filters);
         $query = $this->index_filters($query, $this->filters);
-        $crawlerTasks = $query->paginate(10);
+        $total_tasks = $query->count();
+        $crawlerTasks = $query->paginate(50);
         return view(config('theme.member.view').'crawlerTask.index', [
                 'crawlerTasks' => $crawlerTasks,
-                'filters' => $this->filters
+                'filters' => $this->filters,
+                'total_tasks' => $total_tasks
             ]);
     }
 
@@ -106,8 +112,22 @@ class CrawlerTasksController extends MemberCoreController
         $query  = $this->filter_like($query,'ct_name', $filters['ct_name']);
         $query  = $this->filter_like($query,'description', $filters['description']);
         $query  = $this->filter_like($query,'domain_name', $filters['domain_name']);
-        $query  = $this->filter_like($query,'locations', $filters['locations']);
+
         $query  = $this->filter_like($query,'id_code', $filters['id_code']);
+
+        $query = $this->filter_checkbox($query, 'locations', $filters['locations']);
+        $query = $this->filter_checkbox($query, 'locale', $filters['locale']);
+
+        //CreatedBy
+        if(isset($filters['createdBy']['self'])){
+            $query= $query->where(function($q){
+                    $q->where('is_active', 1);
+                });
+            return $query;
+
+        }
+
+
 
       return $query;
     }

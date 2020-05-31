@@ -48,10 +48,32 @@
                                             <input class="form-control" type="text" name="description" placeholder="{{__('member/crawlerTask.index.search.description')}}" value="{{request()->description}}">
                                         </div>
                                     </div>
-                                    <div class="col-sm-3 form-group">
-                                        <h5>{{__('member/crawlerTask.index.search.location')}}</h5>
-                                        <div class="controls">
-                                            <input class="form-control" type="text" name="locations" placeholder="{{__('member/crawlerTask.index.search.location')}}" value="{{request()->locations}}">
+                                    <div class="col-sm-4 form-group">
+                                        <label class="col-sm-2 col-form-label">CreatedBy</label>
+                                        <div class="col-sm-10">
+                                            <input type="checkbox" class="" name="createdBy[self]"  id="locale_self" value="self" {{isset(request()->createdBy['self'])?  "checked":""}}>
+                                            <label for="locale_self" class="text-dark m-t-5 pl-4 m-r-15 ">Self</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <label class="col-sm-1 col-form-label">{{__('member/crawlerTask.index.search.location')}}</label>
+                                        <div class="col-sm-11">
+                                            <input type="checkbox" class="" name="locations[in]"  id="locations_in" value="null" {{isset(request()->locations['in'])?  "checked":""}}>
+                                            <label for="locations_in" class="text-dark m-t-5 pl-4 m-r-15 ">Domestic</label>
+                                            <input type="checkbox" class="permission_check" name="locations[out]"  id="locations_out" value="-2" {{isset(request()->locations['out'])?  "checked":""}}>
+                                            <label for="locations_out" class="text-dark m-t-5 pl-4 m-r-15 ">International</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        {{--國家--}}
+                                        <label class="col-sm-1 col-form-label">{{__('member/crawlerItemSearch.index.search.country')}}</label>
+                                        <div class="col-sm-11">
+                                            <input type="checkbox" class="" name="locale[tw]"  id="locale_tw" value="tw" {{isset(request()->locale['tw'])?  "checked":""}}>
+                                            <label for="locale_tw" class="text-dark m-t-5 pl-4 m-r-15 ">{{__('member/crawlerItemSearch.index.search.language.tw')}}</label>
+                                            <input type="checkbox" class="permission_check" name="locale[id]"  id="locale_id" value="id" {{isset(request()->locale['id'])?  "checked":""}}>
+                                            <label for="locale_id" class="text-dark m-t-5 pl-4 m-r-15 ">{{__('member/crawlerItemSearch.index.search.language.id')}}</label>
+                                            <input type="checkbox" class="permission_check" name="locale[th]"  id="locale_th" value="th" {{isset(request()->locale['th'])?  "checked":""}}>
+                                            <label for="locale_th" class="text-dark m-t-5 pl-4 m-r-15 ">{{__('member/crawlerItemSearch.index.search.language.th')}}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -75,23 +97,23 @@
                         @include(config('theme.member.btn.index.crud'))
                         @if(auth('admin')->check() && auth('admin')->user()->hasAnyRole('admin'))
                             
-                            {{--TW--}}
-                            <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerCategoryJob">tw-Category</a>
-                            <a class="btn btn-sm btn-primary" href="http://tw.cc-shop.com.cn/run/crawlerTaskJob">tw-Task</a>
-                            <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerItemJob">tw-Item</a>
-                            <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerShopJob">tw-Shop</a>
-    
-                            {{--Id--}}
-                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerCategoryJob">id-Category</a>
-                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerTaskJob">id-Task</a>
-                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerItemJob">id-Item</a>
-                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerShopJob">id-Shop</a>
-        
-                            {{--Th--}}
-                            <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerCategoryJob">th-Category</a>
-                            <a class="btn btn-sm btn-primary" href="http://th.cc-shop.com.cn/run/crawlerTaskJob">th-Task</a>
-                            <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerItemJob">th-Item</a>
-                            <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerShopJob">th-Shop</a>
+{{--                            --}}{{--TW--}}
+{{--                            <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerCategoryJob">tw-Category</a>--}}
+{{--                            <a class="btn btn-sm btn-primary" href="http://tw.cc-shop.com.cn/run/crawlerTaskJob">tw-Task</a>--}}
+{{--                            <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerItemJob">tw-Item</a>--}}
+{{--                            <a class="btn btn-sm btn-success" href="http://tw.cc-shop.com.cn/run/crawlerShopJob">tw-Shop</a>--}}
+{{--    --}}
+{{--                            --}}{{--Id--}}
+{{--                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerCategoryJob">id-Category</a>--}}
+{{--                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerTaskJob">id-Task</a>--}}
+{{--                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerItemJob">id-Item</a>--}}
+{{--                            <a class="btn btn-sm btn-primary" href="http://id.cc-shop.com.cn/run/crawlerShopJob">id-Shop</a>--}}
+{{--        --}}
+{{--                            --}}{{--Th--}}
+{{--                            <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerCategoryJob">th-Category</a>--}}
+{{--                            <a class="btn btn-sm btn-primary" href="http://th.cc-shop.com.cn/run/crawlerTaskJob">th-Task</a>--}}
+{{--                            <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerItemJob">th-Item</a>--}}
+{{--                            <a class="btn btn-sm btn-danger" href="http://th.cc-shop.com.cn/run/crawlerShopJob">th-Shop</a>--}}
                         
                             <form action="{{route('member.crawlerTask.refresh')}}" method="post" class="m-b-0"
                                   style="display: inline-block;"
@@ -102,6 +124,7 @@
                                     <i class="fa fa-refresh"></i>
                                 </button>
                             </form>
+                            <span>Total Tasks: {{$total_tasks}}</span>
                         @endif
                     </div>
                     <div class="table-responsive">
@@ -202,7 +225,7 @@
                 // 当滚动到底部时,自动加载下一页
                 autoTrigger: true,
                 // 限制自动加载, 仅限前两页, 后面就要用户点击才加载
-                autoTriggerUntil: 50,
+                autoTriggerUntil: 1,
                 // 设置加载下一页缓冲时的图片
                 loadingHtml: '<div class="text-center"><img class="center-block" src="{{asset('images/default/icons/loading.gif')}}" alt="Loading..." /><div>',
                 padding: 0,

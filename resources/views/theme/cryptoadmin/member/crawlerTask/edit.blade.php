@@ -48,7 +48,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">{{__('member/crawlerTask.edit.is_active')}}</label>
                                         <div class="col-sm-10">
-                                            <input type="checkbox" class="permission_check" name="is_active" value="1" id="is_active"
+                                            <input type="checkbox" class="permission_check" name="is_active" value="1" id="is_active" disabled
                                                    {{$crawlerTask->is_active===1? "checked": ""}}>
                                             <label for="is_active" class="text-dark p-0 m-0"></label>
                                         </div>

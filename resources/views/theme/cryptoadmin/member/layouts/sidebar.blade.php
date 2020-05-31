@@ -85,7 +85,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('member.crawlerTask.index')}}"><i class="ti-more"></i>{{__('member/sidebar.shopee.task')}}</a></li>
+                    <li><a href="{{route('member.crawlerTask.index',['createdBy[self]' => 'self'])}}"><i class="ti-more"></i>{{__('member/sidebar.shopee.task')}}</a></li>
                     <li><a href="{{route('member.crawlerItemSearch.index')}}"><i class="ti-more"></i>{{__('member/sidebar.shopee.search')}}</a></li>
                 </ul>
             </li>

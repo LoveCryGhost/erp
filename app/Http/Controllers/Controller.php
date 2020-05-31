@@ -50,6 +50,10 @@ class Controller extends BaseController
             $index=1;
             if($checkboxes!=""){
                 foreach($checkboxes as $checkbox_value){
+                    if($checkbox_value=="null"){
+                        $checkbox_value = NULL;
+                    }
+
                     if($index==1) {
                         $query = $query->where($column_name, $checkbox_value);
                     }else{

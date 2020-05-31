@@ -19,7 +19,7 @@ return [
     'index.table.taskName' => '任務名稱',
     'index.table.domain_name' => '網域',
     'index.table.description' => '描述',
-    'index.table.is_active' => '啟用',
+    'index.table.is_active' => '追蹤',
     'index.table.information' => '訊息',
     'index.table.action' => '操作',
     'index.table.created_by' => '建立者',

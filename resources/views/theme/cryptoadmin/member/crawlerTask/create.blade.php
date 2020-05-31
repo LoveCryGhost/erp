@@ -40,7 +40,7 @@
                                         <label class="col-sm-2 col-form-label">{{__('member/crawlerTask.edit.is_active')}}</label>
                                         <div class="col-sm-10">
                                             <input type="checkbox" class="permission_check" name="is_active" value="1" id="is_active"
-                                                   checked>
+                                                   checked disabled>
                                             <label for="is_active" class="text-dark p-0 m-0"></label>
                                         </div>
                                     </div>
