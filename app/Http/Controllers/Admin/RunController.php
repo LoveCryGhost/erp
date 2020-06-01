@@ -9,6 +9,7 @@ use App\Jobs\TaskItemToMemberJob;
 use App\Models\CrawlerTask;
 use App\Models\Member;
 use App\Repositories\Member\CrawlerTaskRepository;
+use Illuminate\Support\Facades\DB;
 use function dispatch;
 use function ini_set;
 use function redirect;
