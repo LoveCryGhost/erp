@@ -9,15 +9,20 @@ use App\Models\SKU;
 use Illuminate\Support\Facades\Auth;
 use function compact;
 use function config;
+use function ini_set;
 use function request;
+use function set_time_limit;
 use function view;
 
 class ReportSKUController extends MemberCoreController
 {
     public function __construct()
-    { $actions = [
-        'crawlerItemAanalysis'];
+    {
+        $actions = [
+            'crawlerItemAanalysis'];
         $this->coreMiddleware('ReportSKUController',$guard='member', $route="reportSKU", $actions);
+        ini_set('memory_limit', -1);
+        set_time_limit(0);
     }
 
 
