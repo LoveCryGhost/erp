@@ -83,4 +83,11 @@ class RunController extends AdminCoreController
         return redirect()->back();
     }
 
+    public function deleteDuplicateCtaskCitem()
+    {
+        $sql = 'DELETE FROM ctasks_items WHERE ct_i_id NOT IN (SELECT * FROM (SELECT MIN(n.ct_i_id) FROM ctasks_items n GROUP BY n.ct_id, n.ci_id) x)';
+        $results = DB::select( DB::raw($sql) );
+        return redirect()->back();
+    }
+
 }

@@ -9,8 +9,11 @@ use App\Models\SKUSupplier;
 use App\Models\Supplier;
 use App\Repositories\Member\MemberCoreRepository;
 use Carbon\Carbon;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
@@ -181,10 +184,38 @@ Route::prefix('test') ->middleware('auth:admin')->group(function(){
             $crawlerTask->updated_at = Carbon::now();
             $crawlerTask->save();
         };
-
     });
 
 
+    Route::get('/duplicateMySQL',function (){
+
+        ini_set('memory_limit', -1);
+        set_time_limit(0);
+
+        Schema::dropIfExists('tests');
+        Schema::create('tests', function (Blueprint $table)
+        {
+            $table->increments('ct_i_id');
+            $table->integer('ct_id');
+            $table->integer('ci_id');
+            $table->smallInteger('sort_order');
+            $table->timestamps();
+        });
+
+        for($k=1; $k<=100; $k++){
+            $data=[];
+            for ($i=1;$i<=1000;$i++){
+                $data[]=[
+                    'ct_id' => rand(1,3),
+                    'ci_id' => rand(1,2),
+                    'sort_order' => rand(0,1),
+                ];
+            }
+            DB::table('tests')->insert($data);
+        }
+
+
+    });
 
 });
 

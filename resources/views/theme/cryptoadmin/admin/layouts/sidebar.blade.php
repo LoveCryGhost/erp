@@ -93,6 +93,8 @@
                     <li><a href="{{route('admin.run.taskToMember')}}"><i class="ti-more"></i>TaskToMember</a></li>
                     <li><a href="{{route('admin.run.taskItemToMember')}}"><i class="ti-more"></i>TaskItemToMember</a></li>
                     <li><a href="{{route('admin.run.taskItemToMemberRefresh')}}"><i class="ti-more"></i>TaskItemToMember-Refresh</a></li>
+                    <li><a href="{{route('admin.run.deleteDuplicateCtaskCitem')}}"><i class="ti-more"></i>刪除重複TaskItem</a></li>
+
                     
                 </ul>
             </li>
