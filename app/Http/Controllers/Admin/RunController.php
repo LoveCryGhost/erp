@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use function dispatch;
 use function ini_set;
 use function redirect;
+use function set_time_limit;
 
 class RunController extends AdminCoreController
 {
@@ -20,6 +21,7 @@ class RunController extends AdminCoreController
     public function __construct()
     {
         ini_set('memory_limit', -1);
+        set_time_limit(0);
     }
 
     public function taskToMember()
