@@ -27,7 +27,7 @@ class ReportSKUController extends MemberCoreController
         $skus = SKU::with([
             'product','crawlerTaskItemSKU', 'crawlerTaskItemSKU.crawlerItemSKUDetails',
             'skuSuppliers', 'skuSuppliers.supplierGroup'])
-            ->where('member_id', Auth::guard('member')->user()->id)->paginate(10);
+            ->where('member_id', Auth::guard('member')->user()->id)->paginate(5);
 
         $filters = [];
         return $view = view(config('theme.member.view').'reports.sku.crawleritem',compact(['skus','filters']));
